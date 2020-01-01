@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\BotManController;
 
 $botman = resolve('botman');
@@ -8,10 +9,10 @@ function mainMenu($bot, $message)
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
 
-    $price= $bot->userStorage()->get("basket") ?? null;
+    $price = $bot->userStorage()->get("basket") ?? null;
 
     $keyboard = [
-        ["\xF0\x9F\x8D\xB1Меню","\xF0\x9F\x92\xB0Корзина".($price==null?"(0 ₽)":"$price ₽")],
+        ["\xF0\x9F\x8D\xB1Меню", "\xF0\x9F\x92\xB0Корзина" . ($price == null ? "(0 ₽)" : "$price ₽")],
         ["\xF0\x9F\x8D\xA3Собрать ролл"],
         ["\xF0\x9F\x8E\xB0Розыгрыш"],
         ["\xF0\x9F\x92\xADО Нас"],
@@ -38,11 +39,11 @@ function filterMenu($bot, $message)
     $inner_filling = $bot->userStorage()->get("inner_filling") ?? null;
     $form = $bot->userStorage()->get("form") ?? null;
     $count = $bot->userStorage()->get("count") ?? null;
-    $price= $bot->userStorage()->get("price") ?? null;
+    $price = $bot->userStorage()->get("price") ?? null;
 
 
     $keyboard = [
-        ["Результат","В корзину".($price==null?"(0 ₽)":"$price ₽")],
+        ["Результат", "В корзину" . ($price == null ? "(0 ₽)" : "$price ₽")],
         ["Верхнее покрытие" . ($upper_layer == null ? "\xE2\x9D\x8E" : "\xE2\x9C\x85"), "Начинка" . ($inner_filling == null ? "\xE2\x9D\x8E" : "\xE2\x9C\x85")],
         ["Форма ролла" . ($form == null ? "\xE2\x9D\x8E" : "\xE2\x9C\x85"), "Количество" . ($count == null ? "\xE2\x9D\x8E" : "\xE2\x9C\x85")],
         ["Сбросить фильтр"],
@@ -82,9 +83,41 @@ $botman->hears('Начинка.*', function ($bot) {
     $bot->reply('Начинка');
 });
 
-$botman->hears('/start|Главное меню', function ($bot) {
-    mainMenu($bot,'Главное меню');
+$botman->hears('.*Собрать ролл.*', function ($bot) {
+    filterMenu($bot, "Собери свой ролл сам!");
+});
+
+$botman->hears('.*Розыгрыш', function ($bot) {
+    $telegramUser = $bot->getUser();
+    $id = $telegramUser->getId();
+
+    $keybord = [
+        [
+            ['text' => "Условия розыгрыша и призы", 'url' => "https://telegra.ph/Usloviya-rozygrysha-01-01"]
+        ],
+        [
+            ['text' => "Ввести код и начать", 'callback_data' => "/lottery"]
+        ]
+    ];
+    $bot->sendRequest("sendMessage",
+        [
+            "chat_id" => "$id",
+            "text" => "Розыгрыш призов",
+            "parse_mode" => "Markdown",
+            'reply_markup' => json_encode([
+                'inline_keyboard' =>
+                    $keybord
+            ])
+        ]);
+});
+
+$botman->hears('.*О нас', function ($bot) {
+    $bot->reply("https://telegra.ph/O-Nas-01-01");
 });
 
 
-//$botman->hears('Start conversation', BotManController::class.'@startConversation');
+$botman->hears('/start|Главное меню', function ($bot) {
+    mainMenu($bot, 'Главное меню');
+});
+
+$botman->hears('/lottery', BotManController::class . '@lotteryConversation');
