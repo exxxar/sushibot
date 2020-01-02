@@ -88,7 +88,9 @@ $botman->hears('.*Собрать ролл.*', function ($bot) {
 });
 
 $botman->hears('.*Меню', function ($bot) {
-    $categories = \App\Product::distinct("category")->get();
+    $categories = \App\Product::distinct("category")
+        ->groupBy('category')
+        ->get();
 
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
@@ -96,7 +98,7 @@ $botman->hears('.*Меню', function ($bot) {
     $inline_keyboard = [];
     $tmp_menu = [];
     foreach ($categories as $key => $ptype) {
-        array_push($tmp_menu, ["text" => $ptype["title"], "callback_data" => "/category " . $ptype["category"]]);
+        array_push($tmp_menu, ["text" => $ptype["category"], "callback_data" => "/category " . $ptype["category"]]);
         if ($key % 3 == 0 || count($categories) == $key + 1) {
             array_push($inline_keyboard, $tmp_menu);
             $tmp_menu = [];
