@@ -82,36 +82,6 @@
                     </tbody>
                 </table>
 
-                @if(isset($user->promos))
-                    <h3>Участие в акциях</h3>
-                    <ul>
-                        @foreach($user->promos as $promotion)
-                            <li>
-                                <a href="{{ route('promocodes.show',$promotion->id) }}">
-                                    {{$promotion->title}}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
-
-                @if(isset($user->companies))
-                    <h3>Сотрудник компаний</h3>
-                    <ul>
-                        @foreach($user->companies as $company)
-                            <li>
-                                <a href="{{ route('companies.show',$company->id) }}">
-                                    {{$company->title}}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
-
-                <h3>Сеть друзей</h3>
-                <ul>
-                    @foreach ($user->childs as $key=>$u)
-                        <li>{{$key+1}} {{$user->name}} [Пригласивший] {{$u->name}} [Реферал]</li>
-                    @endforeach
-                </ul>
 
             </div>
         </div>
