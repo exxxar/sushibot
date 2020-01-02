@@ -88,16 +88,16 @@ $botman->hears('.*Собрать ролл.*', function ($bot) {
 });
 
 $botman->hears("\xF0\x9F\x8D\xB1Меню", function ($bot) {
-    $categories = \App\Product::all()->unique('category');;
+    $categories = \App\Product::all()->unique('category');
 
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
 
     $inline_keyboard = [];
     $tmp_menu = [];
-    foreach ($categories as $key => $ptype) {
-        array_push($tmp_menu, ["text" => $ptype["category"], "callback_data" => "/category " . $ptype["category"]]);
-        if ($key % 5 == 0 || count($categories) == $key + 1) {
+    foreach ($categories as $key => $category) {
+        array_push($tmp_menu, ["text" => $category["category"], "callback_data" => "/category 0 " . $category["category"]]);
+        if ($key % 2 == 0 || count($categories) == $key + 1) {
             array_push($inline_keyboard, $tmp_menu);
             $tmp_menu = [];
         }
@@ -145,5 +145,51 @@ $botman->hears('.*О нас', function ($bot) {
 $botman->hears('/start|Главное меню', function ($bot) {
     mainMenu($bot, 'Главное меню');
 });
+
+$botman->hears('/category ([0-9]+) (.*)', function ($bot, $page, $category) {
+
+    $telegramUser = $bot->getUser();
+    $id = $telegramUser->getId();
+
+    $products = \App\Product::where("category", $category)
+        ->take(10)
+        ->skip($page * 10)
+        ->get();
+
+    foreach ($products as $key => $product) {
+        $keybord = [
+            [
+                ['text' => "\xE2\x86\xAAДетальнее", 'callback_data' => "/product_info " . $product->id]
+            ]
+        ];
+
+        if (count($product) - 1 == $key && $page == 0)
+            array_push($keybord, [
+                ['text' => "\xE2\x8F\xA9Далее", 'callback_data' => "/category  " . ($page + 1) . " " . $product->category]
+            ]);
+
+        if (count($product) - 1 == $key && $page != 0)
+            array_push($keybord, [
+                ['text' => "\xE2\x8F\xAAНазад", 'callback_data' => "/category  " . ($page - 1) . " " . $product->category],
+                ['text' => "\xE2\x8F\xA9Далее", 'callback_data' => "/category  " . ($page + 1) . " " . $product->category]
+            ]);
+
+        $bot->sendRequest("sendPhoto",
+            [
+                "chat_id" => "$id",
+                "photo" => $product->image_url,
+                'reply_markup' => json_encode([
+                    'inline_keyboard' =>
+                        $keybord
+                ])
+            ]);
+    }
+});
+
+$botman->hears('/product_info ([0-9]+)', function ($bot, $productId) {
+    $product = \App\Product::find($productId);
+    $bot->reply($productId);
+});
+
 
 $botman->hears('/lottery', BotManController::class . '@lotteryConversation');
