@@ -87,9 +87,8 @@ $botman->hears('.*Собрать ролл.*', function ($bot) {
     filterMenu($bot, "Собери свой ролл сам!");
 });
 
-$botman->hears('.*Меню', function ($bot) {
-    $categories = \App\Product::distinct("category")
-        ->groupBy('category')
+$botman->hears("\xF0\x9F\x8D\xB1Меню", function ($bot) {
+    $categories = \App\Product::groupBy('category')
         ->get();
 
     $telegramUser = $bot->getUser();
