@@ -96,11 +96,7 @@ $botman->hears("\xF0\x9F\x8D\xB1Меню", function ($bot) {
     $inline_keyboard = [];
     $tmp_menu = [];
     foreach ($categories as $key => $category) {
-        array_push($tmp_menu, ["text" => $category["category"], "callback_data" => "/category 0 " . $category["category"]]);
-        if ($key % 2 == 0 || count($categories) == $key + 1) {
-            array_push($inline_keyboard, $tmp_menu);
-            $tmp_menu = [];
-        }
+        array_push($inline_keyboard, [["text" => $category["category"], "callback_data" => "/category 0 " . $category["category"]]]);
     }
     $bot->sendRequest("sendMessage",
         [
