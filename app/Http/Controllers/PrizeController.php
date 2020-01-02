@@ -21,9 +21,9 @@ class PrizeController extends Controller
     public function index(Request $request)
     {
         $prizes = Prize::orderBy('position', 'ASC')
-            ->paginate(15);
+            ->paginate(20);
         return view('admin.prizes.index', compact('prizes'))
-            ->with('i', ($request->get('page', 1) - 1) * 15);
+            ->with('i', ($request->get('page', 1) - 1) * 20);
     }
 
     /**

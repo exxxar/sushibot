@@ -14,10 +14,18 @@
 use \ATehnix\VkClient\Requests\Request as VkRequest;
 use \ATehnix\VkClient\Auth as VkAuth;
 use \Illuminate\Http\Request;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/tg', function () {
+    $updates = Telegram::getUpdates();
+    return (json_encode($updates));
+});
+
+
 
 Route::get('vkauth', function (Request $request,VkAuth $auth) {
     echo "<a href='{$auth->getUrl()}'> Войти через VK.Com </a><hr>";

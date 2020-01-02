@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Promocode;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PromocodeController extends Controller
@@ -18,7 +19,7 @@ class PromocodeController extends Controller
      */
     public function index(Request $request)
     {
-        $promocodes = Promocode::orderBy('id', 'DESC')
+        $promocodes = Promocode::with(["user"])->orderBy('id', 'DESC')
             ->paginate(15);
         return view('admin.promocodes.index', compact('promocodes'))
             ->with('i', ($request->get('page', 1) - 1) * 15);
@@ -44,7 +45,7 @@ class PromocodeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'code'=> 'required',
+            'code'=> 'required|unique:promocodes',
         ]);
 
         $promocode = Promocode::create([

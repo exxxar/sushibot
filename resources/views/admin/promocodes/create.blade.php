@@ -45,12 +45,6 @@
                             </td>
                         </tr>
 
-                        <tr>
-                            <td>Телефон пользователя</td>
-                            <td>
-                                <input type="text" name="phone" class="form-control" required>
-                            </td>
-                        </tr>
 
                         <tr>
                             <td></td>

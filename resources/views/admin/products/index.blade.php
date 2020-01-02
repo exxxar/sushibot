@@ -33,35 +33,38 @@
                 <h1>Продукты</h1>
                 @isset($products)
 
-                    @foreach($products as $key => $product)
+                    <div class="row">
+                        @foreach($products as $key => $product)
+                            <div class="col mb-2">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="{{$product->image_url}}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{$product->title}}<span
+                                                    class="badge badge-info">{{$product->is_active?"Активный":"Не активный"}}</span>
+                                        </h5>
+                                        <p class="card-text">{{$product->description}}</p>
 
-                        <div class="card" style="width: 18rem;">
-                            <img src="{{$product->image_url}}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{$product->title}}<span
-                                            class="badge badge-secondary">{{$product->is_active?"Активный":"Не активный"}}</span>
-                                </h5>
-                                <p class="card-text">{{$product->description}}</p>
-                                <p class="card-text">{{$product->category}}</p>
+                                        <p class="card-text"><span
+                                                    class="badge badge-success">{{$product->category}}</span></p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Масса: {{$product->mass}} грамм</li>
+                                        <li class="list-group-item">Цена: {{$product->mass}} руб.</li>
+                                        <li class="list-group-item">Порция: {{$product->portion_count}} шт.</li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="{{$product->site_url}}" class="card-link">На сайте</a>
+                                        <a href="{{ route('products.show',$product->id) }}" class="card-link">
+                                            Посмотреть</a>
+                                        <a class="card-link" href="{{ route('products.edit',$product->id) }}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Масса: {{$product->mass}} грамм</li>
-                                <li class="list-group-item">Цена: {{$product->mass}} руб.</li>
-                                <li class="list-group-item">Порция: {{$product->portion_count}} шт.</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="{{$product->site_url}}" class="card-link">На сайте</a>
-                                <a href="{{ route('products.show',$product->id) }}" class="card-link">
-                                    Посмотреть</a>
-                                <a class="card-link" href="{{ route('products.edit',$product->id) }}">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                            </div>
-                        </div>
 
-
-                    @endforeach
-
+                        @endforeach
+                    </div>
 
 
                     {{ $products->links() }}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Conversations\OrderConversation;
 use BotMan\BotMan\BotMan;
 use Illuminate\Http\Request;
 use App\Conversations\LotteryConversation;
@@ -28,10 +29,15 @@ class BotManController extends Controller
 
     /**
      * Loaded through routes/botman.php
-     * @param  BotMan $bot
+     * @param BotMan $bot
      */
     public function lotteryConversation(BotMan $bot)
     {
-        $bot->startConversation(new LotteryConversation());
+        $bot->startConversation(new LotteryConversation($bot));
+    }
+
+    public function orderConversation(BotMan $bot)
+    {
+        $bot->startConversation(new OrderConversation($bot));
     }
 }

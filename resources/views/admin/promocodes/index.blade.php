@@ -26,11 +26,24 @@
 
                 <div class="row">
                     <div class="col-sm-4">
-                        <a class="btn btn-primary" href="{{route("promocodes.create")}}">Новый промокод</a>
+                        <h5>Добавление нового промокода</h5>
+                        <form method="post" action="{{ route('promocodes.store') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="col form-group">
+                                    <input type="text" name="code" class="form-control" required>
+                                </div>
+                                <div class="col form-group">
+                                    <button class="btn btn-primary">Добавить</button>
+                                </div>
+                            </div>
+
+
+                        </form>
                     </div>
                 </div>
 
-                <h1>Акции</h1>
+                <h1>Промокоды</h1>
                 @isset($promocodes)
                     <table class="table mt-2">
 
@@ -48,23 +61,24 @@
                         @foreach($promocodes as $key => $promocode)
                             <tr>
                                 <td>{{$key + 1}}</td>
-                                <td><a href="{{ route('promocodes.show',$promocode->id) }}">
-                                        {{$promocode->code}}</a>
-                                    <a class="btn btn-link" href="{{ route('promocodes.edit',$promocode->id) }}">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
+                                <td>
+                                    {{$promocode->code}}
 
                                 </td>
                                 <td>{{$promocode->activated?"Активирован":"Не активирован"}}</td>
                                 <td>
-                                    <a href="{{$promocode->user->id}}">{{$promocode->user->email}}</a>
+                                    @if($promocode->user)
+                                        <a href="{{$promocode->user->id}}">{{$promocode->user->email}}</a>
+                                    @else
+                                        <p>Нет пользователя</p>
+                                    @endif
                                 </td>
 
                                 <td>
                                     <form action="{{ route('promocodes.destroy', $promocode->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-link" type="submit"><i class="fas fa-times"></i></button>
+                                        <button class="btn btn-link" type="submit">Удалить</button>
                                     </form>
                                 </td>
                             </tr>

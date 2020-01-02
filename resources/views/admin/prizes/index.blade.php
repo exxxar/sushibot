@@ -32,31 +32,41 @@
 
                 <h1>Призы</h1>
                 @isset($prizes)
+                    <div class="row">
+
+
                     @foreach($prizes as $key => $prize)
+                    <div class="col">
+                        <div class="wrapper" style="padding: 10px">
+                            <div class="card" style="width:220px;">
+                                <!-- Изображение -->
+                                <img class="card-img-top" src="{{$prize->image_url}}" style="width:100%;">
+                                <!-- Текстовый контент -->
+                                <div class="card-body">
+                                    <h5>{{$prize->title}}</h5>
+                                    <p>{{$prize->description}}</p>
+                                    <a href="{{ route('prizes.show',$prize->id) }}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ route('prizes.edit',$prize->id) }}" class="btn btn-info"><i class="fas fa-edit"></i></a>
 
-                        <div class="card">
-                            <!-- Изображение -->
-                            <img class="card-img-top" src="{{$prize->image_url}}" alt="...">
-                            <!-- Текстовый контент -->
-                            <div class="card-body">
-                                <h5>{{$prize->title}}</h5>
-                                <p>{{$prize->description}}</p>
-                                <a href="{{ route('prizes.show',$prize->id) }}" class="btn btn-primary">Посмотреть</a>
-                                <div class="row">
-                                    <div class="col">
-                                        <span class="badge badge-primary">Pos:{{$prize->position}}</span>
-                                    </div>
-                                    @if($prize->as_default)
+
+                                    <div class="row">
                                         <div class="col">
-                                            <span class="badge badge-success">{{$prize->as_default?"Default":""}}</span>
+                                            <span class="badge badge-primary">Pos:{{$prize->position}}</span>
                                         </div>
-                                    @endif
+                                        @if($prize->as_default)
+                                            <div class="col">
+                                                <span class="badge badge-success">{{$prize->as_default?"Default":""}}</span>
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
+
                             </div>
-
                         </div>
-                    @endforeach
 
+                    </div>
+                    @endforeach
+                    </div>
 
                     {{ $prizes->links() }}
                 @endisset
