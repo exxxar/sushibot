@@ -96,7 +96,7 @@ $botman->hears("\xF0\x9F\x8D\xB1Меню", function ($bot) {
     $inline_keyboard = [];
     $tmp_menu = [];
     foreach ($categories as $key => $category) {
-        array_push($inline_keyboard, [["text" => $category["category"], "callback_data" => "/category 0 " . $category["category"]]]);
+        array_push($inline_keyboard, [["text" => $category["category"], "callback_data" => "/category 0 " . base64_encode($category["category"])]]);
     }
     $bot->sendRequest("sendMessage",
         [
@@ -142,12 +142,12 @@ $botman->hears('/start|Главное меню', function ($bot) {
     mainMenu($bot, 'Главное меню');
 });
 
-$botman->hears('/category ([0-9]+) ([а-яА-Я)(_- ])', function ($bot, $page, $category) {
+$botman->hears('/category ([0-9]+) (a-zA-Z0-9=])', function ($bot, $page, $category) {
 
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
 
-    $products = \App\Product::where("category", $category)
+    $products = \App\Product::where("category",base64_decode($category))
         ->take(10)
         ->skip($page * 10)
         ->get();
@@ -159,15 +159,17 @@ $botman->hears('/category ([0-9]+) ([а-яА-Я)(_- ])', function ($bot, $page, 
             ]
         ];
 
+        $category = base64_encode($product->category);
+
         if (count($product) - 1 == $key && $page == 0)
             array_push($keybord, [
-                ['text' => "\xE2\x8F\xA9Далее", 'callback_data' => "/category  " . ($page + 1) . " " . $product->category]
+                ['text' => "\xE2\x8F\xA9Далее", 'callback_data' => "/category  " . ($page + 1) . " " .$category ]
             ]);
 
         if (count($product) - 1 == $key && $page != 0)
             array_push($keybord, [
-                ['text' => "\xE2\x8F\xAAНазад", 'callback_data' => "/category  " . ($page - 1) . " " . $product->category],
-                ['text' => "\xE2\x8F\xA9Далее", 'callback_data' => "/category  " . ($page + 1) . " " . $product->category]
+                ['text' => "\xE2\x8F\xAAНазад", 'callback_data' => "/category  " . ($page - 1) . " " . $category],
+                ['text' => "\xE2\x8F\xA9Далее", 'callback_data' => "/category  " . ($page + 1) . " " . $category]
             ]);
 
         $bot->sendRequest("sendPhoto",
