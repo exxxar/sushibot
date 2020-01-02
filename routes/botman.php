@@ -528,7 +528,7 @@ $botman->hears('/remove_from_basket ([0-9]+)', function ($bot, $prodId) {
     ]);
 
     if (count($basket_tmp) == 0)
-        mainMenu("Товар удален из корзины");
+        mainMenu($bot,"Товар удален из корзины");
     else
         basketMenu($bot, "Товар удален из корзины");
 
