@@ -94,7 +94,7 @@ $botman->hears("\xF0\x9F\x8D\xB1Меню", function ($bot) {
     $id = $telegramUser->getId();
 
     $inline_keyboard = [];
-    $tmp_menu = [];
+    $bot->reply("Меню");
     foreach ($categories as $key => $category) {
         array_push($inline_keyboard, [["text" => $category["category"], "callback_data" => "/category 0 " . base64_encode($category["category"])]]);
     }
@@ -147,7 +147,7 @@ $botman->hears('/category ([0-9]+) (a-zA-Z0-9=])', function ($bot, $page, $categ
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
 
-    $products = \App\Product::where("category",base64_decode($category))
+    $products = \App\Product::where("category", base64_decode($category))
         ->take(10)
         ->skip($page * 10)
         ->get();
@@ -163,7 +163,7 @@ $botman->hears('/category ([0-9]+) (a-zA-Z0-9=])', function ($bot, $page, $categ
 
         if (count($product) - 1 == $key && $page == 0)
             array_push($keybord, [
-                ['text' => "\xE2\x8F\xA9Далее", 'callback_data' => "/category  " . ($page + 1) . " " .$category ]
+                ['text' => "\xE2\x8F\xA9Далее", 'callback_data' => "/category  " . ($page + 1) . " " . $category]
             ]);
 
         if (count($product) - 1 == $key && $page != 0)
