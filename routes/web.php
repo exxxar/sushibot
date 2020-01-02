@@ -11,9 +11,43 @@
 |
 */
 
+use \ATehnix\VkClient\Requests\Request as VkRequest;
+use \ATehnix\VkClient\Auth as VkAuth;
+use \Illuminate\Http\Request;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('vkauth', function (Request $request,VkAuth $auth) {
+    echo "<a href='{$auth->getUrl()}'> Войти через VK.Com </a><hr>";
+
+    if ($request->exists('code')) {
+        echo 'Token: '.$auth->getToken($request->exists('code'));
+    }
+});
+
 Route::match(['get', 'post'], '/botman', 'BotManController@handle');
 Route::get('/botman/tinker', 'BotManController@tinker');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('admin')->group(function () {
+    Route::get("/", "HomeController@index");
+
+    Route::post('/search', 'HomeController@search')
+        ->name('users.search');
+    Route::get('/search_ajax/', 'HomeController@searchAjax')
+        ->name('users.ajax.search');
+
+    Route::resources([
+        'users' => 'UsersController',
+        'ingredients' => 'IngredientController',
+        'prizes' => 'PrizeController',
+        'products' => 'ProductController',
+        'promocodes' => 'PromocodeController',
+    ]);
+});
+

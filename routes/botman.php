@@ -9,10 +9,10 @@ function mainMenu($bot, $message)
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
 
-    $price = $bot->userStorage()->get("basket") ?? null;
+    $count = $bot->userStorage()->get("basket_count") ?? null;
 
     $keyboard = [
-        ["\xF0\x9F\x8D\xB1Меню", "\xF0\x9F\x92\xB0Корзина" . ($price == null ? "(0 ₽)" : "$price ₽")],
+        ["\xF0\x9F\x8D\xB1Меню", "\xF0\x9F\x92\xB0Корзина" . ($count == null ? "(0)" : "$count")],
         ["\xF0\x9F\x8D\xA3Собрать ролл"],
         ["\xF0\x9F\x8E\xB0Розыгрыш"],
         ["\xF0\x9F\x92\xADО Нас"],
@@ -85,6 +85,32 @@ $botman->hears('Начинка.*', function ($bot) {
 
 $botman->hears('.*Собрать ролл.*', function ($bot) {
     filterMenu($bot, "Собери свой ролл сам!");
+});
+
+$botman->hears('.*Меню', function ($bot) {
+    $categories = \App\Product::distinct("category")->get();
+
+    $telegramUser = $bot->getUser();
+    $id = $telegramUser->getId();
+
+    $inline_keyboard = [];
+    $tmp_menu = [];
+    foreach ($categories as $key => $ptype) {
+        array_push($tmp_menu, ["text" => $ptype["title"], "callback_data" => "/category " . $ptype["category"]]);
+        if ($key % 3 == 0 || count($categories) == $key + 1) {
+            array_push($inline_keyboard, $tmp_menu);
+            $tmp_menu = [];
+        }
+    }
+    $bot->sendRequest("sendMessage",
+        [
+            "chat_id" => "$id",
+            "text" => "Выбор категории",
+            "parse_mode" => "Markdown",
+            'reply_markup' => json_encode([
+                'inline_keyboard' => $inline_keyboard,
+            ])
+        ]);
 });
 
 $botman->hears('.*Розыгрыш', function ($bot) {

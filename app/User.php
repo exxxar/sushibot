@@ -16,8 +16,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'telegram_chat_id',
+        'fio_from_telegram',
+        'phone',
+        'birthday',
+        'is_admin'
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.
