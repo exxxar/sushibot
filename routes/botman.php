@@ -373,9 +373,15 @@ $botman->hears('/category ([0-9]+) ([0-9]+)', function ($bot, $page, $catIndex) 
     $categories = Product::all()->unique('category');
 
     $products = \App\Product::where("category", $categories[$catIndex]->category)
+        ->where("is_active", 1)
         ->take(10)
         ->skip($page * 10)
         ->get();
+
+    if (count($products) == 0) {
+        $bot->reply("Товары в категории не найдены");
+        return;
+    }
 
     foreach ($products as $key => $product) {
         $keybord = [
@@ -429,24 +435,24 @@ $botman->hears('/product_info ([0-9]+)', function ($bot, $productId) {
         . "*Порция*:" . $product->portion_count . "шт.\n";
 
 
-         $keyboard = [
+    $keyboard = [
 
-             [
-                 ['text' => "\xE2\x86\xAAВ корзину(" . $product->price . "₽)", 'callback_data' => "/add_to_basket " . $product->id]
-             ]
-         ];
+        [
+            ['text' => "\xE2\x86\xAAВ корзину(" . $product->price . "₽)", 'callback_data' => "/add_to_basket " . $product->id]
+        ]
+    ];
 
-         $bot->sendRequest("sendPhoto",
-             [
-                 "chat_id" => "$id",
-                 "photo" => $product->image_url,
-                 "caption" => $message,
-                 "parse_mode" => "Markdown",
-                 'reply_markup' => json_encode([
-                     'inline_keyboard' =>
-                         $keyboard
-                 ])
-             ]);
+    $bot->sendRequest("sendPhoto",
+        [
+            "chat_id" => "$id",
+            "photo" => $product->image_url,
+            "caption" => $message,
+            "parse_mode" => "Markdown",
+            'reply_markup' => json_encode([
+                'inline_keyboard' =>
+                    $keyboard
+            ])
+        ]);
 
 });
 
@@ -489,7 +495,7 @@ $botman->hears('/check_lottery_slot ([0-9]+)', function ($bot, $slotId) {
     $user = User::where("telegram_chat_id", $id)->first();
 
     $message = "*Заявка на получение приза*\n$message"
-        . "*Имя*:" . $user->fio_from_telegram ?? $user->name . "\n"
+        . "*Имя*:" . ($user->fio_from_telegram ?? $user->name) . "\n"
         . "*Телефон*:" . $user->phone . "\n"
         . "*Дата заказа*:" . (Carbon::now()) . "\n";
 
