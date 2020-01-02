@@ -560,12 +560,12 @@ $botman->hears('Заказать свой ролл', function ($bot) {
     foreach ($inner_ingredients as $i) {
 
         $price_ingredient += $ingridients_inner[$i]->price;
-        $ingredient_title_inner .= "_" . $ingridients_inner[$i]->title . " " . $ingridients_inner[$i]->mass . " гр. " . $ingridients_inner[$i]->price . "₽\n";
+        $ingredient_title_inner .= "\n_" . $ingridients_inner[$i]->title . "_ " . $ingridients_inner[$i]->mass . " гр. " . $ingridients_inner[$i]->price . "₽";
 
     }
 
     $price_ingredient += $ingridients_upper[$bot->userStorage()->get("upper")]->price;
-    $ingredient_title_upper .= "_" . $ingridients_upper[$bot->userStorage()->get("upper")]->title . " "
+    $ingredient_title_upper .= "\n_" . $ingridients_upper[$bot->userStorage()->get("upper")]->title . "_ "
         . $ingridients_upper[$bot->userStorage()->get("upper")]->mass . " гр. "
         . $ingridients_upper[$bot->userStorage()->get("upper")]->price . "₽\n";
 
