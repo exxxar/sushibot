@@ -97,7 +97,7 @@ $botman->hears("\xF0\x9F\x8D\xB1Меню", function ($bot) {
     $tmp_menu = [];
     foreach ($categories as $key => $ptype) {
         array_push($tmp_menu, ["text" => $ptype["category"], "callback_data" => "/category " . $ptype["category"]]);
-        if ($key % 3 == 0 || count($categories) == $key + 1) {
+        if ($key % 5 == 0 || count($categories) == $key + 1) {
             array_push($inline_keyboard, $tmp_menu);
             $tmp_menu = [];
         }
