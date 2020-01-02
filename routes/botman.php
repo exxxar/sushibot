@@ -88,8 +88,7 @@ $botman->hears('.*Собрать ролл.*', function ($bot) {
 });
 
 $botman->hears("\xF0\x9F\x8D\xB1Меню", function ($bot) {
-    $categories = \App\Product::groupBy('category')
-        ->get();
+    $categories = \App\Product::all()->unique('category');;
 
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
