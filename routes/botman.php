@@ -142,7 +142,7 @@ $botman->hears('/start|Главное меню', function ($bot) {
     mainMenu($bot, 'Главное меню');
 });
 
-$botman->hears('/category ([0-9]+) (.*)', function ($bot, $page, $category) {
+$botman->hears('/category ([0-9]+) ([а-яА-Я)(_- ])', function ($bot, $page, $category) {
 
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
