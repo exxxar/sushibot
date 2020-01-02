@@ -283,7 +283,7 @@ $botman->hears('.*Корзина.*', function ($bot) {
     foreach ($basket as $key => $product) {
         $keybord = [
             [
-                ['text' => "\xE2\x86\xAAДетальнее", 'callback_data' => "/product_info " . $product->id],
+                ['text' => "\xF0\x9F\x91\x89Детальнее", 'callback_data' => "/product_info " . $product->id],
                 ['text' => "Убрать (" . $product->price . "₽)", 'callback_data' => "/remove_from_basket " . $product->id]
             ],
         ];
@@ -380,7 +380,7 @@ $botman->hears('/category ([0-9]+) ([0-9]+)', function ($bot, $page, $catIndex) 
     foreach ($products as $key => $product) {
         $keybord = [
             [
-                ['text' => "\xE2\x86\xAAДетальнее", 'callback_data' => "/product_info " . $product->id],
+                ['text' => "\xF0\x9F\x91\x89Детальнее", 'callback_data' => "/product_info " . $product->id],
             ],
             [
                 ['text' => "\xE2\x86\xAAВ корзину(" . $product->price . "₽)", 'callback_data' => "/add_to_basket " . $product->id]
