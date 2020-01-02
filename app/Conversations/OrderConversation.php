@@ -123,12 +123,12 @@ class OrderConversation extends Conversation
         $custom_order = json_decode($this->bot->userStorage()->get("order")) ?? null;
 
         if ($custom_order) {
-            $order_tmp =
-                 "*Форма*:" . $custom_order->form . "\n"
-                . "*Верхний слой*:" . $custom_order->upper . "\n"
-                . "*Начинка*:" . $custom_order->inner . "\n"
-                . "*Колличество*:" . $custom_order->count . "\n"
-                . "*Цена*:" . $custom_order->price . "\n+50₽ Нори и рис\n";
+            $order_tmp .=
+                 "*Форма*:" . ($custom_order->form??"Не установлено") . "\n"
+                . "*Верхний слой*:" . ($custom_order->upper??"Не установлено") . "\n"
+                . "*Начинка*:" . ($custom_order->inner??"Не установлено") . "\n"
+                . "*Колличество*:" . ($custom_order->count??"Не установлено") . "\n"
+                . "*Цена*:" . ($custom_order->price??"Не установлено") . "\n+50₽ Нори и рис\n";
 
             $summary += $custom_order->price + 50;
         }
