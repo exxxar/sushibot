@@ -527,7 +527,10 @@ $botman->hears('/remove_from_basket ([0-9]+)', function ($bot, $prodId) {
         'basket' => json_encode($basket_tmp)
     ]);
 
-    basketMenu($bot, "Товар удален из корзины");
+    if (count($basket_tmp) == 0)
+        mainMenu("Товар удален из корзины");
+    else
+        basketMenu($bot, "Товар удален из корзины");
 
 });
 $botman->hears('Заказать свой ролл', function ($bot) {
