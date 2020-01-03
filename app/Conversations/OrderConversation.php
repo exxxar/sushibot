@@ -75,7 +75,7 @@ class OrderConversation extends Conversation
             $vowels = array("(", ")", "-", " ");
             $tmp_phone = $answer->getText();
             $tmp_phone = str_replace($vowels, "", $tmp_phone);
-            if (strpos($tmp_phone, "+38") == -1)
+            if (strpos($tmp_phone, "+38") === false)
                 $tmp_phone = "+38" . $tmp_phone;
 
             Log::info("phone=$tmp_phone");
