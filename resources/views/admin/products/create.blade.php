@@ -8,10 +8,10 @@
                 <div class="row">
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-left">
-                            <h2>Добавление новой акции</h2>
+                            <h2>Добавление нового продукта</h2>
                         </div>
                         <div class="pull-right">
-                            <a class="btn btn-primary" href="{{ route('ingredients.index') }}"> Назад</a>
+                            <a class="btn btn-primary" href="{{ route('products.index') }}"> Назад</a>
                         </div>
 
                         @if (count($errors) > 0)
@@ -30,7 +30,7 @@
                 </div>
 
 
-                <form method="post" action="{{ route('ingredients.store') }}">
+                <form method="post" action="{{ route('products.store') }}">
                     @csrf
                     <table class="table mt-2">
                         <thead class="thead-light ">
@@ -39,45 +39,77 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Ссылка</td>
+                            <td>Заголовок
+                                <input type="checkbox" id="is_active" class="form-control" name="is_active" checked
+                                       required>
+                                <label for="is_active">Активировать</label>
+
+                            </td>
                             <td>
-                                <input type="text" class="form-control" name="url" value="" required>
+                                <input type="url" name="url" class="form-control" value="" required>
                             </td>
                         </tr>
                         <tr>
-                            <td>Раздел</td>
+                            <td>Описание</td>
                             <td>
-                                <select name="part" id="part" class="form-control">
-                                    @foreach($parts as $part)
-                                        <option value="{{$part->value}}">{{$part->key}}</option>
-                                        @endforeach
-                                </select>
+                                <textarea class="form-control" name="description" required></textarea>
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Отображение</td>
+                            <td>Категория</td>
                             <td>
-
-                                <input type="radio" name="is_visible" value="0" required id="is_visible_1">
-                                <label for="is_visible_1">Не отображать</label>
-
-                                <input  type="radio" name="is_visible" value="1" required id="is_visible_2">
-                                <label for="is_visible_2">Отображать</label>
-
+                                <input type="text" name="category" class="form-control" value="" required>
 
                             </td>
                         </tr>
 
+                        <tr>
+                            <td>Масса,грамм</td>
+                            <td>
+                                <input type="number" min="0" name="mass" class="form-control" value="" required>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Цена, руб.</td>
+                            <td>
+                                <input type="number" min="0" name="price" class="form-control" value="" required>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Порция, шт.</td>
+                            <td>
+                                <input type="number" min="0" name="portion_count" class="form-control" value=""
+                                       required>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Изображение товара</td>
+                            <td>
+
+                                <input type="url" name="image_url" class="form-control" value="" required>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Ссылка на товар на сайте</td>
+                            <td>
+                                <input type="url" name="site_url" class="form-control" value="" required>
+                            </td>
+                        </tr>
 
                         <tr>
                             <td></td>
                             <td>
-                                <button class="btn btn-primary">Добавить</button>
+                                <button class="btn btn-primary" type="submit">Добавить</button>
+
                             </td>
                         </tr>
-
-
 
                         </tbody>
                     </table>

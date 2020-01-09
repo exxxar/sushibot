@@ -8,10 +8,10 @@
                 <div class="row">
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-left">
-                            <h2>Изменение акции</h2>
+                            <h2>Изменение продукта</h2>
                         </div>
                         <div class="pull-right">
-                            <a class="btn btn-primary" href="{{ route('ingredients.index') }}"> Назад</a>
+                            <a class="btn btn-primary" href="{{ route('product.index') }}"> Назад</a>
                         </div>
 
                         @if (count($errors) > 0)
@@ -30,67 +30,105 @@
                 </div>
 
 
-                <form method="post" action="{{ route('ingredients.update',$article->id) }}">
+                <form method="post" action="{{ route('products.update',$product->id) }}">
                     @csrf
                     <input name="_method" type="hidden" value="PUT">
 
+
                     <table class="table mt-2">
-                        <thead class="thead-light ">
-                        <th>Параметр</th>
-                        <th>Значение</th>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Заголовок</td>
-                            <td>
-                                <input type="text" class="form-control" name="url" value="{{$article->url}}" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Раздел</td>
-                            <td>
-                                <select name="part" id="part" class="form-control">
-                                    @foreach($parts as $part)
-                                        @if ($part->value==$article->part->value)
-                                            <option value="{{$part->value}}" selected>{{$part->key}}</option>
-                                        @else
-                                            <option value="{{$part->value}}">{{$part->key}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </td>
-                        </tr>
+                            <thead class="thead-light ">
+                            <th>Параметр</th>
+                            <th>Значение</th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Заголовок
 
-                        <tr>
-                            <td>Отображение</td>
-                            <td>
+                                    <input type="checkbox" id="is_active" class="form-control" name="is_active" {{$product->is_active?"checked":""}} required>
+                                    <label for="is_active">Активировать</label>
+                                </td>
+                                <td>
+                                    <input type="url" name="url" class="form-control" value="{{$product->url}}" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Описание</td>
+                                <td>
+                                    <textarea class="form-control" name="description" required>{{$product->description}}</textarea>
+                                </td>
+                            </tr>
 
+                            <tr>
+                                <td>Категория</td>
+                                <td>
+                                    <input type="text" name="category" class="form-control" value="{{$product->category}}" required>
 
-                                <input type="radio" name="is_visible" value="0" required
-                                       {{!$article->is_visible?'checked':''}}
-                                       id="is_visible_1">
-                                <label for="is_visible_1">Не отображать</label>
+                                </td>
+                            </tr>
 
-                                <input  type="radio" name="is_visible" value="1" required
-                                        {{$article->is_visible?'checked':''}}
-                                        id="is_visible_2">
-                                <label for="is_visible_2">Отображать</label>
+                            <tr>
+                                <td>Масса,грамм</td>
+                                <td>
+                                    <input type="number" min="0" name="mass" class="form-control" value="{{$product->mass}}" required>
+                                </td>
+                            </tr>
 
+                            <tr>
+                                <td>Цена, руб.</td>
+                                <td>
+                                    <input type="number" min="0" name="price" class="form-control" value="{{$product->price}}" required>
+                                </td>
+                            </tr>
 
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>Порция, шт.</td>
+                                <td>
+                                    <input type="number" min="0" name="portion_count" class="form-control" value="{{$product->portion_count}}" required>
 
+                                </td>
+                            </tr>
 
-                        <tr>
-                            <td></td>
-                            <td>
-                                <button class="btn btn-primary">Изменить</button>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>Изображение товара</td>
+                                <td>
 
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <img src="{{$product->image_url}}" alt="" class="img-thumbnail" style="object-fit: cover; height:150px;width: 150px;">
+                                        </div>
+                                        <div class="col-9">
+                                            <input type="url" name="image_url" class="form-control" value="{{$product->image_url}}" required>
 
-                        </tbody>
-                    </table>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Ссылка на товар на сайте</td>
+                                <td>
+                                    <input type="url"  name="site_url" class="form-control" value="{{$product->site_url}}" required>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">
+                                        Редактировать <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('products.destroy', $product->id)}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-link" type="submit">Удалить <i class="fas fa-times"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
                 </form>
 
 
