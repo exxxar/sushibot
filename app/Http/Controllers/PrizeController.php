@@ -49,7 +49,6 @@ class PrizeController extends Controller
             'description'=> 'required',
             'image_url'=> 'required',
             'position'=> 'required',
-            'as_default'=> 'required'
 
         ]);
         $prize = Prize::create([
@@ -57,7 +56,7 @@ class PrizeController extends Controller
             'description'=> $request->get('description')??'',
             'image_url'=> $request->get('image_url')??'',
             'position'=> $request->get('position')??'',
-            'as_default'=> $request->get('as_default')??'',
+            'as_default'=> 0,
 
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
@@ -106,7 +105,6 @@ class PrizeController extends Controller
             'description'=> 'required',
             'image_url'=> 'required',
             'position'=> 'required',
-            'as_default'=> 'required'
         ]);
 
         $prize = Prize::find($id);
@@ -114,7 +112,7 @@ class PrizeController extends Controller
         $prize->description = $request->get("description");
         $prize->image_url = $request->get("image_url");
         $prize->position = $request->get("position");
-        $prize->as_default = $request->get('as_default');
+        $prize->as_default = 0;
         $prize->save();
 
         return redirect()

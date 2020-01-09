@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-left">
-                            <h2>Изменение акции</h2>
+                            <h2>Изменение ингредиента</h2>
                         </div>
                         <div class="pull-right">
                             <a class="btn btn-primary" href="{{ route('ingredients.index') }}"> Назад</a>
@@ -41,20 +41,20 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Title</td>
+                            <td>Заголовок</td>
                             <td>
                                 <input type="text" name="title" value="{{$ingredient->title}}" class="form-control">
                             </td>
                         </tr>
                         <tr>
-                            <td>Mass</td>
+                            <td>Масса, грамм.</td>
                             <td>
                                 <input type="text" name="mass" value="{{$ingredient->mass}}" class="form-control">
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Quantity</td>
+                            <td>Количество, шт.</td>
                             <td>
                                 <input type="number" name="quantity" value="{{$ingredient->quantity}}"
                                        class="form-control">
@@ -62,14 +62,14 @@
                         </tr>
 
                         <tr>
-                            <td>Price</td>
+                            <td>Цена, руб.</td>
                             <td>
                                 <input type="number" name="price" value="{{$ingredient->price}}" class="form-control">
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Use type</td>
+                            <td>Способ использования: начинка\покрытие\оба варианта</td>
                             <td>
                                 <select name="use_type" id="use_type" class="form-control">
                                     @foreach(\App\Enums\UseIngredientType::getInstances() as $type)

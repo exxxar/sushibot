@@ -39,34 +39,34 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Title</td>
+                            <td>Заголовок</td>
                             <td>
                                 <input type="text" name="title" class="form-control">
                             </td>
                         </tr>
                         <tr>
-                            <td>Mass</td>
+                            <td>Масса, грамм</td>
                             <td>
                                 <input type="text" name="mass" class="form-control">
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Quantity</td>
+                            <td>Количество, шт.</td>
                             <td>
                                 <input type="number" name="quantity" class="form-control">
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Price</td>
+                            <td>Цена, руб.</td>
                             <td>
                                 <input type="number" name="price" class="form-control">
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Use type</td>
+                            <td>Способ использования: начинка\покрытие\оба варианта</td>
                             <td>
                                 <select name="use_type" id="use_type">
                                     @foreach(\App\Enums\UseIngredientType::getInstances() as $ingrType)

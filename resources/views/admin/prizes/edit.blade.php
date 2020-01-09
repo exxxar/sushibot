@@ -41,20 +41,20 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Title</td>
+                            <td>Название</td>
                             <td>
                                 <input type="text" class="form-control" name="title" value="{{$prize->title}}" required>
                             </td>
                         </tr>
                         <tr>
-                            <td>Description</td>
+                            <td>Описание</td>
                             <td>
                                 <textarea name="description" class="form-control" id="description" cols="30" rows="10">{{$prize->description}}</textarea>
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Image url</td>
+                            <td>Картинка к призу (ссылка)</td>
                             <td>
 
                                 <input type="text" class="form-control" name="image_url" value="{{$prize->image_url}}" required>
@@ -64,19 +64,12 @@
                         </tr>
 
                         <tr>
-                            <td>Position</td>
+                            <td>Позиция по умолчанию</td>
                             <td>
                                 <input type="text" class="form-control" name="position" value="{{$prize->position}}" required>
                             </td>
                         </tr>
 
-                        <tr>
-                            <td>Default</td>
-                            <td>
-                                <input type="checkbox" class="form-control" id="as_default" name="as_default" {{$prize->as_default?"checked":""}}required>
-                                <label for="as_default">default</label>
-                            </td>
-                        </tr>
 
                         <tr>
                             <td></td>

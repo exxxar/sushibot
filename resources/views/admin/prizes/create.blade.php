@@ -39,43 +39,34 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Title</td>
+                            <td>Заголовок</td>
                             <td>
                                 <input type="text" class="form-control" name="title" value="" required>
                             </td>
                         </tr>
                         <tr>
-                            <td>Description</td>
+                            <td>Описание</td>
                             <td>
                                 <textarea name="description" class="form-control" id="description" cols="30" rows="10"></textarea>
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Image url</td>
+                            <td>Картинка приза (ссылка)</td>
                             <td>
 
-                                <input type="text" class="form-control" name="image_url" value="" required>
+                                <input type="url" class="form-control" name="image_url" value="" required>
 
 
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Position</td>
+                            <td>Позиция по умолчанию</td>
                             <td>
-                                <input type="text" class="form-control" name="position" value="" required>
+                                <input type="number" min="0" class="form-control" name="position" value="" required>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>Default</td>
-                            <td>
-                                <input type="checkbox" class="form-control" id="as_default" name="as_default" required>
-                                <label for="as_default">default</label>
-                            </td>
-                        </tr>
-
 
                         <tr>
                             <td></td>
