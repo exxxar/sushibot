@@ -58,6 +58,12 @@
                                             Посмотреть</a>
                                         <a class="card-link" href="{{ route('products.edit',$product->id) }}">
                                             <i class="fas fa-edit"></i>
+
+                                            <form action="{{ route('products.destroy', $product->id)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-link" type="submit"><i class="fas fa-times"></i></button>
+                                            </form>
                                         </a>
                                     </div>
                                 </div>

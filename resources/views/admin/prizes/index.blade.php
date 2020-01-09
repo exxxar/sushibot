@@ -48,7 +48,11 @@
                                     <a href="{{ route('prizes.show',$prize->id) }}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                                     <a href="{{ route('prizes.edit',$prize->id) }}" class="btn btn-info"><i class="fas fa-edit"></i></a>
 
-
+                                    <form action="{{ route('prizes.destroy', $prize->id)}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-link" type="submit"><i class="fas fa-times"></i></button>
+                                    </form>
                                     <div class="row">
                                         <div class="col">
                                             <span class="badge badge-primary">Pos:{{$prize->position}}</span>
