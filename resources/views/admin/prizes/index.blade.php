@@ -51,7 +51,7 @@
                                     <form action="{{ route('prizes.destroy', $prize->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-link" type="submit"><i class="fas fa-times"></i></button>
+                                        <button class="btn btn-link" type="submit">Удалить</button>
                                     </form>
                                     <div class="row">
                                         <div class="col">
