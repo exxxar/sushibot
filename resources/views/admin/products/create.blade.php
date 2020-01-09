@@ -40,13 +40,18 @@
                         <tbody>
                         <tr>
                             <td>Заголовок
-                                <input type="checkbox" id="is_active" class="form-control" name="is_active" checked
-                                       required>
-                                <label for="is_active">Активировать</label>
 
                             </td>
                             <td>
                                 <input type="url" name="url" class="form-control" value="" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Активировать
+
+                            </td>
+                            <td>
+                                <input type="checkbox" id="is_active" class="form-control" name="is_active" checked required>
                             </td>
                         </tr>
                         <tr>

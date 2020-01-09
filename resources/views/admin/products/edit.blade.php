@@ -11,7 +11,7 @@
                             <h2>Изменение продукта</h2>
                         </div>
                         <div class="pull-right">
-                            <a class="btn btn-primary" href="{{ route('product.index') }}"> Назад</a>
+                            <a class="btn btn-primary" href="{{ route('products.index') }}"> Назад</a>
                         </div>
 
                         @if (count($errors) > 0)
@@ -49,6 +49,14 @@
                                 </td>
                                 <td>
                                     <input type="url" name="url" class="form-control" value="{{$product->url}}" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Активировать
+
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="is_active" class="form-control" name="is_active" {{$product->is_active?"checked":""}} required>
                                 </td>
                             </tr>
                             <tr>
