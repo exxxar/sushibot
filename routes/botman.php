@@ -375,7 +375,7 @@ $botman->hears('.*Розыгрыш', function ($bot) {
 });
 
 $botman->hears('.*О нас', function ($bot) {
-    $bot->reply("https://telegra.ph/O-Nas-01-01");
+    $bot->reply("https://telegra.ph/O-Nas-02-11");
 });
 
 
