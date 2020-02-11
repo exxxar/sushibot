@@ -43,9 +43,6 @@
                             <tbody>
                             <tr>
                                 <td>Заголовок
-
-                                    <input type="checkbox" id="is_active" class="form-control" name="is_active" {{$product->is_active?"checked":""}} required>
-                                    <label for="is_active">Активировать</label>
                                 </td>
                                 <td>
                                     <input type="text" name="title" class="form-control" value="{{$product->title}}" required>
