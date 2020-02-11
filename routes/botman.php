@@ -314,21 +314,40 @@ $botman->hears("\xF0\x9F\x8D\xB1Меню", function ($bot) {
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
 
-    $inline_keyboard = [];
-    $bot->reply("Меню");
-    array_push($inline_keyboard, [["text" => "Акци и скидки", "url" => "https://t.me/skidki_dn_bot"]]);
-    foreach ($categories as $key => $category) {
-        array_push($inline_keyboard, [["text" => $category->category, "callback_data" => "/category 0 $key"]]);
-    }
-    $bot->sendRequest("sendMessage",
+
+    $bot->sendRequest("sendPhoto",
         [
             "chat_id" => "$id",
-            "text" => "Выбор категории",
+            "photo" => "https://sun9-35.userapi.com/c205328/v205328682/56913/w8tBXIcG91E.jpg",
             "parse_mode" => "Markdown",
             'reply_markup' => json_encode([
-                'inline_keyboard' => $inline_keyboard,
+                'inline_keyboard' => [
+                    [
+                        ["text" => "Акци и скидки", "url" => "https://t.me/skidki_dn_bot"]
+                    ]
+                ],
             ])
         ]);
+
+    foreach ($categories as $key => $category) {
+        //array_push($inline_keyboard, [["text" => $category->category, "callback_data" => "/category 0 $key"]]);
+
+        $bot->sendRequest("sendPhoto",
+            [
+                "chat_id" => "$id",
+                "caption" => $category->category,
+                "photo" => $category->image_url,
+                "parse_mode" => "Markdown",
+                'reply_markup' => json_encode([
+                    'inline_keyboard' => [
+                        [
+                            ["text" => $category->category, "callback_data" => "/category 0 $key"]
+                        ]
+                    ],
+                ])
+            ]);
+    }
+
 });
 
 $botman->hears('.*Розыгрыш', function ($bot) {
