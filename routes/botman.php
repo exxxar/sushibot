@@ -341,7 +341,7 @@ $botman->hears("\xF0\x9F\x8D\xB1Меню", function ($bot) {
                 'reply_markup' => json_encode([
                     'inline_keyboard' => [
                         [
-                            ["text" => $category->category, "callback_data" => "/category 0 $key"]
+                            ["text" => "\xF0\x9F\x91\x89Детальнее", "callback_data" => "/category 0 $key"]
                         ]
                     ],
                 ])
@@ -406,10 +406,9 @@ $botman->hears('/category ([0-9]+) ([0-9]+)', function ($bot, $page, $catIndex) 
         $keybord = [
             [
                 ['text' => "\xF0\x9F\x91\x89Детальнее", 'callback_data' => "/product_info " . $product->id],
-            ],
-            [
                 ['text' => "\xE2\x86\xAAВ корзину(" . $product->price . "₽)", 'callback_data' => "/add_to_basket " . $product->id]
-            ]
+            ],
+
         ];
 
         if (count($products) - 1 == $key && $page == 0 && count($products) == 10)
