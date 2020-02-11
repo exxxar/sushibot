@@ -1,5 +1,5 @@
 let mix = require('laravel-mix');
-
+require('laravel-mix-alias');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -13,3 +13,9 @@ let mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
+
+mix.alias({
+    '@': 'resources/assets/js',
+    '~': 'resources/assets/sass',
+    '@components': 'resources/assets/js/components',
+});

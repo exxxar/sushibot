@@ -48,7 +48,7 @@
                                     <label for="is_active">Активировать</label>
                                 </td>
                                 <td>
-                                    <input type="url" name="url" class="form-control" value="{{$product->url}}" required>
+                                    <input type="text" name="title" class="form-control" value="{{$product->title}}" required>
                                 </td>
                             </tr>
                             <tr>

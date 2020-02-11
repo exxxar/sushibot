@@ -34,7 +34,7 @@
     </nav>
 </header>
 
-<div class="full-site">
+<div class="full-site" id="app">
     <div>
         <section class="s1">
             <video autoplay muted loop id="myVideo">
@@ -369,6 +369,7 @@
     <div>
 
         <section class="s3">
+            <lottery></lottery>
             <ul class="lottery">
                 <li class="lottery-item-wrapper">
                     <div class="lottery-item">
@@ -499,6 +500,7 @@
             </ul>
         </section>
     </div>
+
 </div>
 
 <a href="" class="basket" data-count="10"><i class="fas fa-shopping-basket"></i>
@@ -511,6 +513,7 @@
     </div>
 </div>
 
+<script src="{{asset('js/app.js')}}"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>

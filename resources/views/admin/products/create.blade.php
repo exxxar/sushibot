@@ -43,7 +43,7 @@
 
                             </td>
                             <td>
-                                <input type="url" name="url" class="form-control" value="" required>
+                                <input type="text" name="title" class="form-control" value="" required>
                             </td>
                         </tr>
                         <tr>
