@@ -139,7 +139,7 @@ class OrderConversation extends Conversation
                 'chat_id' => env("CHANNEL_ID"),
                 'parse_mode' => 'Markdown',
                 'text' => $order_tmp,
-                'disable_notification' => 'true'
+                'disable_notification' => 'false'
             ]);
         } catch (\Exception $e) {
             Log::info("Ошибка отправки заказа в канал!");
