@@ -42,8 +42,22 @@ class HomeController extends Controller
                 'count'=>50
             ]);
 
+
+            //работает
             foreach ($response["response"]["items"] as $item){
-                echo $item["title"]." ".$item["photo"]["photo_807"];
+                echo $item["id"].$item["title"]." ".$item["photo"]["photo_807"]."<br>";
+
+                $response2 = $api->request('market.get', [
+                    'owner_id' => -142695628,
+                    'album_id'=>$item["id"],
+                    'count'=>200
+                ]);
+
+                foreach ($response2["response"]["items"] as $item2) {
+                    echo $item2["description"]." ".$item2["price"]["text"]." ".$item2["thumb_photo"]." ".$item2["title"]."<br>";
+                }
+
+
             }
             //dd($response["items"]);
 
