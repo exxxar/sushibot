@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use ATehnix\VkClient\Auth;
+use ATehnix\VkClient\Client;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -31,6 +32,14 @@ class HomeController extends Controller
 
         if ($request->has("code")){
             $token = $auth->getToken($request->get('code'));
+
+            $api = new Client;
+            $api->setDefaultToken(;$token);
+
+            $response = $api->request('wall.get', ['owner_id' => 1]);
+
+            dd($response);
+
         }
 
         return view('home',compact("auth","token"));
