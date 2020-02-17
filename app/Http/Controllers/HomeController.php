@@ -36,7 +36,10 @@ class HomeController extends Controller
             $api = new Client;
             $api->setDefaultToken($token);
 
-            $response = $api->request('wall.get', ['owner_id' => 1]);
+            $response = $api->request('market.getAlbums', [
+                'owner_id' => -142695628,
+                'count'=>50
+            ]);
 
             dd($response);
 
