@@ -30,7 +30,7 @@ class HomeController extends Controller
         $token = null;
 
         if ($request->has("code")){
-            $token = $auth->getToken($request->get['code']);
+            $token = $auth->getToken($request->get('code'));
         }
 
         return view('home',compact("auth","token"));
