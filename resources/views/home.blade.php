@@ -19,7 +19,7 @@
                         @endisset
                         <hr>
                         @isset($auth)
-                            <a class="btn btn-primary" href="{{$auth->getUrl()}}">Войдите в ВК<a>
+                            <a class="btn btn-primary" href="{{$auth->getUrl()}}">Обновить товар через ВК<a>
                         @endisset
                     </div>
                 </div>
