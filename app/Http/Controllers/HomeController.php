@@ -61,12 +61,16 @@ class HomeController extends Controller
 
                     preg_match_all('|\d+|', $item2["description"], $matches);
 
-                    $count = $matches[0] ?? 0;
-                    $weight = $matches[1] ?? 0;
+                    $count = $matches[0][0] ?? 0;
+                    $weight = $matches[0][1] ?? 0;
 
                     preg_match_all('|\d+|', $item2["price"]["text"], $matches);
 
-                    $price = $matches[0] ?? 0;
+                    $price = $matches[0][0] ?? 0;
+
+                    echo print_r($count,true);
+                    echo print_r($weight,true);
+                    echo print_r($price,true);
 
                     Product::create([
                         'title' => $item2["title"],
