@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use ATehnix\VkClient\Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,9 +23,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $auth = new Auth('6803875', 'l1rMo05qkLGM8BSh5KbQ', 'http://isushi.herokuapp.com/admin');
+
+        $token = null;
+
+        if ($request->has("code")){
+            $token = $auth->getToken($request->get['code']);
+        }
+
+        return view('home',compact("auth","token"));
     }
 
     public function searchAjax(Request $request)

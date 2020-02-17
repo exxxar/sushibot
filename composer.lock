@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1c5271a7dd4dae9195738984445c93d",
+    "content-hash": "01af896be2dd11ecbc0c04876d08b6ff",
     "packages": [
         {
             "name": "atehnix/laravel-vk-requester",
