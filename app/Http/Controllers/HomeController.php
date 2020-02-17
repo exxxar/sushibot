@@ -42,7 +42,7 @@ class HomeController extends Controller
                 'count'=>50
             ]);
 
-            foreach ($response["items"] as $item){
+            foreach ($response["response"]["items"] as $item){
                 echo $item["title"]." ".$item["photo"]["photo_807"];
             }
             //dd($response["items"]);
