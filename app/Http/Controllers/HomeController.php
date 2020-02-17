@@ -26,7 +26,8 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $auth = new Auth('6803875', 'l1rMo05qkLGM8BSh5KbQ', 'http://isushi.herokuapp.com/admin');
+        $auth = new Auth('6803875', 'l1rMo05qkLGM8BSh5KbQ', 'http://isushi.herokuapp.com/admin','market');
+
 
         $token = null;
 
