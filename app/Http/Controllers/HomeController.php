@@ -68,10 +68,6 @@ class HomeController extends Controller
 
                     $price = $matches[0][0] ?? 0;
 
-                    echo print_r($count,true);
-                    echo print_r($weight,true);
-                    echo print_r($price,true);
-
                     Product::create([
                         'title' => $item2["title"],
                         'description' => $item2["description"],
