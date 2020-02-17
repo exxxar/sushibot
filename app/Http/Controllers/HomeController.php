@@ -57,6 +57,7 @@ class HomeController extends Controller
                     echo $item2["description"]." ".$item2["price"]["text"]." ".$item2["thumb_photo"]." ".$item2["title"]."<br>";
                 }
 
+                sleep(2);
 
             }
             //dd($response["items"]);
