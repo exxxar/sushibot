@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\User;
 use ATehnix\VkClient\Auth;
 use ATehnix\VkClient\Client;
@@ -43,9 +44,10 @@ class HomeController extends Controller
             ]);
 
 
+            Product::truncate();
             //работает
             foreach ($response["response"]["items"] as $item){
-                echo $item["id"].$item["title"]." ".$item["photo"]["photo_807"]."<br>";
+                //echo $item["id"].$item["title"]." ".$item["photo"]["photo_807"]."<br>";
 
                 $response2 = $api->request('market.get', [
                     'owner_id' => -142695628,
@@ -54,8 +56,22 @@ class HomeController extends Controller
                 ]);
 
                 foreach ($response2["response"]["items"] as $item2) {
-                    echo $item2["description"]." ".$item2["price"]["text"]." ".$item2["thumb_photo"]." ".$item2["title"]."<br>";
+                    //echo $item2["description"]." ".$item2["price"]["text"]." ".$item2["thumb_photo"]." ".$item2["title"]."<br>";
+
+                    Product::create([
+                        'title'=>$item2["title"],
+                        'description'=>$item2["description"],
+                        'category'=>$item["title"],
+                        'mass'=>"0",
+                        'price'=>$item2["price"]["text"],
+                        'portion_count'=>"0",
+                        'image_url'=>$item2["thumb_photo"],
+                        'site_url'=>'',
+                        'is_active'=>true
+                    ]);
                 }
+
+
 
                 sleep(2);
 
