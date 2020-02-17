@@ -34,7 +34,7 @@ class HomeController extends Controller
             $token = $auth->getToken($request->get('code'));
 
             $api = new Client;
-            $api->setDefaultToken(;$token);
+            $api->setDefaultToken($token);
 
             $response = $api->request('wall.get', ['owner_id' => 1]);
 
