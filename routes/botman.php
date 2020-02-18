@@ -158,7 +158,7 @@ $botman->hears('Форма ролла.*', function ($bot) {
     ];
 
 
-    $bot->sendRequest("sendMessage",
+    $res = $bot->sendRequest("sendMessage",
         [
             "chat_id" => "$id",
             "text" => "Форма ролла",
@@ -167,6 +167,8 @@ $botman->hears('Форма ролла.*', function ($bot) {
                     $keyboard
             ])
         ]);
+
+    $bot->reply(print_r($res,true));
 });
 
 $botman->hears('Количество.*', function ($bot) {
