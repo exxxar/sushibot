@@ -17,13 +17,11 @@ use \Illuminate\Http\Request;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 Route::get('/', function () {
-    return view('welcome');
+    $products = \App\Product::getLatestProducts();
+    $categories = \App\Product::getAllCategroies();
+    return view('main.main',compact('products','categories'));
 });
 
-Route::get('/tg', function () {
-    $updates = Telegram::getUpdates();
-    return (json_encode($updates));
-});
 
 
 
