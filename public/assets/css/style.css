@@ -161,6 +161,8 @@ body {
 
 .chopcafe_img {
     position: relative;
+    border: 1px #ecebeb solid;
+    border-top: 2px #ff1818 solid;
 }
 
 .chopcafe_title {

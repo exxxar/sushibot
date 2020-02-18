@@ -8,9 +8,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Page Title -->
-    <title>ISUSHI</title>
+    <title>Сервис доставки суши ISUSHI</title>
     <!-- Favicon Icon -->
-    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}" type="image/png">
+    <link rel="shortcut icon" href="{{asset('assets/images/logo_dark.png')}}" type="image/png">
     <!-- All css here -->
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="{{asset('assets/plugin/bootstrap/css/bootstrap.min.css')}}">
