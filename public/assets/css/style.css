@@ -4042,6 +4042,7 @@ table.chopcafe_table td {
 
 .chopcafe_grid_shop .grid_inner_item .chopcafe_info h3 a {
     color: #010a19;
+    font-size: 18px;
 }
 
 .chopcafe_grid_shop .grid_inner_item .chopcafe_info ul.rating {
@@ -5190,3 +5191,13 @@ ul.rating li:nth-child(4) i {
 /*>-----------------------------
 	End scroll_top css
 <-------------------------------
+
+
+
+ */
+
+.chopcafe_info p strong {
+    color:#dc3545;
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+}

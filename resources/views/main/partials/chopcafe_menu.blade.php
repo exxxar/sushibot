@@ -1,5 +1,5 @@
 <!-- Start chopcafe_menu section -->
-<section class="chopcafe_menu chopcafe_menu_1 section_padding_2" id="menu_grid">
+<section class="chopcafe_grid_shop  shop_grid_1  section_padding_2" id="menu_grid">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6">
@@ -40,9 +40,22 @@
                                 </div>
                             </div>
                             <div class="chopcafe_info">
+                                <h3><a href="shop_details.html">{{$product->title}}</a></h3>
+                                <hr>
+                                <ul class="rating">
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                </ul>
+                                <h3><strong>{{$product->price}}₽</strong></h3>
+                            </div>
+
+                            {{--<div class="chopcafe_info">
                                 <h3><a href="shop_details.html">{{$product->title}}</a><span>{{$product->price}}₽</span></h3>
                                 <p>{{$product->description}}</p>
-                            </div>
+                            </div>--}}
                         </div>
                     </div>
                 </div>
