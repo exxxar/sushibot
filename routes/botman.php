@@ -86,6 +86,9 @@ function mainMenu($bot, $message)
         ["\xF0\x9F\x8D\xA3Собрать ролл"],
         ["\xF0\x9F\x8E\xB0Розыгрыш"],
         ["\xF0\x9F\x92\xADО Нас"],
+        [
+            ["text"=>"Отправить локацию","request_location"=>true]
+        ],
     ];
     $bot->sendRequest("sendMessage",
         [
