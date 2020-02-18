@@ -15,7 +15,7 @@
             <div class="col-lg-12">
                 <div class="chopcafe_filter text-center">
                     @foreach($categories as $key=>$category)
-                            <button class="chopcafe_btn mb-2 {{$key==0?"active_btn":""}}" data-filter=".{{$category->trans}}">{{$category->title}}</button>
+                            <button class="chopcafe_btn mb-2 {{$key==$defaultCat?"active_btn":""}}" data-filter=".{{$category->trans}}">{{$category->title}}</button>
                         @endforeach
 {{--                    <button class="chopcafe_btn active_btn" data-filter=".breakfast">breakfast</button>
                     <button class="chopcafe_btn" data-filter=".lunch">lunch</button>
@@ -31,7 +31,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 menu_item {{$product->translit_category}}">
                     <div class="grid_item food_grid_box wow slideInUp">
                         <div class="grid_inner_item">
-                            <div class="chopcafe_img">
+                            <div class="chopcafe_img main_menu_img">
                                 <img src="{{$product->image_url}}" class="img-fluid" alt="">
                                 <div class="overlay_img"></div>
                                 <div class="overlay_content">
@@ -39,7 +39,7 @@
                                     <a href="shop_details.html" class="btn_a btn_link"><i class="fas fa-link"></i></a>
                                 </div>
                             </div>
-                            <div class="chopcafe_info main_menu_img">
+                            <div class="chopcafe_info ">
                                 <h3><a href="shop_details.html">{{$product->title}}</a></h3>
                                 <hr>
                                 <ul class="rating">

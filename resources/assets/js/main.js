@@ -1,6 +1,7 @@
 (function($) {
     'use strict';
-    /*---------------------------------
+
+      /*---------------------------------
         Preloader JS
     -----------------------------------*/
     var prealoaderOption = $(window);
@@ -288,6 +289,8 @@
                 filter: filterValue
             });
         });
+
+
         $('.chopcafe_filter').each(function(i, buttonGroup) {
             var $buttonGroup = $(buttonGroup);
             $buttonGroup.on('click', 'button', function() {
@@ -390,6 +393,12 @@
         nicenumbr js
     ------------------------*/
     $('input[type="number"]').niceNumber();
+
+    setTimeout(function () {
+        $("#menu_grid .chopcafe_filter .active_btn").click();
+        console.log("test");
+    },2000);
+
     /*----------------------
         nice-select js
     ------------------------*/

@@ -19,7 +19,10 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 Route::get('/', function () {
     $products = \App\Product::getLatestProducts();
     $categories = \App\Product::getAllCategroies();
-    return view('main.main',compact('products','categories'));
+
+    $defaultCat = rand(0,count($categories)-1);
+
+    return view('main.main',compact('products','categories','defaultCat'));
 });
 
 
