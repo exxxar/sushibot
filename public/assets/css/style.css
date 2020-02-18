@@ -159,8 +159,11 @@ body {
     padding: 108px 0 120px;
 }
 
-.chopcafe_img {
+.chopcafe_img  {
     position: relative;
+}
+
+.chopcafe_img.main_menu_img  {
     border: 1px #ecebeb solid;
     border-top: 2px #ff1818 solid;
 }

@@ -39,7 +39,7 @@
                                     <a href="shop_details.html" class="btn_a btn_link"><i class="fas fa-link"></i></a>
                                 </div>
                             </div>
-                            <div class="chopcafe_info">
+                            <div class="chopcafe_info main_menu_img">
                                 <h3><a href="shop_details.html">{{$product->title}}</a></h3>
                                 <hr>
                                 <ul class="rating">
