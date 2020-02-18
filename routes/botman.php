@@ -168,7 +168,7 @@ $botman->hears('Форма ролла.*', function ($bot) {
             ])
         ]);
 
-    $bot->reply(print_r($res,true));
+   // $bot->reply(print_r($res,true));
 });
 
 $botman->hears('Количество.*', function ($bot) {
