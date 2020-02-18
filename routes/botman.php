@@ -89,6 +89,9 @@ function mainMenu($bot, $message)
         [
             ["text"=>"Отправить локацию","request_location"=>true]
         ],
+        [
+            ["text"=>"Отправить мой контакт","request_contact"=>true]
+        ],
     ];
     $bot->sendRequest("sendMessage",
         [
