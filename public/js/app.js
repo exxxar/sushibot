@@ -14190,6 +14190,10 @@ module.exports = __webpack_require__(43);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_components_Lottery__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_components_Lottery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__js_components_Lottery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__js_components_AddCartBtn__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__js_components_AddCartBtn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__js_components_AddCartBtn__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__js_components_RollCalc__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__js_components_RollCalc___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__js_components_RollCalc__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -14209,7 +14213,12 @@ window.Vue = __webpack_require__(35);
 
 //import {TinkerComponent} from 'botman-tinker';
 
+
+
+
 Vue.component('lottery', __WEBPACK_IMPORTED_MODULE_0__js_components_Lottery___default.a);
+Vue.component('add-to-cart-btn', __WEBPACK_IMPORTED_MODULE_1__js_components_AddCartBtn___default.a);
+Vue.component('roll-calc', __WEBPACK_IMPORTED_MODULE_2__js_components_RollCalc___default.a);
 
 var app = new Vue({
   el: '#app'
@@ -49193,8 +49202,141 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    methods: {}
+});
 
 /***/ }),
 /* 42 */
@@ -49211,7 +49353,219 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("LOTTERY")])])
+    return _c("div", [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-4" }, [
+          _c("input", { staticClass: "form-control", attrs: { type: "text" } })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "lottery" }, [
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper  wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+          _c("div", { staticClass: "lottery-item" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                alt: ""
+              }
+            })
+          ])
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -49228,6 +49582,949 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(40)
+/* script */
+var __vue_script__ = __webpack_require__(49)
+/* template */
+var __vue_template__ = __webpack_require__(50)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/AddCartBtn.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5cf22666", Component.options)
+  } else {
+    hotAPI.reload("data-v-5cf22666", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ["product_id"],
+    data: function data() {
+        return {
+            info: ''
+        };
+    },
+
+    methods: {
+        add: function add() {
+            var _this = this;
+
+            console.log(this.product_id);
+            axios.get('api/test').then(function (response) {
+                return _this.info = response.data;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "a",
+      {
+        staticClass: "btn_a btn_link",
+        attrs: { href: "#add_to_cart" },
+        on: {
+          click: function($event) {
+            return _vm.add()
+          }
+        }
+      },
+      [_c("i", { staticClass: "fas fa-plus" })]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5cf22666", module.exports)
+  }
+}
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(40)
+/* script */
+var __vue_script__ = __webpack_require__(52)
+/* template */
+var __vue_template__ = __webpack_require__(53)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/RollCalc.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a93f1646", Component.options)
+  } else {
+    hotAPI.reload("data-v-a93f1646", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            info: ''
+        };
+    },
+
+    methods: {
+        add: function add() {
+            var _this = this;
+
+            axios.get('api/test').then(function (response) {
+                return _this.info = response.data;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("form", { staticClass: "calc row align-items-center" }, [
+        _c("div", { staticClass: "col-lg-6" }, [
+          _c("h1", [_vm._v("Соберите свой ролл")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Соберите свой ролл — вы можете самостоятельно сконструировать свой ролл исходя из своих\n                вкусов и желаний!Создавайте,творите и экспериментируйте вместе с нами."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n                В основу ролла входит пол листа нори и рис 50р. (130 гр.)\n            "
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n                Выберите поверхность ролла,начинку и форму\n            "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [
+              _vm._v(" Верхнее покрытие ролла:")
+            ]),
+            _vm._v(" "),
+            _c("select", { attrs: { name: "", id: "" } }, [
+              _c("option", { attrs: { value: "" } }, [_vm._v("Лосось")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "" } }, [_vm._v("Угорь")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("input", { attrs: { type: "text" } })
+          ]),
+          _vm._v(" "),
+          _c("h3", [_vm._v("Начинка внутри ролла")]),
+          _vm._v(" "),
+          _c("table", [
+            _c("tbody", [
+              _c("tr", [
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Лосось\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Сыр тостерный\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Тунец\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v(
+                      "Спайси соус (острый)\n                            "
+                    ),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Угорь\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Майонез\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v(
+                      "Креветка ХОТ (жаренная)\n                            "
+                    ),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Томаго (омлет)\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Креветки\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Огурец\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Мидии\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Чука\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Снежный краб\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Помидор\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Лосось Жареный\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Сладкий Перец\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Курица (жареная)\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Лист салата\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Окунь\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Лук зеленый\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Икра тобико\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v(
+                      "Дайкон (редька маринованная)\n                            "
+                    ),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("label", { staticClass: "container" }, [
+                    _vm._v("Сливочный сыр\n                            "),
+                    _c("input", {
+                      attrs: { type: "checkbox", checked: "checked" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "checkmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td")
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-6" }, [
+          _c("h3", [_vm._v("Выбери форму ролла")]),
+          _vm._v(" "),
+          _c("table", [
+            _c("tbody", [
+              _c("tr", [
+                _c("td", [
+                  _c("p", [_vm._v("Квадратная"), _c("br"), _vm._v("форма")]),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("input", {
+                      attrs: { type: "radio", name: "test", value: "big" }
+                    }),
+                    _vm._v(" "),
+                    _c("img", { attrs: { src: "square.jpg" } })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("p", [_vm._v("Круглая"), _c("br"), _vm._v("форма")]),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("input", {
+                      attrs: { type: "radio", name: "test", value: "big" }
+                    }),
+                    _vm._v(" "),
+                    _c("img", { attrs: { src: "circle.jpg" } })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("p", [_vm._v("Треугольная"), _c("br"), _vm._v("форма")]),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("input", {
+                      attrs: { type: "radio", name: "test", value: "big" }
+                    }),
+                    _vm._v(" "),
+                    _c("img", { attrs: { src: "triangle.jpg" } })
+                  ])
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("h3", [_vm._v("Цена ролла")]),
+          _vm._v(" "),
+          _c("h2", [_vm._v("190 ₽")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "counter" }, [
+            _c("button", [_vm._v("+")]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "number", value: "1", min: "1" } }),
+            _vm._v(" "),
+            _c("button", [_vm._v("-")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("button", { staticClass: "send-btn" }, [_vm._v("В корзину")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "labels" }, [
+            _c("h5", [
+              _vm._v("Категория: "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("Собрать ролл")])
+            ]),
+            _vm._v(" "),
+            _c("h5", [
+              _vm._v("Метки: "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("снежный краб")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("огурец")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("авокадо")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("майонез")]),
+              _vm._v(",\n                    "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("Лосось")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("Тунец")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("Угорь")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("Креветка")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("Мидии")]),
+              _vm._v(",\n                    "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("Икра Тобико")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("Красная Икра")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("Спайси")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("сливочный сыр")]),
+              _vm._v(",\n                    "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("твердый сыр")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("тостерный сыр")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("чука")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("креветка жареная")]),
+              _vm._v(",\n                    "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("лист салата")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("жареный лосось")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("стружка тунца")]),
+              _vm._v(",\n                    "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("кунжут")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("зеленый лук")]),
+              _vm._v(",\n                    "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("укроп")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("помидор")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("жареная курица")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("томаго")]),
+              _vm._v(",\n                    "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("окунь морской")]),
+              _vm._v(", "),
+              _c("a", { attrs: { href: "" } }, [_vm._v("сладкий перец")])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a93f1646", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -369,7 +369,6 @@
     <div>
 
         <section class="s3">
-            <lottery></lottery>
             <ul class="lottery">
                 <li class="lottery-item-wrapper">
                     <div class="lottery-item">

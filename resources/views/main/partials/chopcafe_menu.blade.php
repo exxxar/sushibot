@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="chopcafe_title chopcafe_title_1 text-center">
-                    <h2>Taste & Delicious <span>Menu</span></h2>
+                        <h2>Аппетитное <span>меню</span></h2>
                     <div class="title_divider">
                         <i class="flaticon-fork-and-knife-in-cross title_fork"></i>
                     </div>
@@ -29,14 +29,15 @@
         <div class="row grid">
             @foreach($products as $product)
                 <div class="col-lg-4 col-md-6 col-sm-12 menu_item {{$product->translit_category}}">
-                    <div class="grid_item food_grid_box wow slideInUp">
+                    <div class="grid_item food_grid_box">
                         <div class="grid_inner_item">
                             <div class="chopcafe_img main_menu_img">
                                 <img src="{{$product->image_url}}" class="img-fluid" alt="">
                                 <div class="overlay_img"></div>
-                                <div class="overlay_content">
+                                <div class="overlay_content custom_overlay_menu">
                                     <a href="assets/images/menu_1.jpg" class="btn_a btn_zoom"><i class="fas fa-search"></i></a>
                                     <a href="shop_details.html" class="btn_a btn_link"><i class="fas fa-link"></i></a>
+                                    <add-to-cart-btn :product_id="{{$product->id}}"></add-to-cart-btn>
                                 </div>
                             </div>
                             <div class="chopcafe_info ">

@@ -17,7 +17,12 @@ window.Vue = require('vue');
 
 //import {TinkerComponent} from 'botman-tinker';
 import Lottery from '../js/components/Lottery';
+import AddToCartBtn from '../js/components/AddCartBtn';
+import RollCalc from '../js/components/RollCalc';
+
 Vue.component('lottery', Lottery);
+Vue.component('add-to-cart-btn', AddToCartBtn);
+Vue.component('roll-calc', RollCalc);
 
 const app = new Vue({
     el: '#app'

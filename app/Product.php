@@ -24,7 +24,7 @@ class Product extends Model
 
     public static function getLatestProducts()
     {
-        return Product::all();//->unique('category');
+        return Product::where("price",">","10")->get();//->unique('category');
     }
 
     public static function getAllCategroies()

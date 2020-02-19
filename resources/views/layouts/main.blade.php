@@ -7,6 +7,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Page Title -->
     <title>Сервис доставки суши ISUSHI</title>
     <!-- Favicon Icon -->
@@ -40,7 +42,6 @@
 </head>
 
 <body>
-
 <!-- Start preloader area -->
 <div class="preloader_area">
     <div class="spinner">
@@ -53,13 +54,17 @@
         <div class="line7"></div>
     </div>
 </div>
+
+<div id="app">
+    @yield('content')
+</div>
 <!-- End preloader area -->
-@yield('content')
 
 
 <!-- Cart Modal -->
-<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -68,7 +73,242 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <section class="chopcafe_cart wow slideInUp section_padding" style="visibility: visible;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="chopcafe_product_table">
+                                    <table class="chopcafe_table table">
+                                        <thead>
+                                        <tr>
+                                            <th>Thumbnail</th>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                            <th>Remove</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="thumbnail">
+                                                <img src="assets/images/thumb_4.png" class="img-fluid" alt="">
+                                            </td>
+                                            <td class="product_title"><a href="shop_details.html">Egg Curry &amp; Butter
+                                                    Chicken</a></td>
+                                            <td class="product_price"><span>$ 28.99</span></td>
+                                            <td class="product_quantity">
+                                                <div class="item_quantity">
+                                                    <div class="nice-number">
+                                                        <button type="button">-</button>
+                                                        <input type="number" value="1" style="width: 2ch;">
+                                                        <button type="button">+</button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="total">
+                                                <span>$ 28.99</span>
+                                            </td>
+                                            <td class="product_delete">
+                                                <a href="#"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="thumbnail">
+                                                <img src="assets/images/thumb_4.png" class="img-fluid" alt="">
+                                            </td>
+                                            <td class="product_title"><a href="shop_details.html">Egg Curry &amp; Butter
+                                                    Chicken</a></td>
+                                            <td class="product_price"><span>$ 28.99</span></td>
+                                            <td class="product_quantity">
+                                                <div class="item_quantity">
+                                                    <div class="nice-number">
+                                                        <button type="button">-</button>
+                                                        <input type="number" value="1" style="width: 2ch;">
+                                                        <button type="button">+</button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="total">
+                                                <span>$ 28.99</span>
+                                            </td>
+                                            <td class="product_delete">
+                                                <a href="#"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="thumbnail">
+                                                <img src="assets/images/thumb_4.png" class="img-fluid" alt="">
+                                            </td>
+                                            <td class="product_title"><a href="shop_details.html">Egg Curry &amp; Butter
+                                                    Chicken</a></td>
+                                            <td class="product_price"><span>$ 28.99</span></td>
+                                            <td class="product_quantity">
+                                                <div class="item_quantity">
+                                                    <div class="nice-number">
+                                                        <button type="button">-</button>
+                                                        <input type="number" value="1" style="width: 2ch;">
+                                                        <button type="button">+</button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="total">
+                                                <span>$ 28.99</span>
+                                            </td>
+                                            <td class="product_delete">
+                                                <a href="#"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="thumbnail">
+                                                <img src="assets/images/thumb_4.png" class="img-fluid" alt="">
+                                            </td>
+                                            <td class="product_title"><a href="shop_details.html">Egg Curry &amp; Butter
+                                                    Chicken</a></td>
+                                            <td class="product_price"><span>$ 28.99</span></td>
+                                            <td class="product_quantity">
+                                                <div class="item_quantity">
+                                                    <div class="nice-number">
+                                                        <button type="button">-</button>
+                                                        <input type="number" value="1" style="width: 2ch;">
+                                                        <button type="button">+</button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="total">
+                                                <span>$ 28.99</span>
+                                            </td>
+                                            <td class="product_delete">
+                                                <a href="#"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chopcafe_update_cart wow slideInUp" style="visibility: visible;">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="continue_shopping">
+                                        <a href="#" class="chopcafe_btn continue_btn"><i
+                                                    class="fas fa-shopping-cart"></i>Continue Shopping</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="update_cart">
+                                        <a href="#" class="chopcafe_btn clear_cart_btn"><i
+                                                    class="fas fa-times-circle"></i>Clear Cart</a>
+                                        <a href="#" class="chopcafe_btn update_cart_btn"><i class="fas fa-sync-alt"></i>Update
+                                            Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="chopcafe_shoping_coupon">
+                                    <h4>Enter Your Coupon Code:</h4>
+                                    <div class="coupon_box">
+                                        <input type="text" class="form_control"
+                                               placeholder="Enter your coupon code if you have one">
+                                        <button class="chopcafe_btn coupon_btn"><i class="fas fa-tags"></i>Apply Coupon
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chopcafe_cart_total_shipping">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="shipping_content_box">
+                                        <h4>Estimate Shipping</h4>
+                                        <p>Enter your destination to get a shipping.</p>
+                                        <div class="shipping_form">
+                                            <form>
+                                                <div class="form_group">
+                                                    <select class="selectoption" style="display: none;">
+                                                        <option>Bangladesh</option>
+                                                        <option>Singapure</option>
+                                                        <option>Chaina</option>
+                                                        <option>Japan</option>
+                                                        <option>America</option>
+                                                    </select>
+                                                    <div class="nice-select selectoption" tabindex="0"><span
+                                                                class="current">Bangladesh</span>
+                                                        <ul class="list">
+                                                            <li data-value="Bangladesh" class="option selected">
+                                                                Bangladesh
+                                                            </li>
+                                                            <li data-value="Singapure" class="option">Singapure</li>
+                                                            <li data-value="Chaina" class="option">Chaina</li>
+                                                            <li data-value="Japan" class="option">Japan</li>
+                                                            <li data-value="America" class="option">America</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="form_group">
+                                                    <select class="selectoption" style="display: none;">
+                                                        <option>Dhaka</option>
+                                                        <option>Singapure</option>
+                                                        <option>Chaina</option>
+                                                        <option>Japan</option>
+                                                        <option>New York</option>
+                                                    </select>
+                                                    <div class="nice-select selectoption" tabindex="0"><span
+                                                                class="current">Dhaka</span>
+                                                        <ul class="list">
+                                                            <li data-value="Dhaka" class="option selected">Dhaka</li>
+                                                            <li data-value="Singapure" class="option">Singapure</li>
+                                                            <li data-value="Chaina" class="option">Chaina</li>
+                                                            <li data-value="Japan" class="option">Japan</li>
+                                                            <li data-value="New York" class="option">New York</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="form_group">
+                                                    <input type="text" class="form_control"
+                                                           placeholder="Enter Zip Code">
+                                                </div>
+                                                <div class="form_button">
+                                                    <button class="shipping_btn">Check</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="chopcafe_cart_note">
+                                        <h4>Note</h4>
+                                        <p>Add special instructions for your order...</p>
+                                        <form>
+                                            <textarea class="form_control" name="message"></textarea>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="chopcafe_cart_total">
+                                        <table>
+                                            <tbody>
+                                            <tr>
+                                                <td><span class="subtotal">Subtotal</span></td>
+                                                <td><span class="price">$ 210</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="gtotal">Grand Total</span></td>
+                                                <td><span class="gprice price">$ 210</span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="checkout_button">
+                                            <a href="#" class="checkout_btn">Proceed To Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -78,7 +318,8 @@
     </div>
 </div>
 <!-- callbackModal -->
-<div class="modal fade" id="callbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="callbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -95,37 +336,43 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form_group">
-                                            <input type="text" class="form_control" placeholder="Ваше имя" name="name" required="">
+                                            <input type="text" class="form_control" placeholder="Ваше имя" name="name"
+                                                   required="">
                                             <i class="fas fa-user"></i>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form_group">
-                                            <input type="text" class="form_control phone" placeholder="Ваш телефон" name="phone" required="">
+                                            <input type="text" class="form_control phone" placeholder="Ваш телефон"
+                                                   name="phone" required="">
                                             <i class="fas fa-phone"></i>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form_group">
-                                            <input type="text" class="form_control hasDatepicker" placeholder="Date" id="datepicker" name="Date" required="">
+                                            <input type="text" class="form_control hasDatepicker" placeholder="Date"
+                                                   id="datepicker" name="Date" required="">
                                             <i class="fas fa-calendar-alt"></i>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form_group">
-                                            <input type="text" class="form_control" placeholder="Time" name="time" required="">
+                                            <input type="text" class="form_control" placeholder="Time" name="time"
+                                                   required="">
                                             <i class="fas fa-clock"></i>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form_group">
-                                            <input type="text" class="form_control" placeholder="People" name="text" required="">
+                                            <input type="text" class="form_control" placeholder="People" name="text"
+                                                   required="">
                                             <i class="fas fa-user-friends"></i>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form_group">
-                                            <textarea class="form_control" placeholder="Say Somthing About Special" name="Message"></textarea>
+                                            <textarea class="form_control" placeholder="Say Somthing About Special"
+                                                      name="Message"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -177,6 +424,7 @@
 
 <!-- main js -->
 <script src="{{asset('assets/js/main.js')}}"></script>
+<script src="{{asset('/js/app.js')}}"></script>
 </body>
 
 </html>
