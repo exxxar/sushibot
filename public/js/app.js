@@ -50011,16 +50011,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50058,26 +50048,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "container" }, [
       _c("form", { staticClass: "calc row align-items-center" }, [
         _c("div", { staticClass: "col-lg-6" }, [
-          _c("h1", [_vm._v("Соберите свой ролл")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Соберите свой ролл — вы можете самостоятельно сконструировать свой ролл исходя из своих\n                вкусов и желаний!Создавайте,творите и экспериментируйте вместе с нами."
-            )
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "\n                В основу ролла входит пол листа нори и рис 50р. (130 гр.)\n            "
-            )
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "\n                Выберите поверхность ролла,начинку и форму\n            "
-            )
-          ]),
-          _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [
               _vm._v(" Верхнее покрытие ролла:")

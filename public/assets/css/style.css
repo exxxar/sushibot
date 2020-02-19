@@ -5228,15 +5228,27 @@ ul.rating li:nth-child(4) i {
     display: none;
 }
 
+.s2 {
+    background: url(https://lviv.virtual.ua/images/405427/);
+    background-size: cover;
+    background-color: black;
+    mix-blend-mode: overlay;
+}
 
+.s2 .container {
+    display: flex;
+    justify-content: center;
+}
 .s2 .calc {
     width: 1000px;
     height: 100%;
     display: flex;
-    padding: 150px 50px 50px 50px;
     box-sizing: border-box;
-    /* IMAGE STYLES */
-    /* CHECKED STYLES */
+
+    padding: 10px;
+    background: #000000bd;
+
+
 }
 
 .s2 .calc h1 {
@@ -5455,14 +5467,16 @@ ul.rating li:nth-child(4) i {
     background-color: #002232;
     width: 100%;
     height: 100vh;
+    min-height: 1000px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    background-image: url("../1.png");
+    background-image: url('/1.png');
     background-size: cover;
     background-position: center center;
-    background-blend-mode: difference;
+    background-blend-mode: luminosity;
+    background-repeat: no-repeat;
 }
 
 .s3 ul.lottery {
