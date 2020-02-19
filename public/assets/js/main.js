@@ -396,9 +396,14 @@
 
     setTimeout(function () {
         $("#menu_grid .chopcafe_filter .active_btn").click();
-        console.log("test");
     },2000);
 
+    $('.phone').mask('(000) 000-00-00');
+
+    $(".open_cart").on('click', function(e) {
+        e.preventDefault();
+        $(".sidenav_cart").toggleClass("active");
+    });
     /*----------------------
         nice-select js
     ------------------------*/

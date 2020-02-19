@@ -15,7 +15,7 @@
             <div class="col-lg-7 col-md-7 col-sm-12">
                 <div class="top_info top_contact_info">
                     <ul>
-                        <li><a href="#"><i class="fas fa-phone-square"></i>Обратный звонок</a></li>
+                        <li><a href="#callbackModal" data-toggle="modal" data-target="#callbackModal"><i class="fas fa-phone-square"></i>Обратный звонок</a></li>
                     </ul>
                 </div>
             </div>

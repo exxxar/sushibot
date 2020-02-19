@@ -1972,6 +1972,14 @@ ul.social_widget li a.facebook {
     background-color: #3c5998;
 }
 
+ul.social_widget li a.telegram {
+    background-color: #20c0e0;
+}
+
+ul.social_widget li a.vkontakte {
+    background-color: #0d76e0;
+}
+
 ul.social_widget li a.twitter {
     background-color: #29a9e0;
 }
@@ -5205,4 +5213,14 @@ ul.rating li:nth-child(4) i {
     color:#dc3545;
     font-family: 'Roboto Slab', serif;
     font-size: 24px;
+}
+
+.sidenav_cart {
+    position: fixed;
+    width: 300px;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    background: red;
+    display: none;
 }

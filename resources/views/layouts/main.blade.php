@@ -55,10 +55,97 @@
 </div>
 <!-- End preloader area -->
 @yield('content')
+
+
+<!-- Cart Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- callbackModal -->
+<div class="modal fade" id="callbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><span>Мы тебе перезвоним</span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="reservation_form">
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form_group">
+                                            <input type="text" class="form_control" placeholder="Ваше имя" name="name" required="">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form_group">
+                                            <input type="text" class="form_control phone" placeholder="Ваш телефон" name="phone" required="">
+                                            <i class="fas fa-phone"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form_group">
+                                            <input type="text" class="form_control hasDatepicker" placeholder="Date" id="datepicker" name="Date" required="">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form_group">
+                                            <input type="text" class="form_control" placeholder="Time" name="time" required="">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form_group">
+                                            <input type="text" class="form_control" placeholder="People" name="text" required="">
+                                            <i class="fas fa-user-friends"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form_group">
+                                            <textarea class="form_control" placeholder="Say Somthing About Special" name="Message"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form_button text-center">
+                                            <button class="chopcafe_btn chopcafe_btn_2 form_btn">Reserve</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- scroll_top -->
 <a id="scroll_top"><i class="fas fa-angle-up"></i></a>
 <!-- jquery  -->
-<script src="{{asset("assets/js/jquery-1.12.4.min.js")}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- bootstrap js -->
 <script src="{{asset('assets/plugin/bootstrap/js/bootstrap.min.js')}}"></script>
 <!-- Poper js -->
@@ -86,6 +173,8 @@
 <script src="{{asset('assets/plugin/sidebar-menu/sidebar-menu.js')}}"></script>
 <!-- jquery_ui js -->
 <script src="{{asset('assets/js/wow.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
 <!-- main js -->
 <script src="{{asset('assets/js/main.js')}}"></script>
 </body>

@@ -14,6 +14,7 @@
 use \ATehnix\VkClient\Requests\Request as VkRequest;
 use \ATehnix\VkClient\Auth as VkAuth;
 use \Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 Route::get('/', function () {
@@ -25,6 +26,17 @@ Route::get('/', function () {
     return view('main.main',compact('products','categories','defaultCat'));
 });
 
+Route::view("/contacts","main.contact_us");
+Route::post("/contacts",function (Request $request){
+    Log::info($request->get('name'));
+    Log::info($request->get('email'));
+    Log::info($request->get('title'));
+    Log::info($request->get('message'));
+
+    return redirect()
+        ->back()
+        ->with('status', 'Ваше сообщение успешно отправлено!');
+});
 
 
 
