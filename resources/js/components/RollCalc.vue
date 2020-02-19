@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <form class="calc row align-items-center">
+        <form class="calc row align-items-flex-start">
             <div class="col-lg-6">
                             <div class="form-group">
                     <label for=""> Верхнее покрытие ролла:</label>
@@ -231,27 +231,9 @@
                     <button>-</button>
                 </div>
                 <div class="form-group">
-                    <button class="send-btn">В корзину</button>
+                    <button class="btn btn-success">В корзину</button>
                 </div>
-                <div class="labels">
-                    <h5>Категория: <a href="">Собрать ролл</a></h5>
-                    <h5>Метки: <a href="">снежный краб</a>, <a href="">огурец</a>, <a href="">авокадо</a>, <a
-                            href="">майонез</a>,
-                        <a href="">Лосось</a>, <a href="">Тунец</a>, <a href="">Угорь</a>, <a
-                                href="">Креветка</a>, <a href="">Мидии</a>,
-                        <a href="">Икра Тобико</a>, <a href="">Красная Икра</a>, <a href="">Спайси</a>, <a
-                                href="">сливочный сыр</a>,
-                        <a href="">твердый сыр</a>, <a href="">тостерный сыр</a>, <a href="">чука</a>, <a
-                                href="">креветка жареная</a>,
-                        <a href="">лист салата</a>, <a href="">жареный лосось</a>, <a href="">стружка тунца</a>,
-                        <a href="">кунжут</a>, <a href="">зеленый лук</a>,
-                        <a href="">укроп</a>, <a href="">помидор</a>, <a href="">жареная курица</a>, <a
-                                href="">томаго</a>,
-                        <a href="">окунь морской</a>, <a href="">сладкий перец</a>
-                    </h5>
-                </div>
-
-            </div>
+                            </div>
         </form>
 
     </div>

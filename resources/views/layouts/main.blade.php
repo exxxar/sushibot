@@ -421,10 +421,10 @@
 <!-- jquery_ui js -->
 <script src="{{asset('assets/js/wow.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
+<script src="{{asset('js/app.js')}}"></script>
 <!-- main js -->
 <script src="{{asset('assets/js/main.js')}}"></script>
-<script src="{{asset('/js/app.js')}}"></script>
+
 </body>
 
 </html>

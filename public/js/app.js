@@ -14229,7 +14229,7 @@ var app = new Vue({
 /***/ (function(module, exports, __webpack_require__) {
 
 window._ = __webpack_require__(14);
-window.Popper = __webpack_require__(3).default;
+//window.Popper = require('popper.js').default;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -14238,7 +14238,7 @@ window.Popper = __webpack_require__(3).default;
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(4);
+  //window.$ = window.jQuery = require('jquery');
 
   __webpack_require__(16);
 } catch (e) {}
@@ -49993,24 +49993,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50046,7 +50028,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
-      _c("form", { staticClass: "calc row align-items-center" }, [
+      _c("form", { staticClass: "calc row align-items-flex-start" }, [
         _c("div", { staticClass: "col-lg-6" }, [
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [
@@ -50414,72 +50396,8 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
-            _c("button", { staticClass: "send-btn" }, [_vm._v("В корзину")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "labels" }, [
-            _c("h5", [
-              _vm._v("Категория: "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("Собрать ролл")])
-            ]),
-            _vm._v(" "),
-            _c("h5", [
-              _vm._v("Метки: "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("снежный краб")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("огурец")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("авокадо")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("майонез")]),
-              _vm._v(",\n                    "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("Лосось")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("Тунец")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("Угорь")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("Креветка")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("Мидии")]),
-              _vm._v(",\n                    "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("Икра Тобико")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("Красная Икра")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("Спайси")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("сливочный сыр")]),
-              _vm._v(",\n                    "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("твердый сыр")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("тостерный сыр")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("чука")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("креветка жареная")]),
-              _vm._v(",\n                    "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("лист салата")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("жареный лосось")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("стружка тунца")]),
-              _vm._v(",\n                    "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("кунжут")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("зеленый лук")]),
-              _vm._v(",\n                    "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("укроп")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("помидор")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("жареная курица")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("томаго")]),
-              _vm._v(",\n                    "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("окунь морской")]),
-              _vm._v(", "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("сладкий перец")])
+            _c("button", { staticClass: "btn btn-success" }, [
+              _vm._v("В корзину")
             ])
           ])
         ])
