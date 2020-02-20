@@ -32,7 +32,8 @@
             <div class="row justify-content-center mb-5" v-if="canStart">
                 <div class="col-md-4">
 
-                    <button class="btn btn-info btn-lottery" @click="checkValidPromo">Поехали</button>
+                    <button class="btn btn-info btn-lottery" @click="checkValidPromo" v-if="!isWin">Поехали</button>
+                    <button class="btn btn-info btn-lottery" @click="restart" v-if="!isWin">По новой</button>
 
 
                 </div>
@@ -120,8 +121,15 @@
                     text: message
                 });
             },
-            checkValidPromo() {
+            restart() {
+
+                this.lottery_list = [];
                 this.isWin = false;
+
+                this.getCardsList();
+
+            },
+            checkValidPromo() {
 
                 if (this.promocode.length == 0) {
                     this.sendMessage("Введите промокод!")

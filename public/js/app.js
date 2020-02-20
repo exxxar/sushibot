@@ -49271,6 +49271,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -49328,10 +49329,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 text: message
             });
         },
+        restart: function restart() {
+
+            this.lottery_list = [];
+            this.isWin = false;
+
+            this.getCardsList();
+        },
         checkValidPromo: function checkValidPromo() {
             var _this3 = this;
-
-            this.isWin = false;
 
             if (this.promocode.length == 0) {
                 this.sendMessage("Введите промокод!");
@@ -49526,14 +49532,27 @@ var render = function() {
         _vm.canStart
           ? _c("div", { staticClass: "row justify-content-center mb-5" }, [
               _c("div", { staticClass: "col-md-4" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-info btn-lottery",
-                    on: { click: _vm.checkValidPromo }
-                  },
-                  [_vm._v("Поехали")]
-                )
+                !_vm.isWin
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-info btn-lottery",
+                        on: { click: _vm.checkValidPromo }
+                      },
+                      [_vm._v("Поехали")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.isWin
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-info btn-lottery",
+                        on: { click: _vm.restart }
+                      },
+                      [_vm._v("По новой")]
+                    )
+                  : _vm._e()
               ])
             ])
           : _vm._e()
