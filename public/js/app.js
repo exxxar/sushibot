@@ -49347,8 +49347,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this3.sendMessage("Ваш код успешно активирован");
                     for (var i = 0; i < demo_count; i++) {
                         _this3.demo_lottery_list.push(i);
-                    }_this3.shuffle();
-                    _this3.promocode = "";
+                    }_this3.promocode = "";
+
+                    _this3.shuffle();
+                } else {
+                    _this3.sendMessage("Данный код не существует!");
                 }
             });
         },
@@ -50532,7 +50535,7 @@ exports = module.exports = __webpack_require__(45)(false);
 
 
 // module
-exports.push([module.i, "\n.flip-list-move {\n  -webkit-transition: -webkit-transform .3s;\n  transition: -webkit-transform .3s;\n  transition: transform .3s;\n  transition: transform .3s, -webkit-transform .3s;\n}\n.lottery-field {\n  border: 1px #dc3545 solid;\n  border-radius: 0;\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n}\n.lottery-field + i {\n    position: absolute;\n    left: 31px;\n    top: 17px;\n    color: #dc3545;\n}\n.btn-lottery {\n  background: #dc3545;\n  width: 100%;\n  height: 47px;\n  text-transform: uppercase;\n  font-weight: 800;\n  border: none;\n}\n", ""]);
+exports.push([module.i, "\n.flip-list-move {\n  -webkit-transition: -webkit-transform 1s;\n  transition: -webkit-transform 1s;\n  transition: transform 1s;\n  transition: transform 1s, -webkit-transform 1s;\n}\n.lottery-field {\n  border: 1px #dc3545 solid;\n  border-radius: 0;\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n}\n.lottery-field + i {\n    position: absolute;\n    left: 31px;\n    top: 17px;\n    color: #dc3545;\n}\n.btn-lottery {\n  background: #dc3545;\n  width: 100%;\n  height: 47px;\n  text-transform: uppercase;\n  font-weight: 800;\n  border: none;\n}\n", ""]);
 
 // exports
 

@@ -137,12 +137,14 @@
                             this.lottery_list = [];
                             this.code_id = response.data.code_id;
                             this.sendMessage("Ваш код успешно активирован")
-                            for(let i=0;i<demo_count;i++)
+                            for (let i = 0; i < demo_count; i++)
                                 this.demo_lottery_list.push(i);
-
-                            this.shuffle();
                             this.promocode = "";
 
+                            this.shuffle();
+
+                        } else {
+                            this.sendMessage("Данный код не существует!")
                         }
                     });
             },
@@ -189,7 +191,7 @@
 
 <style lang="scss">
     .flip-list-move {
-        transition: transform .3s;
+        transition: transform 1s;
     }
 
     .lottery-field {
