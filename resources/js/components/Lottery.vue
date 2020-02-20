@@ -142,7 +142,8 @@
                             this.promocode = "";
 
                             setTimeout(() => {
-                                this.shuffle();
+                                for (i = 0; i < 3; i++)
+                                    this.shuffle();
                             }, 1000)
 
                             this.canStart = false;
