@@ -31,11 +31,8 @@
         <transition name="fade">
             <div class="row justify-content-center mb-5" v-if="canStart">
                 <div class="col-md-4">
-
                     <button class="btn btn-info btn-lottery" @click="checkValidPromo" v-if="!isWin">Поехали</button>
-                    <button class="btn btn-info btn-lottery" @click="restart" v-if="!isWin">По новой</button>
-
-
+                    <button class="btn btn-info btn-lottery btn-lottery-green" @click="restart" v-if="isWin">По новой</button>
                 </div>
             </div>
         </transition>
@@ -256,5 +253,9 @@
         text-transform: uppercase;
         font-weight: 800;
         border: none;
+    }
+
+    .btn-lottery-green {
+        background-color: #28a745;
     }
 </style>

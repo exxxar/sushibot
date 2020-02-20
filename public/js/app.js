@@ -49269,9 +49269,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -49543,11 +49540,12 @@ var render = function() {
                     )
                   : _vm._e(),
                 _vm._v(" "),
-                !_vm.isWin
+                _vm.isWin
                   ? _c(
                       "button",
                       {
-                        staticClass: "btn btn-info btn-lottery",
+                        staticClass:
+                          "btn btn-info btn-lottery btn-lottery-green",
                         on: { click: _vm.restart }
                       },
                       [_vm._v("По новой")]
@@ -50584,7 +50582,7 @@ exports = module.exports = __webpack_require__(45)(false);
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n  -webkit-transition: opacity .5s;\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to {\n  opacity: 0;\n}\n.flip-list-move {\n  -webkit-transition: -webkit-transform 1s;\n  transition: -webkit-transform 1s;\n  transition: transform 1s;\n  transition: transform 1s, -webkit-transform 1s;\n}\n.lottery-field {\n  border: 1px #dc3545 solid;\n  border-radius: 0;\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n}\n.lottery-field + i {\n    position: absolute;\n    left: 31px;\n    top: 17px;\n    color: #dc3545;\n}\n.btn-lottery {\n  background: #dc3545;\n  width: 100%;\n  height: 47px;\n  text-transform: uppercase;\n  font-weight: 800;\n  border: none;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n  -webkit-transition: opacity .5s;\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to {\n  opacity: 0;\n}\n.flip-list-move {\n  -webkit-transition: -webkit-transform 1s;\n  transition: -webkit-transform 1s;\n  transition: transform 1s;\n  transition: transform 1s, -webkit-transform 1s;\n}\n.lottery-field {\n  border: 1px #dc3545 solid;\n  border-radius: 0;\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n}\n.lottery-field + i {\n    position: absolute;\n    left: 31px;\n    top: 17px;\n    color: #dc3545;\n}\n.btn-lottery {\n  background: #dc3545;\n  width: 100%;\n  height: 47px;\n  text-transform: uppercase;\n  font-weight: 800;\n  border: none;\n}\n.btn-lottery-green {\n  background-color: #28a745;\n}\n", ""]);
 
 // exports
 
