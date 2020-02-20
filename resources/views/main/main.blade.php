@@ -4,7 +4,7 @@
 
 @section('content')
     @include("main.partials.search")
-    @include("main.partials.header_top_bar")
+   {{-- @include("main.partials.header_top_bar")--}}
     @include("main.partials.header_area")
     @include("main.partials.header_bg")
     @include("main.partials.header_slider")

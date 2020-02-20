@@ -15,10 +15,10 @@
             <div class="col-lg-6">
                 <div class="chofcafe_img_box">
                     <div class="about_video_box chopcafe_img">
-                        <img src="assets/images/about_1.jpg" class="img-fluid" alt="">
+                        <img src="https://gurmans.dp.ua/giuseppe/7980-large_default/sushi-set-kaliforniya.jpg" class="img-fluid" alt="">
                         <div class="bg_overlay"></div>
                         <div class="play_button">
-                            <a href="https://www.youtube.com/watch?v=3AtDnEC4zak" class="play_btn"><i class="fas fa-play"></i></a>
+                            <a href="https://www.youtube.com/watch?v=__x3g0W4r2A" class="play_btn"><i class="fas fa-play"></i></a>
                         </div>
                     </div>
                 </div>

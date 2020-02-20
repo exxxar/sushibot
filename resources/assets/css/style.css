@@ -5628,7 +5628,7 @@ ul.rating li:nth-child(4) i {
 }
 
 .colored {
-    color:red;
+    color:#ed3721;
 }
 
 
@@ -5637,3 +5637,8 @@ ul.rating li:nth-child(4) i {
     font-weight: 800;
     font-size: 32px;
 }
+
+.header_area.sticky .social_link a{
+    color:white;
+}
+

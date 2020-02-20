@@ -6,9 +6,9 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="welcome_content wow slideInUp">
-                            <h1>Welcome To <span>Chopcafe</span></h1>
-                            <p>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. </p>
-                            <a href="reservation" class="chopcafe_btn reservation_btn">reservation</a>
+                            <h1>Суши кафе <span>ISUSHI</span></h1>
+                            <p>Не знаете где быстро заказать аппетитные и качественные роллы?! </p>
+                            <a href="reservation" class="chopcafe_btn reservation_btn">Заказать</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -22,9 +22,9 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="welcome_content wow slideInUp">
-                            <h1>Welcome To <span>Chopcafe</span></h1>
-                            <p>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. </p>
-                            <a href="reservation.html" class="chopcafe_btn reservation_btn">reservation</a>
+                            <h1>Суши кафе <span>ISUSHI</span></h1>
+                            <p>Стоимость наших блюд вас приятно удивит и позволит насладится изящным вкусом настоящей японской кухни!</p>
+                            <a href="reservation.html" class="chopcafe_btn reservation_btn">Заказать</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -38,8 +38,8 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="welcome_content wow slideInUp">
-                            <h1>Welcome To <span>Chopcafe</span></h1>
-                            <p>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. </p>
+                            <h1>Суши кафе <span>ISUSHI</span></h1>
+                            <p>Мы любим своих клиентов и создаём исключительно наилучшую продукцию для вас! </p>
                             <a href="reservation" class="chopcafe_btn reservation_btn">reservation</a>
                         </div>
                     </div>
@@ -54,8 +54,9 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="welcome_content wow slideInUp">
-                            <h1>Welcome To <span>Chopcafe</span></h1>
-                            <p>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. </p>
+                            <h1>Суши кафе <span>ISUSHI</span></h1>
+                            <p>Скидка именинникам 10%!!
+                                День до,в день рождения и день после (3 дня) </p>
                             <a href="reservation" class="chopcafe_btn reservation_btn">reservation</a>
                         </div>
                     </div>

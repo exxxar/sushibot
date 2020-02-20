@@ -6,19 +6,39 @@
             <div class="row align-items-center">
                 <div class="col-lg-1">
                     <div class="brand_logo">
-                        <a href="{{url('/')}}" class="main_logo"><img src="assets/images/logo.jpg" class="img-fluid" alt=""></a>
-                        <a href="{{url('/')}}" class="sticky_logo"><img src="assets/images/logo_dark.png" class="img-fluid" alt=""></a>
+                        <a href="{{url('/')}}" class="main_logo"><img src="assets/images/logo.jpg" class="img-fluid"
+                                                                      alt=""></a>
+                        <a href="{{url('/')}}" class="sticky_logo"><img src="assets/images/logo_dark.png"
+                                                                        class="img-fluid" alt=""></a>
                     </div>
                 </div>
-                <div class="col-lg-11">
+
+                <div class="offset-3 col-lg-3 col-md-3 col-sm-12">
+                    <div class="top_info top_social">
+                        <ul class="social_link">
+                            <li><a href="https://vk.com/isushi_dn" target="_blank"><i class="fab fa-vk"></i></a></li>
+                            <li><a href="https://www.instagram.com/isushi_dn/" target="_blank"><i
+                                            class="fab fa-instagram"></i></a></li>
+                            <li><a href="https://t.me/isushibot" target="_blank"><i class="fab fa-telegram"></i></a>
+                            </li>
+                            <li><a href="https://www.facebook.com/ArkadiaDonetsk/" target="_blank"><i
+                                            class="fab fa-facebook"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
 
                     <div class="chopcafe_menu">
                         <nav class="main_menu">
                             <ul>
-                                <li class="menu-item"><a href="#menu_grid">Наши товары</a></li>
+                               {{-- <li class="menu-item"><a href="#menu_grid">Наши товары</a></li>
                                 <li class="menu-item"><a href="{{url("/contacts")}}">Наши контакты</a></li>
-                                <li class="search_icon"><a href="#" class="search_btn"><i class="fas fa-search"></i></a></li>
-                                <li class="cart_icon"><a href="#" class="open_cart"><span class="count">2</span><i class="fas fa-shopping-cart"></i></a>
+                                <li class="search_icon"><a href="#" class="search_btn"><i class="fas fa-search"></i></a>
+                                </li>--}}
+                                <li><a href="#callbackModal" data-toggle="modal" data-target="#callbackModal"><i class="fas fa-phone-square mr-2"></i>Обратный звонок</a></li>
+                                <li class="cart_icon"><a href="#" class="open_cart"><span class="count">2</span><i
+                                                class="fas fa-shopping-cart"></i></a>
                                     <ul id="site-header-cart" class="site-header-cart">
                                         <li>
                                             <div class="widget_shopping_cart">
@@ -30,18 +50,24 @@
                                                             </div>
                                                             <div class="product_name">
                                                                 <a href="#" class="product_title">Chicken Breast</a>
-                                                                <p><span class="woocommerce-price-currencySymbol">$</span> <span class="woocommerce-price-amount">30.00</span> <span class="quantity"> X 1</span></p>
+                                                                <p>
+                                                                    <span class="woocommerce-price-currencySymbol">$</span>
+                                                                    <span class="woocommerce-price-amount">30.00</span>
+                                                                    <span class="quantity"> X 1</span></p>
                                                             </div>
                                                             <div class="product_remove">
-                                                                <a href="#" class="remove_btn"><i class="fas fa-times"></i></a>
+                                                                <a href="#" class="remove_btn"><i
+                                                                            class="fas fa-times"></i></a>
                                                             </div>
                                                         </li>
                                                     </ul>
                                                     <p class="woocommerce-mini-cart__total text-center">
-                                                        <span class="woocommerce-price-currencySymbol">$</span> <span class="woocommerce-price-amount">60.00</span>
+                                                        <span class="woocommerce-price-currencySymbol">$</span> <span
+                                                                class="woocommerce-price-amount">60.00</span>
                                                     </p>
                                                     <p class="woocommerce-mini-cart__buttons text-center">
-                                                        <a href="#" class="chopcafe_btn" data-toggle="modal" data-target="#cartModal">Открыть корзину</a>
+                                                        <a href="#" class="chopcafe_btn" data-toggle="modal"
+                                                           data-target="#cartModal">Открыть корзину</a>
                                                         <a href="#" class="chopcafe_btn">Оформить заказ</a>
                                                     </p>
                                                 </div>
@@ -66,7 +92,8 @@
                 <div class="col-lg-11 col-md-10 col-10">
                     <div class="mobile_menu">
                         <ul>
-                            <li class="cart_icon"><a href="#"><span class="count">2</span><i class="fas fa-shopping-cart"></i></a>
+                            <li class="cart_icon"><a href="#"><span class="count">2</span><i
+                                            class="fas fa-shopping-cart"></i></a>
                                 <ul id="site-header-cart-2" class="site-header-cart">
                                     <li>
                                         <div class="widget_shopping_cart">
@@ -78,7 +105,9 @@
                                                         </div>
                                                         <div class="product_name">
                                                             <a href="#" class="product_title">Chicken Breast</a>
-                                                            <p><span class="woocommerce-price-currencySymbol">$</span> <span class="woocommerce-price-amount">30.00</span> <span class="quantity"> X 1</span></p>
+                                                            <p><span class="woocommerce-price-currencySymbol">$</span>
+                                                                <span class="woocommerce-price-amount">30.00</span>
+                                                                <span class="quantity"> X 1</span></p>
                                                         </div>
                                                         <div class="product_remove">
                                                             <a href="#" class="remove_btn"><i class="fas fa-times"></i></a>
@@ -86,10 +115,11 @@
                                                     </li>
                                                 </ul>
                                                 <p class="woocommerce-mini-cart__total text-center">
-                                                    <span class="woocommerce-price-currencySymbol">$</span> <span class="woocommerce-price-amount">60.00</span>
+                                                    <span class="woocommerce-price-currencySymbol">$</span> <span
+                                                            class="woocommerce-price-amount">60.00</span>
                                                 </p>
                                                 <p class="woocommerce-mini-cart__buttons text-center">
-                                                    <a href="#" class="chopcafe_btn" >Открыть корзину</a>
+                                                    <a href="#" class="chopcafe_btn">Открыть корзину</a>
                                                     <a href="#" class="chopcafe_btn">Оплатить</a>
                                                 </p>
                                             </div>
