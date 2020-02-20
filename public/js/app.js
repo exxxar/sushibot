@@ -49331,6 +49331,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         checkValidPromo: function checkValidPromo() {
             var _this3 = this;
 
+            this.isWin = false;
+
             if (this.promocode.length == 0) {
                 this.sendMessage("Введите промокод!");
                 return;
@@ -49340,8 +49342,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.sendMessage("Введите номер телефона!");
                 return;
             }
-
-            this.isWin = false;
 
             axios.post('api/users/promo/validate', {
                 phone: this.phone,
@@ -49375,7 +49375,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.demo_lottery_list = _.shuffle(this.demo_lottery_list);
             console.log("end shuffle");
         },
-        openCard: function openCard(n) {
+        openCard: function openCard() {
             var _this4 = this;
 
             if (!this.isLogged) {
@@ -49397,15 +49397,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.post('api/users/promo/check', {
                 code_id: this.code_id,
-                chat_id: this.user.id,
-                index: n
+                chat_id: this.user.id
             }).then(function (response) {
                 ///this.lottery_list = response.data
-                console.log(response.data.win);
+
                 _this4.sendMessage("Ура! Победили!");
                 _this4.isWin = true;
 
-                _this4.lottery_list = response.data.win;
+                _this4.lottery_list = response.data.results;
+
+                console.log(response.data.results);
             });
         }
     },
@@ -49557,7 +49558,7 @@ var render = function() {
                       staticClass: "lottery-item",
                       on: {
                         click: function($event) {
-                          return _vm.openCard(n)
+                          return _vm.openCard()
                         }
                       }
                     },

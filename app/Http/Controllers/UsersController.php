@@ -219,7 +219,7 @@ class UsersController extends Controller
 //todo:отправить в телеграм о том что пользователь выиграл + номер телефона
         return response()
             ->json([
-                "win" => $prizes->random(1)
+                "results" => $prizes->random(1)
             ]);
     }
 }
