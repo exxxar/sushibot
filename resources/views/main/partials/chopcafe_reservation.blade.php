@@ -14,32 +14,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="reservation_form">
-                    <form>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form_group">
-                                    <input type="text" class="form_control" placeholder="Ваше имя" name="name" required>
-                                    <i class="fas fa-user"></i>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form_group">
-                                    <input type="text" class="form_control phone" placeholder="Ваш номер телефона" name="phone" required>
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form_group">
-                                    <textarea class="form_control" placeholder="Сообщение для нас" name="message"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form_button text-center">
-                                    <button class="chopcafe_btn form_btn">Оформить заявку</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    <callback-form></callback-form>
                 </div>
             </div>
             <div class="col-lg-6">

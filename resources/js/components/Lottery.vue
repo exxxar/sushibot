@@ -30,7 +30,7 @@
         </div>
         <transition name="fade">
             <div class="row justify-content-center mb-5" v-if="canStart">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <button class="btn btn-info btn-lottery" @click="checkValidPromo" v-if="!isWin">Поехали</button>
                     <button class="btn btn-info btn-lottery btn-lottery-green" @click="restart" v-if="isWin">По новой</button>
                 </div>
@@ -39,7 +39,7 @@
 
 
         <transition-group name="flip-list" tag="ul" class="lottery" v-if="!isLogged||lottery_list.length==0">
-            <li class="lottery-item-wrapper" v-for="n in demo_lottery_list" v-bind:key="n" :data-id="n">
+            <li class="lottery-item-wrapper wow slideInUp" v-for="n in demo_lottery_list" v-bind:key="n" :data-id="n">
                 <div class="lottery-item" @click="openCard()">
                     <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
                          alt="">

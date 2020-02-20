@@ -150,6 +150,7 @@ body {
     line-height: 26px;
     color: #7D858B;
     overflow-x: hidden;
+    padding-right: 0 !important;
 }
 
 .section_padding {

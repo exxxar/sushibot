@@ -26,7 +26,7 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="grid_item">
-                    <div class="grid_inner_item item_line_2">
+                    <div class="grid_inner_item item_line_2" data-toggle="modal" data-target="#callbackModal">
                         <div class="icon_box">
                             <i class="flaticon-ecommerce"></i>
                         </div>
@@ -38,7 +38,7 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="grid_item">
-                    <div class="grid_inner_item">
+                    <div class="grid_inner_item" data-toggle="modal" data-target="#deliveryModal">
                         <div class="icon_box">
                             <i class="flaticon-scooter"></i>
                         </div>

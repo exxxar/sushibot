@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-1">
                     <div class="brand_logo">
-                        <a href="index.html" class="main_logo"><img src="assets/images/logo.jpg" class="img-fluid" alt=""></a>
-                        <a href="index.html" class="sticky_logo"><img src="assets/images/logo_dark.png" class="img-fluid" alt=""></a>
+                        <a href="{{url('/')}}" class="main_logo"><img src="assets/images/logo.jpg" class="img-fluid" alt=""></a>
+                        <a href="{{url('/')}}" class="sticky_logo"><img src="assets/images/logo_dark.png" class="img-fluid" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-11">

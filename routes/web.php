@@ -75,7 +75,5 @@ Route::prefix('admin')->group(function () {
 });
 
 
-Route::get('foo', function () {
-    return 'Hello World';
-});
+
 

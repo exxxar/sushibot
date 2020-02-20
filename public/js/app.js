@@ -14196,6 +14196,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__js_components_RollCalc___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__js_components_RollCalc__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_notification__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_notification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_notification__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__js_components_CallbackForm__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__js_components_CallbackForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__js_components_CallbackForm__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -14219,9 +14221,11 @@ window.Vue = __webpack_require__(35);
 
 
 
+
 Vue.component('lottery', __WEBPACK_IMPORTED_MODULE_0__js_components_Lottery___default.a);
 Vue.component('add-to-cart-btn', __WEBPACK_IMPORTED_MODULE_1__js_components_AddCartBtn___default.a);
 Vue.component('roll-calc', __WEBPACK_IMPORTED_MODULE_2__js_components_RollCalc___default.a);
+Vue.component('callback-form', __WEBPACK_IMPORTED_MODULE_4__js_components_CallbackForm___default.a);
 Vue.use(__WEBPACK_IMPORTED_MODULE_3_vue_notification___default.a);
 
 var app = new Vue({
@@ -49528,7 +49532,7 @@ var render = function() {
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.canStart
           ? _c("div", { staticClass: "row justify-content-center mb-5" }, [
-              _c("div", { staticClass: "col-md-4" }, [
+              _c("div", { staticClass: "col-md-3" }, [
                 !_vm.isWin
                   ? _c(
                       "button",
@@ -49565,7 +49569,7 @@ var render = function() {
                 "li",
                 {
                   key: n,
-                  staticClass: "lottery-item-wrapper",
+                  staticClass: "lottery-item-wrapper wow slideInUp",
                   attrs: { "data-id": n }
                 },
                 [
@@ -52021,6 +52025,253 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_20__;
 /******/ ]);
 });
 //# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(40)
+/* script */
+var __vue_script__ = __webpack_require__(61)
+/* template */
+var __vue_template__ = __webpack_require__(62)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/CallbackForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ee2023d8", Component.options)
+  } else {
+    hotAPI.reload("data-v-ee2023d8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            name: '',
+            phone: '',
+            message: ''
+        };
+    },
+
+    methods: {
+        sendRequest: function sendRequest(e) {
+            var _this = this;
+
+            e.preventDefault();
+            axios.post('api/send-request', {
+                name: this.name,
+                phone: this.phone,
+                message: this.message
+            }).then(function (response) {
+                _this.sendMessage("Сообщение успешно отправлено");
+            });
+        },
+        sendMessage: function sendMessage(message) {
+            this.$notify({
+                group: 'messages',
+                type: 'success',
+                title: 'Отправка сообщений ISUSHI',
+                text: message
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("form", { on: { submit: _vm.sendRequest } }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-lg-6" }, [
+          _c("div", { staticClass: "form_group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.name,
+                  expression: "name"
+                }
+              ],
+              staticClass: "form_control",
+              attrs: {
+                type: "text",
+                placeholder: "Ваше имя",
+                name: "name",
+                required: "required"
+              },
+              domProps: { value: _vm.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.name = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("i", { staticClass: "fas fa-user" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-6" }, [
+          _c("div", { staticClass: "form_group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.phone,
+                  expression: "phone"
+                }
+              ],
+              staticClass: "form_control phone",
+              attrs: {
+                type: "text",
+                placeholder: "Ваш номер телефона",
+                name: "phone",
+                required: "required",
+                maxlength: "15"
+              },
+              domProps: { value: _vm.phone },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.phone = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("i", { staticClass: "fas fa-phone" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-12" }, [
+          _c("div", { staticClass: "form_group" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.message,
+                  expression: "message"
+                }
+              ],
+              staticClass: "form_control",
+              attrs: { placeholder: "Сообщение для нас", name: "message" },
+              domProps: { value: _vm.message },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.message = $event.target.value
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-12" }, [
+      _c("div", { staticClass: "form_button text-center" }, [
+        _c("button", { staticClass: "chopcafe_btn form_btn" }, [
+          _vm._v("Оформить заявку")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-ee2023d8", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

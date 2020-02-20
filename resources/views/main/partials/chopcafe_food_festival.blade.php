@@ -31,7 +31,7 @@
                     <div class="festival_text text-center">
                         <h4>с 2 по 8е марта</h4>
                         <h5><a class="btn btn-link festival_phone" href="tel:+380713830741">+38 (071) 383-07-41</a></h5>
-                        <a href="festival.html" class="chopcafe_btn festival_btn">Подробнее</a>
+                        <a href="#callback" data-toggle="modal" data-target="#callbackModal" class="chopcafe_btn festival_btn">Подробнее</a>
                     </div>
                 </div>
             </div>

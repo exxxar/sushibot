@@ -20,10 +20,12 @@ import Lottery from '../js/components/Lottery';
 import AddToCartBtn from '../js/components/AddCartBtn';
 import RollCalc from '../js/components/RollCalc';
 import Notifications from 'vue-notification'
+import CallbackForm from  '../js/components/CallbackForm';
 
 Vue.component('lottery', Lottery);
 Vue.component('add-to-cart-btn', AddToCartBtn);
 Vue.component('roll-calc', RollCalc);
+Vue.component('callback-form', CallbackForm);
 Vue.use(Notifications)
 
 const app = new Vue({

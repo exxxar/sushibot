@@ -31,6 +31,14 @@ Route::prefix('users')->group(function (){
 });
 
 
-Route::get("/test",function (){
-   return "test";
-});
+Route::post('/send-request', function (Request $request) {
+    $name = $request->get("name")??'';
+    $phone = $request->get("phone")??'';
+    $message = $request->get("message")??'';
+    Telegram::sendMessage([
+        'chat_id' => env("CHANNEL_ID"),
+        'parse_mode' => 'Markdown',
+        'text' => sprintf("*Заявка на обратный звонок*\n_%s_\n_%s_\n%s",$name,$phone,$message),
+        'disable_notification' => 'false'
+    ]);
+})->name("callback.request");
