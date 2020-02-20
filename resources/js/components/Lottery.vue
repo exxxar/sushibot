@@ -96,7 +96,7 @@
                             this.canStart = true;
                     });
             },
-            message(message) {
+            sendMessage(message) {
                 this.$notify({
                     group: 'info',
                     title: 'Оповещение ISUSHI',
@@ -105,12 +105,12 @@
             },
             checkValidPromo() {
                 if (this.promocode.length == 0) {
-                    this.message("Введите промокод!")
+                    this.sendMessage("Введите промокод!")
                     return;
                 }
 
                 if (!this.hasPhone && this.phone.length == 0) {
-                    this.message("Введите номер телефона!")
+                    this.sendMessage("Введите номер телефона!")
                     return;
                 }
 
@@ -125,12 +125,13 @@
                         if (response.data.status == "success") {
                             this.lottery_list = [];
                             this.code_id = response.data.code_id;
+                            this.sendMessage("Ваш код успешно активирован")
                         }
                     });
             },
             openCard() {
                 if (this.code_id == null) {
-                    this.message("Промокод не найден!");
+                    this.sendMessage("Промокод не найден!");
                     return;
                 }
 
@@ -142,7 +143,7 @@
                     .then(response => {
                         ///this.lottery_list = response.data
                         console.log(response.data.win);
-                        this.message("Ура! Победили!");
+                        this.sendMessage("Ура! Победили!");
                     });
             },
 

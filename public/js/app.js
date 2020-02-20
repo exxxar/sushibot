@@ -49304,23 +49304,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (_this2.lottery_list.length > 0) _this2.canStart = true;
             });
         },
-        message: function message(_message) {
+        sendMessage: function sendMessage(message) {
             this.$notify({
                 group: 'info',
                 title: 'Оповещение ISUSHI',
-                text: _message
+                text: message
             });
         },
         checkValidPromo: function checkValidPromo() {
             var _this3 = this;
 
             if (this.promocode.length == 0) {
-                this.message("Введите промокод!");
+                this.sendMessage("Введите промокод!");
                 return;
             }
 
             if (!this.hasPhone && this.phone.length == 0) {
-                this.message("Введите номер телефона!");
+                this.sendMessage("Введите номер телефона!");
                 return;
             }
 
@@ -49333,6 +49333,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (response.data.status == "success") {
                     _this3.lottery_list = [];
                     _this3.code_id = response.data.code_id;
+                    _this3.sendMessage("Ваш код успешно активирован");
                 }
             });
         },
@@ -49340,7 +49341,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this4 = this;
 
             if (this.code_id == null) {
-                this.message("Промокод не найден!");
+                this.sendMessage("Промокод не найден!");
                 return;
             }
 
@@ -49350,7 +49351,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 ///this.lottery_list = response.data
                 console.log(response.data.win);
-                _this4.message("Ура! Победили!");
+                _this4.sendMessage("Ура! Победили!");
             });
         }
     },
