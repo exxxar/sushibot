@@ -49266,6 +49266,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -49420,111 +49425,118 @@ var render = function() {
     [
       _c("notifications", { attrs: { group: "info" } }),
       _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-center mb-5" }, [
-        !_vm.isLogged
-          ? _c(
-              "div",
-              { staticClass: "col-sm-4" },
-              [
-                _c("vue-telegram-login", {
-                  attrs: { mode: "callback", "telegram-login": "isushibot" },
-                  on: { callback: _vm.telegramCallback }
-                })
-              ],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.isLogged
-          ? _c("div", { staticClass: "col-sm-4" }, [
-              _c("div", { staticClass: "form_group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.promocode,
-                      expression: "promocode"
-                    }
+      _c(
+        "div",
+        { staticClass: "row justify-content-center mb-5" },
+        [
+          _c("transition", { attrs: { name: "fade" } }, [
+            !_vm.isLogged
+              ? _c(
+                  "div",
+                  { staticClass: "col-sm-4" },
+                  [
+                    _c("vue-telegram-login", {
+                      attrs: {
+                        mode: "callback",
+                        "telegram-login": "isushibot"
+                      },
+                      on: { callback: _vm.telegramCallback }
+                    })
                   ],
-                  staticClass: "form_control lottery-field",
-                  attrs: {
-                    type: "text",
-                    placeholder: "Введите промокод",
-                    name: "promocode"
-                  },
-                  domProps: { value: _vm.promocode },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                  1
+                )
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("transition", { attrs: { name: "fade" } }, [
+            _vm.isLogged
+              ? _c("div", { staticClass: "col-sm-4" }, [
+                  _c("div", { staticClass: "form_group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.promocode,
+                          expression: "promocode"
+                        }
+                      ],
+                      staticClass: "form_control lottery-field",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Введите промокод",
+                        name: "promocode"
+                      },
+                      domProps: { value: _vm.promocode },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.promocode = $event.target.value
+                        }
                       }
-                      _vm.promocode = $event.target.value
+                    }),
+                    _vm._v(" "),
+                    _c("i", { staticClass: "fas fa-terminal" })
+                  ])
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          !_vm.hasPhone && _vm.isLogged
+            ? _c("div", { staticClass: "col-sm-4" }, [
+                _c("div", { staticClass: "form_group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.phone,
+                        expression: "phone"
+                      }
+                    ],
+                    staticClass: "form_control lottery-field",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Введите телефон",
+                      name: "phone"
+                    },
+                    domProps: { value: _vm.phone },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.phone = $event.target.value
+                      }
                     }
-                  }
-                }),
-                _vm._v(" "),
-                _c("i", { staticClass: "fas fa-terminal" })
+                  }),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "fas fa-phone" })
+                ])
               ])
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        !_vm.hasPhone && _vm.isLogged
-          ? _c("div", { staticClass: "col-sm-4" }, [
-              _c("div", { staticClass: "form_group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.phone,
-                      expression: "phone"
-                    }
-                  ],
-                  staticClass: "form_control lottery-field",
-                  attrs: {
-                    type: "text",
-                    placeholder: "Введите телефон",
-                    name: "phone"
+            : _vm._e()
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("transition", { attrs: { name: "fade" } }, [
+        _vm.canStart
+          ? _c("div", { staticClass: "row justify-content-center mb-5" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info btn-lottery",
+                    on: { click: _vm.checkValidPromo }
                   },
-                  domProps: { value: _vm.phone },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.phone = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("i", { staticClass: "fas fa-phone" })
+                  [_vm._v("Поехали")]
+                )
               ])
             ])
           : _vm._e()
       ]),
-      _vm._v(" "),
-      _vm.canStart
-        ? _c("div", { staticClass: "row justify-content-center mb-5" }, [
-            _c(
-              "div",
-              { staticClass: "col-md-4" },
-              [
-                _c("transition", { attrs: { name: "fade", mode: "out-in" } }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-info btn-lottery",
-                      on: { click: _vm.checkValidPromo }
-                    },
-                    [_vm._v("Поехали")]
-                  )
-                ])
-              ],
-              1
-            )
-          ])
-        : _vm._e(),
       _vm._v(" "),
       !_vm.isLogged || _vm.lottery_list.length == 0
         ? _c(

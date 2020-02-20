@@ -2,19 +2,23 @@
     <div>
         <notifications group="info"/>
         <div class="row justify-content-center mb-5">
-            <div class="col-sm-4" v-if="!isLogged">
-                <vue-telegram-login
-                        mode="callback"
-                        telegram-login="isushibot"
-                        @callback="telegramCallback"/>
-            </div>
-            <div class="col-sm-4" v-if="isLogged">
-                <div class="form_group">
-                    <input type="text" placeholder="Введите промокод" name="promocode" v-model="promocode"
-                           class="form_control lottery-field">
-                    <i class="fas fa-terminal"></i>
+            <transition name="fade">
+                <div class="col-sm-4" v-if="!isLogged">
+                    <vue-telegram-login
+                            mode="callback"
+                            telegram-login="isushibot"
+                            @callback="telegramCallback"/>
                 </div>
-            </div>
+            </transition>
+            <transition name="fade">
+                <div class="col-sm-4" v-if="isLogged">
+                    <div class="form_group">
+                        <input type="text" placeholder="Введите промокод" name="promocode" v-model="promocode"
+                               class="form_control lottery-field">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                </div>
+            </transition>
 
             <div class="col-sm-4" v-if="!hasPhone&&isLogged">
                 <div class="form_group">
@@ -24,35 +28,36 @@
                 </div>
             </div>
         </div>
+        <transition name="fade">
+            <div class="row justify-content-center mb-5" v-if="canStart">
+                <div class="col-md-4">
 
-        <div class="row justify-content-center mb-5" v-if="canStart">
-            <div class="col-md-4">
-                <transition name="fade" mode="out-in">
                     <button class="btn btn-info btn-lottery" @click="checkValidPromo">Поехали</button>
-                </transition>
 
+
+                </div>
             </div>
-        </div>
+        </transition>
 
 
-            <transition-group name="flip-list" tag="ul" class="lottery" v-if="!isLogged||lottery_list.length==0">
-                <li class="lottery-item-wrapper" v-for="n in demo_lottery_list" v-bind:key="n" :data-id="n">
-                    <div class="lottery-item" @click="openCard(n)">
-                        <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                             alt="">
-                    </div>
-                </li>
-            </transition-group>
+        <transition-group name="flip-list" tag="ul" class="lottery" v-if="!isLogged||lottery_list.length==0">
+            <li class="lottery-item-wrapper" v-for="n in demo_lottery_list" v-bind:key="n" :data-id="n">
+                <div class="lottery-item" @click="openCard(n)">
+                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
+                         alt="">
+                </div>
+            </li>
+        </transition-group>
 
-            <ul class="lottery" v-if="isLogged&&lottery_list.length>0">
-                <li class="lottery-item-wrapper"
-                    v-for="lottery_item in lottery_list">
-                    <div class="lottery-item">
-                        <img :src="lottery_item.image_url"
-                             :alt="lottery_item.title">
-                    </div>
-                </li>
-            </ul>
+        <ul class="lottery" v-if="isLogged&&lottery_list.length>0">
+            <li class="lottery-item-wrapper"
+                v-for="lottery_item in lottery_list">
+                <div class="lottery-item">
+                    <img :src="lottery_item.image_url"
+                         :alt="lottery_item.title">
+                </div>
+            </li>
+        </ul>
 
 
     </div>
@@ -193,7 +198,6 @@
                         console.log(response.data.win);
                         this.sendMessage("Ура! Победили!");
                         this.isWin = true;
-
 
 
                         this.lottery_list = response.data.win;
