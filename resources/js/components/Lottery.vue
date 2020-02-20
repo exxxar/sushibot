@@ -30,130 +30,20 @@
             </div>
         </div>
         <ul class="lottery">
-            <li class="lottery-item-wrapper wow slideInUp">
+            <li class="lottery-item-wrapper wow slideInUp" v-if="!isLogged" v-for="n in 20">
                 <div class="lottery-item">
                     <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
                          alt="">
                 </div>
             </li>
 
-            <li class="lottery-item-wrapper wow slideInUp">
+            <li class="lottery-item-wrapper wow slideInUp" v-if="isLogged" v-for="lottery_item in lottery_list">
                 <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
+                    <img :src="lottery_item.image_url"
+                         :alt="lottery_item.title">
                 </div>
             </li>
 
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-
-            <li class="lottery-item-wrapper  wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-
-
-            <li class="lottery-item-wrapper wow slideInUp">
-                <div class="lottery-item">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
 
 
         </ul>

@@ -49254,116 +49254,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -49463,7 +49353,35 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _vm._m(3)
+    _c(
+      "ul",
+      { staticClass: "lottery" },
+      [
+        _vm._l(20, function(n) {
+          return !_vm.isLogged
+            ? _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+                _vm._m(3, true)
+              ])
+            : _vm._e()
+        }),
+        _vm._v(" "),
+        _vm._l(_vm.lottery_list, function(lottery_item) {
+          return _vm.isLogged
+            ? _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+                _c("div", { staticClass: "lottery-item" }, [
+                  _c("img", {
+                    attrs: {
+                      src: lottery_item.image_url,
+                      alt: lottery_item.title
+                    }
+                  })
+                ])
+              ])
+            : _vm._e()
+        })
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = [
@@ -49509,210 +49427,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "lottery" }, [
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper  wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-        _c("div", { staticClass: "lottery-item" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-              alt: ""
-            }
-          })
-        ])
-      ])
+    return _c("div", { staticClass: "lottery-item" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+          alt: ""
+        }
+      })
     ])
   }
 ]
