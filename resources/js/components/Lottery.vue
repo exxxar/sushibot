@@ -1,6 +1,6 @@
 <template>
     <div>
-        <notifications group="info" />
+        <notifications group="info"/>
         <div class="row justify-content-center mb-5">
             <div class="col-sm-4" v-if="!isLogged">
                 <vue-telegram-login
@@ -30,24 +30,26 @@
                 <button class="btn btn-info btn-lottery" @click="checkValidPromo">Поехали</button>
             </div>
         </div>
-        <ul class="lottery">
-            <li class="lottery-item-wrapper wow slideInUp" v-if="!isLogged||lottery_list.length==0" v-for="n in 20">
+        <transition-group name="flip-list" tag="ul" class="lottery" v-if="!isLogged||lottery_list.length==0">
+            <li class="lottery-item-wrapper wow slideInUp" v-for="n in demo_lottery_list" v-bind:key="n" :data-id="n">
                 <div class="lottery-item" @click="openCard()">
                     <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
                          alt="">
                 </div>
             </li>
+        </transition-group>
 
-            <li class="lottery-item-wrapper wow slideInUp" v-if="isLogged&&lottery_list.length>0"
+        <ul class="lottery" v-if="isLogged&&lottery_list.length>0">
+            <li class="lottery-item-wrapper wow slideInUp"
                 v-for="lottery_item in lottery_list">
                 <div class="lottery-item">
                     <img :src="lottery_item.image_url"
                          :alt="lottery_item.title">
                 </div>
             </li>
-
-
         </ul>
+
+
     </div>
 </template>
 <script>
@@ -57,17 +59,16 @@
 
         data() {
             return {
+                demo_lottery_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                 isLogged: false,
                 hasPhone: false,
                 canStart: false,
                 promocode: null,
                 code_id: null,
                 phone: null,
-                lottery_list: []
+                lottery_list: [],
+                isWin: false
             };
-        },
-        mounted() {
-            this.sendMessage("Test");
         },
         methods: {
             telegramCallback(user) {
@@ -132,10 +133,28 @@
                             this.lottery_list = [];
                             this.code_id = response.data.code_id;
                             this.sendMessage("Ваш код успешно активирован")
+                            this.shuffle();
+
                         }
                     });
             },
+            shuffle: function () {
+                console.log("start shuffle")
+                this.demo_lottery_list = _.shuffle(this.demo_lottery_list)
+                console.log("end shuffle")
+            },
             openCard() {
+
+                if (!this.isLogged) {
+                    this.sendMessage("Сперва авторизируйтесь и введите промокод!")
+                    return
+                }
+
+                if (this.isWin) {
+                    this.sendMessage("Вы уже поучаствовали!")
+                    return
+                }
+
                 if (this.code_id == null) {
                     this.sendMessage("Промокод не найден!");
                     return;
@@ -150,6 +169,7 @@
                         ///this.lottery_list = response.data
                         console.log(response.data.win);
                         this.sendMessage("Ура! Победили!");
+                        this.isWin = true;
                     });
             },
 
@@ -160,6 +180,10 @@
 </script>
 
 <style lang="scss">
+    .flip-list-move {
+        transition: transform 1s;
+    }
+
     .lottery-field {
         border: 1px #dc3545 solid;
         border-radius: 0;

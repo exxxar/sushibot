@@ -5516,6 +5516,7 @@ ul.rating li:nth-child(4) i {
     box-sizing: border-box;
     box-shadow: 1px 1px 5px 2px black;
     transition: 1s;
+    cursor: pointer;
 }
 
 .s3 ul.lottery .lottery-item-wrapper .lottery-item img {

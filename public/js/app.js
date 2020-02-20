@@ -49259,23 +49259,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            demo_lottery_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
             isLogged: false,
             hasPhone: false,
             canStart: false,
             promocode: null,
             code_id: null,
             phone: null,
-            lottery_list: []
+            lottery_list: [],
+            isWin: false
         };
-    },
-    mounted: function mounted() {
-        this.sendMessage("Test");
     },
 
     methods: {
@@ -49340,11 +49341,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this3.lottery_list = [];
                     _this3.code_id = response.data.code_id;
                     _this3.sendMessage("Ваш код успешно активирован");
+                    _this3.shuffle();
                 }
             });
         },
+
+        shuffle: function shuffle() {
+            console.log("start shuffle");
+            this.demo_lottery_list = _.shuffle(this.demo_lottery_list);
+            console.log("end shuffle");
+        },
         openCard: function openCard() {
             var _this4 = this;
+
+            if (!this.isLogged) {
+                this.sendMessage("Сперва авторизируйтесь и введите промокод!");
+                return;
+            }
+
+            if (this.isWin) {
+                this.sendMessage("Вы уже поучаствовали!");
+                return;
+            }
 
             if (this.code_id == null) {
                 this.sendMessage("Промокод не найден!");
@@ -49358,6 +49376,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 ///this.lottery_list = response.data
                 console.log(response.data.win);
                 _this4.sendMessage("Ура! Победили!");
+                _this4.isWin = true;
             });
         }
     },
@@ -49476,62 +49495,69 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c(
-        "ul",
-        { staticClass: "lottery" },
-        [
-          _vm._l(20, function(n) {
-            return !_vm.isLogged || _vm.lottery_list.length == 0
-              ? _c(
-                  "li",
-                  { staticClass: "lottery-item-wrapper wow slideInUp" },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "lottery-item",
-                        on: {
-                          click: function($event) {
-                            return _vm.openCard()
-                          }
+      !_vm.isLogged || _vm.lottery_list.length == 0
+        ? _c(
+            "transition-group",
+            { staticClass: "lottery", attrs: { name: "flip-list", tag: "ul" } },
+            _vm._l(_vm.demo_lottery_list, function(n) {
+              return _c(
+                "li",
+                {
+                  key: n,
+                  staticClass: "lottery-item-wrapper wow slideInUp",
+                  attrs: { "data-id": n }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "lottery-item",
+                      on: {
+                        click: function($event) {
+                          return _vm.openCard()
                         }
-                      },
-                      [
-                        _c("img", {
-                          attrs: {
-                            src:
-                              "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                            alt: ""
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                )
-              : _vm._e()
-          }),
-          _vm._v(" "),
-          _vm._l(_vm.lottery_list, function(lottery_item) {
-            return _vm.isLogged && _vm.lottery_list.length > 0
-              ? _c(
-                  "li",
-                  { staticClass: "lottery-item-wrapper wow slideInUp" },
-                  [
-                    _c("div", { staticClass: "lottery-item" }, [
+                      }
+                    },
+                    [
                       _c("img", {
                         attrs: {
-                          src: lottery_item.image_url,
-                          alt: lottery_item.title
+                          src:
+                            "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                          alt: ""
                         }
                       })
-                    ])
-                  ]
-                )
-              : _vm._e()
-          })
-        ],
-        2
-      )
+                    ]
+                  )
+                ]
+              )
+            }),
+            0
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.isLogged && _vm.lottery_list.length > 0
+        ? _c(
+            "ul",
+            { staticClass: "lottery" },
+            _vm._l(_vm.lottery_list, function(lottery_item) {
+              return _c(
+                "li",
+                { staticClass: "lottery-item-wrapper wow slideInUp" },
+                [
+                  _c("div", { staticClass: "lottery-item" }, [
+                    _c("img", {
+                      attrs: {
+                        src: lottery_item.image_url,
+                        alt: lottery_item.title
+                      }
+                    })
+                  ])
+                ]
+              )
+            }),
+            0
+          )
+        : _vm._e()
     ],
     1
   )
@@ -50499,7 +50525,7 @@ exports = module.exports = __webpack_require__(45)(false);
 
 
 // module
-exports.push([module.i, "\n.lottery-field {\n  border: 1px #dc3545 solid;\n  border-radius: 0;\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n}\n.lottery-field + i {\n    position: absolute;\n    left: 31px;\n    top: 17px;\n    color: #dc3545;\n}\n.btn-lottery {\n  background: #dc3545;\n  width: 100%;\n  height: 47px;\n  text-transform: uppercase;\n  font-weight: 800;\n  border: none;\n}\n", ""]);
+exports.push([module.i, "\n.flip-list-move {\n  -webkit-transition: -webkit-transform 1s;\n  transition: -webkit-transform 1s;\n  transition: transform 1s;\n  transition: transform 1s, -webkit-transform 1s;\n}\n.lottery-field {\n  border: 1px #dc3545 solid;\n  border-radius: 0;\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n}\n.lottery-field + i {\n    position: absolute;\n    left: 31px;\n    top: 17px;\n    color: #dc3545;\n}\n.btn-lottery {\n  background: #dc3545;\n  width: 100%;\n  height: 47px;\n  text-transform: uppercase;\n  font-weight: 800;\n  border: none;\n}\n", ""]);
 
 // exports
 
