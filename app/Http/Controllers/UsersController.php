@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Prize;
+use App\Promocode;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(["getList", "phone"]);
+        $this->middleware('auth')->except(["getList", "phone", "promoValidate", "check"]);
 
     }
 
@@ -150,6 +151,70 @@ class UsersController extends Controller
         return response()
             ->json([
                 "card_list" => $prizes
+            ]);
+    }
+
+    public function promoValidate(Request $request)
+    {
+        $promocode = $request->get("promocode") ?? null;
+        $phone = $request->get("phone") ?? null;
+        $chat_id = $request->get("chat_id") ?? null;
+
+        if (is_null($promocode) || is_null($chat_id))
+            return response()
+                ->json([
+                    "message" => "Ошибка передачи данных",
+                    "status" => "error"
+                ]);
+
+        $user = User::where("telegram_chat_id", $chat_id)
+            ->first();
+
+        if (is_null($user->phone)) {
+            $user->phone = $phone;
+            $user->save();
+        }
+
+        $promocode = Promocode::where("code", $promocode)
+            ->first();
+
+        if (is_null($promocode))
+            return response()
+                ->json([
+                    "message" => "Такой промокод не существует",
+                    "status" => "error"
+                ]);
+
+        if ($promocode->activated == true)
+            return response()
+                ->json([
+                    "message" => "Такой промокод уже был активирован",
+                    "status" => "error"
+                ]);
+
+
+        return response()
+            ->json([
+                "code_id"=>$promocode->id,
+                "status" => "success"
+            ]);
+    }
+
+    public function check(Request $request)
+    {
+        $code_id = $request->get("code_id");
+
+        $prizes = Prize::all();
+        $prizes->shuffle();
+
+        $promocode = Promocode::find($code_id);
+        $promocode->activated = true;
+        $promocode->save();
+
+//todo:отправить в телеграм о том что пользователь выиграл + номер телефона
+        return response()
+            ->json([
+                "win" => $prizes->random(1)
             ]);
     }
 }

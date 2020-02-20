@@ -25,7 +25,7 @@ Route::prefix('users')->group(function (){
 
         Route::post("/validate","UsersController@promoValidate"); //step 1
 
-        Route::get("/check/{id}","UsersController@check"); //step 2
+        Route::post("/check","UsersController@check"); //step 2
     });
 
 });

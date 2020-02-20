@@ -49264,6 +49264,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             hasPhone: false,
             canStart: false,
             promocode: null,
+            code_id: null,
+            phone: null,
             lottery_list: []
         };
     },
@@ -49276,6 +49278,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // id, first_name, last_name, username,
             // photo_url, auth_date and hash
             console.log(user);
+
+            this.user = user;
 
             this.isLogged = true;
 
@@ -49292,23 +49296,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('api/users/promo/list').then(function (response) {
                 _this2.lottery_list = response.data.card_list;
+
+                if (_this2.lottery_list.length > 0) _this2.canStart = true;
             });
         },
         checkValidPromo: function checkValidPromo() {
+            var _this3 = this;
+
+            if (this.promocode.length == 0) {
+                console.log("Введите промокодо!");
+                return;
+            }
+
+            if (!this.hasPhone && this.phone.length == 0) {
+                console.log("Введите номер телефона!");
+                return;
+            }
+
             axios.post('api/users/promo/validate', {
-                promocode: this.promocode
+                phone: this.phone,
+                promocode: this.promocode,
+                chat_id: this.user.id
             }).then(function (response) {
                 console.log(response);
                 if (response.data.status == "success") {
-                    //this.lottery_list =
+                    _this3.lottery_list = [];
+                    _this3.code_id = response.data.code_id;
                 }
             });
         },
-        openCard: function openCard(id) {
-            var _this3 = this;
+        openCard: function openCard() {
+            if (this.code_id == null) {
+                console.log("Промокод не найден!");
+                return;
+            }
 
-            axios.get('api/users/promo/check/' + id).then(function (response) {
-                _this3.lottery_list = response.data;
+            axios.post('api/users/promo/check', {
+                code_id: this.code_id
+            }).then(function (response) {
+                ///this.lottery_list = response.data
+                console.log(response.data.win);
             });
         }
     },
@@ -49340,17 +49367,86 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.isLogged
-        ? _c("div", { staticClass: "col-sm-4" }, [_vm._m(0)])
+        ? _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "form_group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.promocode,
+                    expression: "promocode"
+                  }
+                ],
+                staticClass: "form_control lottery-field",
+                attrs: {
+                  type: "text",
+                  placeholder: "Введите промокод",
+                  name: "promocode"
+                },
+                domProps: { value: _vm.promocode },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.promocode = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("i", { staticClass: "fas fa-terminal" })
+            ])
+          ])
         : _vm._e(),
       _vm._v(" "),
       !_vm.hasPhone && _vm.isLogged
-        ? _c("div", { staticClass: "col-sm-4" }, [_vm._m(1)])
+        ? _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "form_group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.phone,
+                    expression: "phone"
+                  }
+                ],
+                staticClass: "form_control lottery-field",
+                attrs: {
+                  type: "text",
+                  placeholder: "Введите телефон",
+                  name: "phone"
+                },
+                domProps: { value: _vm.phone },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.phone = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("i", { staticClass: "fas fa-phone" })
+            ])
+          ])
         : _vm._e()
     ]),
     _vm._v(" "),
     _vm.canStart
       ? _c("div", { staticClass: "row justify-content-center mb-5" }, [
-          _vm._m(2)
+          _c("div", { staticClass: "col-md-4" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-info",
+                on: { click: _vm.checkValidPromo }
+              },
+              [_vm._v("Поехали")]
+            )
+          ])
         ])
       : _vm._e(),
     _vm._v(" "),
@@ -49359,15 +49455,34 @@ var render = function() {
       { staticClass: "lottery" },
       [
         _vm._l(20, function(n) {
-          return !_vm.isLogged
+          return !_vm.isLogged || _vm.lottery_list.length == 0
             ? _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-                _vm._m(3, true)
+                _c(
+                  "div",
+                  {
+                    staticClass: "lottery-item",
+                    on: {
+                      click: function($event) {
+                        return _vm.openCard()
+                      }
+                    }
+                  },
+                  [
+                    _c("img", {
+                      attrs: {
+                        src:
+                          "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                        alt: ""
+                      }
+                    })
+                  ]
+                )
               ])
             : _vm._e()
         }),
         _vm._v(" "),
         _vm._l(_vm.lottery_list, function(lottery_item) {
-          return _vm.isLogged
+          return _vm.isLogged && _vm.lottery_list.length > 0
             ? _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
                 _c("div", { staticClass: "lottery-item" }, [
                   _c("img", {
@@ -49385,60 +49500,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form_group" }, [
-      _c("input", {
-        staticClass: "form_control lottery-field",
-        attrs: {
-          type: "text",
-          placeholder: "Введите промокод",
-          name: "promocode"
-        }
-      }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fas fa-terminal" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form_group" }, [
-      _c("input", {
-        staticClass: "form_control lottery-field",
-        attrs: { type: "text", placeholder: "Введите телефон", name: "phone" }
-      }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fas fa-phone" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4" }, [
-      _c("button", { staticClass: "btn btn-info" }, [_vm._v("Поехали")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "lottery-item" }, [
-      _c("img", {
-        attrs: {
-          src:
-            "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-          alt: ""
-        }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

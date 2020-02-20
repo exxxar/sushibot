@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-4" v-if="isLogged">
                 <div class="form_group">
-                    <input type="text" placeholder="Введите промокод" name="promocode"
+                    <input type="text" placeholder="Введите промокод" name="promocode" v-model="promocode"
                            class="form_control lottery-field">
                     <i class="fas fa-terminal"></i>
                 </div>
@@ -17,7 +17,7 @@
 
             <div class="col-sm-4" v-if="!hasPhone&&isLogged">
                 <div class="form_group">
-                    <input type="text" placeholder="Введите телефон" name="phone"
+                    <input type="text" placeholder="Введите телефон" name="phone" v-model="phone"
                            class="form_control lottery-field">
                     <i class="fas fa-phone"></i>
                 </div>
@@ -26,24 +26,24 @@
 
         <div class="row justify-content-center mb-5" v-if="canStart">
             <div class="col-md-4">
-                <button class="btn btn-info">Поехали</button>
+                <button class="btn btn-info" @click="checkValidPromo">Поехали</button>
             </div>
         </div>
         <ul class="lottery">
-            <li class="lottery-item-wrapper wow slideInUp" v-if="!isLogged" v-for="n in 20">
-                <div class="lottery-item">
+            <li class="lottery-item-wrapper wow slideInUp" v-if="!isLogged||lottery_list.length==0" v-for="n in 20">
+                <div class="lottery-item" @click="openCard()">
                     <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
                          alt="">
                 </div>
             </li>
 
-            <li class="lottery-item-wrapper wow slideInUp" v-if="isLogged" v-for="lottery_item in lottery_list">
+            <li class="lottery-item-wrapper wow slideInUp" v-if="isLogged&&lottery_list.length>0"
+                v-for="lottery_item in lottery_list">
                 <div class="lottery-item">
                     <img :src="lottery_item.image_url"
                          :alt="lottery_item.title">
                 </div>
             </li>
-
 
 
         </ul>
@@ -58,8 +58,10 @@
             return {
                 isLogged: false,
                 hasPhone: false,
-                canStart:false,
-                promocode:null,
+                canStart: false,
+                promocode: null,
+                code_id: null,
+                phone: null,
                 lottery_list: []
             };
         },
@@ -69,6 +71,8 @@
                 // id, first_name, last_name, username,
                 // photo_url, auth_date and hash
                 console.log(user)
+
+                this.user = user;
 
                 this.isLogged = true;
 
@@ -82,32 +86,58 @@
                         this.getCardsList()
                     });
             },
-            getCardsList(){
+            getCardsList() {
                 axios
                     .get('api/users/promo/list')
                     .then(response => {
                         this.lottery_list = response.data.card_list
+
+                        if (this.lottery_list.length > 0)
+                            this.canStart = true;
                     });
             },
-            checkValidPromo(){
+            checkValidPromo() {
+                if (this.promocode.length == 0) {
+                    console.log("Введите промокодо!")
+                    return;
+                }
+
+                if (!this.hasPhone && this.phone.length == 0) {
+                    console.log("Введите номер телефона!")
+                    return;
+                }
+
                 axios
-                    .post('api/users/promo/validate',{
-                        promocode:this.promocode
+                    .post('api/users/promo/validate', {
+                        phone: this.phone,
+                        promocode: this.promocode,
+                        chat_id: this.user.id
                     })
                     .then(response => {
                         console.log(response)
-                        if (response.data.status=="success"){
-                            //this.lottery_list =
+                        if (response.data.status == "success") {
+                            this.lottery_list = [];
+                            this.code_id = response.data.code_id;
                         }
                     });
             },
-            openCard(id){
+            openCard() {
+                if (this.code_id == null) {
+                    console.log("Промокод не найден!");
+                    return;
+                }
+
                 axios
-                    .get(`api/users/promo/check/${id}`)
+                    .post(`api/users/promo/check`, {
+                        code_id: this.code_id
+                    })
                     .then(response => {
-                        this.lottery_list = response.data
+                        ///this.lottery_list = response.data
+                        console.log(response.data.win);
                     });
-            }
+            },
+
+
         },
         components: {vueTelegramLogin},
     }
