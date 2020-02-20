@@ -21,7 +21,7 @@ Route::prefix('users')->group(function (){
     Route::post("/phone","UsersController@phone");
 
     Route::prefix('promo')->group(function (){
-        Route::get("/list","UsersController@list"); //step 0
+        Route::get("/list","UsersController@getList"); //step 0
 
         Route::post("/validate","UsersController@promoValidate"); //step 1
 
