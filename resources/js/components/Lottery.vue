@@ -77,10 +77,8 @@
                         chat_id: user.id
                     })
                     .then(response => {
-                        this.user = response.data
+                        this.hasPhone = response.data.hasPhone;
 
-                        if (this.user.phone != null)
-                            this.hasPhone = true;
                     });
             },
             getCardsList(){

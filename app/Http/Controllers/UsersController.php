@@ -11,7 +11,8 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(["getList", "phone"]);
+
     }
 
     /**
@@ -133,7 +134,18 @@ class UsersController extends Controller
             ->with('success', 'Пользователь успешно удален');
     }
 
-    public function getList(){
+    public function phone(Request $request)
+    {
+        $user = User::where("telegram_chat_id", $request->get("chat_id"))->first();
+
+        return response()
+            ->json([
+                "hasPhone" => !is_null($user->phone)
+            ]);
+    }
+
+    public function getList()
+    {
         $prizes = Prize::all();
         return response()
             ->json([

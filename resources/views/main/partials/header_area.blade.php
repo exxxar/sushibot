@@ -11,10 +11,10 @@
                     </div>
                 </div>
                 <div class="col-lg-11">
+
                     <div class="chopcafe_menu">
                         <nav class="main_menu">
                             <ul>
-                                <li class="menu-item"><a href="#">Галерея</a></li>
                                 <li class="menu-item"><a href="#menu_grid">Наши товары</a></li>
                                 <li class="menu-item"><a href="{{url("/contacts")}}">Наши контакты</a></li>
                                 <li class="search_icon"><a href="#" class="search_btn"><i class="fas fa-search"></i></a></li>

@@ -49282,9 +49282,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('api/users/phone', {
                 chat_id: user.id
             }).then(function (response) {
-                _this.user = response.data;
-
-                if (_this.user.phone != null) _this.hasPhone = true;
+                _this.hasPhone = response.data.hasPhone;
             });
         },
         getCardsList: function getCardsList() {
