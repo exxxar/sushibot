@@ -49277,7 +49277,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // photo_url, auth_date and hash
             console.log(user);
 
-            this.isLoaded = true;
+            this.isLogged = true;
+
             axios.post('api/users/phone', {
                 chat_id: user.id
             }).then(function (response) {
