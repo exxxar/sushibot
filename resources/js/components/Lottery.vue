@@ -141,7 +141,10 @@
                                 this.demo_lottery_list.push(i);
                             this.promocode = "";
 
-                            this.shuffle();
+                            setTimeout(() => {
+                                this.shuffle();
+                            }, 1000)
+
 
                         } else {
                             this.sendMessage("Данный код не существует!")

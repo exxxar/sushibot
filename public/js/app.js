@@ -49349,7 +49349,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         _this3.demo_lottery_list.push(i);
                     }_this3.promocode = "";
 
-                    _this3.shuffle();
+                    setTimeout(function () {
+                        _this3.shuffle();
+                    }, 1000);
                 } else {
                     _this3.sendMessage("Данный код не существует!");
                 }
