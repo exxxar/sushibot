@@ -49345,12 +49345,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this3.lottery_list = [];
                     _this3.code_id = response.data.code_id;
                     _this3.sendMessage("Ваш код успешно активирован");
-                    for (var _i = 0; _i < demo_count; _i++) {
-                        _this3.demo_lottery_list.push(_i);
+                    for (var i = 0; i < demo_count; i++) {
+                        _this3.demo_lottery_list.push(i);
                     }_this3.promocode = "";
 
                     setTimeout(function () {
-                        for (i = 0; i < 3; i++) {
+                        for (var i = 0; i < 3; i++) {
                             _this3.shuffle();
                         }
                     }, 1000);
