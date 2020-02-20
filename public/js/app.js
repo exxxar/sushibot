@@ -49290,7 +49290,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.get('api/users/promo/list').then(function (response) {
-                _this2.lottery_list = response.data;
+                _this2.lottery_list = response.data.card_list;
             });
         },
         checkValidPromo: function checkValidPromo() {

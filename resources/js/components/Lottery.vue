@@ -86,7 +86,7 @@
                 axios
                     .get('api/users/promo/list')
                     .then(response => {
-                        this.lottery_list = response.data
+                        this.lottery_list = response.data.card_list
                     });
             },
             checkValidPromo(){

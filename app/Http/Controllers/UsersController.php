@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Prize;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -130,5 +131,13 @@ class UsersController extends Controller
         return redirect()
             ->route('users.index')
             ->with('success', 'Пользователь успешно удален');
+    }
+
+    public function getList(){
+        $prizes = Prize::all();
+        return response()
+            ->json([
+                "card_list" => $prizes
+            ]);
     }
 }
