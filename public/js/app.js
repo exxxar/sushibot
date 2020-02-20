@@ -49386,7 +49386,7 @@ var render = function() {
         { staticClass: "col-sm-4" },
         [
           _c("vue-telegram-login", {
-            attrs: { mode: "callback", "telegram-login": "isushi" },
+            attrs: { mode: "callback", "telegram-login": "isushibot" },
             on: { callback: _vm.telegramCallback }
           }),
           _vm._v(" "),

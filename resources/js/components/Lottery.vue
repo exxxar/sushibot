@@ -4,7 +4,7 @@
             <div class="col-sm-4">
                 <vue-telegram-login
                         mode="callback"
-                        telegram-login="isushi"
+                        telegram-login="isushibot"
                         @callback="telegramCallback"/>
 
                 <div class="form_group" v-if="isLogged">
