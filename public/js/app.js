@@ -49352,6 +49352,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     setTimeout(function () {
                         _this3.shuffle();
                     }, 1000);
+
+                    _this3.canStart = false;
                 } else {
                     _this3.sendMessage("Данный код не существует!");
                 }
@@ -49375,6 +49377,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.sendMessage("Для повторного участия введите новый промокод!");
                 return;
             }
+
+            this.canStart = true;
 
             if (this.code_id == null) {
                 this.sendMessage("Промокод не найден!");

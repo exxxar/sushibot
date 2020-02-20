@@ -145,6 +145,7 @@
                                 this.shuffle();
                             }, 1000)
 
+                            this.canStart = false;
 
                         } else {
                             this.sendMessage("Данный код не существует!")
@@ -168,10 +169,13 @@
                     return
                 }
 
+                this.canStart = true;
+
                 if (this.code_id == null) {
                     this.sendMessage("Промокод не найден!");
                     return;
                 }
+
 
                 axios
                     .post(`api/users/promo/check`, {
@@ -183,6 +187,7 @@
                         console.log(response.data.win);
                         this.sendMessage("Ура! Победили!");
                         this.isWin = true;
+
                     });
             },
 
