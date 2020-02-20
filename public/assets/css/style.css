@@ -1502,6 +1502,11 @@ textarea.form_control {
 .chopcafe_reservation_4 .chopcafe_img_box .chopcafe_img.reservation_img {
     position: absolute;
     bottom: -120px;
+
+}
+
+.chopcafe_reservation_1 .chopcafe_img_box .chopcafe_img.reservation_img img {
+    border-radius: 0px 0px 50% 50%;
 }
 
 .reservation_form .form_button .chopcafe_btn {
@@ -5224,7 +5229,7 @@ ul.rating li:nth-child(4) i {
     height: 100vh;
     top: 0;
     right: 0;
-    background: red;
+    background: #dc3545;
     display: none;
 }
 
@@ -5252,11 +5257,11 @@ ul.rating li:nth-child(4) i {
 }
 
 .s2 .calc h1 {
-    color: #ff0001;
+    color: #dc3545;
 }
 
 .s2 .calc h3 {
-    color: #ff0001;
+    color: #dc3545;
     line-height: 150%;
 }
 
@@ -5276,7 +5281,7 @@ ul.rating li:nth-child(4) i {
 }
 
 .s2 .calc .form-group label {
-    color: #ff0001;
+    color: #dc3545;
     text-transform: uppercase;
     text-align: left;
     font-size: 14px;
@@ -5296,7 +5301,7 @@ ul.rating li:nth-child(4) i {
 .s2 .calc table {
     width: 100%;
     font-size: 14px;
-    color: #ff0001;
+    color: #dc3545;
     text-align: center;
     padding: 10px;
     box-sizing: border-box;
@@ -5346,7 +5351,7 @@ ul.rating li:nth-child(4) i {
 }
 
 .s2 .calc table .container input:checked ~ .checkmark {
-    background-color: #ed3721;
+    background-color: #dc3545;
 }
 
 .s2 .calc table .checkmark:after {
@@ -5386,7 +5391,7 @@ ul.rating li:nth-child(4) i {
 }
 
 .s2 .calc [type=radio]:checked + img {
-    border: 5px solid #ed3721;
+    border: 5px solid #dc3545;
 }
 
 .s2 .calc .right,
@@ -5431,7 +5436,7 @@ ul.rating li:nth-child(4) i {
     width: 50px;
     height: 50px;
     border-radius: 5px;
-    background: #ed3721;
+    background: #dc3545;
     color: #e6e7e9;
     line-height: 100%;
     display: flex;
@@ -5450,7 +5455,7 @@ ul.rating li:nth-child(4) i {
 }
 
 .s2  .calc  .counter + .form-group {
-    border-top: 2px red solid;
+    border-top: 2px #dc3545 solid;
 }
 
 .s2  .calc  .send-btn {
@@ -5463,11 +5468,11 @@ ul.rating li:nth-child(4) i {
 }
 
 .s2  .calc  .labels h5 {
-    color: #ff0001;
+    color: #dc3545;
 }
 
 .s2 .calc  .labels h5 a {
-    color: #ff0001;
+    color: #dc3545;
     font-style: italic;
     font-weight: 100;
 }
@@ -5484,7 +5489,6 @@ ul.rating li:nth-child(4) i {
     background-image: url('/1.png');
     background-size: cover;
     background-position: center center;
-    background-blend-mode: luminosity;
     background-repeat: no-repeat;
     border-bottom: 5px #dc3545 solid;
 }
@@ -5506,9 +5510,9 @@ ul.rating li:nth-child(4) i {
 
 .s3 ul.lottery .lottery-item-wrapper .lottery-item {
     background-color: #002232;
-    width: 100px;
-    height: 100px;
-    border: 2px red solid;
+    width: 150px;
+    height: 150px;
+    border: 2px #dc3545 solid;
     padding: 10px;
     box-sizing: border-box;
     box-shadow: 1px 1px 5px 2px black;
@@ -5614,3 +5618,11 @@ ul.rating li:nth-child(4) i {
     height: 70px;
     object-fit: cover;
 }
+
+
+.chopcafe_lottery .container {
+    background: rgba(0, 0, 0, 0.55);
+    padding:50px;
+    box-sizing: border-box;
+}
+
