@@ -49201,6 +49201,8 @@ module.exports = function normalizeComponent (
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_telegram_login__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_telegram_login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_telegram_login__);
 //
 //
 //
@@ -49342,15 +49344,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-      data: function data() {
-            return {
-                  lottery_list: []
-            };
-      },
+    data: function data() {
+        return {
+            isLogged: false,
+            lottery_list: []
+        };
+    },
 
-      methods: {}
+    methods: {
+        telegramCallback: function telegramCallback(user) {
+            // gets user as an input
+            // id, first_name, last_name, username,
+            // photo_url, auth_date and hash
+            console.log(user);
+        }
+    },
+    components: { vueTelegramLogin: __WEBPACK_IMPORTED_MODULE_0_vue_telegram_login__["vueTelegramLogin"] }
 });
 
 /***/ }),
@@ -49361,235 +49379,247 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "row justify-content-center mb-5" }, [
+      _c(
+        "div",
+        { staticClass: "col-sm-4" },
+        [
+          _c("vue-telegram-login", {
+            attrs: { mode: "callback", "telegram-login": "isushi" },
+            on: { callback: _vm.telegramCallback }
+          }),
+          _vm._v(" "),
+          _vm.isLogged
+            ? _c("div", { staticClass: "form_group" }, [
+                _c("input", {
+                  staticClass: "form_control lottery-field",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Введите промокод",
+                    name: "Number",
+                    required: "required"
+                  }
+                }),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-terminal" })
+              ])
+            : _vm._e()
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "row justify-content-center mb-5" }, [
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("div", { staticClass: "form_group" }, [
-            _c("input", {
-              staticClass: "form_control lottery-field",
-              attrs: {
-                type: "text",
-                placeholder: "Введите промокод",
-                name: "Number",
-                required: "required"
-              }
-            }),
-            _vm._v(" "),
-            _c("i", { staticClass: "fas fa-terminal" })
-          ])
+    return _c("ul", { staticClass: "lottery" }, [
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
         ])
       ]),
       _vm._v(" "),
-      _c("ul", { staticClass: "lottery" }, [
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper  wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-          _c("div", { staticClass: "lottery-item" }, [
-            _c("img", {
-              attrs: {
-                src:
-                  "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                alt: ""
-              }
-            })
-          ])
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper  wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
+        _c("div", { staticClass: "lottery-item" }, [
+          _c("img", {
+            attrs: {
+              src:
+                "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+              alt: ""
+            }
+          })
         ])
       ])
     ])
@@ -50822,6 +50852,12 @@ module.exports = function listToStyles (parentId, list) {
   return styles
 }
 
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(e,t){if(true)module.exports=t();else if("function"==typeof define&&define.amd)define([],t);else{var r=t();for(var n in r)("object"==typeof exports?exports:e)[n]=r[n]}}(window,function(){return function(e){var t={};function r(n){if(t[n])return t[n].exports;var i=t[n]={i:n,l:!1,exports:{}};return e[n].call(i.exports,i,i.exports,r),i.l=!0,i.exports}return r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var i in e)r.d(n,i,function(t){return e[t]}.bind(null,i));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=0)}([function(e,t,r){"use strict";r.r(t);var n={name:"vue-telegram-login",props:{mode:{type:String,required:!0,validator:function(e){return["callback","redirect"].includes(e)}},telegramLogin:{type:String,required:!0,validator:function(e){return e.endsWith("bot")||e.endsWith("Bot")}},redirectUrl:{type:String,default:""},requestAccess:{type:String,default:"read",validator:function(e){return["read","write"].includes(e)}},size:{type:String,default:"large",validator:function(e){return["small","medium","large"].includes(e)}},userpic:{type:Boolean,default:!0},radius:{type:String}},methods:{onTelegramAuth:function(e){this.$emit("callback",e)}},mounted:function(){var e=document.createElement("script");e.async=!0,e.src="https://telegram.org/js/telegram-widget.js?3",e.setAttribute("data-size",this.size),e.setAttribute("data-userpic",this.userpic),e.setAttribute("data-telegram-login",this.telegramLogin),e.setAttribute("data-request-access",this.requestAccess),this.radius&&e.setAttribute("data-radius",this.radius),"callback"===this.mode?(window.onTelegramAuth=this.onTelegramAuth,e.setAttribute("data-onauth","window.onTelegramAuth(user)")):e.setAttribute("data-auth-url",this.redirectUrl),this.$refs.telegram.appendChild(e)}},i=function(){var e=this.$createElement;return(this._self._c||e)("div",{ref:"telegram"})};i._withStripped=!0;var o=function(e,t,r,n,i,o,u,a){var s=typeof(e=e||{}).default;"object"!==s&&"function"!==s||(e=e.default);var l,d="function"==typeof e?e.options:e;if(t&&(d.render=t,d.staticRenderFns=r,d._compiled=!0),n&&(d.functional=!0),o&&(d._scopeId=o),u?(l=function(e){(e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),i&&i.call(this,e),e&&e._registeredComponents&&e._registeredComponents.add(u)},d._ssrRegister=l):i&&(l=a?function(){i.call(this,this.$root.$options.shadowRoot)}:i),l)if(d.functional){d._injectStyles=l;var c=d.render;d.render=function(e,t){return l.call(t),c(e,t)}}else{var f=d.beforeCreate;d.beforeCreate=f?[].concat(f,l):[l]}return{exports:e,options:d}}(n,i,[],!1,null,null,null);o.options.__file="src/vue-telegram-login.vue";var u=o.exports;r.d(t,"vueTelegramLogin",function(){return u})}])});
 
 /***/ })
 /******/ ]);

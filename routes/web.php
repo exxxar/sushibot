@@ -17,6 +17,8 @@ use \Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
+Route::get('auth/telegram/callback', 'TelegramAuthController@handleTelegramCallback')->name('auth.telegram.handle');
+
 Route::get('/', function () {
     $products = \App\Product::getLatestProducts();
     $categories = \App\Product::getAllCategroies();

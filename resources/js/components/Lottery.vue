@@ -2,7 +2,12 @@
     <div>
         <div class="row justify-content-center mb-5">
             <div class="col-sm-4">
-                <div class="form_group">
+                <vue-telegram-login
+                        mode="callback"
+                        telegram-login="isushi"
+                        @callback="telegramCallback"/>
+
+                <div class="form_group" v-if="isLogged">
                     <input type="text" placeholder="Введите промокод" name="Number" required="required"
                            class="form_control lottery-field">
                     <i class="fas fa-terminal"></i>
@@ -140,16 +145,25 @@
     </div>
 </template>
 <script>
+    import {vueTelegramLogin} from 'vue-telegram-login'
+
     export default {
 
-        data(){
-          return {
-                lottery_list:[
-
-                ]
-          };
+        data() {
+            return {
+                isLogged: false,
+                lottery_list: []
+            };
         },
-        methods: {}
+        methods: {
+            telegramCallback(user) {
+                // gets user as an input
+                // id, first_name, last_name, username,
+                // photo_url, auth_date and hash
+                console.log(user)
+            }
+        },
+        components: {vueTelegramLogin},
     }
 </script>
 

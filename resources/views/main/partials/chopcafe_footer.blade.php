@@ -33,78 +33,34 @@
                                 </div>
                                 <div class="info_text">
                                     <p><a href="tel:+27882911891">+8123 456 7890</a></p>
-                                    <p><a href="tel:+27882911891">+278  8291 1891</a></p>
+                                    <p><a href="tel:+27882911891">+278 8291 1891</a></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="footer_widget_box wow slideInUp">
-                        <div class="widget_title">
-                            <h4>Opening Hours</h4>
-                        </div>
-                        <div class="widget_time">
-                            <div class="time_list">
-                                <h6>Saturday - Sunday -Monday</h6>
-                                <p>08:00 AM - 10:00 PM</p>
-                            </div>
-                            <div class="time_list">
-                                <h6>Tuesday - Wednesday - Thrusday</h6>
-                                <p>10:00 AM - 12:00 PM</p>
-                            </div>
-                            <div class="time_list">
-                                <h6>Friday</h6>
-                                <p>closed</p>
-                            </div>
-                        </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="contact_box wow slideInUp">
+                        <iframe src="https://yandex.ru/map-widget/v1/-/CKU170YW" frameborder="0"
+                                allowfullscreen="allowfullscreen"
+                                style="width: 100%; height: 400px; padding: 10px; box-sizing: border-box;"></iframe>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="footer_widget_box wow slideInUp">
                         <div class="widget_title">
-                            <h4>Latest News</h4>
-                        </div>
-                        <div class="widget_news">
-                            <div class="single_news">
-                                <div class="news_thumb">
-                                    <a href="single_blog.html"><img src="assets/images/news_1.jpg" alt=""></a>
-                                </div>
-                                <div class="news_link">
-                                    <h3><a href="single_blog.html">Lorem Ipsum is simply dmy text of the printing.</a></h3>
-                                </div>
-                            </div>
-                            <div class="single_news">
-                                <div class="news_thumb">
-                                    <a href="single_blog.html"><img src="assets/images/news_2.jpg" alt=""></a>
-                                </div>
-                                <div class="news_link">
-                                    <h3><a href="single_blog.html">Lorem Ipsum is simply dmy text of the printing.</a></h3>
-                                </div>
-                            </div>
-                            <div class="single_news">
-                                <div class="news_thumb">
-                                    <a href="single_blog.html"><img src="assets/images/news_3.jpg" alt=""></a>
-                                </div>
-                                <div class="news_link">
-                                    <h3><a href="single_blog.html">Lorem Ipsum is simply dmy text of the printing.</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="footer_widget_box wow slideInUp">
-                        <div class="widget_title">
-                            <h4>Follow Us on</h4>
+                            <h4>Подпишись на нас</h4>
                         </div>
                         <div class="footer_social_widget">
                             <ul class="social_widget">
-                                <li><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a></li>
-                                <li><a href="#" class="vimeo"><i class="fab fa-vimeo-v"></i></a></li>
-                                <li><a href="#" class="behance"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=100040447323596"
+                                       class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.instagram.com/isushi_dn/" target="_blank" class="instagram"><i
+                                                class="fab fa-instagram"></i></a></li>
+                                <li><a href="https://vk.com/isushi_dn" class="vkontakte"><i class="fab fa-vk"></i></a>
+                                </li>
+                                <li><a href="https://t.me/isushibot" target="_blank" class="telegram"><i
+                                                class="fab fa-telegram"></i></a></li>
                             </ul>
                         </div>
                         <div class="widget_payment">
