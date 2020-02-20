@@ -194,7 +194,9 @@
                         this.sendMessage("Ура! Победили!");
                         this.isWin = true;
 
-                        this.lottery_list.push(response.data.win);
+
+
+                        this.lottery_list = response.data.win;
                     });
             },
 

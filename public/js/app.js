@@ -49400,7 +49400,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this4.sendMessage("Ура! Победили!");
                 _this4.isWin = true;
 
-                _this4.lottery_list.push(response.data.win);
+                _this4.lottery_list = response.data.win;
             });
         }
     },

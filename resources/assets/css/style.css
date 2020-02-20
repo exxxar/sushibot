@@ -5527,7 +5527,7 @@ ul.rating li:nth-child(4) i {
 
 .s3 ul.lottery .lottery-item-wrapper .lottery-item:hover {
     transform-origin: 50% 50%;
-    transform: rotateY(180deg);
+    transform: scale(1.1);
     transition: 1s;
 }
 
