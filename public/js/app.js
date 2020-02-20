@@ -49349,6 +49349,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -49356,16 +49371,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             isLogged: false,
+            hasPhone: false,
+            canStart: false,
+            promocode: null,
             lottery_list: []
         };
     },
 
     methods: {
         telegramCallback: function telegramCallback(user) {
+            var _this = this;
+
             // gets user as an input
             // id, first_name, last_name, username,
             // photo_url, auth_date and hash
             console.log(user);
+
+            this.isLoaded = true;
+            axios.post('api/users/phone', {
+                chat_id: user.id
+            }).then(function (response) {
+                _this.user = response.data;
+
+                if (_this.user.phone != null) _this.hasPhone = true;
+            });
+        },
+        getCardsList: function getCardsList() {
+            var _this2 = this;
+
+            axios.get('api/users/promo/list').then(function (response) {
+                _this2.lottery_list = response.data;
+            });
+        },
+        checkValidPromo: function checkValidPromo() {
+            axios.post('api/users/promo/validate', {
+                promocode: this.promocode
+            }).then(function (response) {
+                console.log(response);
+                if (response.data.status == "success") {
+                    //this.lottery_list =
+                }
+            });
+        },
+        openCard: function openCard(id) {
+            var _this3 = this;
+
+            axios.get('api/users/promo/check/' + id).then(function (response) {
+                _this3.lottery_list = response.data;
+            });
         }
     },
     components: { vueTelegramLogin: __WEBPACK_IMPORTED_MODULE_0_vue_telegram_login__["vueTelegramLogin"] }
@@ -49381,39 +49434,77 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "row justify-content-center mb-5" }, [
-      _c(
-        "div",
-        { staticClass: "col-sm-4" },
-        [
-          _c("vue-telegram-login", {
-            attrs: { mode: "callback", "telegram-login": "isushibot" },
-            on: { callback: _vm.telegramCallback }
-          }),
-          _vm._v(" "),
-          _vm.isLogged
-            ? _c("div", { staticClass: "form_group" }, [
-                _c("input", {
-                  staticClass: "form_control lottery-field",
-                  attrs: {
-                    type: "text",
-                    placeholder: "Введите промокод",
-                    name: "Number",
-                    required: "required"
-                  }
-                }),
-                _vm._v(" "),
-                _c("i", { staticClass: "fas fa-terminal" })
-              ])
-            : _vm._e()
-        ],
-        1
-      )
+      !_vm.isLogged
+        ? _c(
+            "div",
+            { staticClass: "col-sm-4" },
+            [
+              _c("vue-telegram-login", {
+                attrs: { mode: "callback", "telegram-login": "isushibot" },
+                on: { callback: _vm.telegramCallback }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.isLogged
+        ? _c("div", { staticClass: "col-sm-4" }, [_vm._m(0)])
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.hasPhone && _vm.isLogged
+        ? _c("div", { staticClass: "col-sm-4" }, [_vm._m(1)])
+        : _vm._e()
     ]),
     _vm._v(" "),
-    _vm._m(0)
+    _vm.canStart
+      ? _c("div", { staticClass: "row justify-content-center mb-5" }, [
+          _vm._m(2)
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm._m(3)
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form_group" }, [
+      _c("input", {
+        staticClass: "form_control lottery-field",
+        attrs: {
+          type: "text",
+          placeholder: "Введите промокод",
+          name: "promocode"
+        }
+      }),
+      _vm._v(" "),
+      _c("i", { staticClass: "fas fa-terminal" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form_group" }, [
+      _c("input", {
+        staticClass: "form_control lottery-field",
+        attrs: { type: "text", placeholder: "Введите телефон", name: "phone" }
+      }),
+      _vm._v(" "),
+      _c("i", { staticClass: "fas fa-phone" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("button", { staticClass: "btn btn-info" }, [_vm._v("Поехали")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

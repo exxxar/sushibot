@@ -1,17 +1,32 @@
 <template>
     <div>
         <div class="row justify-content-center mb-5">
-            <div class="col-sm-4">
+            <div class="col-sm-4" v-if="!isLogged">
                 <vue-telegram-login
                         mode="callback"
                         telegram-login="isushibot"
                         @callback="telegramCallback"/>
-
-                <div class="form_group" v-if="isLogged">
-                    <input type="text" placeholder="Введите промокод" name="Number" required="required"
+            </div>
+            <div class="col-sm-4" v-if="isLogged">
+                <div class="form_group">
+                    <input type="text" placeholder="Введите промокод" name="promocode"
                            class="form_control lottery-field">
                     <i class="fas fa-terminal"></i>
                 </div>
+            </div>
+
+            <div class="col-sm-4" v-if="!hasPhone&&isLogged">
+                <div class="form_group">
+                    <input type="text" placeholder="Введите телефон" name="phone"
+                           class="form_control lottery-field">
+                    <i class="fas fa-phone"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-5" v-if="canStart">
+            <div class="col-md-4">
+                <button class="btn btn-info">Поехали</button>
             </div>
         </div>
         <ul class="lottery">
@@ -152,6 +167,9 @@
         data() {
             return {
                 isLogged: false,
+                hasPhone: false,
+                canStart:false,
+                promocode:null,
                 lottery_list: []
             };
         },
@@ -161,6 +179,44 @@
                 // id, first_name, last_name, username,
                 // photo_url, auth_date and hash
                 console.log(user)
+
+                this.isLoaded = true;
+                axios
+                    .post('api/users/phone', {
+                        chat_id: user.id
+                    })
+                    .then(response => {
+                        this.user = response.data
+
+                        if (this.user.phone != null)
+                            this.hasPhone = true;
+                    });
+            },
+            getCardsList(){
+                axios
+                    .get('api/users/promo/list')
+                    .then(response => {
+                        this.lottery_list = response.data
+                    });
+            },
+            checkValidPromo(){
+                axios
+                    .post('api/users/promo/validate',{
+                        promocode:this.promocode
+                    })
+                    .then(response => {
+                        console.log(response)
+                        if (response.data.status=="success"){
+                            //this.lottery_list =
+                        }
+                    });
+            },
+            openCard(id){
+                axios
+                    .get(`api/users/promo/check/${id}`)
+                    .then(response => {
+                        this.lottery_list = response.data
+                    });
             }
         },
         components: {vueTelegramLogin},
