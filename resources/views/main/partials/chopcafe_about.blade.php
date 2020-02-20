@@ -5,10 +5,13 @@
             <div class="col-lg-6">
                 <div class="chopcafe_content_box wow slideInLeft">
                     <div class="about_text">
-                        <h2>About <span>Chopcafe</span></h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and type setting indust Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
-                        <p>It has survived not only five centuries, but also the leap into electronic type setting, remaining.</p>
-                        <a href="menu_v1.html" class="chopcafe_btn about_btn">See Menu</a>
+                        <h2>Немного об <span>ISUSHI</span></h2>
+                        <p>ISUSHI — это абсолютный тандем классических рецептов японских блюд, современного дизайна и технологий.</p>
+
+                        <p>Для приготовления блюд используются только современное сертифицированное пищевое оборудование — рисоварки, специальные доски для разделки и нарезки рыбы, японские ножи. Кухня спроектирована согласно строгим требованиям японской кухни по чистоте и культуре производства, в полном соответствии с утверждённым надзорными органами проектом и регулярно проходит все необходимые процедуры санобработки и контроля.</p>
+
+                        <p> Наши повара и сушисты регулярно проходят обучения, посещают курсы повышения квалификации и мастер-классы.  Мы не останавливаемся на достигнутом и постоянно обучаемся и совершенствуем наши навыки.  «ISUSHI» делает все возможное, чтобы наши клиенты были довольны!</p>
+                        <a href="#menu_grid" class="chopcafe_btn about_btn">Наше меню</a>
                     </div>
                 </div>
             </div>

@@ -35,22 +35,23 @@
                                 <img src="{{$product->image_url}}" class="img-fluid" alt="">
                                 <div class="overlay_img"></div>
                                 <div class="overlay_content custom_overlay_menu">
-                                    <a href="assets/images/menu_1.jpg" class="btn_a btn_zoom"><i class="fas fa-search"></i></a>
-                                    <a href="shop_details.html" class="btn_a btn_link"><i class="fas fa-link"></i></a>
                                     <add-to-cart-btn :product_id="{{$product->id}}"></add-to-cart-btn>
                                 </div>
                             </div>
                             <div class="chopcafe_info ">
                                 <h3><a href="shop_details.html">{{$product->title}}</a></h3>
-                                <hr>
+                             {{--   <hr>
                                 <ul class="rating">
                                     <li><i class="fas fa-star"></i></li>
                                     <li><i class="fas fa-star"></i></li>
                                     <li><i class="fas fa-star"></i></li>
                                     <li><i class="fas fa-star"></i></li>
                                     <li><i class="fas fa-star"></i></li>
-                                </ul>
-                                <h3><strong>{{$product->price}}₽</strong></h3>
+                                </ul>--}}
+                                <hr>
+                                <p><em>{{$product->description}}</em></p>
+                                <hr>
+                                <h3><strong>{{$product->price}}₽</strong>{{-- <small>({{$product->mass}} гр.)</small>--}}</h3>
                             </div>
 
                             {{--<div class="chopcafe_info">
