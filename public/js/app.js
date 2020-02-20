@@ -49520,7 +49520,7 @@ var render = function() {
                 "li",
                 {
                   key: n,
-                  staticClass: "lottery-item-wrapper wow slideInUp",
+                  staticClass: "lottery-item-wrapper",
                   attrs: { "data-id": n }
                 },
                 [
@@ -49556,20 +49556,16 @@ var render = function() {
             "ul",
             { staticClass: "lottery" },
             _vm._l(_vm.lottery_list, function(lottery_item) {
-              return _c(
-                "li",
-                { staticClass: "lottery-item-wrapper wow slideInUp" },
-                [
-                  _c("div", { staticClass: "lottery-item" }, [
-                    _c("img", {
-                      attrs: {
-                        src: lottery_item.image_url,
-                        alt: lottery_item.title
-                      }
-                    })
-                  ])
-                ]
-              )
+              return _c("li", { staticClass: "lottery-item-wrapper" }, [
+                _c("div", { staticClass: "lottery-item" }, [
+                  _c("img", {
+                    attrs: {
+                      src: lottery_item.image_url,
+                      alt: lottery_item.title
+                    }
+                  })
+                ])
+              ])
             }),
             0
           )

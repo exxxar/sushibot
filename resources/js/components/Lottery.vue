@@ -31,7 +31,7 @@
             </div>
         </div>
         <transition-group name="flip-list" tag="ul" class="lottery" v-if="!isLogged||lottery_list.length==0">
-            <li class="lottery-item-wrapper wow slideInUp" v-for="n in demo_lottery_list" v-bind:key="n" :data-id="n">
+            <li class="lottery-item-wrapper" v-for="n in demo_lottery_list" v-bind:key="n" :data-id="n">
                 <div class="lottery-item" @click="openCard()">
                     <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
                          alt="">
@@ -40,7 +40,7 @@
         </transition-group>
 
         <ul class="lottery" v-if="isLogged&&lottery_list.length>0">
-            <li class="lottery-item-wrapper wow slideInUp"
+            <li class="lottery-item-wrapper"
                 v-for="lottery_item in lottery_list">
                 <div class="lottery-item">
                     <img :src="lottery_item.image_url"
