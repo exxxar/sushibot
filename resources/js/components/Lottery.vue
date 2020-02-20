@@ -27,7 +27,10 @@
 
         <div class="row justify-content-center mb-5" v-if="canStart">
             <div class="col-md-4">
-                <button class="btn btn-info btn-lottery" @click="checkValidPromo">Поехали</button>
+                <transition name="fade" mode="out-in">
+                    <button class="btn btn-info btn-lottery" @click="checkValidPromo">Поехали</button>
+                </transition>
+
             </div>
         </div>
         <transition-group name="flip-list" tag="ul" class="lottery" v-if="!isLogged||lottery_list.length==0">
@@ -142,8 +145,7 @@
                             this.promocode = "";
 
                             setTimeout(() => {
-                                for (var i = 0; i < 3; i++)
-                                    this.shuffle();
+                                this.shuffle();
                             }, 1000)
 
                             this.canStart = false;

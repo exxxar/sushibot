@@ -49261,6 +49261,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -49350,9 +49353,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }_this3.promocode = "";
 
                     setTimeout(function () {
-                        for (var i = 0; i < 3; i++) {
-                            _this3.shuffle();
-                        }
+                        _this3.shuffle();
                     }, 1000);
 
                     _this3.canStart = false;
@@ -49500,16 +49501,23 @@ var render = function() {
       _vm._v(" "),
       _vm.canStart
         ? _c("div", { staticClass: "row justify-content-center mb-5" }, [
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-info btn-lottery",
-                  on: { click: _vm.checkValidPromo }
-                },
-                [_vm._v("Поехали")]
-              )
-            ])
+            _c(
+              "div",
+              { staticClass: "col-md-4" },
+              [
+                _c("transition", { attrs: { name: "fade", mode: "out-in" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-info btn-lottery",
+                      on: { click: _vm.checkValidPromo }
+                    },
+                    [_vm._v("Поехали")]
+                  )
+                ])
+              ],
+              1
+            )
           ])
         : _vm._e(),
       _vm._v(" "),
