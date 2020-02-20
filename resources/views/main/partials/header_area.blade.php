@@ -58,12 +58,12 @@
         <!-- mobile menu -->
         <div class="mobile_wrapper">
             <div class="row align-items-center mobile_header">
-                <div class="col-lg-3 col-md-4 col-5">
+                <div class="col-lg-1 col-md-2 col-2">
                     <div class="brand_logo">
                         <a href="{{url('/')}}"><img src="{{asset("assets/images/logo_dark.png")}}" alt=""></a>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-8 col-7">
+                <div class="col-lg-11 col-md-10 col-10">
                     <div class="mobile_menu">
                         <ul>
                             <li class="cart_icon"><a href="#"><span class="count">2</span><i class="fas fa-shopping-cart"></i></a>

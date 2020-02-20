@@ -5626,3 +5626,13 @@ ul.rating li:nth-child(4) i {
     box-sizing: border-box;
 }
 
+.colored {
+    color:red;
+}
+
+
+.festival_phone {
+    color: black;
+    font-weight: 800;
+    font-size: 32px;
+}

@@ -7,7 +7,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="footer_widget_box wow slideInUp">
                         <div class="widget_title">
-                            <h4>Contact Us</h4>
+                            <h4>Наши контакты</h4>
                         </div>
                         <div class="widget_contact">
                             <div class="info_list">
@@ -15,7 +15,7 @@
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div class="info_text">
-                                    <p>360 Harvest ST , North<br>London, USA</p>
+                                    <p>Набережная 153а, Донецк</p>
                                 </div>
                             </div>
                             <div class="info_list">
@@ -23,8 +23,8 @@
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div class="info_text">
-                                    <p><a href="mailto:demochopcafe@gmail.com">demochopcafe@gmail.com</a></p>
-                                    <p><a href="mailto:chopcafeinfo@gmail.com">chopcafeinfo@gmail.com</a></p>
+                                    <p><a href="https://t.me/isushibot" target="_blank">t.me/isushibot</a></p>
+                                    <p><a href="mailto:isushi@gmail.com">isushi@gmail.com</a></p>
                                 </div>
                             </div>
                             <div class="info_list">
@@ -32,61 +32,50 @@
                                     <i class="fas fa-phone"></i>
                                 </div>
                                 <div class="info_text">
-                                    <p><a href="tel:+27882911891">+8123 456 7890</a></p>
-                                    <p><a href="tel:+27882911891">+278 8291 1891</a></p>
+                                    <p><a href="tel:+380713830741">+38(071)-383-07-41</a></p>
                                 </div>
                             </div>
                         </div>
+                        <div class="footer_widget_box wow slideInUp">
+                            <div class="widget_title">
+                                <h4>Подпишись на нас</h4>
+                            </div>
+                            <div class="footer_social_widget">
+                                <ul class="social_widget">
+                                    <li><a href="https://www.facebook.com/profile.php?id=100040447323596"
+                                           class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.instagram.com/isushi_dn/" target="_blank" class="instagram"><i
+                                                    class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://vk.com/isushi_dn" class="vkontakte"><i class="fab fa-vk"></i></a>
+                                    </li>
+                                    <li><a href="https://t.me/isushibot" target="_blank" class="telegram"><i
+                                                    class="fab fa-telegram"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-lg-9 col-md-6 col-sm-12">
                     <div class="contact_box wow slideInUp">
                         <iframe src="https://yandex.ru/map-widget/v1/-/CKU170YW" frameborder="0"
                                 allowfullscreen="allowfullscreen"
                                 style="width: 100%; height: 400px; padding: 10px; box-sizing: border-box;"></iframe>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="footer_widget_box wow slideInUp">
-                        <div class="widget_title">
-                            <h4>Подпишись на нас</h4>
-                        </div>
-                        <div class="footer_social_widget">
-                            <ul class="social_widget">
-                                <li><a href="https://www.facebook.com/profile.php?id=100040447323596"
-                                       class="facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="https://www.instagram.com/isushi_dn/" target="_blank" class="instagram"><i
-                                                class="fab fa-instagram"></i></a></li>
-                                <li><a href="https://vk.com/isushi_dn" class="vkontakte"><i class="fab fa-vk"></i></a>
-                                </li>
-                                <li><a href="https://t.me/isushibot" target="_blank" class="telegram"><i
-                                                class="fab fa-telegram"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="widget_payment">
-                            <div class="widget_title">
-                                <h4>Online Payments by</h4>
-                            </div>
-                            <div class="payment_method">
-                                <a href="#"><img src="assets/images/pay_1.png" alt=""></a>
-                                <a href="#"><img src="assets/images/pay_2.png" alt=""></a>
-                                <a href="#"><img src="assets/images/pay_3.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="chopcafe_copyright chopcafe_copyright_1">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="copyright_text">
-                        <p>&copy; Copyright 2019 ChopCafe. All rights reserved.</p>
+                        <p>&copy; Copyright 2020 ISUSHI. Все права защищены.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="copyright_text float-right">
-                        <p>Designed by Code Astrology</p>
+                        <p>Designed by <a href="https://it-rest-service.ru" class="colored" target="_blank">ItRestService</a></p>
                     </div>
                 </div>
             </div>

@@ -33,24 +33,26 @@
 
             </div>
         </div>
-        <transition-group name="flip-list" tag="ul" class="lottery" v-if="!isLogged||lottery_list.length==0">
-            <li class="lottery-item-wrapper" v-for="n in demo_lottery_list" v-bind:key="n" :data-id="n">
-                <div class="lottery-item" @click="openCard()">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
-                </div>
-            </li>
-        </transition-group>
 
-        <ul class="lottery" v-if="isLogged&&lottery_list.length>0">
-            <li class="lottery-item-wrapper"
-                v-for="lottery_item in lottery_list">
-                <div class="lottery-item">
-                    <img :src="lottery_item.image_url"
-                         :alt="lottery_item.title">
-                </div>
-            </li>
-        </ul>
+
+            <transition-group name="flip-list" tag="ul" class="lottery" v-if="!isLogged||lottery_list.length==0">
+                <li class="lottery-item-wrapper" v-for="n in demo_lottery_list" v-bind:key="n" :data-id="n">
+                    <div class="lottery-item" @click="openCard(n)">
+                        <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
+                             alt="">
+                    </div>
+                </li>
+            </transition-group>
+
+            <ul class="lottery" v-if="isLogged&&lottery_list.length>0">
+                <li class="lottery-item-wrapper"
+                    v-for="lottery_item in lottery_list">
+                    <div class="lottery-item">
+                        <img :src="lottery_item.image_url"
+                             :alt="lottery_item.title">
+                    </div>
+                </li>
+            </ul>
 
 
     </div>
@@ -160,7 +162,7 @@
                 this.demo_lottery_list = _.shuffle(this.demo_lottery_list)
                 console.log("end shuffle")
             },
-            openCard() {
+            openCard(n) {
 
                 if (!this.isLogged) {
                     this.sendMessage("Сперва авторизируйтесь и введите промокод!")
@@ -183,7 +185,8 @@
                 axios
                     .post(`api/users/promo/check`, {
                         code_id: this.code_id,
-                        chat_id: this.user.id
+                        chat_id: this.user.id,
+                        index: n
                     })
                     .then(response => {
                         ///this.lottery_list = response.data
@@ -191,6 +194,7 @@
                         this.sendMessage("Ура! Победили!");
                         this.isWin = true;
 
+                        this.lottery_list.push(response.data.win);
                     });
             },
 
@@ -201,6 +205,16 @@
 </script>
 
 <style lang="scss">
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+
+    .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */
+    {
+        opacity: 0;
+    }
+
     .flip-list-move {
         transition: transform 1s;
     }

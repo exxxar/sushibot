@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="chopcafe_title chopcafe_title_1 text-center">
-                    <h2>Recent Food <span>Festival</span></h2>
+                    <h2>Весенние <span>скидки</span></h2>
                     <div class="title_divider">
                         <i class="flaticon-fork-and-knife-in-cross title_fork"></i>
                     </div>
@@ -16,22 +16,22 @@
             <div class="col-lg-6">
                 <div class="chopcafe_img_box wow slideInLeft">
                     <div class="chopcafe_img festival_img">
-                        <img src="assets/images/festival_1.jpg" class="img-fluid" alt="">
+                        <img src="https://sun9-52.userapi.com/impf/c854416/v854416573/1974cd/eaPShXgjKEc.jpg?size=0x520&quality=99&sign=a5bb7dcd2d77534553317ac4294baf7e" class="img-fluid" alt="">
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="chopcafe_content_box">
                     <div class="festival_title text-center">
-                        <h3>Food Lover Traditions met together.</h3>
+                        <h3>Роллы для любимы дам к 8 марта!</h3>
                     </div>
                     <div class="festival_countdown_area text-center">
-                        <div class="festival_countdown" data-countdown="2020/03/21"></div>
+                        <div class="festival_countdown" data-countdown="2020/03/03"></div>
                     </div>
                     <div class="festival_text text-center">
-                        <h4>September 1- 3, 2019</h4>
-                        <h5>3801 Sydney, Australia, TX 76034</h5>
-                        <a href="festival.html" class="chopcafe_btn festival_btn">View Details</a>
+                        <h4>с 2 по 8е марта</h4>
+                        <h5><a class="btn btn-link festival_phone" href="tel:+380713830741">+38 (071) 383-07-41</a></h5>
+                        <a href="festival.html" class="chopcafe_btn festival_btn">Подробнее</a>
                     </div>
                 </div>
             </div>

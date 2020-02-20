@@ -362,7 +362,7 @@
             var $this = $(this),
                 finalDate = $(this).data('countdown');
             $this.countdown(finalDate, function (event) {
-                var $this = $(this).html(event.strftime('' + '<div class="counter_column"><div class="inner"><span class="count">%D</span>Days</div></div> ' + '<div class="counter_column"><div class="inner"><span class="count">%H</span>Hours</div></div>  ' + '<div class="counter_column"><div class="inner"><span class="count">%M</span>Minutes</div></div>  ' + '<div class="counter_column"><div class="inner"><span class="count">%S</span>Seconds</div></div>'));
+                var $this = $(this).html(event.strftime('' + '<div class="counter_column"><div class="inner"><span class="count">%D</span>Дней</div></div> ' + '<div class="counter_column"><div class="inner"><span class="count">%H</span>Часов</div></div>  ' + '<div class="counter_column"><div class="inner"><span class="count">%M</span>Минут</div></div>  ' + '<div class="counter_column"><div class="inner"><span class="count">%S</span>Секунд</div></div>'));
             });
         });
     }

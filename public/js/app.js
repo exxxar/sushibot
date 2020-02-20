@@ -49264,6 +49264,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -49368,7 +49370,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.demo_lottery_list = _.shuffle(this.demo_lottery_list);
             console.log("end shuffle");
         },
-        openCard: function openCard() {
+        openCard: function openCard(n) {
             var _this4 = this;
 
             if (!this.isLogged) {
@@ -49390,12 +49392,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.post('api/users/promo/check', {
                 code_id: this.code_id,
-                chat_id: this.user.id
+                chat_id: this.user.id,
+                index: n
             }).then(function (response) {
                 ///this.lottery_list = response.data
                 console.log(response.data.win);
                 _this4.sendMessage("Ура! Победили!");
                 _this4.isWin = true;
+
+                _this4.lottery_list.push(response.data.win);
             });
         }
     },
@@ -49540,7 +49545,7 @@ var render = function() {
                       staticClass: "lottery-item",
                       on: {
                         click: function($event) {
-                          return _vm.openCard()
+                          return _vm.openCard(n)
                         }
                       }
                     },
@@ -50547,7 +50552,7 @@ exports = module.exports = __webpack_require__(45)(false);
 
 
 // module
-exports.push([module.i, "\n.flip-list-move {\n  -webkit-transition: -webkit-transform 1s;\n  transition: -webkit-transform 1s;\n  transition: transform 1s;\n  transition: transform 1s, -webkit-transform 1s;\n}\n.lottery-field {\n  border: 1px #dc3545 solid;\n  border-radius: 0;\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n}\n.lottery-field + i {\n    position: absolute;\n    left: 31px;\n    top: 17px;\n    color: #dc3545;\n}\n.btn-lottery {\n  background: #dc3545;\n  width: 100%;\n  height: 47px;\n  text-transform: uppercase;\n  font-weight: 800;\n  border: none;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n  -webkit-transition: opacity .5s;\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to {\n  opacity: 0;\n}\n.flip-list-move {\n  -webkit-transition: -webkit-transform 1s;\n  transition: -webkit-transform 1s;\n  transition: transform 1s;\n  transition: transform 1s, -webkit-transform 1s;\n}\n.lottery-field {\n  border: 1px #dc3545 solid;\n  border-radius: 0;\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n}\n.lottery-field + i {\n    position: absolute;\n    left: 31px;\n    top: 17px;\n    color: #dc3545;\n}\n.btn-lottery {\n  background: #dc3545;\n  width: 100%;\n  height: 47px;\n  text-transform: uppercase;\n  font-weight: 800;\n  border: none;\n}\n", ""]);
 
 // exports
 
