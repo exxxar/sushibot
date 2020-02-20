@@ -203,12 +203,17 @@ class UsersController extends Controller
     public function check(Request $request)
     {
         $code_id = $request->get("code_id");
+        $chat_id = $request->get("chat_id");
 
         $prizes = Prize::all();
         $prizes->shuffle();
 
+        $user = User::where("telegram_chat_id",$chat_id)->first();
+
+
         $promocode = Promocode::find($code_id);
         $promocode->activated = true;
+        $promocode->user_id = $user->id;
         $promocode->save();
 
 //todo:отправить в телеграм о том что пользователь выиграл + номер телефона

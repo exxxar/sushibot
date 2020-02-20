@@ -42,6 +42,8 @@
 </head>
 
 <body>
+
+
 <!-- Start preloader area -->
 <div class="preloader_area">
     <div class="spinner">
@@ -56,6 +58,7 @@
 </div>
 
 <div id="app">
+    <notifications group="info" />
     @yield('content')
 </div>
 <!-- End preloader area -->

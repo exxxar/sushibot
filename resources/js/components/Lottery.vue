@@ -26,7 +26,7 @@
 
         <div class="row justify-content-center mb-5" v-if="canStart">
             <div class="col-md-4">
-                <button class="btn btn-info" @click="checkValidPromo">Поехали</button>
+                <button class="btn btn-info btn-lottery" @click="checkValidPromo">Поехали</button>
             </div>
         </div>
         <ul class="lottery">
@@ -96,14 +96,21 @@
                             this.canStart = true;
                     });
             },
+            message(message) {
+                this.$notify({
+                    group: 'info',
+                    title: 'Оповещение ISUSHI',
+                    text: message
+                });
+            },
             checkValidPromo() {
                 if (this.promocode.length == 0) {
-                    console.log("Введите промокодо!")
+                    this.message("Введите промокод!")
                     return;
                 }
 
                 if (!this.hasPhone && this.phone.length == 0) {
-                    console.log("Введите номер телефона!")
+                    this.message("Введите номер телефона!")
                     return;
                 }
 
@@ -123,17 +130,19 @@
             },
             openCard() {
                 if (this.code_id == null) {
-                    console.log("Промокод не найден!");
+                    this.message("Промокод не найден!");
                     return;
                 }
 
                 axios
                     .post(`api/users/promo/check`, {
-                        code_id: this.code_id
+                        code_id: this.code_id,
+                        chat_id: this.user.id
                     })
                     .then(response => {
                         ///this.lottery_list = response.data
                         console.log(response.data.win);
+                        this.message("Ура! Победили!");
                     });
             },
 
@@ -157,5 +166,14 @@
             top: 17px;
             color: #dc3545;
         }
+    }
+
+    .btn-lottery {
+        background: #dc3545;
+        width: 100%;
+        height: 47px;
+        text-transform: uppercase;
+        font-weight: 800;
+        border: none;
     }
 </style>
