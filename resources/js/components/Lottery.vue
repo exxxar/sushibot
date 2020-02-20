@@ -79,6 +79,7 @@
                     .then(response => {
                         this.hasPhone = response.data.hasPhone;
 
+                        this.getCardsList()
                     });
             },
             getCardsList(){

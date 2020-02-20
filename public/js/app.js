@@ -49283,6 +49283,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 chat_id: user.id
             }).then(function (response) {
                 _this.hasPhone = response.data.hasPhone;
+
+                _this.getCardsList();
             });
         },
         getCardsList: function getCardsList() {
