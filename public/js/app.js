@@ -49331,6 +49331,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return;
             }
 
+            this.isWin = false;
+
             axios.post('api/users/promo/validate', {
                 phone: this.phone,
                 promocode: this.promocode,
@@ -49338,10 +49340,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 console.log(response);
                 if (response.data.status == "success") {
+                    var demo_count = _this3.lottery_list.length;
+                    _this3.demo_lottery_list = [];
                     _this3.lottery_list = [];
                     _this3.code_id = response.data.code_id;
                     _this3.sendMessage("Ваш код успешно активирован");
-                    _this3.shuffle();
+                    for (var i = 0; i < demo_count; i++) {
+                        _this3.demo_lottery_list.push(i);
+                    }_this3.shuffle();
+                    _this3.promocode = "";
                 }
             });
         },
@@ -49360,7 +49367,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             if (this.isWin) {
-                this.sendMessage("Вы уже поучаствовали!");
+                this.sendMessage("Для повторного участия введите новый промокод!");
                 return;
             }
 
@@ -50525,7 +50532,7 @@ exports = module.exports = __webpack_require__(45)(false);
 
 
 // module
-exports.push([module.i, "\n.flip-list-move {\n  -webkit-transition: -webkit-transform 1s;\n  transition: -webkit-transform 1s;\n  transition: transform 1s;\n  transition: transform 1s, -webkit-transform 1s;\n}\n.lottery-field {\n  border: 1px #dc3545 solid;\n  border-radius: 0;\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n}\n.lottery-field + i {\n    position: absolute;\n    left: 31px;\n    top: 17px;\n    color: #dc3545;\n}\n.btn-lottery {\n  background: #dc3545;\n  width: 100%;\n  height: 47px;\n  text-transform: uppercase;\n  font-weight: 800;\n  border: none;\n}\n", ""]);
+exports.push([module.i, "\n.flip-list-move {\n  -webkit-transition: -webkit-transform .3s;\n  transition: -webkit-transform .3s;\n  transition: transform .3s;\n  transition: transform .3s, -webkit-transform .3s;\n}\n.lottery-field {\n  border: 1px #dc3545 solid;\n  border-radius: 0;\n  padding: 10px;\n  height: 50px;\n  text-align: center;\n}\n.lottery-field + i {\n    position: absolute;\n    left: 31px;\n    top: 17px;\n    color: #dc3545;\n}\n.btn-lottery {\n  background: #dc3545;\n  width: 100%;\n  height: 47px;\n  text-transform: uppercase;\n  font-weight: 800;\n  border: none;\n}\n", ""]);
 
 // exports
 

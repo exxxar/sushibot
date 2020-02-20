@@ -121,6 +121,8 @@
                     return;
                 }
 
+                this.isWin = false;
+
                 axios
                     .post('api/users/promo/validate', {
                         phone: this.phone,
@@ -130,10 +132,16 @@
                     .then(response => {
                         console.log(response)
                         if (response.data.status == "success") {
+                            let demo_count = this.lottery_list.length;
+                            this.demo_lottery_list = [];
                             this.lottery_list = [];
                             this.code_id = response.data.code_id;
                             this.sendMessage("Ваш код успешно активирован")
+                            for(let i=0;i<demo_count;i++)
+                                this.demo_lottery_list.push(i);
+
                             this.shuffle();
+                            this.promocode = "";
 
                         }
                     });
@@ -151,7 +159,7 @@
                 }
 
                 if (this.isWin) {
-                    this.sendMessage("Вы уже поучаствовали!")
+                    this.sendMessage("Для повторного участия введите новый промокод!")
                     return
                 }
 
@@ -181,7 +189,7 @@
 
 <style lang="scss">
     .flip-list-move {
-        transition: transform 1s;
+        transition: transform .3s;
     }
 
     .lottery-field {
