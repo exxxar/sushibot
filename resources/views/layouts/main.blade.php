@@ -58,8 +58,9 @@
 </div>
 
 <div id="app">
-    <notifications group="info" />
+
     @yield('content')
+
 </div>
 <!-- End preloader area -->
 

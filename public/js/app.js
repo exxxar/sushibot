@@ -49258,6 +49258,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -49272,6 +49273,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             phone: null,
             lottery_list: []
         };
+    },
+    mounted: function mounted() {
+        this.sendMessage("Test");
     },
 
     methods: {
@@ -49305,8 +49309,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         sendMessage: function sendMessage(message) {
+            console.log(message);
             this.$notify({
                 group: 'info',
+                type: 'error',
                 title: 'Оповещение ISUSHI',
                 text: message
             });
@@ -49366,155 +49372,169 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "row justify-content-center mb-5" }, [
-      !_vm.isLogged
-        ? _c(
-            "div",
-            { staticClass: "col-sm-4" },
-            [
-              _c("vue-telegram-login", {
-                attrs: { mode: "callback", "telegram-login": "isushibot" },
-                on: { callback: _vm.telegramCallback }
-              })
-            ],
-            1
-          )
-        : _vm._e(),
+  return _c(
+    "div",
+    [
+      _c("notifications", { attrs: { group: "info" } }),
       _vm._v(" "),
-      _vm.isLogged
-        ? _c("div", { staticClass: "col-sm-4" }, [
-            _c("div", { staticClass: "form_group" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.promocode,
-                    expression: "promocode"
-                  }
-                ],
-                staticClass: "form_control lottery-field",
-                attrs: {
-                  type: "text",
-                  placeholder: "Введите промокод",
-                  name: "promocode"
-                },
-                domProps: { value: _vm.promocode },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.promocode = $event.target.value
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("i", { staticClass: "fas fa-terminal" })
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      !_vm.hasPhone && _vm.isLogged
-        ? _c("div", { staticClass: "col-sm-4" }, [
-            _c("div", { staticClass: "form_group" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.phone,
-                    expression: "phone"
-                  }
-                ],
-                staticClass: "form_control lottery-field",
-                attrs: {
-                  type: "text",
-                  placeholder: "Введите телефон",
-                  name: "phone"
-                },
-                domProps: { value: _vm.phone },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.phone = $event.target.value
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("i", { staticClass: "fas fa-phone" })
-            ])
-          ])
-        : _vm._e()
-    ]),
-    _vm._v(" "),
-    _vm.canStart
-      ? _c("div", { staticClass: "row justify-content-center mb-5" }, [
-          _c("div", { staticClass: "col-md-4" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-info btn-lottery",
-                on: { click: _vm.checkValidPromo }
-              },
-              [_vm._v("Поехали")]
+      _c("div", { staticClass: "row justify-content-center mb-5" }, [
+        !_vm.isLogged
+          ? _c(
+              "div",
+              { staticClass: "col-sm-4" },
+              [
+                _c("vue-telegram-login", {
+                  attrs: { mode: "callback", "telegram-login": "isushibot" },
+                  on: { callback: _vm.telegramCallback }
+                })
+              ],
+              1
             )
-          ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "ul",
-      { staticClass: "lottery" },
-      [
-        _vm._l(20, function(n) {
-          return !_vm.isLogged || _vm.lottery_list.length == 0
-            ? _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "lottery-item",
-                    on: {
-                      click: function($event) {
-                        return _vm.openCard()
-                      }
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.isLogged
+          ? _c("div", { staticClass: "col-sm-4" }, [
+              _c("div", { staticClass: "form_group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.promocode,
+                      expression: "promocode"
                     }
+                  ],
+                  staticClass: "form_control lottery-field",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Введите промокод",
+                    name: "promocode"
                   },
-                  [
-                    _c("img", {
-                      attrs: {
-                        src:
-                          "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
-                        alt: ""
+                  domProps: { value: _vm.promocode },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
                       }
-                    })
+                      _vm.promocode = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-terminal" })
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        !_vm.hasPhone && _vm.isLogged
+          ? _c("div", { staticClass: "col-sm-4" }, [
+              _c("div", { staticClass: "form_group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.phone,
+                      expression: "phone"
+                    }
+                  ],
+                  staticClass: "form_control lottery-field",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Введите телефон",
+                    name: "phone"
+                  },
+                  domProps: { value: _vm.phone },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.phone = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-phone" })
+              ])
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _vm.canStart
+        ? _c("div", { staticClass: "row justify-content-center mb-5" }, [
+            _c("div", { staticClass: "col-md-4" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-info btn-lottery",
+                  on: { click: _vm.checkValidPromo }
+                },
+                [_vm._v("Поехали")]
+              )
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "lottery" },
+        [
+          _vm._l(20, function(n) {
+            return !_vm.isLogged || _vm.lottery_list.length == 0
+              ? _c(
+                  "li",
+                  { staticClass: "lottery-item-wrapper wow slideInUp" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "lottery-item",
+                        on: {
+                          click: function($event) {
+                            return _vm.openCard()
+                          }
+                        }
+                      },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg",
+                            alt: ""
+                          }
+                        })
+                      ]
+                    )
                   ]
                 )
-              ])
-            : _vm._e()
-        }),
-        _vm._v(" "),
-        _vm._l(_vm.lottery_list, function(lottery_item) {
-          return _vm.isLogged && _vm.lottery_list.length > 0
-            ? _c("li", { staticClass: "lottery-item-wrapper wow slideInUp" }, [
-                _c("div", { staticClass: "lottery-item" }, [
-                  _c("img", {
-                    attrs: {
-                      src: lottery_item.image_url,
-                      alt: lottery_item.title
-                    }
-                  })
-                ])
-              ])
-            : _vm._e()
-        })
-      ],
-      2
-    )
-  ])
+              : _vm._e()
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.lottery_list, function(lottery_item) {
+            return _vm.isLogged && _vm.lottery_list.length > 0
+              ? _c(
+                  "li",
+                  { staticClass: "lottery-item-wrapper wow slideInUp" },
+                  [
+                    _c("div", { staticClass: "lottery-item" }, [
+                      _c("img", {
+                        attrs: {
+                          src: lottery_item.image_url,
+                          alt: lottery_item.title
+                        }
+                      })
+                    ])
+                  ]
+                )
+              : _vm._e()
+          })
+        ],
+        2
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

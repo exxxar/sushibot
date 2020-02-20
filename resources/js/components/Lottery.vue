@@ -1,5 +1,6 @@
 <template>
     <div>
+        <notifications group="info" />
         <div class="row justify-content-center mb-5">
             <div class="col-sm-4" v-if="!isLogged">
                 <vue-telegram-login
@@ -65,6 +66,9 @@
                 lottery_list: []
             };
         },
+        mounted() {
+            this.sendMessage("Test");
+        },
         methods: {
             telegramCallback(user) {
                 // gets user as an input
@@ -97,8 +101,10 @@
                     });
             },
             sendMessage(message) {
+                console.log(message);
                 this.$notify({
                     group: 'info',
+                    type: 'error',
                     title: 'Оповещение ISUSHI',
                     text: message
                 });
