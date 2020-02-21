@@ -18,27 +18,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('users')->group(function (){
-    Route::post("/phone","UsersController@phone");
+    Route::post("/phone","WelcomeController@phone");
 
     Route::prefix('promo')->group(function (){
-        Route::get("/list","UsersController@getList"); //step 0
+        Route::get("/list","WelcomeController@getList"); //step 0
 
-        Route::post("/validate","UsersController@promoValidate"); //step 1
+        Route::post("/validate","WelcomeController@promoValidate"); //step 1
 
-        Route::post("/check","UsersController@check"); //step 2
+        Route::post("/check","WelcomeController@check"); //step 2
     });
 
 });
 
+Route::post('/send-request', 'WelcomeController@sendRequest')->name("callback.request");
+Route::get('/ingredients/{type}', 'WelcomeController@getIngredients')->where(["type"=>"[0-9]{1}"]);
 
-Route::post('/send-request', function (Request $request) {
-    $name = $request->get("name")??'';
-    $phone = $request->get("phone")??'';
-    $message = $request->get("message")??'';
-    Telegram::sendMessage([
-        'chat_id' => env("CHANNEL_ID"),
-        'parse_mode' => 'Markdown',
-        'text' => sprintf("*Заявка на обратный звонок*\n_%s_\n_%s_\n%s",$name,$phone,$message),
-        'disable_notification' => 'false'
-    ]);
-})->name("callback.request");
+

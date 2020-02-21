@@ -5235,7 +5235,7 @@ ul.rating li:nth-child(4) i {
 }
 
 .s2 {
-    background: url(https://lviv.virtual.ua/images/405427/);
+    background: url('https://static.ngs.ru/news/99/preview/294af813a3b911a20dd23700e236e04e788ba4a8_824_549_c.jpg');
     background-size: cover;
     background-color: black;
     mix-blend-mode: overlay;
@@ -5271,6 +5271,7 @@ ul.rating li:nth-child(4) i {
     line-height: 100%;
     padding-bottom: 10px;
     padding-top: 10px;
+    text-align: center;
 }
 
 .s2 .calc .form-group {
@@ -5299,7 +5300,7 @@ ul.rating li:nth-child(4) i {
     font-size: 14px;
 }
 
-.s2 .calc table {
+.s2 .calc .tr {
     width: 100%;
     font-size: 14px;
     color: #dc3545;
@@ -5312,8 +5313,8 @@ ul.rating li:nth-child(4) i {
     /* Show the checkmark when checked */
     /* Style the checkmark/indicator */
 }
-
-.s2 .calc table input {
+.s2 .calc  input[type="checkbox"],
+.s2 .calc  input[type="radio"] {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -5321,7 +5322,7 @@ ul.rating li:nth-child(4) i {
     width: 0;
 }
 
-.s2 .calc table .container {
+.s2 .calc  .container {
     display: block;
     position: relative;
     padding-left: 35px;
@@ -5338,7 +5339,7 @@ ul.rating li:nth-child(4) i {
     font-weight: 800;
 }
 
-.s2 .calc table .checkmark {
+.s2 .calc  .checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -5347,25 +5348,29 @@ ul.rating li:nth-child(4) i {
     background-color: #eee;
 }
 
-.s2 .calc table .container:hover input ~ .checkmark {
-    background-color: #ccc;
-}
+.s2 .calc  .container:hover input ~ .checkmark {
+     background-color: #ccc;
+ }
 
-.s2 .calc table .container input:checked ~ .checkmark {
+.s2 .calc  .container:hover input:disabled:not(:checked) ~ .checkmark {
+     background-color: rgba(31, 0, 8, 0.77);
+ }
+
+.s2 .calc  .container input:checked ~ .checkmark {
     background-color: #dc3545;
 }
 
-.s2 .calc table .checkmark:after {
+.s2 .calc  .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
-.s2 .calc table input:checked ~ .checkmark:after {
+.s2 .calc  input:checked ~ .checkmark:after {
     display: block;
 }
 
-.s2 .calc table .checkmark:after {
+.s2 .calc  .checkmark:after {
     left: 9px;
     top: 5px;
     width: 5px;
@@ -5395,14 +5400,6 @@ ul.rating li:nth-child(4) i {
     border: 5px solid #dc3545;
 }
 
-.s2 .calc .right,
-.s2 .calc .left {
-    width: 50%;
-}
-
-.s2 .calc .right h3 {
-    text-align: center;
-}
 
 .s2 .calc .right h2 {
     text-align: center;
@@ -5410,27 +5407,14 @@ ul.rating li:nth-child(4) i {
     color: wheat;
 }
 
-.s2 .calc .right table tr {
-    display: flex;
-    justify-content: center;
-}
 
-.s2 .calc .right table tr td {
-    display: flex;
-    flex-direction: column;
-    text-transform: uppercase;
-    text-align: center;
-    align-items: center;
+.s2 .calc .right  .tr .td {
     font-size: 14px;
     font-weight: 800;
 }
 
 .s2  .calc  .counter {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 20px 20px 20px;
-    box-sizing: border-box;
+    text-align: center;
 }
 
 .s2  .calc  .counter button {

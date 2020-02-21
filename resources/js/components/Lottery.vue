@@ -3,7 +3,7 @@
         <notifications group="info"/>
         <div class="row justify-content-center mb-5">
             <transition name="fade">
-                <div class="col-sm-4" v-if="!isLogged">
+                <div class="col-sm-3" v-if="!isLogged">
                     <vue-telegram-login
                             mode="callback"
                             telegram-login="isushibot"
