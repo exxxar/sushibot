@@ -31,35 +31,29 @@
             <div class="col-lg-6 left">
                 <h3>Выбери форму ролла</h3>
 
-                <table>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <p>Квадратная<br>форма</p>
-                            <label>
-                                <input type="radio" name="test" value="Квадратная" v-model="pickedForm">
-                                <img src="square.jpg">
-                            </label>
-                        </td>
-                        <td>
-                            <p>Круглая<br>форма</p>
-                            <label>
-                                <input type="radio" name="test" value="Круглая" v-model="pickedForm">
-                                <img src="circle.jpg">
-                            </label>
-                        </td>
-                        <td>
-                            <p>Треугольная<br>форма</p>
-                            <label>
-                                <input type="radio" name="test" value="Треугольная" v-model="pickedForm">
-                                <img src="triangle.jpg">
-                            </label>
-                        </td>
-                    </tr>
-
-                    </tbody>
-                </table>
-
+                <div class="row justify-content-center">
+                    <div class="col-md-4 col-sm-12">
+                        <p>Квадратная<br>форма</p>
+                        <label>
+                            <input type="radio" name="test" value="Квадратная" v-model="pickedForm">
+                            <img src="square.jpg">
+                        </label>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <p>Круглая<br>форма</p>
+                        <label>
+                            <input type="radio" name="test" value="Круглая" v-model="pickedForm">
+                            <img src="circle.jpg">
+                        </label>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <p>Треугольная<br>форма</p>
+                        <label>
+                            <input type="radio" name="test" value="Треугольная" v-model="pickedForm">
+                            <img src="triangle.jpg">
+                        </label>
+                    </div>
+                </div>
 
                 <h3 class="text-center">Цена ролла</h3>
                 <h2 class="text-center text-white">{{summary_price*summary_count}}₽</h2>

@@ -17,7 +17,7 @@
                 <div class="chef_slide_1 wow slideInUp">
                     <div class="chef_box">
                         <div class="chopcafe_img">
-                            <img src="https://www.fashionplaytes.com/blog/wp-content/uploads/2017/08/Foods-58.jpg" class="img-fluid" alt="">
+                            <img src="assets/images/chef_3.jpg" class="img-fluid" alt="">
                             <div class="overlay_content">
                                 <div class="social">
                                     <ul>
@@ -29,13 +29,13 @@
                             </div>
                         </div>
                         <div class="chef_info">
-                            <h3><a href="single_team.html">Nicolus Smith</a></h3>
-                            <p>Chef Master</p>
+                            <h3><a href="single_team.html">岡田 中野</a></h3>
+                            <p>Шеф-повар</p>
                         </div>
                     </div>
                     <div class="chef_box">
                         <div class="chopcafe_img">
-                            <img src="assets/images/chef_2.jpg" class="img-fluid" alt="">
+                            <img src="assets/images/chef_1.jpg" class="img-fluid" alt="">
                             <div class="overlay_content">
                                 <div class="social">
                                     <ul>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="chef_box">
                         <div class="chopcafe_img">
-                            <img src="assets/images/chef_2.jpg" class="img-fluid" alt="">
+                            <img src="assets/images/chef_4.jpg" class="img-fluid" alt="">
                             <div class="overlay_content">
                                 <div class="social">
                                     <ul>

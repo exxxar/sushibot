@@ -50427,12 +50427,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54565,92 +54559,82 @@ var render = function() {
       _c("div", { staticClass: "col-lg-6 left" }, [
         _c("h3", [_vm._v("Выбери форму ролла")]),
         _vm._v(" "),
-        _c("table", [
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("label", [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.pickedForm,
-                        expression: "pickedForm"
-                      }
-                    ],
-                    attrs: { type: "radio", name: "test", value: "Квадратная" },
-                    domProps: { checked: _vm._q(_vm.pickedForm, "Квадратная") },
-                    on: {
-                      change: function($event) {
-                        _vm.pickedForm = "Квадратная"
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("img", { attrs: { src: "square.jpg" } })
-                ])
-              ]),
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-md-4 col-sm-12" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("label", [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.pickedForm,
+                    expression: "pickedForm"
+                  }
+                ],
+                attrs: { type: "radio", name: "test", value: "Квадратная" },
+                domProps: { checked: _vm._q(_vm.pickedForm, "Квадратная") },
+                on: {
+                  change: function($event) {
+                    _vm.pickedForm = "Квадратная"
+                  }
+                }
+              }),
               _vm._v(" "),
-              _c("td", [
-                _vm._m(1),
-                _vm._v(" "),
-                _c("label", [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.pickedForm,
-                        expression: "pickedForm"
-                      }
-                    ],
-                    attrs: { type: "radio", name: "test", value: "Круглая" },
-                    domProps: { checked: _vm._q(_vm.pickedForm, "Круглая") },
-                    on: {
-                      change: function($event) {
-                        _vm.pickedForm = "Круглая"
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("img", { attrs: { src: "circle.jpg" } })
-                ])
-              ]),
+              _c("img", { attrs: { src: "square.jpg" } })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4 col-sm-12" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("label", [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.pickedForm,
+                    expression: "pickedForm"
+                  }
+                ],
+                attrs: { type: "radio", name: "test", value: "Круглая" },
+                domProps: { checked: _vm._q(_vm.pickedForm, "Круглая") },
+                on: {
+                  change: function($event) {
+                    _vm.pickedForm = "Круглая"
+                  }
+                }
+              }),
               _vm._v(" "),
-              _c("td", [
-                _vm._m(2),
-                _vm._v(" "),
-                _c("label", [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.pickedForm,
-                        expression: "pickedForm"
-                      }
-                    ],
-                    attrs: {
-                      type: "radio",
-                      name: "test",
-                      value: "Треугольная"
-                    },
-                    domProps: {
-                      checked: _vm._q(_vm.pickedForm, "Треугольная")
-                    },
-                    on: {
-                      change: function($event) {
-                        _vm.pickedForm = "Треугольная"
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("img", { attrs: { src: "triangle.jpg" } })
-                ])
-              ])
+              _c("img", { attrs: { src: "circle.jpg" } })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4 col-sm-12" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("label", [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.pickedForm,
+                    expression: "pickedForm"
+                  }
+                ],
+                attrs: { type: "radio", name: "test", value: "Треугольная" },
+                domProps: { checked: _vm._q(_vm.pickedForm, "Треугольная") },
+                on: {
+                  change: function($event) {
+                    _vm.pickedForm = "Треугольная"
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("img", { attrs: { src: "triangle.jpg" } })
             ])
           ])
         ]),

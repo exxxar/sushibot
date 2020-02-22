@@ -5246,7 +5246,7 @@ ul.rating li:nth-child(4) i {
     justify-content: center;
 }
 .s2 .calc {
-    width: 1000px;
+    width: 100%;
     height: 100%;
     display: flex;
     box-sizing: border-box;
@@ -5391,8 +5391,8 @@ ul.rating li:nth-child(4) i {
 
 .s2 .calc [type=radio] + img {
     cursor: pointer;
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: 100%;
     border: 5px solid transparent;
 }
 
