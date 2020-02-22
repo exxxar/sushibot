@@ -392,7 +392,7 @@
     /*----------------------
         nicenumbr js
     ------------------------*/
-    $('input[type="number"]').niceNumber();
+  /*  $('input[type="number"]').niceNumber();*/
 
 
 

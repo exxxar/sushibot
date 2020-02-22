@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\UseIngredientType;
 use App\Ingredient;
 use App\Prize;
+use App\Product;
 use App\Promocode;
 use App\User;
 use Illuminate\Http\Request;
@@ -132,6 +133,13 @@ class WelcomeController extends Controller
                 "ingredients"=>Ingredient::where("use_type",$type)
                     ->orWhere("use_type",0)
                     ->get()
+            ]);
+    }
+
+    public function getProduct($id){
+        return response()
+            ->json([
+                "product"=>Product::find($id)
             ]);
     }
 }

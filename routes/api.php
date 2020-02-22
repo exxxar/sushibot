@@ -32,5 +32,6 @@ Route::prefix('users')->group(function (){
 
 Route::post('/send-request', 'WelcomeController@sendRequest')->name("callback.request");
 Route::get('/ingredients/{type}', 'WelcomeController@getIngredients')->where(["type"=>"[0-9]{1}"]);
+Route::get('/products/get/{id}', 'WelcomeController@getProduct')->where(["type"=>"[0-9]+"]);
 
 

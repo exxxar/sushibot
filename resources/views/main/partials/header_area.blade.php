@@ -32,14 +32,15 @@
                     <div class="chopcafe_menu">
                         <nav class="main_menu">
                             <ul>
-                               {{-- <li class="menu-item"><a href="#menu_grid">Наши товары</a></li>
+                               {{--
                                 <li class="menu-item"><a href="{{url("/contacts")}}">Наши контакты</a></li>
                                 <li class="search_icon"><a href="#" class="search_btn"><i class="fas fa-search"></i></a>
                                 </li>--}}
+                                <li class="menu-item"><a href="#menu_grid">Меню</a></li>
                                 <li><a href="#callbackModal" data-toggle="modal" data-target="#callbackModal"><i class="fas fa-phone-square mr-2"></i>Обратный звонок</a></li>
-                                <li class="cart_icon"><a href="#" class="open_cart"><span class="count">2</span><i
+                                <li class="cart_icon"><a href="#cartModal" data-toggle="modal" data-target="#cartModal" class="open_cart"><span class="count"><cart-count-index></cart-count-index></span><i
                                                 class="fas fa-shopping-cart"></i></a>
-                                    <ul id="site-header-cart" class="site-header-cart">
+                             {{--       <ul id="site-header-cart" class="site-header-cart">
                                         <li>
                                             <div class="widget_shopping_cart">
                                                 <div class="widget_shopping_cart_content">
@@ -73,7 +74,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                    </ul>
+                                    </ul>--}}
                                 </li>
                             </ul>
                         </nav>

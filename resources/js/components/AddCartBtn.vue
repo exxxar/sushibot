@@ -1,23 +1,31 @@
 <template>
     <div>
+
         <a href="#add_to_cart" class="btn_a btn_link btn-add-to-cart" @click="add()"><i class="fas fa-plus"></i></a>
     </div>
 </template>
 <script>
     export default {
-        props:["product_id"],
-        data(){
-            return {
-                info: ''
-            };
-        },
-        methods:{
-            add:function() {
-                console.log(this.product_id)
+        props: ["product_id"],
+        methods: {
+            add: function () {
+                this.sendMessage("Товар успешно добавлен в корзину!")
                 axios
-                    .get('api/test')
-                    .then(response => (this.info = response.data));
-            }
+                    .get('api/products/get/' + this.product_id)
+                    .then(response => {
+
+                        this.$store.dispatch('addProductToCart', response.data.product)
+                    });
+            },
+            sendMessage(message) {
+                console.log(message);
+                this.$notify({
+                    group: 'info',
+                    type: 'error',
+                    title: 'Оповещение ISUSHI',
+                    text: message
+                });
+            },
         }
     }
 </script>

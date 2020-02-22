@@ -30,7 +30,7 @@
     <!-- magnific css -->
     <link rel="stylesheet" href="{{asset('assets/plugin/magnific/magnific-popup.css')}}">
     <!-- magnific css -->
-    <link rel="stylesheet" href="{{asset('assets/plugin/nicenumber/jquery.nice-number.css')}}">
+{{--    <link rel="stylesheet" href="{{asset('assets/plugin/nicenumber/jquery.nice-number.css')}}">--}}
     <!-- magnific css -->
     <link rel="stylesheet" href="{{asset('assets/plugin/niceselect/nice-select.css')}}">
     <!-- animate css -->
@@ -60,6 +60,23 @@
 
 @yield('content')
 
+
+<!-- callbackModal -->
+    <div class="modal fade" id="cartModal" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><span>Корзина заказов</span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <cart></cart>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <!-- End preloader area -->
 
@@ -93,7 +110,7 @@
     </div>
     <!-- callbackModal -->
     <div class="modal fade" id="callbackModal">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"><span>Мы тебе перезвоним</span></h5>
@@ -140,7 +157,7 @@
 <!-- nice number js -->
 <script src="{{asset('assets/plugin/niceselect/jquery.nice-select.min.js')}}"></script>
 <!-- nice number js -->
-<script src="{{asset('assets/plugin/nicenumber/jquery.nice-number.min.js')}}"></script>
+{{--<script src="{{asset('assets/plugin/nicenumber/jquery.nice-number.min.js')}}"></script>--}}
 <!-- sidebarmenu js -->
 <script src="{{asset('assets/plugin/sidebar-menu/sidebar-menu.js')}}"></script>
 <!-- jquery_ui js -->

@@ -1398,6 +1398,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_notification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_notification__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__js_components_CallbackForm__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__js_components_CallbackForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__js_components_CallbackForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__js_components_CartCountIndex__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__js_components_CartCountIndex___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__js_components_CartCountIndex__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__js_components_Cart__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__js_components_Cart___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__js_components_Cart__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_currency_filter__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_currency_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_vue_currency_filter__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__js_store__ = __webpack_require__(67);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -1422,14 +1429,29 @@ window.Vue = __webpack_require__(10);
 
 
 
+
+
+
+
 Vue.component('lottery', __WEBPACK_IMPORTED_MODULE_0__js_components_Lottery___default.a);
 Vue.component('add-to-cart-btn', __WEBPACK_IMPORTED_MODULE_1__js_components_AddCartBtn___default.a);
 Vue.component('roll-calc', __WEBPACK_IMPORTED_MODULE_2__js_components_RollCalc___default.a);
 Vue.component('callback-form', __WEBPACK_IMPORTED_MODULE_4__js_components_CallbackForm___default.a);
+Vue.component('cart-count-index', __WEBPACK_IMPORTED_MODULE_5__js_components_CartCountIndex___default.a);
+Vue.component('cart', __WEBPACK_IMPORTED_MODULE_6__js_components_Cart___default.a);
 Vue.use(__WEBPACK_IMPORTED_MODULE_3_vue_notification___default.a);
+Vue.use(__WEBPACK_IMPORTED_MODULE_7_vue_currency_filter___default.a, {
+    symbol: '₽',
+    thousandsSeparator: '.',
+    fractionCount: 2,
+    fractionSeparator: ',',
+    symbolPosition: 'back',
+    symbolSpacing: true
+});
 
 var app = new Vue({
-  el: '#app'
+    store: __WEBPACK_IMPORTED_MODULE_8__js_store__["a" /* default */],
+    el: '#app'
 });
 
 /***/ }),
@@ -50124,22 +50146,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ["product_id"],
-    data: function data() {
-        return {
-            info: ''
-        };
-    },
-
     methods: {
         add: function add() {
             var _this = this;
 
-            console.log(this.product_id);
-            axios.get('api/test').then(function (response) {
-                return _this.info = response.data;
+            this.sendMessage("Товар успешно добавлен в корзину!");
+            axios.get('api/products/get/' + this.product_id).then(function (response) {
+
+                _this.$store.dispatch('addProductToCart', response.data.product);
+            });
+        },
+        sendMessage: function sendMessage(message) {
+            console.log(message);
+            this.$notify({
+                group: 'info',
+                type: 'error',
+                title: 'Оповещение ISUSHI',
+                text: message
             });
         }
     }
@@ -50675,9 +50702,9 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-warning counter-btn",
-                  on: { click: _vm.inc }
+                  on: { click: _vm.dec }
                 },
-                [_vm._v("+")]
+                [_vm._v("-")]
               )
             ]),
             _vm._v(" "),
@@ -50710,9 +50737,9 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-warning counter-btn",
-                  on: { click: _vm.dec }
+                  on: { click: _vm.inc }
                 },
-                [_vm._v("-")]
+                [_vm._v("+")]
               )
             ])
           ]),
@@ -52257,10 +52284,2487 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n.send-btn {\n  width: 100%;\n  padding: 10px;\n  background: #dc3545;\n  text-transform: uppercase;\n}\n.send-btn[disabled] {\n    background-color: darkgray;\n}\n.counter-btn {\n  width: 100%;\n}\n.phone {\n  padding: 25px;\n  font-weight: 100;\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.send-btn {\n  width: 100%;\n  padding: 15px;\n  background: #dc3545;\n  text-transform: uppercase;\n}\n.send-btn[disabled] {\n    background-color: darkgray;\n}\n.counter-btn {\n  width: 100%;\n}\n.phone {\n  padding: 25px;\n  font-weight: 100;\n  text-align: center;\n}\n", ""]);
 
 // exports
 
+
+/***/ }),
+/* 67 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_cart__ = __webpack_require__(69);
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+    state: {},
+    getters: {},
+    mutations: {},
+    actions: {},
+    modules: {
+        cart: __WEBPACK_IMPORTED_MODULE_2__modules_cart__["a" /* default */]
+    }
+}));
+
+/***/ }),
+/* 68 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/* unused harmony export Store */
+/* unused harmony export install */
+/* unused harmony export mapState */
+/* unused harmony export mapMutations */
+/* unused harmony export mapGetters */
+/* unused harmony export mapActions */
+/* unused harmony export createNamespacedHelpers */
+/**
+ * vuex v3.1.2
+ * (c) 2019 Evan You
+ * @license MIT
+ */
+function applyMixin (Vue) {
+  var version = Number(Vue.version.split('.')[0]);
+
+  if (version >= 2) {
+    Vue.mixin({ beforeCreate: vuexInit });
+  } else {
+    // override init and inject vuex init procedure
+    // for 1.x backwards compatibility.
+    var _init = Vue.prototype._init;
+    Vue.prototype._init = function (options) {
+      if ( options === void 0 ) options = {};
+
+      options.init = options.init
+        ? [vuexInit].concat(options.init)
+        : vuexInit;
+      _init.call(this, options);
+    };
+  }
+
+  /**
+   * Vuex init hook, injected into each instances init hooks list.
+   */
+
+  function vuexInit () {
+    var options = this.$options;
+    // store injection
+    if (options.store) {
+      this.$store = typeof options.store === 'function'
+        ? options.store()
+        : options.store;
+    } else if (options.parent && options.parent.$store) {
+      this.$store = options.parent.$store;
+    }
+  }
+}
+
+var target = typeof window !== 'undefined'
+  ? window
+  : typeof global !== 'undefined'
+    ? global
+    : {};
+var devtoolHook = target.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+
+function devtoolPlugin (store) {
+  if (!devtoolHook) { return }
+
+  store._devtoolHook = devtoolHook;
+
+  devtoolHook.emit('vuex:init', store);
+
+  devtoolHook.on('vuex:travel-to-state', function (targetState) {
+    store.replaceState(targetState);
+  });
+
+  store.subscribe(function (mutation, state) {
+    devtoolHook.emit('vuex:mutation', mutation, state);
+  });
+}
+
+/**
+ * Get the first item that pass the test
+ * by second argument function
+ *
+ * @param {Array} list
+ * @param {Function} f
+ * @return {*}
+ */
+
+/**
+ * forEach for object
+ */
+function forEachValue (obj, fn) {
+  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
+}
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+function isPromise (val) {
+  return val && typeof val.then === 'function'
+}
+
+function assert (condition, msg) {
+  if (!condition) { throw new Error(("[vuex] " + msg)) }
+}
+
+function partial (fn, arg) {
+  return function () {
+    return fn(arg)
+  }
+}
+
+// Base data struct for store's module, package with some attribute and method
+var Module = function Module (rawModule, runtime) {
+  this.runtime = runtime;
+  // Store some children item
+  this._children = Object.create(null);
+  // Store the origin module object which passed by programmer
+  this._rawModule = rawModule;
+  var rawState = rawModule.state;
+
+  // Store the origin module's state
+  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
+};
+
+var prototypeAccessors = { namespaced: { configurable: true } };
+
+prototypeAccessors.namespaced.get = function () {
+  return !!this._rawModule.namespaced
+};
+
+Module.prototype.addChild = function addChild (key, module) {
+  this._children[key] = module;
+};
+
+Module.prototype.removeChild = function removeChild (key) {
+  delete this._children[key];
+};
+
+Module.prototype.getChild = function getChild (key) {
+  return this._children[key]
+};
+
+Module.prototype.update = function update (rawModule) {
+  this._rawModule.namespaced = rawModule.namespaced;
+  if (rawModule.actions) {
+    this._rawModule.actions = rawModule.actions;
+  }
+  if (rawModule.mutations) {
+    this._rawModule.mutations = rawModule.mutations;
+  }
+  if (rawModule.getters) {
+    this._rawModule.getters = rawModule.getters;
+  }
+};
+
+Module.prototype.forEachChild = function forEachChild (fn) {
+  forEachValue(this._children, fn);
+};
+
+Module.prototype.forEachGetter = function forEachGetter (fn) {
+  if (this._rawModule.getters) {
+    forEachValue(this._rawModule.getters, fn);
+  }
+};
+
+Module.prototype.forEachAction = function forEachAction (fn) {
+  if (this._rawModule.actions) {
+    forEachValue(this._rawModule.actions, fn);
+  }
+};
+
+Module.prototype.forEachMutation = function forEachMutation (fn) {
+  if (this._rawModule.mutations) {
+    forEachValue(this._rawModule.mutations, fn);
+  }
+};
+
+Object.defineProperties( Module.prototype, prototypeAccessors );
+
+var ModuleCollection = function ModuleCollection (rawRootModule) {
+  // register root module (Vuex.Store options)
+  this.register([], rawRootModule, false);
+};
+
+ModuleCollection.prototype.get = function get (path) {
+  return path.reduce(function (module, key) {
+    return module.getChild(key)
+  }, this.root)
+};
+
+ModuleCollection.prototype.getNamespace = function getNamespace (path) {
+  var module = this.root;
+  return path.reduce(function (namespace, key) {
+    module = module.getChild(key);
+    return namespace + (module.namespaced ? key + '/' : '')
+  }, '')
+};
+
+ModuleCollection.prototype.update = function update$1 (rawRootModule) {
+  update([], this.root, rawRootModule);
+};
+
+ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
+    var this$1 = this;
+    if ( runtime === void 0 ) runtime = true;
+
+  if (true) {
+    assertRawModule(path, rawModule);
+  }
+
+  var newModule = new Module(rawModule, runtime);
+  if (path.length === 0) {
+    this.root = newModule;
+  } else {
+    var parent = this.get(path.slice(0, -1));
+    parent.addChild(path[path.length - 1], newModule);
+  }
+
+  // register nested modules
+  if (rawModule.modules) {
+    forEachValue(rawModule.modules, function (rawChildModule, key) {
+      this$1.register(path.concat(key), rawChildModule, runtime);
+    });
+  }
+};
+
+ModuleCollection.prototype.unregister = function unregister (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+  if (!parent.getChild(key).runtime) { return }
+
+  parent.removeChild(key);
+};
+
+function update (path, targetModule, newModule) {
+  if (true) {
+    assertRawModule(path, newModule);
+  }
+
+  // update target module
+  targetModule.update(newModule);
+
+  // update nested modules
+  if (newModule.modules) {
+    for (var key in newModule.modules) {
+      if (!targetModule.getChild(key)) {
+        if (true) {
+          console.warn(
+            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+            'manual reload is needed'
+          );
+        }
+        return
+      }
+      update(
+        path.concat(key),
+        targetModule.getChild(key),
+        newModule.modules[key]
+      );
+    }
+  }
+}
+
+var functionAssert = {
+  assert: function (value) { return typeof value === 'function'; },
+  expected: 'function'
+};
+
+var objectAssert = {
+  assert: function (value) { return typeof value === 'function' ||
+    (typeof value === 'object' && typeof value.handler === 'function'); },
+  expected: 'function or object with "handler" function'
+};
+
+var assertTypes = {
+  getters: functionAssert,
+  mutations: functionAssert,
+  actions: objectAssert
+};
+
+function assertRawModule (path, rawModule) {
+  Object.keys(assertTypes).forEach(function (key) {
+    if (!rawModule[key]) { return }
+
+    var assertOptions = assertTypes[key];
+
+    forEachValue(rawModule[key], function (value, type) {
+      assert(
+        assertOptions.assert(value),
+        makeAssertionMessage(path, key, type, value, assertOptions.expected)
+      );
+    });
+  });
+}
+
+function makeAssertionMessage (path, key, type, value, expected) {
+  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
+  if (path.length > 0) {
+    buf += " in module \"" + (path.join('.')) + "\"";
+  }
+  buf += " is " + (JSON.stringify(value)) + ".";
+  return buf
+}
+
+var Vue; // bind on install
+
+var Store = function Store (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  // Auto install if it is not done yet and `window` has `Vue`.
+  // To allow users to avoid auto-installation in some cases,
+  // this code should be placed here. See #731
+  if (!Vue && typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
+
+  if (true) {
+    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
+    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
+    assert(this instanceof Store, "store must be called with the new operator.");
+  }
+
+  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
+  var strict = options.strict; if ( strict === void 0 ) strict = false;
+
+  // store internal state
+  this._committing = false;
+  this._actions = Object.create(null);
+  this._actionSubscribers = [];
+  this._mutations = Object.create(null);
+  this._wrappedGetters = Object.create(null);
+  this._modules = new ModuleCollection(options);
+  this._modulesNamespaceMap = Object.create(null);
+  this._subscribers = [];
+  this._watcherVM = new Vue();
+  this._makeLocalGettersCache = Object.create(null);
+
+  // bind commit and dispatch to self
+  var store = this;
+  var ref = this;
+  var dispatch = ref.dispatch;
+  var commit = ref.commit;
+  this.dispatch = function boundDispatch (type, payload) {
+    return dispatch.call(store, type, payload)
+  };
+  this.commit = function boundCommit (type, payload, options) {
+    return commit.call(store, type, payload, options)
+  };
+
+  // strict mode
+  this.strict = strict;
+
+  var state = this._modules.root.state;
+
+  // init root module.
+  // this also recursively registers all sub-modules
+  // and collects all module getters inside this._wrappedGetters
+  installModule(this, state, [], this._modules.root);
+
+  // initialize the store vm, which is responsible for the reactivity
+  // (also registers _wrappedGetters as computed properties)
+  resetStoreVM(this, state);
+
+  // apply plugins
+  plugins.forEach(function (plugin) { return plugin(this$1); });
+
+  var useDevtools = options.devtools !== undefined ? options.devtools : Vue.config.devtools;
+  if (useDevtools) {
+    devtoolPlugin(this);
+  }
+};
+
+var prototypeAccessors$1 = { state: { configurable: true } };
+
+prototypeAccessors$1.state.get = function () {
+  return this._vm._data.$$state
+};
+
+prototypeAccessors$1.state.set = function (v) {
+  if (true) {
+    assert(false, "use store.replaceState() to explicit replace store state.");
+  }
+};
+
+Store.prototype.commit = function commit (_type, _payload, _options) {
+    var this$1 = this;
+
+  // check object-style commit
+  var ref = unifyObjectStyle(_type, _payload, _options);
+    var type = ref.type;
+    var payload = ref.payload;
+    var options = ref.options;
+
+  var mutation = { type: type, payload: payload };
+  var entry = this._mutations[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown mutation type: " + type));
+    }
+    return
+  }
+  this._withCommit(function () {
+    entry.forEach(function commitIterator (handler) {
+      handler(payload);
+    });
+  });
+  this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); });
+
+  if (
+    "development" !== 'production' &&
+    options && options.silent
+  ) {
+    console.warn(
+      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
+      'Use the filter functionality in the vue-devtools'
+    );
+  }
+};
+
+Store.prototype.dispatch = function dispatch (_type, _payload) {
+    var this$1 = this;
+
+  // check object-style dispatch
+  var ref = unifyObjectStyle(_type, _payload);
+    var type = ref.type;
+    var payload = ref.payload;
+
+  var action = { type: type, payload: payload };
+  var entry = this._actions[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown action type: " + type));
+    }
+    return
+  }
+
+  try {
+    this._actionSubscribers
+      .filter(function (sub) { return sub.before; })
+      .forEach(function (sub) { return sub.before(action, this$1.state); });
+  } catch (e) {
+    if (true) {
+      console.warn("[vuex] error in before action subscribers: ");
+      console.error(e);
+    }
+  }
+
+  var result = entry.length > 1
+    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
+    : entry[0](payload);
+
+  return result.then(function (res) {
+    try {
+      this$1._actionSubscribers
+        .filter(function (sub) { return sub.after; })
+        .forEach(function (sub) { return sub.after(action, this$1.state); });
+    } catch (e) {
+      if (true) {
+        console.warn("[vuex] error in after action subscribers: ");
+        console.error(e);
+      }
+    }
+    return res
+  })
+};
+
+Store.prototype.subscribe = function subscribe (fn) {
+  return genericSubscribe(fn, this._subscribers)
+};
+
+Store.prototype.subscribeAction = function subscribeAction (fn) {
+  var subs = typeof fn === 'function' ? { before: fn } : fn;
+  return genericSubscribe(subs, this._actionSubscribers)
+};
+
+Store.prototype.watch = function watch (getter, cb, options) {
+    var this$1 = this;
+
+  if (true) {
+    assert(typeof getter === 'function', "store.watch only accepts a function.");
+  }
+  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
+};
+
+Store.prototype.replaceState = function replaceState (state) {
+    var this$1 = this;
+
+  this._withCommit(function () {
+    this$1._vm._data.$$state = state;
+  });
+};
+
+Store.prototype.registerModule = function registerModule (path, rawModule, options) {
+    if ( options === void 0 ) options = {};
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+    assert(path.length > 0, 'cannot register the root module by using registerModule.');
+  }
+
+  this._modules.register(path, rawModule);
+  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
+  // reset store to update getters...
+  resetStoreVM(this, this.state);
+};
+
+Store.prototype.unregisterModule = function unregisterModule (path) {
+    var this$1 = this;
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+  }
+
+  this._modules.unregister(path);
+  this._withCommit(function () {
+    var parentState = getNestedState(this$1.state, path.slice(0, -1));
+    Vue.delete(parentState, path[path.length - 1]);
+  });
+  resetStore(this);
+};
+
+Store.prototype.hotUpdate = function hotUpdate (newOptions) {
+  this._modules.update(newOptions);
+  resetStore(this, true);
+};
+
+Store.prototype._withCommit = function _withCommit (fn) {
+  var committing = this._committing;
+  this._committing = true;
+  fn();
+  this._committing = committing;
+};
+
+Object.defineProperties( Store.prototype, prototypeAccessors$1 );
+
+function genericSubscribe (fn, subs) {
+  if (subs.indexOf(fn) < 0) {
+    subs.push(fn);
+  }
+  return function () {
+    var i = subs.indexOf(fn);
+    if (i > -1) {
+      subs.splice(i, 1);
+    }
+  }
+}
+
+function resetStore (store, hot) {
+  store._actions = Object.create(null);
+  store._mutations = Object.create(null);
+  store._wrappedGetters = Object.create(null);
+  store._modulesNamespaceMap = Object.create(null);
+  var state = store.state;
+  // init all modules
+  installModule(store, state, [], store._modules.root, true);
+  // reset vm
+  resetStoreVM(store, state, hot);
+}
+
+function resetStoreVM (store, state, hot) {
+  var oldVm = store._vm;
+
+  // bind store public getters
+  store.getters = {};
+  // reset local getters cache
+  store._makeLocalGettersCache = Object.create(null);
+  var wrappedGetters = store._wrappedGetters;
+  var computed = {};
+  forEachValue(wrappedGetters, function (fn, key) {
+    // use computed to leverage its lazy-caching mechanism
+    // direct inline function use will lead to closure preserving oldVm.
+    // using partial to return function with only arguments preserved in closure environment.
+    computed[key] = partial(fn, store);
+    Object.defineProperty(store.getters, key, {
+      get: function () { return store._vm[key]; },
+      enumerable: true // for local getters
+    });
+  });
+
+  // use a Vue instance to store the state tree
+  // suppress warnings just in case the user has added
+  // some funky global mixins
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed: computed
+  });
+  Vue.config.silent = silent;
+
+  // enable strict mode for new vm
+  if (store.strict) {
+    enableStrictMode(store);
+  }
+
+  if (oldVm) {
+    if (hot) {
+      // dispatch changes in all subscribed watchers
+      // to force getter re-evaluation for hot reloading.
+      store._withCommit(function () {
+        oldVm._data.$$state = null;
+      });
+    }
+    Vue.nextTick(function () { return oldVm.$destroy(); });
+  }
+}
+
+function installModule (store, rootState, path, module, hot) {
+  var isRoot = !path.length;
+  var namespace = store._modules.getNamespace(path);
+
+  // register in namespace map
+  if (module.namespaced) {
+    if (store._modulesNamespaceMap[namespace] && "development" !== 'production') {
+      console.error(("[vuex] duplicate namespace " + namespace + " for the namespaced module " + (path.join('/'))));
+    }
+    store._modulesNamespaceMap[namespace] = module;
+  }
+
+  // set state
+  if (!isRoot && !hot) {
+    var parentState = getNestedState(rootState, path.slice(0, -1));
+    var moduleName = path[path.length - 1];
+    store._withCommit(function () {
+      if (true) {
+        if (moduleName in parentState) {
+          console.warn(
+            ("[vuex] state field \"" + moduleName + "\" was overridden by a module with the same name at \"" + (path.join('.')) + "\"")
+          );
+        }
+      }
+      Vue.set(parentState, moduleName, module.state);
+    });
+  }
+
+  var local = module.context = makeLocalContext(store, namespace, path);
+
+  module.forEachMutation(function (mutation, key) {
+    var namespacedType = namespace + key;
+    registerMutation(store, namespacedType, mutation, local);
+  });
+
+  module.forEachAction(function (action, key) {
+    var type = action.root ? key : namespace + key;
+    var handler = action.handler || action;
+    registerAction(store, type, handler, local);
+  });
+
+  module.forEachGetter(function (getter, key) {
+    var namespacedType = namespace + key;
+    registerGetter(store, namespacedType, getter, local);
+  });
+
+  module.forEachChild(function (child, key) {
+    installModule(store, rootState, path.concat(key), child, hot);
+  });
+}
+
+/**
+ * make localized dispatch, commit, getters and state
+ * if there is no namespace, just use root ones
+ */
+function makeLocalContext (store, namespace, path) {
+  var noNamespace = namespace === '';
+
+  var local = {
+    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ("development" !== 'production' && !store._actions[type]) {
+          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      return store.dispatch(type, payload)
+    },
+
+    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ("development" !== 'production' && !store._mutations[type]) {
+          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      store.commit(type, payload, options);
+    }
+  };
+
+  // getters and state object must be gotten lazily
+  // because they will be changed by vm update
+  Object.defineProperties(local, {
+    getters: {
+      get: noNamespace
+        ? function () { return store.getters; }
+        : function () { return makeLocalGetters(store, namespace); }
+    },
+    state: {
+      get: function () { return getNestedState(store.state, path); }
+    }
+  });
+
+  return local
+}
+
+function makeLocalGetters (store, namespace) {
+  if (!store._makeLocalGettersCache[namespace]) {
+    var gettersProxy = {};
+    var splitPos = namespace.length;
+    Object.keys(store.getters).forEach(function (type) {
+      // skip if the target getter is not match this namespace
+      if (type.slice(0, splitPos) !== namespace) { return }
+
+      // extract local getter type
+      var localType = type.slice(splitPos);
+
+      // Add a port to the getters proxy.
+      // Define as getter property because
+      // we do not want to evaluate the getters in this time.
+      Object.defineProperty(gettersProxy, localType, {
+        get: function () { return store.getters[type]; },
+        enumerable: true
+      });
+    });
+    store._makeLocalGettersCache[namespace] = gettersProxy;
+  }
+
+  return store._makeLocalGettersCache[namespace]
+}
+
+function registerMutation (store, type, handler, local) {
+  var entry = store._mutations[type] || (store._mutations[type] = []);
+  entry.push(function wrappedMutationHandler (payload) {
+    handler.call(store, local.state, payload);
+  });
+}
+
+function registerAction (store, type, handler, local) {
+  var entry = store._actions[type] || (store._actions[type] = []);
+  entry.push(function wrappedActionHandler (payload) {
+    var res = handler.call(store, {
+      dispatch: local.dispatch,
+      commit: local.commit,
+      getters: local.getters,
+      state: local.state,
+      rootGetters: store.getters,
+      rootState: store.state
+    }, payload);
+    if (!isPromise(res)) {
+      res = Promise.resolve(res);
+    }
+    if (store._devtoolHook) {
+      return res.catch(function (err) {
+        store._devtoolHook.emit('vuex:error', err);
+        throw err
+      })
+    } else {
+      return res
+    }
+  });
+}
+
+function registerGetter (store, type, rawGetter, local) {
+  if (store._wrappedGetters[type]) {
+    if (true) {
+      console.error(("[vuex] duplicate getter key: " + type));
+    }
+    return
+  }
+  store._wrappedGetters[type] = function wrappedGetter (store) {
+    return rawGetter(
+      local.state, // local state
+      local.getters, // local getters
+      store.state, // root state
+      store.getters // root getters
+    )
+  };
+}
+
+function enableStrictMode (store) {
+  store._vm.$watch(function () { return this._data.$$state }, function () {
+    if (true) {
+      assert(store._committing, "do not mutate vuex store state outside mutation handlers.");
+    }
+  }, { deep: true, sync: true });
+}
+
+function getNestedState (state, path) {
+  return path.length
+    ? path.reduce(function (state, key) { return state[key]; }, state)
+    : state
+}
+
+function unifyObjectStyle (type, payload, options) {
+  if (isObject(type) && type.type) {
+    options = payload;
+    payload = type;
+    type = type.type;
+  }
+
+  if (true) {
+    assert(typeof type === 'string', ("expects string as the type, but found " + (typeof type) + "."));
+  }
+
+  return { type: type, payload: payload, options: options }
+}
+
+function install (_Vue) {
+  if (Vue && _Vue === Vue) {
+    if (true) {
+      console.error(
+        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
+      );
+    }
+    return
+  }
+  Vue = _Vue;
+  applyMixin(Vue);
+}
+
+/**
+ * Reduce the code which written in Vue.js for getting the state.
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} states # Object's item can be a function which accept state and getters for param, you can do something for state and getters in it.
+ * @param {Object}
+ */
+var mapState = normalizeNamespace(function (namespace, states) {
+  var res = {};
+  if ("development" !== 'production' && !isValidMap(states)) {
+    console.error('[vuex] mapState: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(states).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedState () {
+      var state = this.$store.state;
+      var getters = this.$store.getters;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
+        if (!module) {
+          return
+        }
+        state = module.context.state;
+        getters = module.context.getters;
+      }
+      return typeof val === 'function'
+        ? val.call(this, state, getters)
+        : state[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for committing the mutation
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} mutations # Object's item can be a function which accept `commit` function as the first param, it can accept anthor params. You can commit mutation and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
+ */
+var mapMutations = normalizeNamespace(function (namespace, mutations) {
+  var res = {};
+  if ("development" !== 'production' && !isValidMap(mutations)) {
+    console.error('[vuex] mapMutations: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(mutations).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedMutation () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      // Get the commit method from store
+      var commit = this.$store.commit;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
+        if (!module) {
+          return
+        }
+        commit = module.context.commit;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [commit].concat(args))
+        : commit.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for getting the getters
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} getters
+ * @return {Object}
+ */
+var mapGetters = normalizeNamespace(function (namespace, getters) {
+  var res = {};
+  if ("development" !== 'production' && !isValidMap(getters)) {
+    console.error('[vuex] mapGetters: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(getters).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    // The namespace has been mutated by normalizeNamespace
+    val = namespace + val;
+    res[key] = function mappedGetter () {
+      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
+        return
+      }
+      if ("development" !== 'production' && !(val in this.$store.getters)) {
+        console.error(("[vuex] unknown getter: " + val));
+        return
+      }
+      return this.$store.getters[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for dispatch the action
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} actions # Object's item can be a function which accept `dispatch` function as the first param, it can accept anthor params. You can dispatch action and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
+ */
+var mapActions = normalizeNamespace(function (namespace, actions) {
+  var res = {};
+  if ("development" !== 'production' && !isValidMap(actions)) {
+    console.error('[vuex] mapActions: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(actions).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedAction () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      // get dispatch function from store
+      var dispatch = this.$store.dispatch;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
+        if (!module) {
+          return
+        }
+        dispatch = module.context.dispatch;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [dispatch].concat(args))
+        : dispatch.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+/**
+ * Rebinding namespace param for mapXXX function in special scoped, and return them by simple object
+ * @param {String} namespace
+ * @return {Object}
+ */
+var createNamespacedHelpers = function (namespace) { return ({
+  mapState: mapState.bind(null, namespace),
+  mapGetters: mapGetters.bind(null, namespace),
+  mapMutations: mapMutations.bind(null, namespace),
+  mapActions: mapActions.bind(null, namespace)
+}); };
+
+/**
+ * Normalize the map
+ * normalizeMap([1, 2, 3]) => [ { key: 1, val: 1 }, { key: 2, val: 2 }, { key: 3, val: 3 } ]
+ * normalizeMap({a: 1, b: 2, c: 3}) => [ { key: 'a', val: 1 }, { key: 'b', val: 2 }, { key: 'c', val: 3 } ]
+ * @param {Array|Object} map
+ * @return {Object}
+ */
+function normalizeMap (map) {
+  if (!isValidMap(map)) {
+    return []
+  }
+  return Array.isArray(map)
+    ? map.map(function (key) { return ({ key: key, val: key }); })
+    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+}
+
+/**
+ * Validate whether given map is valid or not
+ * @param {*} map
+ * @return {Boolean}
+ */
+function isValidMap (map) {
+  return Array.isArray(map) || isObject(map)
+}
+
+/**
+ * Return a function expect two param contains namespace and map. it will normalize the namespace and then the param's function will handle the new namespace and the map.
+ * @param {Function} fn
+ * @return {Function}
+ */
+function normalizeNamespace (fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace;
+      namespace = '';
+    } else if (namespace.charAt(namespace.length - 1) !== '/') {
+      namespace += '/';
+    }
+    return fn(namespace, map)
+  }
+}
+
+/**
+ * Search a special module from store by namespace. if module not exist, print error message.
+ * @param {Object} store
+ * @param {String} helper
+ * @param {String} namespace
+ * @return {Object}
+ */
+function getModuleByNamespace (store, helper, namespace) {
+  var module = store._modulesNamespaceMap[namespace];
+  if ("development" !== 'production' && !module) {
+    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
+  }
+  return module
+}
+
+var index_esm = {
+  Store: Store,
+  install: install,
+  version: '3.1.2',
+  mapState: mapState,
+  mapMutations: mapMutations,
+  mapGetters: mapGetters,
+  mapActions: mapActions,
+  createNamespacedHelpers: createNamespacedHelpers
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (index_esm);
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+/* 69 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var state = {
+    items: []
+
+    // getters
+};var getters = {
+    cartProducts: function cartProducts(state, getters, rootState) {
+        return state.items;
+    },
+    cartTotalCount: function cartTotalCount(state, getters) {
+        var summ = 0;
+        state.items.forEach(function (item) {
+            summ += item.quantity;
+        });
+        return summ;
+    },
+    cartTotalPrice: function cartTotalPrice(state, getters) {
+        var summ = 0;
+        state.items.forEach(function (item) {
+            summ += item.product.price * item.quantity;
+        });
+        return summ;
+    }
+
+    // actions
+};var actions = {
+    getProductList: function getProductList(_ref) {
+        var state = _ref.state,
+            commit = _ref.commit;
+
+        return state.items;
+    },
+    addProductToCart: function addProductToCart(_ref2, product) {
+        var state = _ref2.state,
+            commit = _ref2.commit;
+
+        commit('pushProductToCart', product);
+    },
+    incQuantity: function incQuantity(_ref3, id) {
+        var state = _ref3.state,
+            commit = _ref3.commit;
+
+        commit('incrementItemQuantity', id);
+    },
+    decQuantity: function decQuantity(_ref4, id) {
+        var state = _ref4.state,
+            commit = _ref4.commit;
+
+        commit('decrementItemQuantity', id);
+    },
+    removeProduct: function removeProduct(_ref5, id) {
+        var state = _ref5.state,
+            commit = _ref5.commit;
+
+        commit('removeItem', id);
+    },
+    clearCart: function clearCart(_ref6) {
+        var state = _ref6.state,
+            commit = _ref6.commit;
+
+        commit('clearAllItems');
+    }
+};
+
+// mutations
+var mutations = {
+    pushProductToCart: function pushProductToCart(state, product) {
+        var cartItem = state.items.find(function (item) {
+            return item.product.id === product.id;
+        });
+        if (!cartItem) state.items.push({
+            product: product,
+            quantity: 1
+        });else cartItem.quantity++;
+    },
+    incrementItemQuantity: function incrementItemQuantity(state, id) {
+        var cartItem = state.items.find(function (item) {
+            return item.product.id === id;
+        });
+        cartItem.quantity++;
+    },
+    decrementItemQuantity: function decrementItemQuantity(state, id) {
+        var cartItem = state.items.find(function (item) {
+            return item.product.id === id;
+        });
+        if (cartItem.quantity > 1) cartItem.quantity--;
+    },
+    removeItem: function removeItem(state, id) {
+        var tmp = state.items.filter(function (item) {
+            return item.product.id !== id;
+        });
+        state.items = tmp;
+        //commit('setCartItems',tmp)
+    },
+    clearAllItems: function clearAllItems(state) {
+        state.items = [];
+        //commit('setCartItems',tmp)
+    },
+    setCartItems: function setCartItems(state, _ref7) {
+        var items = _ref7.items;
+
+        state.items = items;
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    state: state,
+    getters: getters,
+    actions: actions,
+    mutations: mutations
+});
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(71)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(73)
+/* template */
+var __vue_template__ = __webpack_require__(74)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Cart.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b7f93bea", Component.options)
+  } else {
+    hotAPI.reload("data-v-b7f93bea", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(72);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(12)("2d528814", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b7f93bea\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Cart.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b7f93bea\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Cart.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(11)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.chopcafe_custom_table {\n  min-width: 1000px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_the_mask__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_the_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_the_mask__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            phone: '',
+            name: '',
+            message: '',
+            deliveryPrice: 50
+        };
+    },
+    mounted: function mounted() {
+        this.$store.dispatch("getProductList");
+    },
+    activated: function activated() {
+        this.$store.dispatch("getProductList");
+    },
+
+    computed: {
+        cartProducts: function cartProducts() {
+            return this.$store.getters.cartProducts;
+        },
+        cartTotalCount: function cartTotalCount() {
+            return this.$store.getters.cartTotalCount;
+        },
+        cartTotalPrice: function cartTotalPrice() {
+            return this.$store.getters.cartTotalPrice;
+        }
+    },
+
+    methods: {
+        sendRequest: function sendRequest(e) {
+            var _this = this;
+
+            e.preventDefault();
+
+            var products = '';
+
+            this.cartProducts.forEach(function (item) {
+                products += item.product.title + "_#" + item.product.id + "_ x  " + item.quantity + "штук => " + item.quantity * item.product.price + "₽\n";
+            });
+
+            var message = '*\u0417\u0430\u043A\u0430\u0437 \u0441 \u0441\u0430\u0439\u0442\u0430:*\n' + products + '\n_' + this.message + '_\n\u0421\u0443\u043C\u043C\u0430\u0440\u043D\u043E: ' + (this.cartTotalPrice + this.deliveryPrice) + ' \u20BD';
+            axios.post('api/send-request', {
+                name: this.name,
+                phone: this.phone,
+                message: message
+            }).then(function (response) {
+                _this.sendMessage("Заказ успешно отправлен");
+                _this.clearCart();
+            });
+        },
+        sendMessage: function sendMessage(message) {
+            this.$notify({
+                group: 'messages',
+                type: 'success',
+                title: 'Отправка заказа ISUSHI',
+                text: message
+            });
+        },
+        increment: function increment(id) {
+            this.$store.dispatch("incQuantity", id);
+        },
+        decrement: function decrement(id) {
+            this.$store.dispatch("decQuantity", id);
+        },
+        remove: function remove(id) {
+            this.$store.dispatch("removeProduct", id);
+        },
+        clearCart: function clearCart() {
+            this.$store.dispatch("clearCart");
+        }
+    },
+    directives: { mask: __WEBPACK_IMPORTED_MODULE_0_vue_the_mask__["mask"] }
+
+});
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "cart" }, [
+    _vm.cartProducts.length > 0
+      ? _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-lg-12" }, [
+              _c("div", { staticClass: "chopcafe_product_table" }, [
+                _c(
+                  "table",
+                  { staticClass: "chopcafe_table chopcafe_custom_table table" },
+                  [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.cartProducts, function(item) {
+                        return _c("tr", [
+                          _c("td", { staticClass: "thumbnail" }, [
+                            _c("img", {
+                              staticClass: "img-fluid",
+                              attrs: { src: item.product.image_url, alt: "" }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "product_title" }, [
+                            _c("a", { attrs: { href: "shop_details.html" } }, [
+                              _vm._v(_vm._s(item.product.title))
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "product_price" }, [
+                            _c("span", [
+                              _vm._v(
+                                _vm._s(_vm._f("currency")(item.product.price))
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "product_quantity" }, [
+                            _c(
+                              "div",
+                              { staticClass: "row justify-content-center" },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "col-sm-2 col-lg-2" },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        attrs: {
+                                          type: "button",
+                                          disabled: item.quantity === 1
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.decrement(
+                                              item.product.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "-\n                                        "
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "col-sm-4 col-lg-4" },
+                                  [
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "number",
+                                        step: "1",
+                                        min: "0"
+                                      },
+                                      domProps: { value: item.quantity }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "col-sm-2 col-lg-2" },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        attrs: { type: "button" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.increment(
+                                              item.product.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "+\n                                        "
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "total" }, [
+                            _c("span", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm._f("currency")(
+                                    item.product.price * item.quantity
+                                  )
+                                )
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "product_delete" }, [
+                            _c(
+                              "a",
+                              {
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.remove(item.product.id)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fas fa-trash-alt" })]
+                            )
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  ]
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row mt-2" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "billing_order_confirm" }, [
+                _c("table", { staticClass: "table chopcafe_table" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("tbody", [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "price" }, [
+                        _c("span", [_vm._v(_vm._s(_vm.cartTotalCount))])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "shipping_info" }, [
+                        _c("span", [
+                          _vm._v(_vm._s(_vm._f("currency")(_vm.deliveryPrice)))
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _vm._m(5),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "price" }, [
+                        _c("span", [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("currency")(
+                                _vm.cartTotalPrice + _vm.deliveryPrice
+                              )
+                            )
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("form", { on: { submit: _vm.sendRequest } }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-lg-12" }, [
+                    _c("div", { staticClass: "form_group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.name,
+                            expression: "name"
+                          }
+                        ],
+                        staticClass: "form_control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Ваше имя",
+                          name: "name",
+                          required: "required"
+                        },
+                        domProps: { value: _vm.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.name = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-lg-12 mt-2" }, [
+                    _c("div", { staticClass: "form_group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.phone,
+                            expression: "phone"
+                          },
+                          {
+                            name: "mask",
+                            rawName: "v-mask",
+                            value: ["+38 (###) ###-##-##"],
+                            expression: "['+38 (###) ###-##-##']"
+                          }
+                        ],
+                        staticClass: "form_control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Ваш номер телефона",
+                          name: "phone",
+                          required: "required",
+                          maxlength: "19"
+                        },
+                        domProps: { value: _vm.phone },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.phone = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-lg-12 mt-2" }, [
+                    _c("div", { staticClass: "form_group" }, [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.message,
+                            expression: "message"
+                          }
+                        ],
+                        staticClass: "form_control",
+                        staticStyle: { height: "130px" },
+                        attrs: {
+                          placeholder: "Сообщение для нас",
+                          name: "message"
+                        },
+                        domProps: { value: _vm.message },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.message = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(6)
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "chopcafe_update_cart" }, [
+            _c("div", { staticClass: "row mt-2 justify-content-lg-start" }, [
+              _c("div", { staticClass: "col-lg-4" }, [
+                _c("div", { staticClass: "update_cart" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "chopcafe_btn clear_cart_btn",
+                      attrs: { href: "#" },
+                      on: { click: _vm.clearCart }
+                    },
+                    [
+                      _c("i", { staticClass: "fas fa-times-circle" }),
+                      _vm._v("Очистить\n                            корзину")
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.cartProducts.length === 0
+      ? _c("div", [
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c("img", {
+              attrs: { src: "../assets/images/empty_cart.png", alt: "" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("h1", { staticClass: "text-center" }, [_vm._v("Корзина пуста:(")])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Изображение")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Название продукта")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Цена")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Количество")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Всего")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Удалить")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "cart_title", attrs: { colspan: "2" } }, [
+          _vm._v("Итого")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { staticClass: "subtotal" }),
+      _vm._v(" "),
+      _c("td", { staticClass: "subtotal_price" }, [
+        _c("span", [_vm._v("Всего")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "product" }, [
+      _c("span", [_vm._v("Количество")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "shipping" }, [
+      _c("span", [_vm._v("Доставка")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "total_price" }, [
+      _c("span", [_vm._v("Цена заказа")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-12 mt-2" }, [
+      _c("div", { staticClass: "continue_shopping" }, [
+        _c("button", { staticClass: "chopcafe_btn continue_btn" }, [
+          _c("i", { staticClass: "fas fa-shopping-cart" }),
+          _vm._v("Оформить\n                                    покупку")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b7f93bea", module.exports)
+  }
+}
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var nativeMap = Array.prototype.map;
+var nativeIsArray = Array.isArray;
+var toString = Object.prototype.toString;
+function __isNull(obj) {
+    return typeof obj === 'undefined' || obj === null;
+}
+exports.__isNull = __isNull;
+;
+function __isString(obj) {
+    return !!(obj === '' || (obj && obj.charCodeAt && obj.substr));
+}
+exports.__isString = __isString;
+;
+function __isArray(obj) {
+    return nativeIsArray ? nativeIsArray(obj) : toString.call(obj) === '[object Array]';
+}
+exports.__isArray = __isArray;
+;
+function __isObject(obj) {
+    return obj && toString.call(obj) === '[object Object]';
+}
+exports.__isObject = __isObject;
+;
+function __defaults(object, defs) {
+    var key;
+    object = object || {};
+    defs = defs || {};
+    // Iterate over object non-prototype properties:
+    for (key in defs) {
+        // eslint-disable-next-line no-prototype-builtins
+        if (defs.hasOwnProperty(key)) {
+            // Replace values with defaults only if undefined (allow empty/zero values):
+            if (object[key] == null)
+                object[key] = defs[key];
+        }
+    }
+    return object;
+}
+exports.__defaults = __defaults;
+;
+function __map(obj, iterator, context) {
+    if (!obj)
+        return [];
+    // Use native .map method if it exists:
+    if (nativeMap && obj.map === nativeMap)
+        return obj.map(iterator, context);
+    var results = [];
+    var i = 0;
+    var j = 0;
+    // Fallback for native .map:
+    for (i = 0, j = obj.length; i < j; i++) {
+        results[i] = iterator.call(context, obj[i], i, obj);
+    }
+    return results;
+}
+exports.__map = __map;
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+exports.__esModule = true;
+var accounting_1 = __webpack_require__(77);
+var utils_1 = __webpack_require__(75);
+var VueCurrencyFilter = {
+    install: function (Vue, options) {
+        var defaultConfig = {
+            name: 'currency',
+            symbol: '',
+            thousandsSeparator: '.',
+            fractionCount: 0,
+            fractionSeparator: ',',
+            symbolPosition: 'front',
+            symbolSpacing: true
+        };
+        if (utils_1.__isNull(options))
+            options = {};
+        var globalConfigs = utils_1.__defaults(options, defaultConfig);
+        var name = globalConfigs.name, configs = __rest(globalConfigs, ["name"]);
+        var filterCurrency = function (value, _symbol, _thousandsSeparator, _fractionCount, _fractionSeparator, _symbolPosition, _symbolSpacing) {
+            var runtimeConfig = utils_1.__defaults({
+                symbol: _symbol,
+                thousandsSeparator: _thousandsSeparator,
+                fractionCount: _fractionCount,
+                fractionSeparator: _fractionSeparator,
+                symbolPosition: _symbolPosition,
+                symbolSpacing: _symbolSpacing
+            }, configs);
+            if (typeof _symbol === 'object') {
+                runtimeConfig = utils_1.__defaults(_symbol, configs);
+            }
+            var result = 0.0;
+            var isNegative = String(value).charAt(0) === '-';
+            if (isNegative) {
+                value = String(value).slice(1);
+            }
+            var amount = parseFloat(value);
+            if (!isNaN(amount)) {
+                result = amount;
+            }
+            var formatConfig = '%s%v';
+            if (runtimeConfig.symbolPosition === 'front') {
+                formatConfig = runtimeConfig.symbolSpacing ? '%s %v' : '%s%v';
+            }
+            else {
+                formatConfig = runtimeConfig.symbolSpacing ? '%v %s' : '%v%s';
+            }
+            if (runtimeConfig.fractionCount > 0) {
+                value = accounting_1.toFixed(value, runtimeConfig.fractionCount);
+            }
+            // @ts-ignore
+            result = accounting_1.formatMoney(value, {
+                format: formatConfig,
+                symbol: runtimeConfig.symbol,
+                precision: runtimeConfig.fractionCount,
+                thousand: runtimeConfig.thousandsSeparator,
+                decimal: runtimeConfig.fractionSeparator
+            });
+            if (isNegative) {
+                // @ts-ignore
+                result = '-' + result;
+            }
+            return result;
+        };
+        Vue.filter(name, filterCurrency);
+        Vue.prototype.$CurrencyFilter = {
+            setConfig: function (options) {
+                configs = utils_1.__defaults(options, defaultConfig);
+            },
+            getConfig: function () {
+                return configs;
+            }
+        };
+    }
+};
+exports["default"] = VueCurrencyFilter;
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var utils_1 = __webpack_require__(75);
+var lib = {
+    settings: {
+        currency: {
+            symbol: '$',
+            format: '%s%v',
+            decimal: '.',
+            thousand: ',',
+            precision: 2,
+            grouping: 3 // digit grouping (not implemented yet)
+        },
+        number: {
+            precision: 0,
+            grouping: 3,
+            thousand: ',',
+            decimal: '.'
+        }
+    }
+};
+/**
+ * Check and normalise the value of precision (must be positive integer)
+ */
+function checkPrecision(val, base) {
+    val = Math.round(Math.abs(val));
+    return isNaN(val) ? base : val;
+}
+exports.checkPrecision = checkPrecision;
+/**
+ * Parses a format string or object and returns format obj for use in rendering
+ *
+ * `format` is either a string with the default (positive) format, or object
+ * containing `pos` (required), `neg` and `zero` values (or a function returning
+ * either a string or object)
+ *
+ * Either string or format.pos must contain "%v" (value) to be valid
+ */
+function checkCurrencyFormat(format) {
+    var defaults = lib.settings.currency.format;
+    // Allow function as format parameter (should return string or object):
+    if (typeof format === 'function')
+        format = format();
+    // Format can be a string, in which case `value` ("%v") must be present:
+    if (utils_1.__isString(format) && format.match('%v')) {
+        // Create and return positive, negative and zero formats:
+        return {
+            pos: format,
+            neg: format.replace('-', '').replace('%v', '-%v'),
+            zero: format
+        };
+        // If no format, or object is missing valid positive value, use defaults:
+    }
+    else if (!format || !format.pos || !format.pos.match('%v')) {
+        // If defaults is a string, casts it to an object for faster checking next time:
+        return !utils_1.__isString(defaults)
+            ? defaults
+            // @ts-ignore
+            : (lib.settings.currency.format = {
+                pos: defaults,
+                neg: defaults.replace('%v', '-%v'),
+                zero: defaults
+            });
+    }
+    // Otherwise, assume format was fine:
+    return format;
+}
+exports.checkCurrencyFormat = checkCurrencyFormat;
+exports.unformat = function (value, decimal) {
+    // Recursively unformat arrays:
+    if (utils_1.__isArray(value)) {
+        return utils_1.__map(value, function (val) {
+            return exports.unformat(val, decimal);
+        });
+    }
+    // Fails silently (need decent errors):
+    value = value || 0;
+    // Return the value as-is if it's already a number:
+    if (typeof value === 'number')
+        return value;
+    // Default decimal point comes from settings, but could be set to eg. "," in opts:
+    decimal = decimal || lib.settings.number.decimal;
+    // Build regex to strip out everything except digits, decimal point and minus sign:
+    // @ts-ignore
+    var regex = new RegExp('[^0-9-' + decimal + ']', ['g']);
+    var unformatted = parseFloat(('' + value)
+        .replace(/\((?=\d+)(.*)\)/, '-$1') // replace bracketed values with negatives
+        .replace(regex, '') // strip out any cruft
+        .replace(decimal, '.') // make sure decimal point is standard
+    );
+    // This will fail silently which may cause trouble, let's wait and see:
+    return !isNaN(unformatted) ? unformatted : 0;
+};
+/**
+ * Implementation of toFixed() that treats floats more like decimals
+ *
+ * Fixes binary rounding issues (eg. (0.615).toFixed(2) === "0.61") that present
+ * problems for accounting- and finance-related software.
+ */
+exports.toFixed = function (value, precision) {
+    precision = checkPrecision(precision, lib.settings.number.precision);
+    var exponentialForm = Number(exports.unformat(value) + 'e' + precision);
+    var rounded = Math.round(exponentialForm);
+    var finalResult = Number(rounded + 'e-' + precision).toFixed(precision);
+    return finalResult;
+};
+/**
+ * Format a number, with comma-separated thousands and custom precision/decimal places
+ * Alias: `accounting.format()`
+ *
+ * Localise by overriding the precision and thousand / decimal separators
+ * 2nd parameter `precision` can be an object matching `settings.number`
+ */
+exports.formatNumber = function (number, precision, thousand, decimal) {
+    // Resursively format arrays:
+    if (utils_1.__isArray(number)) {
+        return utils_1.__map(number, function (val) {
+            return exports.formatNumber(val, precision, thousand, decimal);
+        });
+    }
+    // Clean up number:
+    number = exports.unformat(number);
+    // Build options object from second param (if object) or all params, extending defaults:
+    var opts = utils_1.__defaults(utils_1.__isObject(precision)
+        ? precision
+        : {
+            precision: precision,
+            thousand: thousand,
+            decimal: decimal
+        }, lib.settings.number);
+    // Clean up precision
+    var usePrecision = checkPrecision(opts.precision);
+    // Do some calc:
+    var negative = number < 0 ? '-' : '';
+    var base = parseInt(exports.toFixed(Math.abs(number || 0), usePrecision), 10) + '';
+    var mod = base.length > 3 ? base.length % 3 : 0;
+    // Format the number:
+    return (negative +
+        (mod ? base.substr(0, mod) + opts.thousand : '') +
+        base.substr(mod).replace(/(\d{3})(?=\d)/g, '$1' + opts.thousand) +
+        (usePrecision
+            ? opts.decimal + exports.toFixed(Math.abs(number), usePrecision).split('.')[1]
+            : ''));
+};
+/**
+ * Format a number into currency
+ *
+ * Usage: accounting.formatMoney(number, symbol, precision, thousandsSep, decimalSep, format)
+ * defaults: (0, "$", 2, ",", ".", "%s%v")
+ *
+ * Localise by overriding the symbol, precision, thousand / decimal separators and format
+ * Second param can be an object matching `settings.currency` which is the easiest way.
+ *
+ * To do: tidy up the parameters
+ */
+exports.formatMoney = function (number, symbol, precision, thousand, decimal, format) {
+    // Resursively format arrays:
+    if (utils_1.__isArray(number)) {
+        return utils_1.__map(number, function (val) {
+            return exports.formatMoney(val, symbol, precision, thousand, decimal, format);
+        });
+    }
+    // Clean up number:
+    number = exports.unformat(number);
+    // Build options object from second param (if object) or all params, extending defaults:
+    var opts = utils_1.__defaults(utils_1.__isObject(symbol)
+        ? symbol
+        : {
+            symbol: symbol,
+            precision: precision,
+            thousand: thousand,
+            decimal: decimal,
+            format: format
+        }, lib.settings.currency);
+    // Check format (returns object with pos, neg and zero):
+    var formats = checkCurrencyFormat(opts.format);
+    // Choose which format to use for this value:
+    var useFormat = number > 0 ? formats.pos : number < 0 ? formats.neg : formats.zero;
+    // Return with currency symbol added:
+    return useFormat
+        .replace('%s', opts.symbol)
+        .replace('%v', exports.formatNumber(Math.abs(number), checkPrecision(opts.precision), opts.thousand, opts.decimal));
+};
+
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(79)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(81)
+/* template */
+var __vue_template__ = __webpack_require__(82)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/CartCountIndex.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-369c8c24", Component.options)
+  } else {
+    hotAPI.reload("data-v-369c8c24", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(80);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(12)("464d90c6", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-369c8c24\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CartCountIndex.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-369c8c24\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CartCountIndex.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(11)(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        this.$store.dispatch("getProductList");
+    },
+    activated: function activated() {
+        this.$store.dispatch("getProductList");
+    },
+
+    computed: {
+        cartProducts: function cartProducts() {
+            return this.$store.getters.cartProducts;
+        }
+    }
+
+});
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n    " + _vm._s(_vm.cartProducts.length) + "\n")])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-369c8c24", module.exports)
+  }
+}
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.VueTheMask=t():e.VueTheMask=t()})(this,function(){return function(e){function t(r){if(n[r])return n[r].exports;var a=n[r]={i:r,l:!1,exports:{}};return e[r].call(a.exports,a,a.exports,t),a.l=!0,a.exports}var n={};return t.m=e,t.c=n,t.i=function(e){return e},t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p=".",t(t.s=10)}([function(e,t){e.exports={"#":{pattern:/\d/},X:{pattern:/[0-9a-zA-Z]/},S:{pattern:/[a-zA-Z]/},A:{pattern:/[a-zA-Z]/,transform:function(e){return e.toLocaleUpperCase()}},a:{pattern:/[a-zA-Z]/,transform:function(e){return e.toLocaleLowerCase()}},"!":{escape:!0}}},function(e,t,n){"use strict";function r(e){var t=document.createEvent("Event");return t.initEvent(e,!0,!0),t}var a=n(2),o=n(0),i=n.n(o);t.a=function(e,t){var o=t.value;if((Array.isArray(o)||"string"==typeof o)&&(o={mask:o,tokens:i.a}),"INPUT"!==e.tagName.toLocaleUpperCase()){var u=e.getElementsByTagName("input");if(1!==u.length)throw new Error("v-mask directive requires 1 input, found "+u.length);e=u[0]}e.oninput=function(t){if(t.isTrusted){var i=e.selectionEnd,u=e.value[i-1];for(e.value=n.i(a.a)(e.value,o.mask,!0,o.tokens);i<e.value.length&&e.value.charAt(i-1)!==u;)i++;e===document.activeElement&&(e.setSelectionRange(i,i),setTimeout(function(){e.setSelectionRange(i,i)},0)),e.dispatchEvent(r("input"))}};var s=n.i(a.a)(e.value,o.mask,!0,o.tokens);s!==e.value&&(e.value=s,e.dispatchEvent(r("input")))}},function(e,t,n){"use strict";var r=n(6),a=n(5);t.a=function(e,t){var o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],i=arguments[3];return Array.isArray(t)?n.i(a.a)(r.a,t,i)(e,t,o,i):n.i(r.a)(e,t,o,i)}},function(e,t,n){"use strict";function r(e){e.component(s.a.name,s.a),e.directive("mask",i.a)}Object.defineProperty(t,"__esModule",{value:!0});var a=n(0),o=n.n(a),i=n(1),u=n(7),s=n.n(u);n.d(t,"TheMask",function(){return s.a}),n.d(t,"mask",function(){return i.a}),n.d(t,"tokens",function(){return o.a}),n.d(t,"version",function(){return c});var c="0.11.1";t.default=r,"undefined"!=typeof window&&window.Vue&&window.Vue.use(r)},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(1),a=n(0),o=n.n(a),i=n(2);t.default={name:"TheMask",props:{value:[String,Number],mask:{type:[String,Array],required:!0},masked:{type:Boolean,default:!1},tokens:{type:Object,default:function(){return o.a}}},directives:{mask:r.a},data:function(){return{lastValue:null,display:this.value}},watch:{value:function(e){e!==this.lastValue&&(this.display=e)},masked:function(){this.refresh(this.display)}},computed:{config:function(){return{mask:this.mask,tokens:this.tokens,masked:this.masked}}},methods:{onInput:function(e){e.isTrusted||this.refresh(e.target.value)},refresh:function(e){this.display=e;var e=n.i(i.a)(e,this.mask,this.masked,this.tokens);e!==this.lastValue&&(this.lastValue=e,this.$emit("input",e))}}}},function(e,t,n){"use strict";function r(e,t,n){return t=t.sort(function(e,t){return e.length-t.length}),function(r,a){for(var o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],i=0;i<t.length;){var u=t[i];i++;var s=t[i];if(!(s&&e(r,s,!0,n).length>u.length))return e(r,u,o,n)}return""}}t.a=r},function(e,t,n){"use strict";function r(e,t){var n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],r=arguments[3];e=e||"",t=t||"";for(var a=0,o=0,i="";a<t.length&&o<e.length;){var u=t[a],s=r[u],c=e[o];s&&!s.escape?(s.pattern.test(c)&&(i+=s.transform?s.transform(c):c,a++),o++):(s&&s.escape&&(a++,u=t[a]),n&&(i+=u),c===u&&o++,a++)}for(var f="";a<t.length&&n;){var u=t[a];if(r[u]){f="";break}f+=u,a++}return i+f}t.a=r},function(e,t,n){var r=n(8)(n(4),n(9),null,null);e.exports=r.exports},function(e,t){e.exports=function(e,t,n,r){var a,o=e=e||{},i=typeof e.default;"object"!==i&&"function"!==i||(a=e,o=e.default);var u="function"==typeof o?o.options:o;if(t&&(u.render=t.render,u.staticRenderFns=t.staticRenderFns),n&&(u._scopeId=n),r){var s=u.computed||(u.computed={});Object.keys(r).forEach(function(e){var t=r[e];s[e]=function(){return t}})}return{esModule:a,exports:o,options:u}}},function(e,t){e.exports={render:function(){var e=this,t=e.$createElement;return(e._self._c||t)("input",{directives:[{name:"mask",rawName:"v-mask",value:e.config,expression:"config"}],attrs:{type:"text"},domProps:{value:e.display},on:{input:e.onInput}})},staticRenderFns:[]}},function(e,t,n){e.exports=n(3)}])});
 
 /***/ })
 /******/ ]);

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="chopcafe_title chopcafe_title_1 overlay_title text-center">
-                    <h2>Meet Our <span>Expert Chefs</span></h2>
+                    <h2>Наши <span>повара</span></h2>
                     <div class="title_divider">
                         <i class="flaticon-fork-and-knife-in-cross title_fork"></i>
                     </div>

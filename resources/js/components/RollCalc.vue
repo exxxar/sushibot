@@ -68,14 +68,14 @@
 
                 <div class="row justify-content-center mt-4">
                     <div class="col-sm-2">
-                        <button class="btn btn-warning counter-btn" @click="inc">+</button>
+                        <button class="btn btn-warning counter-btn" @click="dec">-</button>
                     </div>
                     <div class="col-sm-4">
                         <input type="text" disabled="true" class="form-control counter" v-model="summary_count" min="1">
 
                     </div>
                     <div class="col-sm-2">
-                        <button class="btn btn-warning counter-btn" @click="dec">-</button>
+                        <button class="btn btn-warning counter-btn" @click="inc">+</button>
                     </div>
                 </div>
                 <div class="row justify-content-center mt-4">
@@ -209,7 +209,7 @@
 <style lang="scss">
     .send-btn {
         width: 100%;
-        padding: 10px;
+        padding: 15px;
         background: #dc3545;
         text-transform: uppercase;
 
