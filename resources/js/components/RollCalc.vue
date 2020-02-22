@@ -6,7 +6,7 @@
                 <div class="form-group">
                     <label for="coating"> Верхнее покрытие ролла:</label>
                     <select name="coating" id="coating" v-model="selectedCoating">
-                        <option :value="coat.id" v-for="coat in coatings">{{coat.title}}</option>
+                        <option :value="coat.id" v-for="(coat,index) in coatings">{{coat.title}}</option>
                     </select>
                 </div>
 
@@ -37,21 +37,21 @@
                         <td>
                             <p>Квадратная<br>форма</p>
                             <label>
-                                <input type="radio" name="test" value="square" v-model="pickedForm">
+                                <input type="radio" name="test" value="Квадратная" v-model="pickedForm">
                                 <img src="square.jpg">
                             </label>
                         </td>
                         <td>
                             <p>Круглая<br>форма</p>
                             <label>
-                                <input type="radio" name="test" value="circle" v-model="pickedForm">
+                                <input type="radio" name="test" value="Круглая" v-model="pickedForm">
                                 <img src="circle.jpg">
                             </label>
                         </td>
                         <td>
                             <p>Треугольная<br>форма</p>
                             <label>
-                                <input type="radio" name="test" value="triangle" v-model="pickedForm">
+                                <input type="radio" name="test" value="Треугольная" v-model="pickedForm">
                                 <img src="triangle.jpg">
                             </label>
                         </td>
@@ -63,7 +63,8 @@
 
                 <h3 class="text-center">Цена ролла</h3>
                 <h2 class="text-center text-white">{{summary_price*summary_count}}₽</h2>
-                <p class="text-justify text-white"><em>Цена указана за 1 порцию роллов (вы заказали {{summary_count}} порций). Порция включает в себя 8 штук роллов общей массой {{summary_mass}} грамм.</em></p>
+                <p class="text-justify text-white"><em>Цена указана за 1 порцию роллов (вы заказали {{summary_count}}
+                    порций). Порция включает в себя 8 штук роллов общей массой {{summary_mass}} грамм.</em></p>
 
 
                 <div class="row justify-content-center mt-4">
@@ -79,14 +80,20 @@
                     </div>
                 </div>
                 <div class="row justify-content-center mt-4">
-                    <div class="col-sm-8">
+                    <div class="col-sm-6">
                         <input type="text" class="form-control phone" v-model="phone"
                                placeholder="Введите номер телефона">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control name" v-model="name"
+                               placeholder="Введите ваше имя">
                     </div>
                 </div>
                 <div class="row justify-content-center mt-4">
                     <div class="col-sm-8">
-                        <button class="btn send-btn" :disabled="phone.length<15" @click="sendRequest">Заказать</button>
+                        <button class="btn send-btn" :disabled="disabledRule()" @click="sendRequest">
+                            Заказать
+                        </button>
                     </div>
 
                 </div>
@@ -104,17 +111,16 @@
                 summary_mass: 100,
                 summary_count: 1,
                 phone: '',
+                name: '',
                 coatings: [],
                 fillings: [],
                 checkedFillings: [],
                 selectedCoating: null,
-                pickedForm: ''
+                pickedForm: 'Квадратная'
             };
         },
         watch: {
             selectedCoating: function (newVal, oldVal) {
-                console.log(newVal, oldVal)
-
                 if (oldVal != null) {
                     let item = this.coatings.find(item => {
                         return item.id == oldVal;
@@ -156,14 +162,43 @@
         mounted() {
             this.loadCoating();
             this.loadFilling();
-            console.log(this.coatings);
-            console.log(this.fillings);
+
         },
         methods: {
+            disabledRule() {
+                return this.phone.length < 15 ||
+                    this.name.length < 2 ||
+                    this.selectedCoating == null ||
+                    this.pickedForm == null ||
+                    this.fillings.length === 0;
+            },
             sendRequest() {
+                let tmp_coating = this.coatings.find(item => {
+                    return item.id === this.selectedCoating;
+                });
+
+                let coating = `${tmp_coating.title} [${tmp_coating.mass} грамм] [${tmp_coating.price} ₽]`;
+
+                let filling = "";
+
+                for (let j = 0; j < this.checkedFillings.length; j++) {
+                    let tmp = this.fillings.find(item => {
+                        return item.id === this.checkedFillings[j];
+                    });
+                    filling += `${tmp.title} [${tmp.mass} грамм] [${tmp.price} ₽]`;
+                }
+
+
+                let message = `*Заказ на сбор ролла*:\n*Покрытие*:\n${coating}\n*Наполнение*:\n${filling}\n*Форма* ${this.pickedForm}\n*Итого*: ${this.summary_price}₽ за ${this.summary_count} порций`
                 axios
-                    .post('api/')
-                    .then(response => (this.info = response.data));
+                    .post('api/send-request', {
+                        name: this.name,
+                        phone: this.phone,
+                        message: message
+                    })
+                    .then(response => {
+                        this.sendMessage("Заказ успешно отправлен");
+                    });
             },
             dec() {
                 if (this.summary_count > 1)
@@ -183,6 +218,7 @@
                     .get('api/ingredients/1')
                     .then(response => {
                         this.coatings = response.data.ingredients
+                        this.selectedCoating = this.coatings[0].id
                     });
             },
             loadFilling() {
@@ -190,6 +226,7 @@
                     .get('api/ingredients/2')
                     .then(response => {
                         this.fillings = response.data.ingredients
+
                     });
             },
 
@@ -222,10 +259,12 @@
         width: 100%;
     }
 
+    .name,
     .phone {
         padding: 25px;
         font-weight: 100;
         text-align: center;
+        font-size: 14px;
 
     }
 </style>

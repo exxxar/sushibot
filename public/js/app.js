@@ -50361,6 +50361,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50369,18 +50376,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             summary_mass: 100,
             summary_count: 1,
             phone: '',
+            name: '',
             coatings: [],
             fillings: [],
             checkedFillings: [],
             selectedCoating: null,
-            pickedForm: ''
+            pickedForm: 'Квадратная'
         };
     },
 
     watch: {
         selectedCoating: function selectedCoating(newVal, oldVal) {
-            console.log(newVal, oldVal);
-
             if (oldVal != null) {
                 var _item = this.coatings.find(function (item) {
                     return item.id == oldVal;
@@ -50420,16 +50426,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.loadCoating();
         this.loadFilling();
-        console.log(this.coatings);
-        console.log(this.fillings);
     },
 
     methods: {
+        disabledRule: function disabledRule() {
+            return this.phone.length < 15 || this.name.length < 2 || this.selectedCoating == null || this.pickedForm == null || this.fillings.length === 0;
+        },
         sendRequest: function sendRequest() {
             var _this = this;
 
-            axios.post('api/').then(function (response) {
-                return _this.info = response.data;
+            var tmp_coating = this.coatings.find(function (item) {
+                return item.id === _this.selectedCoating;
+            });
+
+            var coating = tmp_coating.title + ' [' + tmp_coating.mass + ' \u0433\u0440\u0430\u043C\u043C] [' + tmp_coating.price + ' \u20BD]';
+
+            var filling = "";
+
+            var _loop = function _loop(j) {
+                var tmp = _this.fillings.find(function (item) {
+                    return item.id === _this.checkedFillings[j];
+                });
+                filling += tmp.title + ' [' + tmp.mass + ' \u0433\u0440\u0430\u043C\u043C] [' + tmp.price + ' \u20BD]';
+            };
+
+            for (var j = 0; j < this.checkedFillings.length; j++) {
+                _loop(j);
+            }
+
+            var message = '*\u0417\u0430\u043A\u0430\u0437 \u043D\u0430 \u0441\u0431\u043E\u0440 \u0440\u043E\u043B\u043B\u0430*:\n*\u041F\u043E\u043A\u0440\u044B\u0442\u0438\u0435*:\n' + coating + '\n*\u041D\u0430\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u0435*:\n' + filling + '\n*\u0424\u043E\u0440\u043C\u0430* ' + this.pickedForm + '\n*\u0418\u0442\u043E\u0433\u043E*: ' + this.summary_price + '\u20BD \u0437\u0430 ' + this.summary_count + ' \u043F\u043E\u0440\u0446\u0438\u0439';
+            axios.post('api/send-request', {
+                name: this.name,
+                phone: this.phone,
+                message: message
+            }).then(function (response) {
+                _this.sendMessage("Заказ успешно отправлен");
             });
         },
         dec: function dec() {
@@ -50446,6 +50477,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('api/ingredients/1').then(function (response) {
                 _this2.coatings = response.data.ingredients;
+                _this2.selectedCoating = _this2.coatings[0].id;
             });
         },
         loadFilling: function loadFilling() {
@@ -50516,7 +50548,7 @@ var render = function() {
                   }
                 }
               },
-              _vm._l(_vm.coatings, function(coat) {
+              _vm._l(_vm.coatings, function(coat, index) {
                 return _c("option", { domProps: { value: coat.id } }, [
                   _vm._v(_vm._s(coat.title))
                 ])
@@ -50610,11 +50642,17 @@ var render = function() {
                           expression: "pickedForm"
                         }
                       ],
-                      attrs: { type: "radio", name: "test", value: "square" },
-                      domProps: { checked: _vm._q(_vm.pickedForm, "square") },
+                      attrs: {
+                        type: "radio",
+                        name: "test",
+                        value: "Квадратная"
+                      },
+                      domProps: {
+                        checked: _vm._q(_vm.pickedForm, "Квадратная")
+                      },
                       on: {
                         change: function($event) {
-                          _vm.pickedForm = "square"
+                          _vm.pickedForm = "Квадратная"
                         }
                       }
                     }),
@@ -50636,11 +50674,11 @@ var render = function() {
                           expression: "pickedForm"
                         }
                       ],
-                      attrs: { type: "radio", name: "test", value: "circle" },
-                      domProps: { checked: _vm._q(_vm.pickedForm, "circle") },
+                      attrs: { type: "radio", name: "test", value: "Круглая" },
+                      domProps: { checked: _vm._q(_vm.pickedForm, "Круглая") },
                       on: {
                         change: function($event) {
-                          _vm.pickedForm = "circle"
+                          _vm.pickedForm = "Круглая"
                         }
                       }
                     }),
@@ -50662,11 +50700,17 @@ var render = function() {
                           expression: "pickedForm"
                         }
                       ],
-                      attrs: { type: "radio", name: "test", value: "triangle" },
-                      domProps: { checked: _vm._q(_vm.pickedForm, "triangle") },
+                      attrs: {
+                        type: "radio",
+                        name: "test",
+                        value: "Треугольная"
+                      },
+                      domProps: {
+                        checked: _vm._q(_vm.pickedForm, "Треугольная")
+                      },
                       on: {
                         change: function($event) {
-                          _vm.pickedForm = "triangle"
+                          _vm.pickedForm = "Треугольная"
                         }
                       }
                     }),
@@ -50689,7 +50733,7 @@ var render = function() {
               _vm._v(
                 "Цена указана за 1 порцию роллов (вы заказали " +
                   _vm._s(_vm.summary_count) +
-                  " порций). Порция включает в себя 8 штук роллов общей массой " +
+                  "\n                порций). Порция включает в себя 8 штук роллов общей массой " +
                   _vm._s(_vm.summary_mass) +
                   " грамм."
               )
@@ -50745,7 +50789,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row justify-content-center mt-4" }, [
-            _c("div", { staticClass: "col-sm-8" }, [
+            _c("div", { staticClass: "col-sm-6" }, [
               _c("input", {
                 directives: [
                   {
@@ -50767,6 +50811,30 @@ var render = function() {
                   }
                 }
               })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.name,
+                    expression: "name"
+                  }
+                ],
+                staticClass: "form-control name",
+                attrs: { type: "text", placeholder: "Введите ваше имя" },
+                domProps: { value: _vm.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.name = $event.target.value
+                  }
+                }
+              })
             ])
           ]),
           _vm._v(" "),
@@ -50776,10 +50844,14 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn send-btn",
-                  attrs: { disabled: _vm.phone.length < 15 },
+                  attrs: { disabled: _vm.disabledRule() },
                   on: { click: _vm.sendRequest }
                 },
-                [_vm._v("Заказать")]
+                [
+                  _vm._v(
+                    "\n                        Заказать\n                    "
+                  )
+                ]
               )
             ])
           ])
@@ -52284,7 +52356,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n.send-btn {\n  width: 100%;\n  padding: 15px;\n  background: #dc3545;\n  text-transform: uppercase;\n}\n.send-btn[disabled] {\n    background-color: darkgray;\n}\n.counter-btn {\n  width: 100%;\n}\n.phone {\n  padding: 25px;\n  font-weight: 100;\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.send-btn {\n  width: 100%;\n  padding: 15px;\n  background: #dc3545;\n  text-transform: uppercase;\n}\n.send-btn[disabled] {\n    background-color: darkgray;\n}\n.counter-btn {\n  width: 100%;\n}\n.name,\n.phone {\n  padding: 25px;\n  font-weight: 100;\n  text-align: center;\n  font-size: 14px;\n}\n", ""]);
 
 // exports
 
@@ -53745,11 +53817,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -53793,7 +53860,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 products += item.product.title + "_#" + item.product.id + "_ x  " + item.quantity + "штук => " + item.quantity * item.product.price + "₽\n";
             });
 
-            var message = '*\u0417\u0430\u043A\u0430\u0437 \u0441 \u0441\u0430\u0439\u0442\u0430:*\n' + products + '\n_' + this.message + '_\n\u0421\u0443\u043C\u043C\u0430\u0440\u043D\u043E: ' + (this.cartTotalPrice + this.deliveryPrice) + ' \u20BD';
+            var message = '*\u0417\u0430\u043A\u0430\u0437 \u0441 \u0441\u0430\u0439\u0442\u0430:*\n' + products + '\n_' + this.message + '_\u0421\u0443\u043C\u043C\u0430\u0440\u043D\u043E: ' + (this.cartTotalPrice + this.deliveryPrice) + ' \u20BD';
             axios.post('api/send-request', {
                 name: this.name,
                 phone: this.phone,
@@ -54031,6 +54098,27 @@ var render = function() {
                       ])
                     ])
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mt-2" }, [
+                  _c("div", { staticClass: "col-lg-6 col-sm-12" }, [
+                    _c("div", { staticClass: "update_cart" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "chopcafe_btn clear_cart_btn",
+                          attrs: { href: "#" },
+                          on: { click: _vm.clearCart }
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-times-circle" }),
+                          _vm._v(
+                            "Очистить\n                                    корзину"
+                          )
+                        ]
+                      )
+                    ])
+                  ])
                 ])
               ])
             ]),
@@ -54119,7 +54207,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form_control",
-                        staticStyle: { height: "130px" },
+                        staticStyle: { height: "122px" },
                         attrs: {
                           placeholder: "Сообщение для нас",
                           name: "message"
@@ -54138,27 +54226,6 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _vm._m(6)
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "chopcafe_update_cart" }, [
-            _c("div", { staticClass: "row mt-2 justify-content-lg-start" }, [
-              _c("div", { staticClass: "col-lg-4" }, [
-                _c("div", { staticClass: "update_cart" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "chopcafe_btn clear_cart_btn",
-                      attrs: { href: "#" },
-                      on: { click: _vm.clearCart }
-                    },
-                    [
-                      _c("i", { staticClass: "fas fa-times-circle" }),
-                      _vm._v("Очистить\n                            корзину")
-                    ]
-                  )
                 ])
               ])
             ])

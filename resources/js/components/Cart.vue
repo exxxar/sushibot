@@ -86,6 +86,16 @@
                             </tr>
                             </tbody>
                         </table>
+                        <div class="row mt-2">
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="update_cart">
+                                    <a href="#" class="chopcafe_btn clear_cart_btn" @click="clearCart"><i
+                                            class="fas fa-times-circle"></i>Очистить
+                                        корзину</a>
+                                </div>
+                            </div>
+                    </div>
+
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -110,7 +120,7 @@
 
                             <div class="col-lg-12 mt-2">
                                 <div class="form_group">
-                                    <textarea style="height: 130px;" placeholder="Сообщение для нас"
+                                    <textarea style="height: 122px;" placeholder="Сообщение для нас"
                                                                   name="message"
                                                                   v-model="message"
                                                                   class="form_control"></textarea>
@@ -130,21 +140,6 @@
 
                 </div>
             </div>
-            <div class="chopcafe_update_cart">
-                <div class="row mt-2 justify-content-lg-start">
-                    <div class="col-lg-4">
-                        <div class="update_cart">
-                            <a href="#" class="chopcafe_btn clear_cart_btn" @click="clearCart"><i
-                                    class="fas fa-times-circle"></i>Очистить
-                                корзину</a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
         </div>
         <div v-if="cartProducts.length===0">
             <div class="row justify-content-center">
@@ -195,7 +190,7 @@
                     products += item.product.title +"_#"+item.product.id+ "_ x  "+ item.quantity + "штук => " + item.quantity * item.product.price + "₽\n"
                 });
 
-                let message = `*Заказ с сайта:*\n${products}\n_${this.message}_\nСуммарно: ${this.cartTotalPrice + this.deliveryPrice} ₽`;
+                let message = `*Заказ с сайта:*\n${products}\n_${this.message}_Суммарно: ${this.cartTotalPrice + this.deliveryPrice} ₽`;
                 axios
                     .post('api/send-request', {
                         name: this.name,
