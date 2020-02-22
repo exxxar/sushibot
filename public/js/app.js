@@ -54642,7 +54642,8 @@ var render = function() {
         _c("h3", { staticClass: "text-center" }, [_vm._v("Цена ролла")]),
         _vm._v(" "),
         _c("h2", { staticClass: "text-center text-white" }, [
-          _vm._v(_vm._s(_vm.summary_price * _vm.summary_count) + "₽")
+          _vm._v(_vm._s(_vm.summary_price * _vm.summary_count)),
+          _c("i", { staticClass: "fas fa-ruble-sign" })
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "text-justify text-white" }, [

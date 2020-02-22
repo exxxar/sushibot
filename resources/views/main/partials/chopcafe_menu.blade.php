@@ -51,7 +51,7 @@
                                 <hr>
                                 <p><em>{{$product->description}}</em></p>
                                 <hr>
-                                <h3><strong>{{$product->price}}₽</strong>{{-- <small>({{$product->mass}} гр.)</small>--}}</h3>
+                                <h3><strong>{{$product->price}}<i class="fas fa-ruble-sign"></i></strong>{{-- <small>({{$product->mass}} гр.)</small>--}}</h3>
                             </div>
 
                             {{--<div class="chopcafe_info">

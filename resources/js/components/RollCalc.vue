@@ -56,7 +56,7 @@
                 </div>
 
                 <h3 class="text-center">Цена ролла</h3>
-                <h2 class="text-center text-white">{{summary_price*summary_count}}₽</h2>
+                <h2 class="text-center text-white">{{summary_price*summary_count}}<i class="fas fa-ruble-sign"></i></h2>
                 <p class="text-justify text-white"><em>Цена указана за 1 порцию роллов (вы заказали {{summary_count}}
                     порций). Порция включает в себя 8 штук роллов общей массой {{summary_mass}} грамм.</em></p>
 
