@@ -130,6 +130,9 @@
             </div>
         </div>
     </div>
+
+
+    <notifications group="info" :position="'top left'" :max="5"/>
 </div>
 <!-- scroll_top -->
 <a id="scroll_top"><i class="fas fa-angle-up"></i></a>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <notifications group="info"/>
+
         <div class="row justify-content-center mb-5">
             <transition name="fade">
                 <div class="col-sm-3" v-if="!isLogged">
@@ -168,9 +168,9 @@
                     });
             },
             shuffle: function () {
-                console.log("start shuffle")
+
                 this.demo_lottery_list = _.shuffle(this.demo_lottery_list)
-                console.log("end shuffle")
+
             },
             openCard() {
 

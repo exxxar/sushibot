@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <notifications group="info"/>
+
         <div class="calc row align-items-flex-start">
             <div class="col-lg-6 right">
                 <div class="form-group">
@@ -267,4 +267,6 @@
         font-size: 14px;
 
     }
+
+
 </style>

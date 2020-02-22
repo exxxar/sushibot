@@ -1,6 +1,5 @@
 <template>
     <div>
-        <notifications group="messages"/>
         <form @submit="sendRequest">
             <div class="row">
                 <div class="col-lg-6">
@@ -51,7 +50,7 @@
             },
             sendMessage(message) {
                 this.$notify({
-                    group: 'messages',
+                    group: 'info',
                     type: 'success',
                     title: 'Отправка сообщений ISUSHI',
                     text: message

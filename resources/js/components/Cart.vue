@@ -113,7 +113,7 @@
                                 <div class="form_group">
                                     <input type="text" placeholder="Ваш номер телефона" name="phone"
                                                                v-model="phone"
-                                                               required="required" class="form_control" maxlength="19"
+                                                               required="required" pattern="[\+]\d{2} [\(]\d{3}[\)] \d{3}[\-]\d{2}[\-]\d{2}" class="form_control" maxlength="19"
                                                                v-mask="['+38 (###) ###-##-##']">
                                 </div>
                             </div>
@@ -128,7 +128,7 @@
                             </div>
                             <div class="col-lg-12 mt-2">
                                 <div class="continue_shopping">
-                                    <button class="chopcafe_btn continue_btn"><i
+                                    <button class="chopcafe_btn continue_btn" :disabled="sending"><i
                                             class="fas fa-shopping-cart"></i>Оформить
                                         покупку</button>
                                 </div>
@@ -159,7 +159,8 @@
                 phone: '',
                 name: '',
                 message: '',
-                deliveryPrice: 50
+                deliveryPrice: 50,
+                sending:false
             }
         },
         mounted() {
@@ -184,6 +185,7 @@
             sendRequest(e) {
                 e.preventDefault();
 
+                this.sending = true;
                 let products = '';
 
                 this.cartProducts.forEach(function (item) {
@@ -199,6 +201,7 @@
                     })
                     .then(response => {
                         this.sendMessage("Заказ успешно отправлен");
+                        this.sending = false;
                         this.clearCart()
                     });
             },

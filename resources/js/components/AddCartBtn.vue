@@ -23,7 +23,7 @@
                 console.log(message);
                 this.$notify({
                     group: 'info',
-                    type: 'error',
+                    type: 'success',
                     title: 'Оповещение ISUSHI',
                     text: message
                 });

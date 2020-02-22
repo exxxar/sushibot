@@ -49848,9 +49848,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         shuffle: function shuffle() {
-            console.log("start shuffle");
+
             this.demo_lottery_list = _.shuffle(this.demo_lottery_list);
-            console.log("end shuffle");
         },
         openCard: function openCard() {
             var _this4 = this;
@@ -49907,8 +49906,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("notifications", { attrs: { group: "info" } }),
-      _vm._v(" "),
       _c(
         "div",
         { staticClass: "row justify-content-center mb-5" },
@@ -50230,7 +50227,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log(message);
             this.$notify({
                 group: 'info',
-                type: 'error',
+                type: 'success',
                 title: 'Оповещение ISUSHI',
                 text: message
             });
@@ -50613,359 +50610,345 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c("notifications", { attrs: { group: "info" } }),
-      _vm._v(" "),
-      _c("div", { staticClass: "calc row align-items-flex-start" }, [
-        _c("div", { staticClass: "col-lg-6 right" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "coating" } }, [
-              _vm._v(" Верхнее покрытие ролла:")
-            ]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.selectedCoating,
-                    expression: "selectedCoating"
-                  }
-                ],
-                attrs: { name: "coating", id: "coating" },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.selectedCoating = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
-              },
-              _vm._l(_vm.coatings, function(coat, index) {
-                return _c("option", { domProps: { value: coat.id } }, [
-                  _vm._v(_vm._s(coat.title))
-                ])
-              }),
-              0
-            )
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "calc row align-items-flex-start" }, [
+      _c("div", { staticClass: "col-lg-6 right" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "coating" } }, [
+            _vm._v(" Верхнее покрытие ролла:")
           ]),
           _vm._v(" "),
-          _c("h3", [_vm._v("Начинка внутри ролла")]),
-          _vm._v(" "),
           _c(
-            "div",
-            { staticClass: "row tr" },
-            _vm._l(_vm.fillings, function(fill, index) {
-              return _c(
-                "div",
-                { staticClass: "col-md-6 col-sm-12 col-lg-6 td" },
-                [
-                  _c("label", { staticClass: "container" }, [
-                    _vm._v(_vm._s(fill.title) + "\n                        "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.checkedFillings,
-                          expression: "checkedFillings"
-                        }
-                      ],
-                      attrs: {
-                        type: "checkbox",
-                        disabled:
-                          _vm.checkedFillings.length === 4 &&
-                          _vm.checkedFillings.indexOf(fill.id) === -1
-                      },
-                      domProps: {
-                        value: fill.id,
-                        checked: Array.isArray(_vm.checkedFillings)
-                          ? _vm._i(_vm.checkedFillings, fill.id) > -1
-                          : _vm.checkedFillings
-                      },
-                      on: {
-                        change: function($event) {
-                          var $$a = _vm.checkedFillings,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = fill.id,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                (_vm.checkedFillings = $$a.concat([$$v]))
-                            } else {
-                              $$i > -1 &&
-                                (_vm.checkedFillings = $$a
-                                  .slice(0, $$i)
-                                  .concat($$a.slice($$i + 1)))
-                            }
-                          } else {
-                            _vm.checkedFillings = $$c
-                          }
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "checkmark" })
-                  ])
-                ]
-              )
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.selectedCoating,
+                  expression: "selectedCoating"
+                }
+              ],
+              attrs: { name: "coating", id: "coating" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.selectedCoating = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            _vm._l(_vm.coatings, function(coat, index) {
+              return _c("option", { domProps: { value: coat.id } }, [
+                _vm._v(_vm._s(coat.title))
+              ])
             }),
             0
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-lg-6 left" }, [
-          _c("h3", [_vm._v("Выбери форму ролла")]),
-          _vm._v(" "),
-          _c("table", [
-            _c("tbody", [
-              _c("tr", [
-                _c("td", [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c("label", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.pickedForm,
-                          expression: "pickedForm"
-                        }
-                      ],
-                      attrs: {
-                        type: "radio",
-                        name: "test",
-                        value: "Квадратная"
-                      },
-                      domProps: {
-                        checked: _vm._q(_vm.pickedForm, "Квадратная")
-                      },
-                      on: {
-                        change: function($event) {
-                          _vm.pickedForm = "Квадратная"
+        _c("h3", [_vm._v("Начинка внутри ролла")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row tr" },
+          _vm._l(_vm.fillings, function(fill, index) {
+            return _c(
+              "div",
+              { staticClass: "col-md-6 col-sm-12 col-lg-6 td" },
+              [
+                _c("label", { staticClass: "container" }, [
+                  _vm._v(_vm._s(fill.title) + "\n                        "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.checkedFillings,
+                        expression: "checkedFillings"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      disabled:
+                        _vm.checkedFillings.length === 4 &&
+                        _vm.checkedFillings.indexOf(fill.id) === -1
+                    },
+                    domProps: {
+                      value: fill.id,
+                      checked: Array.isArray(_vm.checkedFillings)
+                        ? _vm._i(_vm.checkedFillings, fill.id) > -1
+                        : _vm.checkedFillings
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.checkedFillings,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = fill.id,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.checkedFillings = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.checkedFillings = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.checkedFillings = $$c
                         }
                       }
-                    }),
-                    _vm._v(" "),
-                    _c("img", { attrs: { src: "square.jpg" } })
-                  ])
-                ]),
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "checkmark" })
+                ])
+              ]
+            )
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-6 left" }, [
+        _c("h3", [_vm._v("Выбери форму ролла")]),
+        _vm._v(" "),
+        _c("table", [
+          _c("tbody", [
+            _c("tr", [
+              _c("td", [
+                _vm._m(0),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("label", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.pickedForm,
-                          expression: "pickedForm"
-                        }
-                      ],
-                      attrs: { type: "radio", name: "test", value: "Круглая" },
-                      domProps: { checked: _vm._q(_vm.pickedForm, "Круглая") },
-                      on: {
-                        change: function($event) {
-                          _vm.pickedForm = "Круглая"
-                        }
+                _c("label", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pickedForm,
+                        expression: "pickedForm"
                       }
-                    }),
-                    _vm._v(" "),
-                    _c("img", { attrs: { src: "circle.jpg" } })
-                  ])
-                ]),
+                    ],
+                    attrs: { type: "radio", name: "test", value: "Квадратная" },
+                    domProps: { checked: _vm._q(_vm.pickedForm, "Квадратная") },
+                    on: {
+                      change: function($event) {
+                        _vm.pickedForm = "Квадратная"
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("img", { attrs: { src: "square.jpg" } })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._m(1),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c("label", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.pickedForm,
-                          expression: "pickedForm"
-                        }
-                      ],
-                      attrs: {
-                        type: "radio",
-                        name: "test",
-                        value: "Треугольная"
-                      },
-                      domProps: {
-                        checked: _vm._q(_vm.pickedForm, "Треугольная")
-                      },
-                      on: {
-                        change: function($event) {
-                          _vm.pickedForm = "Треугольная"
-                        }
+                _c("label", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pickedForm,
+                        expression: "pickedForm"
                       }
-                    }),
-                    _vm._v(" "),
-                    _c("img", { attrs: { src: "triangle.jpg" } })
-                  ])
+                    ],
+                    attrs: { type: "radio", name: "test", value: "Круглая" },
+                    domProps: { checked: _vm._q(_vm.pickedForm, "Круглая") },
+                    on: {
+                      change: function($event) {
+                        _vm.pickedForm = "Круглая"
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("img", { attrs: { src: "circle.jpg" } })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("label", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pickedForm,
+                        expression: "pickedForm"
+                      }
+                    ],
+                    attrs: {
+                      type: "radio",
+                      name: "test",
+                      value: "Треугольная"
+                    },
+                    domProps: {
+                      checked: _vm._q(_vm.pickedForm, "Треугольная")
+                    },
+                    on: {
+                      change: function($event) {
+                        _vm.pickedForm = "Треугольная"
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("img", { attrs: { src: "triangle.jpg" } })
                 ])
               ])
             ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("h3", { staticClass: "text-center" }, [_vm._v("Цена ролла")]),
+        _vm._v(" "),
+        _c("h2", { staticClass: "text-center text-white" }, [
+          _vm._v(_vm._s(_vm.summary_price * _vm.summary_count) + "₽")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-justify text-white" }, [
+          _c("em", [
+            _vm._v(
+              "Цена указана за 1 порцию роллов (вы заказали " +
+                _vm._s(_vm.summary_count) +
+                "\n                порций). Порция включает в себя 8 штук роллов общей массой " +
+                _vm._s(_vm.summary_mass) +
+                " грамм."
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row justify-content-center mt-4" }, [
+          _c("div", { staticClass: "col-sm-2" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-warning counter-btn",
+                on: { click: _vm.dec }
+              },
+              [_vm._v("-")]
+            )
           ]),
           _vm._v(" "),
-          _c("h3", { staticClass: "text-center" }, [_vm._v("Цена ролла")]),
-          _vm._v(" "),
-          _c("h2", { staticClass: "text-center text-white" }, [
-            _vm._v(_vm._s(_vm.summary_price * _vm.summary_count) + "₽")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "text-justify text-white" }, [
-            _c("em", [
-              _vm._v(
-                "Цена указана за 1 порцию роллов (вы заказали " +
-                  _vm._s(_vm.summary_count) +
-                  "\n                порций). Порция включает в себя 8 штук роллов общей массой " +
-                  _vm._s(_vm.summary_mass) +
-                  " грамм."
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row justify-content-center mt-4" }, [
-            _c("div", { staticClass: "col-sm-2" }, [
-              _c(
-                "button",
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("input", {
+              directives: [
                 {
-                  staticClass: "btn btn-warning counter-btn",
-                  on: { click: _vm.dec }
-                },
-                [_vm._v("-")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-4" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.summary_count,
-                    expression: "summary_count"
-                  }
-                ],
-                staticClass: "form-control counter",
-                attrs: { type: "text", disabled: "true", min: "1" },
-                domProps: { value: _vm.summary_count },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.summary_count = $event.target.value
-                  }
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.summary_count,
+                  expression: "summary_count"
                 }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-2" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-warning counter-btn",
-                  on: { click: _vm.inc }
-                },
-                [_vm._v("+")]
-              )
-            ])
+              ],
+              staticClass: "form-control counter",
+              attrs: { type: "text", disabled: "true", min: "1" },
+              domProps: { value: _vm.summary_count },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.summary_count = $event.target.value
+                }
+              }
+            })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row justify-content-center mt-4" }, [
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.phone,
-                    expression: "phone"
-                  }
-                ],
-                staticClass: "form-control phone",
-                attrs: { type: "text", placeholder: "Введите номер телефона" },
-                domProps: { value: _vm.phone },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.phone = $event.target.value
-                  }
+          _c("div", { staticClass: "col-sm-2" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-warning counter-btn",
+                on: { click: _vm.inc }
+              },
+              [_vm._v("+")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row justify-content-center mt-4" }, [
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.phone,
+                  expression: "phone"
                 }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.name,
-                    expression: "name"
+              ],
+              staticClass: "form-control phone",
+              attrs: { type: "text", placeholder: "Введите номер телефона" },
+              domProps: { value: _vm.phone },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
                   }
-                ],
-                staticClass: "form-control name",
-                attrs: { type: "text", placeholder: "Введите ваше имя" },
-                domProps: { value: _vm.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.name = $event.target.value
-                  }
+                  _vm.phone = $event.target.value
                 }
-              })
-            ])
+              }
+            })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row justify-content-center mt-4" }, [
-            _c("div", { staticClass: "col-sm-8" }, [
-              _c(
-                "button",
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("input", {
+              directives: [
                 {
-                  staticClass: "btn send-btn",
-                  attrs: { disabled: _vm.disabledRule() },
-                  on: { click: _vm.sendRequest }
-                },
-                [
-                  _vm._v(
-                    "\n                        Заказать\n                    "
-                  )
-                ]
-              )
-            ])
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.name,
+                  expression: "name"
+                }
+              ],
+              staticClass: "form-control name",
+              attrs: { type: "text", placeholder: "Введите ваше имя" },
+              domProps: { value: _vm.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.name = $event.target.value
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row justify-content-center mt-4" }, [
+          _c("div", { staticClass: "col-sm-8" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn send-btn",
+                attrs: { disabled: _vm.disabledRule() },
+                on: { click: _vm.sendRequest }
+              },
+              [
+                _vm._v(
+                  "\n                        Заказать\n                    "
+                )
+              ]
+            )
           ])
         ])
       ])
-    ],
-    1
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -52245,7 +52228,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52271,7 +52253,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         sendMessage: function sendMessage(message) {
             this.$notify({
-                group: 'messages',
+                group: 'info',
                 type: 'success',
                 title: 'Отправка сообщений ISUSHI',
                 text: message
@@ -52288,112 +52270,106 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("notifications", { attrs: { group: "messages" } }),
-      _vm._v(" "),
-      _c("form", { on: { submit: _vm.sendRequest } }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-6" }, [
-            _c("div", { staticClass: "form_group" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.name,
-                    expression: "name"
-                  }
-                ],
-                staticClass: "form_control",
-                attrs: {
-                  type: "text",
-                  placeholder: "Ваше имя",
-                  name: "name",
-                  required: "required"
-                },
-                domProps: { value: _vm.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.name = $event.target.value
-                  }
+  return _c("div", [
+    _c("form", { on: { submit: _vm.sendRequest } }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-lg-6" }, [
+          _c("div", { staticClass: "form_group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.name,
+                  expression: "name"
                 }
-              }),
-              _vm._v(" "),
-              _c("i", { staticClass: "fas fa-user" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-6" }, [
-            _c("div", { staticClass: "form_group" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.phone,
-                    expression: "phone"
+              ],
+              staticClass: "form_control",
+              attrs: {
+                type: "text",
+                placeholder: "Ваше имя",
+                name: "name",
+                required: "required"
+              },
+              domProps: { value: _vm.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
                   }
-                ],
-                staticClass: "form_control phone",
-                attrs: {
-                  type: "text",
-                  placeholder: "Ваш номер телефона",
-                  name: "phone",
-                  required: "required",
-                  maxlength: "15"
-                },
-                domProps: { value: _vm.phone },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.phone = $event.target.value
-                  }
+                  _vm.name = $event.target.value
                 }
-              }),
-              _vm._v(" "),
-              _c("i", { staticClass: "fas fa-phone" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-12" }, [
-            _c("div", { staticClass: "form_group" }, [
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.message,
-                    expression: "message"
-                  }
-                ],
-                staticClass: "form_control",
-                attrs: { placeholder: "Сообщение для нас", name: "message" },
-                domProps: { value: _vm.message },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.message = $event.target.value
-                  }
+              }
+            }),
+            _vm._v(" "),
+            _c("i", { staticClass: "fas fa-user" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-6" }, [
+          _c("div", { staticClass: "form_group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.phone,
+                  expression: "phone"
                 }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(0)
-        ])
+              ],
+              staticClass: "form_control phone",
+              attrs: {
+                type: "text",
+                placeholder: "Ваш номер телефона",
+                name: "phone",
+                required: "required",
+                maxlength: "15"
+              },
+              domProps: { value: _vm.phone },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.phone = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("i", { staticClass: "fas fa-phone" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-12" }, [
+          _c("div", { staticClass: "form_group" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.message,
+                  expression: "message"
+                }
+              ],
+              staticClass: "form_control",
+              attrs: { placeholder: "Сообщение для нас", name: "message" },
+              domProps: { value: _vm.message },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.message = $event.target.value
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
       ])
-    ],
-    1
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -52818,7 +52794,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             phone: '',
             name: '',
             message: '',
-            deliveryPrice: 50
+            deliveryPrice: 50,
+            sending: false
         };
     },
     mounted: function mounted() {
@@ -52846,6 +52823,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             e.preventDefault();
 
+            this.sending = true;
             var products = '';
 
             this.cartProducts.forEach(function (item) {
@@ -52859,6 +52837,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 message: message
             }).then(function (response) {
                 _this.sendMessage("Заказ успешно отправлен");
+                _this.sending = false;
                 _this.clearCart();
             });
         },
@@ -53178,6 +53157,8 @@ var render = function() {
                           placeholder: "Ваш номер телефона",
                           name: "phone",
                           required: "required",
+                          pattern:
+                            "[\\+]\\d{2} [\\(]\\d{3}[\\)] \\d{3}[\\-]\\d{2}[\\-]\\d{2}",
                           maxlength: "19"
                         },
                         domProps: { value: _vm.phone },
@@ -53223,7 +53204,23 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(6)
+                  _c("div", { staticClass: "col-lg-12 mt-2" }, [
+                    _c("div", { staticClass: "continue_shopping" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "chopcafe_btn continue_btn",
+                          attrs: { disabled: _vm.sending }
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-shopping-cart" }),
+                          _vm._v(
+                            "Оформить\n                                    покупку"
+                          )
+                        ]
+                      )
+                    ])
+                  ])
                 ])
               ])
             ])
@@ -53311,19 +53308,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("td", { staticClass: "total_price" }, [
       _c("span", [_vm._v("Цена заказа")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-12 mt-2" }, [
-      _c("div", { staticClass: "continue_shopping" }, [
-        _c("button", { staticClass: "chopcafe_btn continue_btn" }, [
-          _c("i", { staticClass: "fas fa-shopping-cart" }),
-          _vm._v("Оформить\n                                    покупку")
-        ])
-      ])
     ])
   }
 ]
