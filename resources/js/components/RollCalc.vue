@@ -13,7 +13,7 @@
                 <h3>Начинка внутри ролла</h3>
 
                 <div class="row tr">
-                    <div class="col-md-6 col-sm-12 col-lg-6 td" v-for="(fill, index) in fillings">
+                    <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 td" v-for="(fill, index) in fillings">
 
                         <label class="container">{{fill.title}}
                             <input type="checkbox"
@@ -67,29 +67,29 @@
                     порций). Порция включает в себя 8 штук роллов общей массой {{summary_mass}} грамм.</em></p>
 
 
-                <div class="row justify-content-center mt-4">
-                    <div class="col-sm-2">
+                <div class="row justify-content-center">
+                    <div class="col-sm-2 mt-2">
                         <button class="btn btn-warning counter-btn" @click="dec">-</button>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 mt-2">
                         <input type="text" disabled="true" class="form-control counter" v-model="summary_count" min="1">
 
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-2 mt-2">
                         <button class="btn btn-warning counter-btn" @click="inc">+</button>
                     </div>
                 </div>
-                <div class="row justify-content-center mt-4">
-                    <div class="col-sm-6">
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 mt-2">
                         <input type="text" class="form-control phone" v-model="phone"
                                placeholder="Введите номер телефона">
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mt-2">
                         <input type="text" class="form-control name" v-model="name"
                                placeholder="Введите ваше имя">
                     </div>
                 </div>
-                <div class="row justify-content-center mt-4">
+                <div class="row justify-content-center mt-2">
                     <div class="col-sm-8">
                         <button class="btn send-btn" :disabled="disabledRule()" @click="sendRequest">
                             Заказать
@@ -243,7 +243,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .send-btn {
         width: 100%;
         padding: 15px;

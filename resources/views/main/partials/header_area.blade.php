@@ -93,47 +93,14 @@
                 <div class="col-lg-11 col-md-10 col-10">
                     <div class="mobile_menu">
                         <ul>
-                            <li class="cart_icon"><a href="#"><span class="count">2</span><i
+                            <li><a href="#callbackModal" data-toggle="modal" data-target="#callbackModal"><i class="fas fa-phone-square mr-2"></i>Обратный звонок</a></li>
+                            <li class="cart_icon"><a href="#cartModal" data-toggle="modal" data-target="#cartModal" class="open_cart"><span class="count"><cart-count-index></cart-count-index></span><i
                                             class="fas fa-shopping-cart"></i></a>
-                                <ul id="site-header-cart-2" class="site-header-cart">
-                                    <li>
-                                        <div class="widget_shopping_cart">
-                                            <div class="widget_shopping_cart_content">
-                                                <ul class="woocomerce-mini-cart">
-                                                    <li class="woocommerce-mini-cart-item mini-cart-item">
-                                                        <div class="product_thumb">
-                                                            <img src="assets/images/mini_1.jpg" alt="">
-                                                        </div>
-                                                        <div class="product_name">
-                                                            <a href="#" class="product_title">Chicken Breast</a>
-                                                            <p><span class="woocommerce-price-currencySymbol">$</span>
-                                                                <span class="woocommerce-price-amount">30.00</span>
-                                                                <span class="quantity"> X 1</span></p>
-                                                        </div>
-                                                        <div class="product_remove">
-                                                            <a href="#" class="remove_btn"><i class="fas fa-times"></i></a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                                <p class="woocommerce-mini-cart__total text-center">
-                                                    <span class="woocommerce-price-currencySymbol">$</span> <span
-                                                            class="woocommerce-price-amount">60.00</span>
-                                                </p>
-                                                <p class="woocommerce-mini-cart__buttons text-center">
-                                                    <a href="#" class="chopcafe_btn">Открыть корзину</a>
-                                                    <a href="#" class="chopcafe_btn">Оплатить</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="#" class="menu_icon"><i class="fas fa-bars"></i></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="sidenav_menu">
+            {{--<div class="sidenav_menu">
                 <div class="times_icon">
                     <a href="#" class="menu_icon"><i class="fas fa-times"></i></a>
                 </div>
@@ -196,13 +163,13 @@
                     </li>
                     <li><a href="contact.html">contact</a></li>
                 </ul>
-            </div>
+            </div>--}}
         </div>
         <!-- mobile menu -->
     </div>
     <!-- End site_menu -->
 
-    <div class="sidenav_cart">
+   {{-- <div class="sidenav_cart">
         <div class="times_icon">
             <a href="#" class="menu_icon"><i class="fas fa-times"></i></a>
         </div>
@@ -265,6 +232,6 @@
             </li>
             <li><a href="contact.html">contact</a></li>
         </ul>
-    </div>
+    </div>--}}
 </header>
 <!-- End header_area -->
