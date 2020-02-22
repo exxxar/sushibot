@@ -35,7 +35,7 @@
                                 <img src="{{$product->image_url}}" class="img-fluid" alt="">
                                 <div class="overlay_img"></div>
                                 <div class="overlay_content custom_overlay_menu">
-                                    <add-to-cart-btn :product_id="{{$product->id}}"></add-to-cart-btn>
+                                    <add-to-cart-btn :product_id="{{$product->id}}" :product_data="{{json_encode($product)}}"></add-to-cart-btn>
                                 </div>
                             </div>
                             <div class="chopcafe_info ">

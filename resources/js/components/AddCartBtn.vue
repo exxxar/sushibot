@@ -6,16 +6,18 @@
 </template>
 <script>
     export default {
-        props: ["product_id"],
+        props: ["product_id","product_data"],
         methods: {
             add: function () {
+                console.log(this.product_data)
                 this.sendMessage("Товар успешно добавлен в корзину!")
-                axios
+                this.$store.dispatch('addProductToCart', this.product_data)
+              /*  axios
                     .get('api/products/get/' + this.product_id)
                     .then(response => {
 
                         this.$store.dispatch('addProductToCart', response.data.product)
-                    });
+                    });*/
             },
             sendMessage(message) {
                 console.log(message);
