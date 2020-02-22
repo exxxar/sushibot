@@ -17,7 +17,7 @@
                 <div class="chef_slide_1 wow slideInUp">
                     <div class="chef_box">
                         <div class="chopcafe_img">
-                            <img src="assets/images/chef_1.jpg" class="img-fluid" alt="">
+                            <img src="https://www.fashionplaytes.com/blog/wp-content/uploads/2017/08/Foods-58.jpg" class="img-fluid" alt="">
                             <div class="overlay_content">
                                 <div class="social">
                                     <ul>
@@ -47,13 +47,13 @@
                             </div>
                         </div>
                         <div class="chef_info">
-                            <h3><a href="single_team.html">Henry Collins</a></h3>
-                            <p>Head Of Chef</p>
+                            <h3><a href="single_team.html">田中 山本</a></h3>
+                            <p>Шеф-повар</p>
                         </div>
                     </div>
                     <div class="chef_box">
                         <div class="chopcafe_img">
-                            <img src="assets/images/chef_3.jpg" class="img-fluid" alt="">
+                            <img src="https://highplainsleanbeef.com/wp-content/uploads/2018/09/8-FILEminimizer.jpg" class="img-fluid" alt="">
                             <div class="overlay_content">
                                 <div class="social">
                                     <ul>
@@ -65,8 +65,8 @@
                             </div>
                         </div>
                         <div class="chef_info">
-                            <h3><a href="single_team.html">Nicolus Smith</a></h3>
-                            <p>Chef Master</p>
+                            <h3><a href="single_team.html">井上	木村</a></h3>
+                            <p>Шеф-повар</p>
                         </div>
                     </div>
                     <div class="chef_box">
@@ -83,8 +83,8 @@
                             </div>
                         </div>
                         <div class="chef_info">
-                            <h3><a href="single_team.html">Henry Collins</a></h3>
-                            <p>Chef Master</p>
+                            <h3><a href="single_team.html">山下 石川</a></h3>
+                            <p>Шеф-повар</p>
                         </div>
                     </div>
                 </div>

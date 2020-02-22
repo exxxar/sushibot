@@ -192,7 +192,7 @@
                     products += item.product.title +"_#"+item.product.id+ "_ x  "+ item.quantity + "штук => " + item.quantity * item.product.price + "₽\n"
                 });
 
-                let message = `*Заказ с сайта:*\n${products}\n_${this.message}_Суммарно: ${this.cartTotalPrice + this.deliveryPrice} ₽`;
+                let message = `*Заказ с сайта:*\n${products}\n_${this.message}_\nСуммарно: ${this.cartTotalPrice + this.deliveryPrice} ₽`;
                 axios
                     .post('api/send-request', {
                         name: this.name,

@@ -52416,7 +52416,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 products += item.product.title + "_#" + item.product.id + "_ x  " + item.quantity + "штук => " + item.quantity * item.product.price + "₽\n";
             });
 
-            var message = '*\u0417\u0430\u043A\u0430\u0437 \u0441 \u0441\u0430\u0439\u0442\u0430:*\n' + products + '\n_' + this.message + '_\u0421\u0443\u043C\u043C\u0430\u0440\u043D\u043E: ' + (this.cartTotalPrice + this.deliveryPrice) + ' \u20BD';
+            var message = '*\u0417\u0430\u043A\u0430\u0437 \u0441 \u0441\u0430\u0439\u0442\u0430:*\n' + products + '\n_' + this.message + '_\n\u0421\u0443\u043C\u043C\u0430\u0440\u043D\u043E: ' + (this.cartTotalPrice + this.deliveryPrice) + ' \u20BD';
             axios.post('api/send-request', {
                 name: this.name,
                 phone: this.phone,
