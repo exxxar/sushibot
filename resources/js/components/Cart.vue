@@ -82,6 +82,10 @@
                             </tr>
                             <tr>
                                 <td class="total_price"><span>Цена заказа</span></td>
+                                <td class="price"><span>{{cartTotalPrice | currency}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="total_price"><span>Цена заказа с доставкой</span></td>
                                 <td class="price"><span>{{cartTotalPrice+delivery_price | currency}}</span></td>
                             </tr>
                             </tbody>

@@ -6,7 +6,7 @@
                 <div class="form-group">
                     <label for="coating"> Верхнее покрытие ролла:</label>
                     <select name="coating" id="coating" v-model="selectedCoating">
-                        <option :value="coat.id" v-for="(coat,index) in coatings">{{coat.title}}</option>
+                        <option :value="coat.id" v-for="(coat,index) in coatings">{{coat.title}} ({{coat.price | currency}})</option>
                     </select>
                 </div>
 
@@ -20,7 +20,7 @@
                 <div class="row tr">
                     <div class="col-md-3 col-sm-6 col-12 col-lg-3 td" v-for="(fill, index) in fillings">
 
-                        <label class="container">{{fill.title}}
+                        <label class="container">{{fill.title}} <span class="badge">{{fill.price | currency}}</span>
                             <input type="checkbox"
                                    :disabled="checkedFillings.length === 4 && checkedFillings.indexOf(fill.id) === -1"
                                    :value="fill.id" v-model="checkedFillings">
@@ -319,6 +319,13 @@
 </script>
 
 <style lang="scss" scoped>
+    span.badge {
+        font-size: 8px;
+        background: red;
+        padding: 5px;
+        position: relative;
+    }
+
     .send-btn {
         width: 100%;
         padding: 15px;
@@ -342,6 +349,7 @@
         font-size: 14px;
 
     }
+
 
 
 </style>

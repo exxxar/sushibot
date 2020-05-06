@@ -35,23 +35,24 @@ class WelcomeController extends Controller
 
     public function promoValidate(Request $request)
     {
+        $request->validate([
+           'promocode'=>"required",
+           "phone"=>'required'
+        ]);
+
         $promocode = $request->get("promocode") ?? null;
         $phone = $request->get("phone") ?? null;
-        $chat_id = $request->get("chat_id") ?? null;
 
-        if (is_null($promocode) || is_null($chat_id))
-            return response()
-                ->json([
-                    "message" => "Ошибка передачи данных",
-                    "status" => "error"
-                ]);
-
-        $user = User::where("telegram_chat_id", $chat_id)
+        $user = User::where("phone", $phone)
             ->first();
 
-        if (is_null($user->phone)) {
-            $user->phone = $phone;
-            $user->save();
+        if (is_null($user)) {
+            User::create([
+                'name' => $phone,
+                'email' => "$phone@isushi-dn.ru",
+                'phone' => $phone,
+                'password' => bcrypt($phone),
+            ]);
         }
 
         $promocode = Promocode::where("code", $promocode)
@@ -61,36 +62,41 @@ class WelcomeController extends Controller
             return response()
                 ->json([
                     "message" => "Такой промокод не существует",
-                    "status" => "error"
+                    "is_valid" => false,
                 ]);
 
         if ($promocode->activated == true)
             return response()
                 ->json([
                     "message" => "Такой промокод уже был активирован",
-                    "status" => "error"
+                    "is_valid" => false,
                 ]);
 
 
         return response()
             ->json([
-                "code_id"=>$promocode->id,
-                "status" => "success"
+                "code_id" => $promocode->id,
+                "is_valid" => true,
             ]);
     }
 
     public function check(Request $request)
     {
-        $code_id = $request->get("code_id");
-        $chat_id = $request->get("chat_id");
+        $request->validate([
+            'promocode'=>"required",
+            "phone"=>'required'
+        ]);
+
+        $promocode = $request->get("promocode");
+        $phone = $request->get("phone");
 
         $prizes = Prize::all();
         $prizes->shuffle();
 
-        $user = User::where("telegram_chat_id",$chat_id)->first();
+        $user = User::where("phone", $phone)->first();
 
 
-        $promocode = Promocode::find($code_id);
+        $promocode = Promocode::where("promocode",$promocode)->first();
         $promocode->activated = true;
         $promocode->user_id = $user->id;
         $promocode->save();
@@ -115,31 +121,46 @@ class WelcomeController extends Controller
             ]);
     }
 
-    public function sendRequest(Request $request) {
-        $name = $request->get("name")??'';
-        $phone = $request->get("phone")??'';
-        $message = $request->get("message")??'';
+    public function sendRequest(Request $request)
+    {
+        $name = $request->get("name") ?? '';
+        $phone = $request->get("phone") ?? '';
+        $message = $request->get("message") ?? '';
+
+        $user = User::where("phone", $phone)->first();
+
+        if (is_null($user))
+            User::create([
+                'name' => $name,
+                'email' => "$phone@isushi-dn.ru",
+                'phone' => $phone,
+                'password' => bcrypt($phone),
+            ]);
+
+
         Telegram::sendMessage([
             'chat_id' => env("CHANNEL_ID"),
             'parse_mode' => 'Markdown',
-            'text' => sprintf("*Заявка с сайта:*\n_%s_\n_%s_\n%s",$name,$phone,$message),
+            'text' => sprintf("*Заявка с сайта:*\n_%s_\n_%s_\n%s", $name, $phone, $message),
             'disable_notification' => 'false'
         ]);
     }
 
-    public function getIngredients(Request $request,$type){
+    public function getIngredients(Request $request, $type)
+    {
         return response()
             ->json([
-                "ingredients"=>Ingredient::where("use_type",$type)
-                    ->orWhere("use_type",0)
+                "ingredients" => Ingredient::where("use_type", $type)
+                    ->orWhere("use_type", 0)
                     ->get()
             ]);
     }
 
-    public function getProduct($id){
+    public function getProduct($id)
+    {
         return response()
             ->json([
-                "product"=>Product::find($id)
+                "product" => Product::find($id)
             ]);
     }
 }
