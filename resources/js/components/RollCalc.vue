@@ -152,14 +152,14 @@
             selectedCoating: function (newVal, oldVal) {
                 if (oldVal != null) {
                     let item = this.coatings.find(item => {
-                        return item.id == oldVal;
+                        return item.id === oldVal;
                     });
                     this.summary_price -= parseInt(item.price, 0);
                     this.summary_mass -= parseInt(item.mass, 0);
                 }
 
                 let item = this.coatings.find(item => {
-                    return item.id == newVal;
+                    return item.id === newVal;
                 });
                 this.summary_price += parseInt(item.price, 0);
                 this.summary_mass += parseInt(item.mass, 0);
@@ -168,20 +168,20 @@
             },
             checkedFillings: function (newVal, oldVal) {
 
-                if (newVal.length == 4) {
+                if (newVal.length === 4) {
                     this.sendMessage("Можно выбрать не более 4х типов начинки")
                 }
 
                 if (newVal.length > oldVal.length) {
                     let item = this.fillings.find(item => {
-                        return item.id == newVal[newVal.length - 1];
+                        return item.id === newVal[newVal.length - 1];
                     });
                     this.summary_price += parseInt(item.price, 0);
                     this.summary_mass += parseInt(item.mass, 0);
                 }
                 if (newVal.length < oldVal.length) {
                     let item = this.fillings.find(item => {
-                        return item.id == oldVal[oldVal.length - 1];
+                        return item.id === oldVal[oldVal.length - 1];
                     });
                     this.summary_price -= parseInt(item.price, 0);
                     this.summary_mass -= parseInt(item.mass, 0);
@@ -223,12 +223,16 @@
                     category: '#соберисам',
                     mass: this.summary_mass,
                     price: this.summary_price,
-                    portion_count: this.summary_count,
+                    portion_count: '8',
                     image_url: 'https://sun9-71.userapi.com/c855720/v855720573/19103f/aAMxvd5BHv4.jpg',
                     site_url: '',
                     is_active: true
                 };
                 this.$store.dispatch('addProductToCart', product)
+                if (this.summary_count > 1)
+                    for (let i = 0; i < this.summary_count-1; i++)
+                        this.$store.dispatch('incQuantity', product.id)
+
                 this.message = "Ваш ролл успешно добавлен в корзину!"
 
                 setTimeout(() => this.message = "", 3000)
