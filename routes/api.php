@@ -17,6 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post("/range","HomeController@getRange");
+
 Route::prefix('users')->group(function (){
     Route::post("/phone","WelcomeController@phone");
 

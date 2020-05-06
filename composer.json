@@ -23,6 +23,7 @@
         "elforastero/transliterate": "^2.0",
         "fideloper/proxy": "^4.0",
         "irazasyed/telegram-bot-sdk": "^3.0",
+        "jackmartin/laravel-yandex-geocode": "^1.2",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0"
     },

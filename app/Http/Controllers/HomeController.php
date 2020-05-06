@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\Utilits;
 use App\Product;
 use App\User;
 use ATehnix\VkClient\Auth;
@@ -10,6 +11,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
+    use Utilits;
+
     /**
      * Create a new controller instance.
      *
@@ -17,7 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(["getRange"]);
     }
 
     /**
@@ -66,7 +70,7 @@ class HomeController extends Controller
 
                     preg_match_all('|\d+|', $item2["price"]["text"], $matches);
 
-                    $price = $matches[0][0] ?? 0;
+                    $price = intval($item2["price"]["amount"]) / 100;
 
                     Product::create([
                         'title' => $item2["title"],
@@ -111,5 +115,32 @@ class HomeController extends Controller
                 ->route("users.show", $user->id);
         return back()
             ->with("success", "Пользователь не найден!");
+    }
+
+    public function getRange(Request $request)
+    {
+        $request->validate([
+            'address' => 'required',
+        ]);
+
+
+        $point = $request->get("address") ?? '';
+
+        $coords = (object)$this->getCoordsByAddress($point);
+
+        $range = ($this->calculateTheDistance(
+            48.012478,
+            37.821319,
+            $coords->latitude,
+            $coords->longitude));
+
+        $price = ceil(($range + 1) * 10);
+
+
+        return response()
+            ->json([
+                "range" => floatval(sprintf("%.2f", $range)),
+                "price" => $price
+            ]);
     }
 }

@@ -122,7 +122,7 @@ class WelcomeController extends Controller
         Telegram::sendMessage([
             'chat_id' => env("CHANNEL_ID"),
             'parse_mode' => 'Markdown',
-            'text' => sprintf("*Заявка на обратный звонок*\n_%s_\n_%s_\n%s",$name,$phone,$message),
+            'text' => sprintf("*Заявка с сайта:*\n_%s_\n_%s_\n%s",$name,$phone,$message),
             'disable_notification' => 'false'
         ]);
     }

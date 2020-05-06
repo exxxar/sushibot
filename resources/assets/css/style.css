@@ -5238,7 +5238,6 @@ ul.rating li:nth-child(4) i {
     background: url('https://static.ngs.ru/news/99/preview/294af813a3b911a20dd23700e236e04e788ba4a8_824_549_c.jpg');
     background-size: cover;
     background-color: black;
-    mix-blend-mode: overlay;
 }
 
 .s2 > .container {

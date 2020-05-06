@@ -413,7 +413,7 @@ $botman->hears('/category ([0-9]+) ([0-9]+)', function ($bot, $page, $catIndex) 
     foreach ($products as $key => $product) {
         $keybord = [
             [
-                ['text' => "\xF0\x9F\x91\x89Детальнее", 'callback_data' => "/product_info " . $product->id],
+               /* ['text' => "\xF0\x9F\x91\x89Детальнее", 'callback_data' => "/product_info " . $product->id],*/
                 ['text' => "\xE2\x86\xAAВ корзину(" . $product->price . "₽)", 'callback_data' => "/add_to_basket " . $product->id]
             ],
 
@@ -435,10 +435,17 @@ $botman->hears('/category ([0-9]+) ([0-9]+)', function ($bot, $page, $catIndex) 
                 ['text' => "\xE2\x8F\xAAНазад", 'callback_data' => "/category  " . ($page - 1) . " " . $catIndex],
             ]);
 
+        $message = "*" . $product->title . "*\n"
+            . "_" . $product->description . "_\n"
+            . "*Вес*:" . $product->mass . "гр.\n"
+            . "*Цена*:" . $product->price . "₽\n"
+            . "*Порция*:" . $product->portion_count . "шт.\n";
+
         $bot->sendRequest("sendPhoto",
             [
                 "chat_id" => "$id",
                 "photo" => $product->image_url,
+                "caption"=>$message,
                 'reply_markup' => json_encode([
                     'inline_keyboard' =>
                         $keybord

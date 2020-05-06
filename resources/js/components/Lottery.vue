@@ -3,15 +3,7 @@
 
         <div class="row justify-content-center mb-5">
             <transition name="fade">
-                <div class="col-sm-3" v-if="!isLogged">
-                    <vue-telegram-login
-                            mode="callback"
-                            telegram-login="isushibot"
-                            @callback="telegramCallback"/>
-                </div>
-            </transition>
-            <transition name="fade">
-                <div class="col-sm-4" v-if="isLogged">
+                <div class="col-sm-4">
                     <div class="form_group">
                         <input type="text" placeholder="Введите промокод" name="promocode" v-model="promocode"
                                class="form_control lottery-field">
@@ -20,9 +12,11 @@
                 </div>
             </transition>
 
-            <div class="col-sm-4" v-if="!hasPhone&&isLogged">
+            <div class="col-sm-4" v-if="!hasPhone">
                 <div class="form_group">
                     <input type="text" placeholder="Введите телефон" name="phone" v-model="phone"
+                           required="required" pattern="[\+]\d{2} [\(]\d{3}[\)] \d{3}[\-]\d{2}[\-]\d{2}"  maxlength="19"
+                           v-mask="['+38 (###) ###-##-##']"
                            class="form_control lottery-field">
                     <i class="fas fa-phone"></i>
                 </div>
@@ -32,7 +26,8 @@
             <div class="row justify-content-center mb-5" v-if="canStart">
                 <div class="col-md-3">
                     <button class="btn btn-info btn-lottery" @click="checkValidPromo" v-if="!isWin">Поехали</button>
-                    <button class="btn btn-info btn-lottery btn-lottery-green" @click="restart" v-if="isWin">По новой</button>
+                    <button class="btn btn-info btn-lottery btn-lottery-green" @click="restart" v-if="isWin">По новой
+                    </button>
                 </div>
             </div>
         </transition>
@@ -62,12 +57,13 @@
 </template>
 <script>
     import {vueTelegramLogin} from 'vue-telegram-login'
+    import {mask} from 'vue-the-mask'
 
     export default {
 
         data() {
             return {
-                demo_lottery_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                demo_lottery_list: [],
                 isLogged: false,
                 hasPhone: false,
                 canStart: false,
@@ -77,6 +73,10 @@
                 lottery_list: [],
                 isWin: false
             };
+        },
+        mounted() {
+            for (let i = 1; i <= 30; i++)
+                this.demo_lottery_list.push(i);
         },
         methods: {
             telegramCallback(user) {
@@ -128,12 +128,12 @@
             },
             checkValidPromo() {
 
-                if (this.promocode.length == 0) {
+                if (this.promocode.length === 0) {
                     this.sendMessage("Введите промокод!")
                     return;
                 }
 
-                if (!this.hasPhone && this.phone.length == 0) {
+                if (!this.hasPhone && this.phone.length === 0) {
                     this.sendMessage("Введите номер телефона!")
                     return;
                 }
@@ -213,6 +213,7 @@
 
         },
         components: {vueTelegramLogin},
+        directives: {mask}
     }
 </script>
 

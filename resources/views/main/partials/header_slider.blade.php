@@ -23,7 +23,7 @@
                     <div class="col-lg-6">
                         <div class="welcome_content wow slideInUp">
                             <h1>Суши кафе <span>ISUSHI</span></h1>
-                            <p>Стоимость наших блюд вас приятно удивит и позволит насладится изящным вкусом настоящей японской кухни!</p>
+                            <p>Стоимость наших блюд вас приятно удивит и позволит насладиться изящным вкусом настоящей японской кухни!</p>
                             <a href="#callbackModal" data-toggle="modal" data-target="#callbackModal" class="chopcafe_btn reservation_btn">Заказать</a>
                         </div>
                     </div>

@@ -1,8 +1,8 @@
 <template>
     <div class="container">
 
-        <div class="calc row align-items-flex-start">
-            <div class="col-lg-6 right">
+        <div class="calc row justify-content-center">
+            <div class="col-lg-6">
                 <div class="form-group">
                     <label for="coating"> Верхнее покрытие ролла:</label>
                     <select name="coating" id="coating" v-model="selectedCoating">
@@ -10,10 +10,15 @@
                     </select>
                 </div>
 
-                <h3>Начинка внутри ролла</h3>
 
+            </div>
+            <div class="col-lg-12">
+                <h3 class="text-center">Начинка внутри ролла</h3>
+            </div>
+
+            <div class="col-lg-12">
                 <div class="row tr">
-                    <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 td" v-for="(fill, index) in fillings">
+                    <div class="col-md-3 col-sm-6 col-12 col-lg-3 td" v-for="(fill, index) in fillings">
 
                         <label class="container">{{fill.title}}
                             <input type="checkbox"
@@ -26,73 +31,102 @@
 
                 </div>
 
-
-            </div>
-            <div class="col-lg-6 left">
-                <h3>Выбери форму ролла</h3>
-
                 <div class="row justify-content-center">
-                    <div class="col-md-4 col-sm-12">
-                        <p>Квадратная<br>форма</p>
-                        <label>
-                            <input type="radio" name="test" value="Квадратная" v-model="pickedForm">
-                            <img src="square.jpg">
-                        </label>
+                    <div class="col-lg-4">
+                        <!--  <h3>Выбери форму ролла</h3>
+
+                          <div class="row justify-content-center">
+                              <div class="col-md-4 col-sm-12">
+                                  <p>Квадратная<br>форма</p>
+                                  <label>
+                                      <input type="radio" name="test" value="Квадратная" v-model="pickedForm">
+                                      <img src="square.jpg">
+                                  </label>
+                              </div>
+                              <div class="col-md-4 col-sm-12">
+                                  <p>Круглая<br>форма</p>
+                                  <label>
+                                      <input type="radio" name="test" value="Круглая" v-model="pickedForm">
+                                      <img src="circle.jpg">
+                                  </label>
+                              </div>
+                              <div class="col-md-4 col-sm-12">
+                                  <p>Треугольная<br>форма</p>
+                                  <label>
+                                      <input type="radio" name="test" value="Треугольная" v-model="pickedForm">
+                                      <img src="triangle.jpg">
+                                  </label>
+                              </div>
+                          </div>-->
+
+                        <h3 class="text-center">Цена ролла</h3>
+                        <h2 class="text-center text-white">{{summary_price*summary_count}}<i
+                                class="fas fa-ruble-sign"></i></h2>
+                        <p class="text-justify text-white"><em>Цена указана за 1 порцию роллов (вы заказали
+                            {{summary_count}}
+                            порций). Порция включает в себя 8 штук роллов общей массой {{summary_mass}} грамм.</em></p>
+
+
+                        <!--            <div class="row justify-content-center">
+                                        <div class="col-sm-2 mt-2">
+                                            <button class="btn btn-warning counter-btn" @click="dec">-</button>
+                                        </div>
+                                        <div class="col-sm-4 mt-2">
+                                            <input type="text" disabled="true" class="form-control counter" v-model="summary_count" min="1">
+
+                                        </div>
+                                        <div class="col-sm-2 mt-2">
+                                            <button class="btn btn-warning counter-btn" @click="inc">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-8 mt-2">
+                                            <input type="text" class="form-control phone" v-model="phone"
+                                                   placeholder="Введите номер телефона">
+                                        </div>
+                                        <div class="col-sm-8 mt-2">
+                                            <input type="text" class="form-control name" v-model="name"
+                                                   placeholder="Введите ваше имя">
+                                        </div>
+                                    </div>-->
+
+
                     </div>
-                    <div class="col-md-4 col-sm-12">
-                        <p>Круглая<br>форма</p>
-                        <label>
-                            <input type="radio" name="test" value="Круглая" v-model="pickedForm">
-                            <img src="circle.jpg">
-                        </label>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <p>Треугольная<br>форма</p>
-                        <label>
-                            <input type="radio" name="test" value="Треугольная" v-model="pickedForm">
-                            <img src="triangle.jpg">
-                        </label>
-                    </div>
+
+
                 </div>
 
-                <h3 class="text-center">Цена ролла</h3>
-                <h2 class="text-center text-white">{{summary_price*summary_count}}<i class="fas fa-ruble-sign"></i></h2>
-                <p class="text-justify text-white"><em>Цена указана за 1 порцию роллов (вы заказали {{summary_count}}
-                    порций). Порция включает в себя 8 штук роллов общей массой {{summary_mass}} грамм.</em></p>
-
-
                 <div class="row justify-content-center">
-                    <div class="col-sm-2 mt-2">
-                        <button class="btn btn-warning counter-btn" @click="dec">-</button>
-                    </div>
+
                     <div class="col-sm-4 mt-2">
-                        <input type="text" disabled="true" class="form-control counter" v-model="summary_count" min="1">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <button class="btn btn-warning counter-btn" @click="dec">-</button>
+                            </div>
+                            <div class="col-sm-6"><input type="text" disabled="true" class="form-control counter"
+                                                         v-model="summary_count" min="1"></div>
+                            <div class="col-sm-3">
+                                <button class="btn btn-warning counter-btn" @click="inc">+</button>
+                            </div>
+                        </div>
+
 
                     </div>
-                    <div class="col-sm-2 mt-2">
-                        <button class="btn btn-warning counter-btn" @click="inc">+</button>
-                    </div>
+
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-sm-6 mt-2">
-                        <input type="text" class="form-control phone" v-model="phone"
-                               placeholder="Введите номер телефона">
-                    </div>
-                    <div class="col-sm-6 mt-2">
-                        <input type="text" class="form-control name" v-model="name"
-                               placeholder="Введите ваше имя">
-                    </div>
-                </div>
-                <div class="row justify-content-center mt-2">
-                    <div class="col-sm-8">
-                        <button class="btn send-btn" :disabled="disabledRule()" @click="sendRequest">
-                            Заказать
+
+                <div class="row pb-5 justify-content-center">
+                    <div class="col-lg-4">
+                        <p>{{message}}</p>
+                        <button class="btn send-btn" @click="addToCart"
+                                :disabled="checkedFillings.length===0">
+                            Добавить в корзину
                         </button>
                     </div>
-
                 </div>
 
             </div>
+
         </div>
 
     </div>
@@ -106,6 +140,7 @@
                 summary_count: 1,
                 phone: '',
                 name: '',
+                message: '',
                 coatings: [],
                 fillings: [],
                 checkedFillings: [],
@@ -159,6 +194,48 @@
 
         },
         methods: {
+
+            addToCart() {
+
+                let tmp_coating = this.coatings.find(item => {
+                    return item.id === this.selectedCoating;
+                });
+
+                let coating = `${tmp_coating.title} [${tmp_coating.mass} грамм] [${tmp_coating.price} ₽]`;
+
+                let filling = "";
+
+                for (let j = 0; j < this.checkedFillings.length; j++) {
+                    let tmp = this.fillings.find(item => {
+                        return item.id === this.checkedFillings[j];
+                    });
+                    filling += `${tmp.title} [${tmp.mass} грамм] [${tmp.price} ₽]`;
+                }
+
+
+                let message = `*Собранный ролл*:\n*Покрытие*:\n${coating}\n*Наполнение*:\n${filling}\n*Форма* ${this.pickedForm}\n*Итого*: ${this.summary_price}₽ за ${this.summary_count} порций`
+
+
+                let product = {
+                    id: `f${(+new Date).toString(16)}`,
+                    title: 'Собранный ролл',
+                    description: message,
+                    category: '#соберисам',
+                    mass: this.summary_mass,
+                    price: this.summary_price,
+                    portion_count: this.summary_count,
+                    image_url: 'https://sun9-71.userapi.com/c855720/v855720573/19103f/aAMxvd5BHv4.jpg',
+                    site_url: '',
+                    is_active: true
+                };
+                this.$store.dispatch('addProductToCart', product)
+                this.message = "Ваш ролл успешно добавлен в корзину!"
+
+                setTimeout(() => this.message = "", 3000)
+                this.sendMessage("Ролл успешно добавлен в корзину");
+
+                this.checkedFillings = []
+            },
             disabledRule() {
                 return this.phone.length < 15 ||
                     this.name.length < 2 ||

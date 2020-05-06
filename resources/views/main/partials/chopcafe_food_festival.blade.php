@@ -23,13 +23,13 @@
             <div class="col-lg-6">
                 <div class="chopcafe_content_box">
                     <div class="festival_title text-center">
-                        <h3>Роллы для любимы дам к 8 марта!</h3>
+                        <h3>Счастливый понедельник! </h3>
                     </div>
                     <div class="festival_countdown_area text-center">
-                        <div class="festival_countdown" data-countdown="2020/03/03"></div>
+                        <div class="festival_countdown" data-countdown="2020/05/11"></div>
                     </div>
                     <div class="festival_text text-center">
-                        <h4>с 2 по 8е марта</h4>
+                        <h4>Каждый понедельник скидки на всё меню кроме сетов!</h4>
                         <h5><a class="btn btn-link festival_phone" href="tel:+380713830741">+38 (071) 383-07-41</a></h5>
                         <a href="#callback" data-toggle="modal" data-target="#callbackModal" class="chopcafe_btn festival_btn">Подробнее</a>
                     </div>

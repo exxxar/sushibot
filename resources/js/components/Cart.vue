@@ -78,14 +78,35 @@
                             </tr>
                             <tr>
                                 <td class="shipping"><span>Доставка</span></td>
-                                <td class="shipping_info"><span>{{deliveryPrice|currency}}</span></td>
+                                <td class="shipping_info"><span>{{delivery_price|currency}}</span></td>
                             </tr>
                             <tr>
                                 <td class="total_price"><span>Цена заказа</span></td>
-                                <td class="price"><span>{{cartTotalPrice+deliveryPrice | currency}}</span></td>
+                                <td class="price"><span>{{cartTotalPrice+delivery_price | currency}}</span></td>
                             </tr>
                             </tbody>
                         </table>
+
+                        <form v-on:submit.prevent="requestRange" class="row mt-2">
+                            <div class="col-lg-12 mt-2">
+                                <div class="form_group">
+                                    <input type="text" placeholder="Ваш адрес" name="address"
+                                           v-model="address" class="form_control"
+                                           required="required" >
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 mt-2">
+                                <div class="form_group">
+                                    <p>{{range_message}}</p>
+                                    <button type="submit" class="chopcafe_btn continue_btn"><i
+                                            class="fas fa-shopping-cart"></i>Расчитать цену доставки</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <hr>
                         <div class="row mt-2">
                             <div class="col-lg-6 col-sm-12">
                                 <div class="update_cart">
@@ -94,8 +115,7 @@
                                         корзину</a>
                                 </div>
                             </div>
-                    </div>
-
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -118,6 +138,7 @@
                                 </div>
                             </div>
 
+
                             <div class="col-lg-12 mt-2">
                                 <div class="form_group">
                                     <textarea style="height: 122px;" placeholder="Сообщение для нас"
@@ -128,7 +149,7 @@
                             </div>
                             <div class="col-lg-12 mt-2">
                                 <div class="continue_shopping">
-                                    <button class="chopcafe_btn continue_btn" :disabled="sending"><i
+                                    <button class="chopcafe_btn continue_btn" :disabled="sending||delivery_price===0"><i
                                             class="fas fa-shopping-cart"></i>Оформить
                                         покупку</button>
                                 </div>
@@ -158,8 +179,11 @@
             return {
                 phone: '',
                 name: '',
+                address:'',
+                range:0,
                 message: '',
-                deliveryPrice: 50,
+                range_message:'',
+                delivery_price: 0,
                 sending:false
             }
         },
@@ -182,8 +206,23 @@
         },
 
         methods: {
+            requestRange(){
+                axios.post('/api/range',{
+                    address:this.address
+                }).then(resp=>{
+                    this.range = resp.data.range
+                    this.delivery_price = resp.data.price
+                    this.range_message = `Цена доставки по вашему адресу составит ${this.delivery_price} руб.`
+                })
+
+            },
             sendRequest(e) {
                 e.preventDefault();
+
+                if (this.delivery_price===0){
+                    this.sendMessage("Сперва расчитайте цену доставки!");
+                    return;
+                }
 
                 this.sending = true;
                 let products = '';
@@ -192,7 +231,7 @@
                     products += item.product.title +"_#"+item.product.id+ "_ x  "+ item.quantity + "штук => " + item.quantity * item.product.price + "₽\n"
                 });
 
-                let message = `*Заказ с сайта:*\n${products}\n_${this.message}_\nСуммарно: ${this.cartTotalPrice + this.deliveryPrice} ₽`;
+                let message = `*Заказ с сайта:*\n${products}\n_${this.message}_\nЦена заказа:*${this.cartTotalPrice}₽*\nЦена доставки:*${this.delivery_price}₽*\nСуммарно: *${this.cartTotalPrice + this.delivery_price} ₽*`;
                 axios
                     .post('api/send-request', {
                         name: this.name,
@@ -233,5 +272,9 @@
 <style lang="scss">
     .chopcafe_custom_table {
         min-width: 1000px;
+    }
+
+    .chopcafe_btn[disabled] {
+        background: gray;
     }
 </style>

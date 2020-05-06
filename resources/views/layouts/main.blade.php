@@ -137,38 +137,38 @@
 <!-- scroll_top -->
 <a id="scroll_top"><i class="fas fa-angle-up"></i></a>
 <!-- jquery  -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
 <!-- bootstrap js -->
-<script src="{{asset('assets/plugin/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/plugin/bootstrap/js/bootstrap.min.js')}}" defer></script>
 <!-- Poper js -->
-<script src="{{asset('assets/plugin/bootstrap/js/popper.min.js')}}"></script>
+<script src="{{asset('assets/plugin/bootstrap/js/popper.min.js')}}" defer></script>
 <!-- slick slider js -->
-<script src="{{asset('assets/plugin/slick/slick.min.js')}}"></script>
+<script src="{{asset('assets/plugin/slick/slick.min.js')}}" defer></script>
 <!-- magnific popup js -->
-<script src="{{asset('assets/plugin/magnific/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('assets/plugin/magnific/jquery.magnific-popup.min.js')}}" defer></script>
 <!-- isotope js -->
-<script src="{{asset('assets/plugin/isotope/isotope.min.js')}}"></script>
+<script src="{{asset('assets/plugin/isotope/isotope.min.js')}}" defer></script>
 <!-- imagesloaded js -->
-<script src="{{asset('assets/plugin/imagesloaded/imagesloaded.min.js')}}"></script>
+<script src="{{asset('assets/plugin/imagesloaded/imagesloaded.min.js')}}" defer></script>
 <!-- couterup js -->
-<script src="{{asset('assets/plugin/counterup/jquery.counterup.min.js')}}"></script>
-<script src="{{asset('assets/plugin/counterup/jquery.waypoints.min.js')}}"></script>
+<script src="{{asset('assets/plugin/counterup/jquery.counterup.min.js')}}" defer></script>
+<script src="{{asset('assets/plugin/counterup/jquery.waypoints.min.js')}}" defer></script>
 <!-- countdown js -->
-<script src="{{asset('assets/plugin/countdown/jquery.countdown.min.js')}}"></script>
+<script src="{{asset('assets/plugin/countdown/jquery.countdown.min.js')}}" defer></script>
 <!-- jquery_ui js -->
-<script src="{{asset('assets/plugin/jquery_ui/jquery-ui.min.js')}}"></script>
+<script src="{{asset('assets/plugin/jquery_ui/jquery-ui.min.js')}}" defer></script>
 <!-- nice number js -->
-<script src="{{asset('assets/plugin/niceselect/jquery.nice-select.min.js')}}"></script>
+<script src="{{asset('assets/plugin/niceselect/jquery.nice-select.min.js')}}" defer></script>
 <!-- nice number js -->
 {{--<script src="{{asset('assets/plugin/nicenumber/jquery.nice-number.min.js')}}"></script>--}}
 <!-- sidebarmenu js -->
-<script src="{{asset('assets/plugin/sidebar-menu/sidebar-menu.js')}}"></script>
+<script src="{{asset('assets/plugin/sidebar-menu/sidebar-menu.js')}}" defer></script>
 <!-- jquery_ui js -->
 <script src="{{asset('assets/js/wow.min.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-<script src="{{asset('js/app.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" defer></script>
+<script src="{{asset('js/app.js')}}" defer></script>
 <!-- main js -->
-<script src="{{asset('assets/js/main.js')}}"></script>
+<script src="{{asset('assets/js/main.js')}}" defer></script>
 
 </body>
 

@@ -164,6 +164,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\BotMan\DriverServiceProvider::class,
         ElForastero\Transliterate\ServiceProvider::class,
+        Yandex\Geocode\YandexGeocodeServiceProvider::class,
     ],
 
     /*
@@ -214,6 +215,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Telegram'  => Telegram\Bot\Laravel\Facades\Telegram::class,
         'Transliterate' => ElForastero\Transliterate\Facade::class,
+        'YaGeo' => Yandex\Geocode\Facades\YandexGeocodeFacade::class,
 
     ],
 
