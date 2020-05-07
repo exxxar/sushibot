@@ -135,7 +135,7 @@
     export default {
         data() {
             return {
-                summary_price: 100,
+                summary_price: 80,
                 summary_mass: 100,
                 summary_count: 1,
                 phone: '',
@@ -197,6 +197,8 @@
 
             addToCart() {
 
+                let base_price = 80;//цена основы
+
                 let tmp_coating = this.coatings.find(item => {
                     return item.id === this.selectedCoating;
                 });
@@ -213,7 +215,7 @@
                 }
 
 
-                let message = `*Собранный ролл*:\n*Покрытие*:\n${coating}\n*Наполнение*:\n${filling}\n*Форма* ${this.pickedForm}\n*Итого*: ${this.summary_price}₽ за ${this.summary_count} порций`
+                let message = `*Основа*:${base_price}₽\n*Покрытие*:\n${coating}\n*Наполнение*:\n${filling}\n`
 
 
                 let product = {
@@ -239,6 +241,8 @@
                 this.sendMessage("Ролл успешно добавлен в корзину");
 
                 this.checkedFillings = []
+                this.selectedCoatin= null
+                this.summary_count = 1
             },
             disabledRule() {
                 return this.phone.length < 15 ||

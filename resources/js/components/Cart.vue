@@ -2,7 +2,7 @@
     <div class="cart">
 
         <div class="container" v-if="cartProducts.length>0">
-            <div class="row">
+            <div class="row cart-table">
                 <div class="col-lg-12">
                     <div class="chopcafe_product_table">
                         <table class="chopcafe_table chopcafe_custom_table table">
@@ -96,7 +96,7 @@
                                 <div class="form_group">
                                     <input type="text" placeholder="Ваш адрес" name="address"
                                            v-model="address" class="form_control"
-                                           required="required" >
+                                           required="required">
                                 </div>
                             </div>
 
@@ -104,7 +104,8 @@
                                 <div class="form_group">
                                     <p>{{range_message}}</p>
                                     <button type="submit" class="chopcafe_btn continue_btn"><i
-                                            class="fas fa-shopping-cart"></i>Расчитать цену доставки</button>
+                                            class="fas fa-shopping-cart"></i>Расчитать цену доставки
+                                    </button>
                                 </div>
                             </div>
 
@@ -128,17 +129,18 @@
                             <div class="col-lg-12">
                                 <div class="form_group">
                                     <input type="text" placeholder="Ваше имя" name="name"
-                                                               v-model="name"
-                                                               required="required"
-                                                               class="form_control">
+                                           v-model="name"
+                                           required="required"
+                                           class="form_control">
                                 </div>
                             </div>
                             <div class="col-lg-12 mt-2">
                                 <div class="form_group">
                                     <input type="text" placeholder="Ваш номер телефона" name="phone"
-                                                               v-model="phone"
-                                                               required="required" pattern="[\+]\d{2} [\(]\d{3}[\)] \d{3}[\-]\d{2}[\-]\d{2}" class="form_control" maxlength="19"
-                                                               v-mask="['+38 (###) ###-##-##']">
+                                           v-model="phone"
+                                           required="required" pattern="[\+]\d{2} [\(]\d{3}[\)] \d{3}[\-]\d{2}[\-]\d{2}"
+                                           class="form_control" maxlength="19"
+                                           v-mask="['+38 (###) ###-##-##']">
                                 </div>
                             </div>
 
@@ -146,16 +148,17 @@
                             <div class="col-lg-12 mt-2">
                                 <div class="form_group">
                                     <textarea style="height: 122px;" placeholder="Сообщение для нас"
-                                                                  name="message"
-                                                                  v-model="message"
-                                                                  class="form_control"></textarea>
+                                              name="message"
+                                              v-model="message"
+                                              class="form_control"></textarea>
                                 </div>
                             </div>
                             <div class="col-lg-12 mt-2">
                                 <div class="continue_shopping">
                                     <button class="chopcafe_btn continue_btn" :disabled="sending||delivery_price===0"><i
                                             class="fas fa-shopping-cart"></i>Оформить
-                                        покупку</button>
+                                        покупку
+                                    </button>
                                 </div>
                             </div>
 
@@ -183,12 +186,12 @@
             return {
                 phone: '',
                 name: '',
-                address:'',
-                range:0,
+                address: '',
+                range: 0,
                 message: '',
-                range_message:'',
+                range_message: '',
                 delivery_price: 0,
-                sending:false
+                sending: false
             }
         },
         mounted() {
@@ -210,10 +213,10 @@
         },
 
         methods: {
-            requestRange(){
-                axios.post('/api/range',{
-                    address:this.address
-                }).then(resp=>{
+            requestRange() {
+                axios.post('/api/range', {
+                    address: this.address
+                }).then(resp => {
                     this.range = resp.data.range
                     this.delivery_price = resp.data.price
                     this.range_message = `Цена доставки по вашему адресу составит ${this.delivery_price} руб.`
@@ -223,7 +226,7 @@
             sendRequest(e) {
                 e.preventDefault();
 
-                if (this.delivery_price===0){
+                if (this.delivery_price === 0) {
                     this.sendMessage("Сперва расчитайте цену доставки!");
                     return;
                 }
@@ -232,8 +235,13 @@
                 let products = '';
 
                 this.cartProducts.forEach(function (item) {
-                    products += item.product.title +"_#"+item.product.id+ "_ x  "+ item.quantity + "штук => " + item.quantity * item.product.price + "₽\n"
+                    if (item.product.category !== '#соберисам')
+                        products += item.product.title + "_#" + item.product.id + "_ x  " + item.quantity + "штук => " + item.quantity * item.product.price + "₽\n"
+                    else
+                        products += item.product.title + " х  " + item.quantity + "штук \nОписание:\n" + item.product.description + "*Цена => " + item.quantity * item.product.price + "₽*\n\n"
                 });
+
+
 
                 let message = `*Заказ с сайта:*\n${products}\n_${this.message}_\nЦена заказа:*${this.cartTotalPrice}₽*\nЦена доставки:*${this.delivery_price}₽*\nСуммарно: *${this.cartTotalPrice + this.delivery_price} ₽*`;
                 axios
@@ -280,5 +288,9 @@
 
     .chopcafe_btn[disabled] {
         background: gray;
+    }
+
+    .cart-table {
+        overflow-x: auto;
     }
 </style>

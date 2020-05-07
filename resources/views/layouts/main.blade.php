@@ -34,11 +34,11 @@
     <!-- magnific css -->
     <link rel="stylesheet" href="{{asset('assets/plugin/niceselect/nice-select.css')}}">
     <!-- animate css -->
-    <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}?ver=1.0.0">
     <!-- Style css -->
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}?ver=1.0.0">
     <!-- Responsive css -->
-    <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}?ver=1.0.0">
 </head>
 
 <body>
