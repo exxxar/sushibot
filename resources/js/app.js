@@ -25,6 +25,9 @@ import CartCountIndex from  '../js/components/CartCountIndex';
 import Cart from  '../js/components/Cart';
 import VueCurrencyFilter from 'vue-currency-filter'
 import store from '../js/store'
+import VModal from 'vue-js-modal'
+
+Vue.use(VModal)
 
 Vue.component('lottery', Lottery);
 Vue.component('add-to-cart-btn', AddToCartBtn);

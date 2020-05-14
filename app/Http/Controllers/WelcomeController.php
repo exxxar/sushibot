@@ -36,8 +36,8 @@ class WelcomeController extends Controller
     public function promoValidate(Request $request)
     {
         $request->validate([
-           'promocode'=>"required",
-           "phone"=>'required'
+            'promocode' => "required",
+            "phone" => 'required'
         ]);
 
         $promocode = $request->get("promocode") ?? null;
@@ -83,8 +83,8 @@ class WelcomeController extends Controller
     public function check(Request $request)
     {
         $request->validate([
-            'promocode'=>"required",
-            "phone"=>'required'
+            'promocode' => "required",
+            "phone" => 'required'
         ]);
 
         $promocode = $request->get("promocode");
@@ -96,7 +96,7 @@ class WelcomeController extends Controller
         $user = User::where("phone", $phone)->first();
 
 
-        $promocode = Promocode::where("promocode",$promocode)->first();
+        $promocode = Promocode::where("code", $promocode)->first();
         $promocode->activated = true;
         $promocode->user_id = $user->id;
         $promocode->save();
@@ -106,8 +106,7 @@ class WelcomeController extends Controller
         Telegram::sendMessage([
             'chat_id' => env("CHANNEL_ID"),
             'parse_mode' => 'Markdown',
-            'text' => sprintf("*Заявка на получение приза*\n_%s_\n_%s_\nПриз:[%s]%s",
-                $user->name,
+            'text' => sprintf("*Заявка на получение приза*\nНомер телефона:_%s_\nПриз: [#%s] \"%s\"",
                 $user->phone,
                 $prize[0]->id,
                 $prize[0]->title),
@@ -126,8 +125,11 @@ class WelcomeController extends Controller
         $name = $request->get("name") ?? '';
         $phone = $request->get("phone") ?? '';
         $message = $request->get("message") ?? '';
+        $summary_price = $request->get("summary_price") ?? 0;
 
         $user = User::where("phone", $phone)->first();
+
+        $promo = null;
 
         if (is_null($user))
             User::create([
@@ -137,6 +139,13 @@ class WelcomeController extends Controller
                 'password' => bcrypt($phone),
             ]);
 
+        if ($summary_price > 1500) {
+            $promo = \App\Promocode::create([
+                'code' => uniqid(),
+                'activated' => 0,
+                'user_id' => null,
+            ]);
+        }
 
         Telegram::sendMessage([
             'chat_id' => env("CHANNEL_ID"),
@@ -144,6 +153,11 @@ class WelcomeController extends Controller
             'text' => sprintf("*Заявка с сайта:*\n_%s_\n_%s_\n%s", $name, $phone, $message),
             'disable_notification' => 'false'
         ]);
+
+        return response()
+            ->json([
+                "code" => is_null($promo) ? '' : $promo->code
+            ]);
     }
 
     public function getIngredients(Request $request, $type)

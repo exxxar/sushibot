@@ -1,12 +1,12 @@
 <template>
     <div>
 
-        <div class="row justify-content-center">
+        <form v-on:submit.prevent="checkValidPromo" class="row justify-content-center">
             <transition name="fade" v-if="!is_valid">
                 <div class="col-sm-6 col-md-4 col-12 mb-2">
                     <div class="form_group">
                         <input type="text" placeholder="Введите промокод" name="promocode" v-model="promocode"
-                               class="form_control lottery-field">
+                               class="form_control lottery-field" required>
                         <i class="fas fa-terminal"></i>
                     </div>
                 </div>
@@ -21,16 +21,25 @@
                     <i class="fas fa-phone"></i>
                 </div>
             </div>
-        </div>
+        </form>
 
-        <div class="row justify-content-center" >
-            <transition name="fade" v-if="!is_valid">
+        <div class="row justify-content-center">
+            <transition name="bounce" v-if="!is_valid">
                 <div class="col-sm-6 col-md-3 mb-2 mt-2">
                     <button type="button" class="btn btn-info w-100 p-3" :disabled="phone===null||promocode===null"
                             @click="checkValidPromo">Проверить промокод
                     </button>
                 </div>
             </transition>
+        </div>
+
+
+        <div v-if="message.length>0" class="row justify-content-center mb-2 mt-2">
+
+            <div class="col-6">
+                <h4 class="text-center text-white" v-html="message"></h4>
+            </div>
+
         </div>
         <!--   <transition name="fade">
                <div class="row justify-content-center mb-5" v-if="canStart">
@@ -42,16 +51,36 @@
                </div>
            </transition>-->
 
+        <div v-if="is_valid">
+            <transition-group name="flip-list" tag="ul" class="lottery">
+                <li class="lottery-item-wrapper wow slideInUp" v-for="n in demo_lottery_list" v-bind:key="n"
+                    :data-id="n">
+                    <div class="lottery-item" @click="openCard()">
+                        <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
+                             alt="">
+                    </div>
+                </li>
+            </transition-group>
+        </div>
 
-        <transition-group name="flip-list" tag="ul" class="lottery">
-            <li class="lottery-item-wrapper wow slideInUp" v-for="n in demo_lottery_list" v-bind:key="n" :data-id="n">
-                <div class="lottery-item" @click="openCard()">
-                    <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
-                         alt="">
+        <modal name="winner">
+            <div class="container container-2">
+                <div class="row">
+                    <div class="col-12 mb-5">
+                        <h4 class="text-center">Ваш приз! Вы автоматически получите его с Вашим заказом!</h4>
+                    </div>
                 </div>
-            </li>
-        </transition-group>
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <h3 class="text-center"><strong>{{prize.title}}</strong></h3>
+                        <p><em>{{prize.description}}</em></p>
+                    </div>
 
+                </div>
+            </div>
+
+
+        </modal>
         <!--    <ul class="lottery" v-if="code_id!=null&&lottery_list.length>0">
                 <li class="lottery-item-wrapper"
                     v-for="lottery_item in lottery_list">
@@ -79,8 +108,14 @@
                 phone: null,
                 isWin: false,
                 is_valid: false,
+                message: '',
+                prize: {
+                    title: '',
+                    description: ''
+                }
             };
         },
+
         mounted() {
             for (let i = 1; i <= 30; i++)
                 this.demo_lottery_list.push(i);
@@ -88,6 +123,7 @@
         methods: {
 
             getCardsList() {
+                this.message = "Загружается список лотов!"
                 axios
                     .get('api/users/promo/list')
                     .then(response => {
@@ -119,10 +155,12 @@
                     return;
                 }
 
-                if (this.phone.length<19) {
+                if (this.phone.length < 19) {
                     this.sendMessage("Введите корректный номер телефона!")
                     return;
                 }
+
+                this.message = "Так-с, проверяем ваш промокод"
 
                 this.shuffle();
 
@@ -133,6 +171,7 @@
                     })
                     .then(response => {
                         this.is_valid = response.data.is_valid
+                        this.message = this.is_valid ? "Поздравляем! Ваш промокод подошел!<br>Выберите карточку!" : "Увы, промокод не подошел:("
 
                     });
             },
@@ -141,23 +180,35 @@
                 this.demo_lottery_list = _.shuffle(this.demo_lottery_list)
 
             },
+            show() {
+                this.$modal.show('winner');
+            },
+            hide() {
+                this.$modal.hide('winner');
+            },
             openCard() {
 
 
-                if (!this.is_valid){
+                if (!this.is_valid) {
                     this.sendMessage("Введите действительный промокод!")
                     return;
                 }
+
+                this.message = "Обрабатываем результат розыгрыша!"
 
                 this.is_valid = false
 
                 axios
                     .post(`api/users/promo/check`, {
                         promocode: this.promocode,
-                        phone: this.phone.id,
+                        phone: this.phone,
                     })
                     .then(response => {
+                        this.prize = response.data.results[0]
+                        this.show()
                         this.sendMessage("Ура! Победили!");
+
+                        this.message = "Ура, победили! Ваш приз: " + this.prize.title;
                     });
             },
 
@@ -169,6 +220,11 @@
 </script>
 
 <style lang="scss">
+
+    .chopcafe_lottery .container-2 {
+        background: white;
+        padding: 20px;
+    }
 
     .fade-enter-active, .fade-leave-active {
         transition: opacity .5s;
@@ -183,8 +239,6 @@
         transition: transform 1s;
 
     }
-
-
 
 
     .lottery-field {
@@ -234,6 +288,27 @@
         &:hover {
             background: darkred !important;
             border: 1px solid darkred !important;
+        }
+    }
+
+
+    .bounce-enter-active {
+        animation: bounce-in .5s;
+    }
+
+    .bounce-leave-active {
+        animation: bounce-in .5s reverse;
+    }
+
+    @keyframes bounce-in {
+        0% {
+            transform: scale(0);
+        }
+        50% {
+            transform: scale(1.5);
+        }
+        100% {
+            transform: scale(1);
         }
     }
 </style>

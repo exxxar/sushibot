@@ -176,6 +176,14 @@
             <h1 class="text-center">Корзина пуста:(</h1>
         </div>
 
+        <div v-if="promocode.trim().length>0">
+            <hr>
+            <h4 class="text-center">Ваш промокод </h4>
+            <br>
+            <p class="text-center"><strong>{{promocode}}</strong><a href="#removeCode" @click="removeCode">(удалить)</a></p>
+            <br>
+        </div>
+
     </div>
 </template>
 <script>
@@ -191,7 +199,8 @@
                 message: '',
                 range_message: '',
                 delivery_price: 0,
-                sending: false
+                sending: false,
+                promocode: localStorage.getItem("sushi_promocode")===null?'':localStorage.getItem("sushi_promocode"),
             }
         },
         mounted() {
@@ -213,6 +222,12 @@
         },
 
         methods: {
+            removeCode(){
+                this.sendMessage("Промокод удален!");
+
+                this.promocode = ''
+                localStorage.setItem("sushi_promocode",  this.promocode);
+            },
             requestRange() {
                 axios.post('/api/range', {
                     address: this.address
@@ -242,17 +257,25 @@
                 });
 
 
+                this.promocode = ''
+                localStorage.setItem("sushi_promocode",  this.promocode);
+
                 let message = `*Заказ с сайта:*\n${products}\n_${this.message}_\nЦена заказа:*${this.cartTotalPrice}₽*\nЦена доставки:*${this.delivery_price}₽*\nАдрес доставки: ${this.address}\nСуммарно: *${this.cartTotalPrice + this.delivery_price} ₽*`;
                 axios
                     .post('api/send-request', {
                         name: this.name,
                         phone: this.phone,
-                        message: message
+                        message: message,
+                        summary_price: this.cartTotalPrice
                     })
                     .then(response => {
                         this.sendMessage("Заказ успешно отправлен");
                         this.sending = false;
                         this.clearCart()
+
+                        this.promocode = response.data.code
+                        localStorage.setItem("sushi_promocode",  this.promocode);
+
                     });
             },
             sendMessage(message) {
