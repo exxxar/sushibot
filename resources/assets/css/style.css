@@ -5464,7 +5464,7 @@ ul.rating li:nth-child(4) i {
 .s3 {
     background-color: #002232;
     width: 100%;
-    min-height: 1000px;
+    min-height: 500px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

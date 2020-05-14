@@ -53,7 +53,7 @@
 
         <div v-if="is_valid">
             <transition-group name="flip-list" tag="ul" class="lottery">
-                <li class="lottery-item-wrapper wow slideInUp" v-for="n in demo_lottery_list" v-bind:key="n"
+                <li class="lottery-item-wrapper" v-for="n in demo_lottery_list" v-bind:key="n"
                     :data-id="n">
                     <div class="lottery-item" @click="openCard()">
                         <img src="https://sun9-35.userapi.com/c858036/v858036636/102217/wYzvw31u87k.jpg"
@@ -209,6 +209,11 @@
                         this.sendMessage("Ура! Победили!");
 
                         this.message = "Ура, победили! Ваш приз: " + this.prize.title;
+
+                        setTimeout(() => {
+                            this.$emit("result")
+                            this.hide()
+                        }, 20000)
                     });
             },
 
