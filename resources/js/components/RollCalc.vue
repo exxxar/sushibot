@@ -154,8 +154,8 @@
         watch: {
 
             selectedCoating: function (newVal, oldVal) {
-                if (newVal===null)
-                    return;
+             /*   if (newVal===null)
+                    return;*/
 
                 if (oldVal != null) {
                     let item = this.coatings.find(item => {
@@ -175,8 +175,8 @@
             },
             checkedFillings: function (newVal, oldVal) {
 
-                if (newVal.length===0)
-                    return;
+               /* if (newVal.length===0)
+                    return;*/
 
                 if (newVal.length === 4) {
                     this.sendMessage("Можно выбрать не более 4х типов начинки")
