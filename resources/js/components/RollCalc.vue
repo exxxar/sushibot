@@ -176,10 +176,9 @@
             checkedFillings: function (newVal, oldVal) {
 
                 let difference = oldVal.filter(x => !newVal.includes(x));
-               /* if (newVal.length===0)
+             /*   if (newVal.length===0)
                     return;*/
-
-               //console.log(difference)
+                //console.log(difference)
 
                 if (newVal.length === 4) {
                     this.sendMessage("Можно выбрать не более 4х типов начинки")
@@ -252,14 +251,14 @@
 
                 this.message = "Ваш ролл успешно добавлен в корзину!"
 
-                this.summary_count = 1
+             /*   this.summary_count = 1
 
 
                 this.checkedFillings = []
                 this.selectedCoating = this.coatings[0].id
 
                 this.summary_price = 80 + parseInt(this.coatings[0].price)
-                this.summary_mass = 100 + parseInt(this.coatings[0].mass)
+                this.summary_mass = 100 + parseInt(this.coatings[0].mass)*/
              /*   this.summary_count = 1
                 this.summary_price = 80
                 this.summary_mass = 100*/
