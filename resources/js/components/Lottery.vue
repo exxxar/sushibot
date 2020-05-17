@@ -63,7 +63,7 @@
             </transition-group>
         </div>
 
-        <modal name="winner">
+        <modal name="winner" :adaptive="true">
             <div class="container container-2">
                 <div class="row">
                     <div class="col-12 mb-5">

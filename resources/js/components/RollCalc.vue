@@ -6,7 +6,9 @@
                 <div class="form-group">
                     <label for="coating"> Верхнее покрытие ролла:</label>
                     <select name="coating" id="coating" v-model="selectedCoating">
-                        <option :value="coat.id" v-for="(coat,index) in coatings">{{coat.title}} ({{coat.price | currency}})</option>
+                        <option :value="coat.id" v-for="(coat,index) in coatings">{{coat.title}} ({{coat.price |
+                            currency}})
+                        </option>
                     </select>
                 </div>
 
@@ -62,9 +64,10 @@
                         <h3 class="text-center">Цена ролла</h3>
                         <h2 class="text-center text-white">{{summary_price*summary_count}}<i
                                 class="fas fa-ruble-sign"></i></h2>
-                        <p class="text-justify text-white"><em>Цена указана за 1 порцию роллов (вы заказали
+                        <p class="text-justify text-white"><em> <strong>Цена указана за 1 порцию роллов (вы заказали
                             {{summary_count}}
-                            порций). Порция включает в себя 8 штук роллов общей массой {{summary_mass}} грамм.</em></p>
+                            порций).Порция включает в себя 8 штук роллов общей массой {{summary_mass}}
+                            грамм.</strong></em></p>
 
 
                         <!--            <div class="row justify-content-center">
@@ -149,7 +152,11 @@
             };
         },
         watch: {
+
             selectedCoating: function (newVal, oldVal) {
+                if (newVal===null)
+                    return;
+
                 if (oldVal != null) {
                     let item = this.coatings.find(item => {
                         return item.id === oldVal;
@@ -168,6 +175,9 @@
             },
             checkedFillings: function (newVal, oldVal) {
 
+                if (newVal.length===0)
+                    return;
+
                 if (newVal.length === 4) {
                     this.sendMessage("Можно выбрать не более 4х типов начинки")
                 }
@@ -179,12 +189,13 @@
                     this.summary_price += parseInt(item.price, 0);
                     this.summary_mass += parseInt(item.mass, 0);
                 }
+
                 if (newVal.length < oldVal.length) {
                     let item = this.fillings.find(item => {
                         return item.id === oldVal[oldVal.length - 1];
                     });
-                    this.summary_price -= parseInt(item.price, 0);
-                    this.summary_mass -= parseInt(item.mass, 0);
+                    this.summary_price -=  parseInt(item.price, 0) ;
+                    this.summary_mass -=  parseInt(item.mass, 0) ;
                 }
             },
         },
@@ -232,17 +243,26 @@
                 };
                 this.$store.dispatch('addProductToCart', product)
                 if (this.summary_count > 1)
-                    for (let i = 0; i < this.summary_count-1; i++)
+                    for (let i = 0; i < this.summary_count - 1; i++)
                         this.$store.dispatch('incQuantity', product.id)
 
                 this.message = "Ваш ролл успешно добавлен в корзину!"
 
+                this.summary_count = 1
+
+
+                this.checkedFillings = []
+                this.selectedCoating = this.coatings[0].id
+
+                this.summary_price = 80 + parseInt(this.coatings[0].price)
+                this.summary_mass = 100 + parseInt(this.coatings[0].mass)
+             /*   this.summary_count = 1
+                this.summary_price = 80
+                this.summary_mass = 100*/
+
                 setTimeout(() => this.message = "", 3000)
                 this.sendMessage("Ролл успешно добавлен в корзину");
 
-                this.checkedFillings = []
-                this.selectedCoatin= null
-                this.summary_count = 1
             },
             disabledRule() {
                 return this.phone.length < 15 ||
@@ -353,7 +373,6 @@
         font-size: 14px;
 
     }
-
 
 
 </style>
