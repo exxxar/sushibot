@@ -190,7 +190,7 @@
                     this.summary_mass += parseInt(item.mass, 0);
                 }
 
-                if (newVal.length < oldVal.length) {
+                if (newVal.length <= oldVal.length) {
                     let item = this.fillings.find(item => {
                         return item.id === oldVal[oldVal.length - 1];
                     });
@@ -248,19 +248,19 @@
 
                 this.message = "Ваш ролл успешно добавлен в корзину!"
 
-                this.summary_count = 1
+            /*    this.summary_count = 1
 
 
                 this.checkedFillings = []
                 this.selectedCoating = this.coatings[0].id
 
                 this.summary_price = 80 + parseInt(this.coatings[0].price)
-                this.summary_mass = 100 + parseInt(this.coatings[0].mass)
+                this.summary_mass = 100 + parseInt(this.coatings[0].mass)*/
              /*   this.summary_count = 1
                 this.summary_price = 80
                 this.summary_mass = 100*/
 
-                setTimeout(() => this.message = "", 3000)
+                setTimeout(() => this.message = "", 5000)
                 this.sendMessage("Ролл успешно добавлен в корзину");
 
             },
