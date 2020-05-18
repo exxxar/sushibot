@@ -138,6 +138,7 @@
     export default {
         data() {
             return {
+                global_timer:null,
                 summary_price: 80,
                 summary_mass: 100,
                 summary_count: 1,
@@ -263,7 +264,8 @@
                 this.summary_price = 80
                 this.summary_mass = 100*/
 
-                setTimeout(() => this.message = "", 5000)
+                clearTimeout(this.global_timer)
+                this.global_timer = setTimeout(() => this.message = "", 5000)
                 this.sendMessage("Ролл успешно добавлен в корзину");
 
             },

@@ -14,14 +14,14 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="grid_item">
-                    <div class="grid_inner_item item_line">
+                    <a class="grid_inner_item item_line" href="#menu_grid">
                         <div class="icon_box">
                             <i class="flaticon-menu"></i>
                         </div>
                         <div class="chopcafe_info">
                             <h4>Выбери что хочешь</h4>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">

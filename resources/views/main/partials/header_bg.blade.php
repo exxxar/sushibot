@@ -6,6 +6,7 @@
                 <div class="welcome_content wow slideInUp text-center" style="visibility: visible;">
                     <h1>Добро пожаловать в ISUSHI</h1>
                     <h3>Не знаете где быстро заказать аппетитные и качественные роллы?</h3>
+                    <h4 class="marked"><mark>При оформлении заказа до 1500 руб. - скидка 5%, а свыше - участие в розыгрыше призов!</mark> </h4>
                     <a href="#callback" data-toggle="modal" data-target="#callbackModal" class="chopcafe_btn chopcafe_btn_2">Оформить заказ по телефону</a>
                 </div>
             </div>

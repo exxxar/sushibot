@@ -26,7 +26,7 @@
                         <h3>Счастливый понедельник! </h3>
                     </div>
                     <div class="festival_countdown_area text-center">
-                        <div class="festival_countdown" data-countdown="2021/05/11"></div>
+                        <div class="festival_countdown" data-countdown="2020/05/25"></div>
                     </div>
                     <div class="festival_text text-center">
                         <h4>Каждый понедельник скидки на всё меню кроме сетов!</h4>

@@ -5626,3 +5626,13 @@ ul.rating li:nth-child(4) i {
 }
 
 
+h4.marked {
+    padding: 10px 0px 50px 10px;
+
+}
+
+h4.marked mark {
+    background-color: #dc3545;
+    color: white;
+    line-height: 150%;
+}
