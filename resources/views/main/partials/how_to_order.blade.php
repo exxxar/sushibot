@@ -14,14 +14,16 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="grid_item">
-                    <a class="grid_inner_item item_line" href="#menu_grid">
-                        <div class="icon_box">
-                            <i class="flaticon-menu"></i>
-                        </div>
-                        <div class="chopcafe_info">
-                            <h4>Выбери что хочешь</h4>
-                        </div>
-                    </a>
+                    <div class="grid_inner_item item_line">
+                        <a href="#menu_grid">
+                            <div class="icon_box">
+                                <i class="flaticon-menu"></i>
+                            </div>
+                            <div class="chopcafe_info">
+                                <h4>Выбери что хочешь</h4>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
