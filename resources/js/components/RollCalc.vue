@@ -226,7 +226,7 @@
                     let tmp = this.fillings.find(item => {
                         return item.id === this.checkedFillings[j];
                     });
-                    filling += `${tmp.title} [${tmp.mass} грамм] [${tmp.price} ₽]`;
+                    filling += `${tmp.title} [${tmp.mass} грамм] [${tmp.price} ₽]\n`;
                 }
 
 
