@@ -11,7 +11,7 @@
     @include("main.partials.header_slider")
     @include("main.partials.chopcafe_about")
     @include("main.partials.how_to_order")
-    @include("main.partials.chopcafe_menu_slider")
+    @include("main.partials.chopcafe_menu")
 
     @include("main.partials.chopcafe_roll_calc")
 
