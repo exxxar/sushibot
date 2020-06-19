@@ -635,7 +635,25 @@ $botman->hears('Заказать свой ролл', function ($bot) {
 });
 
 $botman->hears('.*Новое меню',function ($bot){
-    $bot->reply("Меню будет доступно в ближайшее время!");
+    $telegramUser = $bot->getUser();
+    $id = $telegramUser->getId();
+
+
+    $keyboard = [
+        [
+            ['text' => "Перейти к оформлению заказа", 'callback_data' => "/do_order"],
+        ],
+    ];
+
+    $bot->sendRequest("sendMessage",
+        [
+            "chat_id" => "$id",
+            "text" => "https://telegra.ph/Menyu-06-19",
+            'reply_markup' => json_encode([
+                'inline_keyboard' =>
+                    $keyboard
+            ])
+        ]);
 });
 
 $botman->hears('.*Специальная система CashBack',function ($bot){
