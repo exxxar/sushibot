@@ -82,16 +82,12 @@ function mainMenu($bot, $message)
     $count += $custom_order_price;
 
     $keyboard = [
-        ["\xF0\x9F\x8D\xB1Меню", "\xF0\x9F\x92\xB0Корзина" . ($count == null ? "(0₽)" : "(" . $count . "₽)")],
+        ["\xF0\x9F\x8D\xB1Новое меню", "\xF0\x9F\x92\xB0Корзина" . ($count == null ? "(0₽)" : "(" . $count . "₽)")],
+        ["\xE2\x9A\xA1Специальная система CashBack"],
         ["\xF0\x9F\x8D\xA3Собрать ролл"],
         ["\xF0\x9F\x8E\xB0Розыгрыш"],
         ["\xF0\x9F\x92\xADО Нас"],
-        [
-            ["text"=>"Отправить локацию","request_location"=>true]
-        ],
-        [
-            ["text"=>"Отправить мой контакт","request_contact"=>true]
-        ],
+
     ];
     $bot->sendRequest("sendMessage",
         [
@@ -636,6 +632,14 @@ $botman->hears('Заказать свой ролл', function ($bot) {
             ])
         ]);
 
+});
+
+$botman->hear('.*Новое меню',function ($bot){
+    $bot->reply("Меню будет доступно в ближайшее время!");
+});
+
+$botman->hear('.*Специальная система CashBack',function ($bot){
+   $bot->reply("Система будет доступна в ближайщее время!");
 });
 
 $botman->hears('/do_order|Оформить заказ.*', BotManController::class . "@orderConversation");
