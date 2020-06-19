@@ -23,6 +23,7 @@ import Notifications from 'vue-notification'
 import CallbackForm from  '../js/components/CallbackForm';
 import CartCountIndex from  '../js/components/CartCountIndex';
 import Cart from  '../js/components/Cart';
+import NewSliderMenu from  '../js/components/NewSliderMenu';
 import VueCurrencyFilter from 'vue-currency-filter'
 import store from '../js/store'
 import VModal from 'vue-js-modal'
@@ -35,6 +36,7 @@ Vue.component('roll-calc', RollCalc);
 Vue.component('callback-form', CallbackForm);
 Vue.component('cart-count-index', CartCountIndex);
 Vue.component('cart', Cart);
+Vue.component('new-slider-menu', NewSliderMenu);
 Vue.use(Notifications)
 Vue.use(VueCurrencyFilter,
     {
