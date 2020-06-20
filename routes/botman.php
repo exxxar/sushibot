@@ -340,7 +340,7 @@ $botman->hears('/cashback_up', function ($bot) {
         $tmp = "";
 
         foreach ($cashback as $key => $value)
-            $tmp .= sprintf("#%s %s начислено %s руб. от %s\n ", $key, $value->created_at, $value->anount, $value->money_in_bill);
+            $tmp .= sprintf("#%s %s начислено %s руб., чек: %s\n ", $key, $value->created_at, $value->anount, $value->bill_number);
 
         $message = sprintf("*Статистика 20 последних начислений Cashback*\n%s", $tmp);
 
