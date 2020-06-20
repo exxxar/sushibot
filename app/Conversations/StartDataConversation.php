@@ -285,7 +285,7 @@ class StartDataConversation extends Conversation
 
         $cashback = ((intval( $this->money_in_check)??0)*env("CAHSBAK_PROCENT")/100);
 
-        $recipient_user->cashback_money = $cashback;
+        $recipient_user->cashback_money += $cashback;
         $recipient_user->save();
 
         CashBackHistory::create([
@@ -308,7 +308,7 @@ class StartDataConversation extends Conversation
         Telegram::sendMessage([
             'chat_id' => $recipient_user->telegram_chat_id,
             'parse_mode' => 'Markdown',
-            'text' => "На ваше бонусный счет начислено $cashback руб.",
+            'text' => "На ваш бонусный счет начислено $cashback руб.",
         ]);
 
 

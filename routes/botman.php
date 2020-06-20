@@ -382,7 +382,7 @@ $botman->hears('/cashback_down', function ($bot) {
         $tmp = "";
 
         foreach ($cashback as $key => $value)
-            $tmp .= sprintf("#%s %s списано %s руб. \n ", $key, $value->created_at, $value->anount);
+            $tmp .= sprintf("#%s %s списано %s руб. \n ", ($key+1), $value->created_at, $value->amount);
 
         $message = sprintf("*Статистика 20 последних списаний Cashback*\n%s", $tmp);
 
