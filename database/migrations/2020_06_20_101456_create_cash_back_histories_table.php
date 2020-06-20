@@ -15,6 +15,12 @@ class CreateCashBackHistoriesTable extends Migration
     {
         Schema::create('cash_back_histories', function (Blueprint $table) {
             $table->increments('id');
+            $table->double('amount')->default(0);
+            $table->string('bill_number',255)->default('');
+            $table->double('money_in_bill',255)->default(0.0);
+            $table->unsignedInteger('employee_id');
+            $table->unsignedInteger('user_id');
+            $table->tinyInteger('type');//0 - up, 1 - down
             $table->timestamps();
         });
     }
