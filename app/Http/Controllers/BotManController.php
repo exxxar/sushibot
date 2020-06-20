@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Conversations\NewOrderConversation;
 use App\Conversations\OrderConversation;
+use App\Conversations\VipConversation;
 use BotMan\BotMan\BotMan;
 use Illuminate\Http\Request;
 use App\Conversations\LotteryConversation;
@@ -39,5 +41,15 @@ class BotManController extends Controller
     public function orderConversation(BotMan $bot)
     {
         $bot->startConversation(new OrderConversation($bot));
+    }
+
+    public function newOrderConversation(BotMan $bot)
+    {
+        $bot->startConversation(new NewOrderConversation($bot));
+    }
+
+    public function vipConversation(BotMan $bot)
+    {
+        $bot->startConversation(new VipConversation($bot));
     }
 }

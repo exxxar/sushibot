@@ -21,7 +21,9 @@ class User extends Authenticatable
         'password',
         'telegram_chat_id',
         'fio_from_telegram',
+        'cashback_money',
         'phone',
+        'is_vip',
         'birthday',
         'is_admin'
     ];

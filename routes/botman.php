@@ -28,13 +28,15 @@ function createUser($bot)
             'fio_from_telegram' => "$firstName $lastName",
             'telegram_chat_id' => $id,
             'is_admin' => false,
+            'is_vip' => false,
+            'cashback_money' => false,
             'phone' => '',
             'birthday' => '',
         ]);
     return $user;
 }
 
-function basketMenu($bot, $message)
+/*function basketMenu($bot, $message)
 {
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
@@ -63,28 +65,30 @@ function basketMenu($bot, $message)
                 'resize_keyboard' => true
             ])
         ]);
-}
+}*/
 
 function mainMenu($bot, $message)
 {
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
 
-    $basket = json_decode($bot->userStorage()->get("basket")) ?? [];
+    /*
+        $basket = json_decode($bot->userStorage()->get("basket")) ?? [];
 
-    $count = count($basket) ?? null;
+       $count = count($basket) ?? null;
 
-    foreach ($basket as $product) {
-        $count += $product->price;
-    }
+        foreach ($basket as $product) {
+            $count += $product->price;
+        }
 
-    $custom_order_price = $bot->userStorage()->get("order") != null ? json_decode($bot->userStorage()->get("order"))->price : 0;
-    $count += $custom_order_price;
+        $custom_order_price = $bot->userStorage()->get("order") != null ? json_decode($bot->userStorage()->get("order"))->price : 0;
+        $count += $custom_order_price;*/
 
     $keyboard = [
-        ["\xF0\x9F\x8D\xB1Новое меню", "\xF0\x9F\x92\xB0Корзина" . ($count == null ? "(0₽)" : "(" . $count . "₽)")],
-        ["\xE2\x9A\xA1Специальная система CashBack"],
-        ["\xF0\x9F\x8D\xA3Собрать ролл"],
+        ["\xF0\x9F\x8D\xB1Новое меню"/*, "\xF0\x9F\x92\xB0Корзина" . ($count == null ? "(0₽)" : "(" . $count . "₽)")*/],
+        ["\xE2\x9A\xA1Анкета VIP-пользователя"],
+        ["\xE2\x9A\xA1Special CashBack system"],
+        /*      ["\xF0\x9F\x8D\xA3Собрать ролл"],*/
         ["\xF0\x9F\x8E\xB0Розыгрыш"],
         ["\xF0\x9F\x92\xADО Нас"],
 
@@ -102,7 +106,7 @@ function mainMenu($bot, $message)
         ]);
 }
 
-function filterMenu($bot, $message)
+/*function filterMenu($bot, $message)
 {
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
@@ -130,9 +134,168 @@ function filterMenu($bot, $message)
                 'resize_keyboard' => true
             ])
         ]);
-}
+}*/
 
-$botman->hears('Сбросить фильтр', function ($bot) {
+$botman->hears(".*Анкета VIP-пользователя|/do_vip", BotManController::class . "@vipConversation");
+$botman->hears('.*Розыгрыш', function ($bot) {
+    $telegramUser = $bot->getUser();
+    $id = $telegramUser->getId();
+
+    $keybord = [
+        [
+            ['text' => "Условия розыгрыша и призы", 'url' => "https://telegra.ph/Usloviya-rozygrysha-01-01"]
+        ],
+        [
+            ['text' => "Ввести код и начать", 'callback_data' => "/lottery"]
+        ]
+    ];
+    $bot->sendRequest("sendMessage",
+        [
+            "chat_id" => "$id",
+            "text" => "Розыгрыш призов",
+            "parse_mode" => "Markdown",
+            'reply_markup' => json_encode([
+                'inline_keyboard' =>
+                    $keybord
+            ])
+        ]);
+});
+$botman->hears('.*О нас', function ($bot) {
+    $bot->reply("https://telegra.ph/O-Nas-02-11");
+});
+$botman->hears('/start|Главное меню', function ($bot) {
+    createUser($bot);
+    mainMenu($bot, 'Главное меню');
+})->stopsConversation();
+$botman->hears('.*Новое меню', function ($bot) {
+    $telegramUser = $bot->getUser();
+    $id = $telegramUser->getId();
+
+
+    $keyboard = [
+        [
+            ['text' => "Перейти к оформлению заказа", 'callback_data' => "/do_new_order"],
+        ],
+    ];
+
+    $bot->sendRequest("sendMessage",
+        [
+            "chat_id" => "$id",
+            "text" => "https://telegra.ph/Menyu-06-19",
+            'reply_markup' => json_encode([
+                'inline_keyboard' =>
+                    $keyboard
+            ])
+        ]);
+});
+$botman->hears('.*Special CashBack system', function ($bot) {
+    $telegramUser = $bot->getUser();
+    $id = $telegramUser->getId();
+
+    $user = User::where("telegram_chat_id", $id)->first();
+
+    if (is_null($user))
+        $user = createUser($bot);
+
+    $cashback = $user->cashback_money ?? 0;
+
+    $is_vip = $user->is_vip ?? false;
+
+
+    if (!$is_vip) {
+        $keyboard = [
+            [
+                ['text' => "\xF0\x9F\x8D\xB8Оформить VIP-статус", 'callback_data' => "/do_vip"],
+            ],
+        ];
+        $bot->sendRequest("sendMessage",
+            [
+                "chat_id" => "$id",
+                "parse_mode" => "markdown",
+                "text" => "У вас нет VIP-статуса, но вы можете его оформить!",
+                'reply_markup' => json_encode([
+                    'inline_keyboard' =>
+                        $keyboard
+                ])
+            ]);
+
+        return;
+    }
+
+    $message = sprintf("У вас *%s* руб.!\n_Для оплаты дайте отсканировать данный QR-код сотруднику ISUSHI!_", $cashback);
+    $keyboard = [
+        [
+            ['text' => "Мой бюджет", 'callback_data' => "/my_money"],
+        ],
+    ];
+
+    $tmp_id = (string)$id;
+    while (strlen($tmp_id) < 10)
+        $tmp_id = "0" . $tmp_id;
+
+    $code = base64_encode("001" . $tmp_id );
+
+    $qr_url = env("QR_URL") . "https://t.me/" . env("APP_BOT_NAME") . "?start=$code";
+
+    $bot->sendRequest("sendPhoto",
+        [
+            "chat_id" => "$id",
+            "caption" => "$message",
+            "parse_mode" => "Markdown",
+            "photo" => $qr_url,
+            'reply_markup' => json_encode([
+                'inline_keyboard' =>
+                    $keyboard
+            ])
+        ]);
+
+});
+$botman->hears('/lottery', BotManController::class . '@lotteryConversation');
+$botman->hears('/check_lottery_slot ([0-9]+)', function ($bot, $slotId) {
+
+
+    $telegramUser = $bot->getUser();
+    $id = $telegramUser->getId();
+
+    $prize = Prize::find($slotId);
+
+    $message = "*" . $prize->title . "*\n"
+        . "_" . $prize->description . "_\n";
+
+
+    $bot->sendRequest("sendPhoto",
+        [
+            "chat_id" => "$id",
+            "photo" => $prize->image_url,
+            "caption" => $message,
+            "parse_mode" => "Markdown",
+        ]);
+
+    $user = User::where("telegram_chat_id", $id)->first();
+
+    $message = "*Заявка на получение приза*\n$message"
+        . "*Имя*:" . ($user->fio_from_telegram ?? $user->name) . "\n"
+        . "*Телефон*:" . $user->phone . "\n"
+        . "*Дата заказа*:" . (Carbon::now()) . "\n";
+
+    try {
+        Telegram::sendMessage([
+            'chat_id' => env("CHANNEL_ID"),
+            'parse_mode' => 'Markdown',
+            'text' => $message,
+            'disable_notification' => 'true'
+        ]);
+    } catch (\Exception $e) {
+        Log::info("Ошибка отправки заказа в канал!");
+    }
+
+
+});
+$botman->hears('/my_money', function ($bot){
+    $bot->reply("Данный раздел в разработке!");
+});
+
+/*$botman->hears('Сбросить фильтр', function ($bot) {
     $bot->userStorage()->delete();
     filterMenu($bot, "Вы сбросили собранный ролл");
 });
@@ -164,7 +327,7 @@ $botman->hears('Форма ролла.*', function ($bot) {
             ])
         ]);
 
-   // $bot->reply(print_r($res,true));
+    // $bot->reply(print_r($res,true));
 });
 
 $botman->hears('Количество.*', function ($bot) {
@@ -310,85 +473,7 @@ $botman->hears('.*Корзина.*', function ($bot) {
 
 $botman->hears('.*Собрать ролл.*', function ($bot) {
     filterMenu($bot, "Собери свой ролл сам!");
-});
-
-$botman->hears("\xF0\x9F\x8D\xB1Меню", function ($bot) {
-    $categories = \App\Product::all()->unique('category');
-
-    $telegramUser = $bot->getUser();
-    $id = $telegramUser->getId();
-
-
-    $bot->sendRequest("sendPhoto",
-        [
-            "chat_id" => "$id",
-            "photo" => "https://sun9-35.userapi.com/c205328/v205328682/56913/w8tBXIcG91E.jpg",
-            "parse_mode" => "Markdown",
-            'reply_markup' => json_encode([
-                'inline_keyboard' => [
-                    [
-                        ["text" => "Акци и скидки", "url" => "https://t.me/skidki_dn_bot"]
-                    ]
-                ],
-            ])
-        ]);
-
-    foreach ($categories as $key => $category) {
-        //array_push($inline_keyboard, [["text" => $category->category, "callback_data" => "/category 0 $key"]]);
-
-        $bot->sendRequest("sendPhoto",
-            [
-                "chat_id" => "$id",
-                "caption" => $category->category,
-                "photo" => $category->image_url,
-                "parse_mode" => "Markdown",
-                'reply_markup' => json_encode([
-                    'inline_keyboard' => [
-                        [
-                            ["text" => "\xF0\x9F\x91\x89Детальнее", "callback_data" => "/category 0 $key"]
-                        ]
-                    ],
-                ])
-            ]);
-    }
-
-});
-
-$botman->hears('.*Розыгрыш', function ($bot) {
-    $telegramUser = $bot->getUser();
-    $id = $telegramUser->getId();
-
-    $keybord = [
-        [
-            ['text' => "Условия розыгрыша и призы", 'url' => "https://telegra.ph/Usloviya-rozygrysha-01-01"]
-        ],
-        [
-            ['text' => "Ввести код и начать", 'callback_data' => "/lottery"]
-        ]
-    ];
-    $bot->sendRequest("sendMessage",
-        [
-            "chat_id" => "$id",
-            "text" => "Розыгрыш призов",
-            "parse_mode" => "Markdown",
-            'reply_markup' => json_encode([
-                'inline_keyboard' =>
-                    $keybord
-            ])
-        ]);
-});
-
-$botman->hears('.*О нас', function ($bot) {
-    $bot->reply("https://telegra.ph/O-Nas-02-11");
-});
-
-
-$botman->hears('/start|Главное меню', function ($bot) {
-    createUser($bot);
-    mainMenu($bot, 'Главное меню');
-})->stopsConversation();
-
-$botman->hears('/category ([0-9]+) ([0-9]+)', function ($bot, $page, $catIndex) {
+});*//*$botman->hears('/category ([0-9]+) ([0-9]+)', function ($bot, $page, $catIndex) {
 
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
@@ -409,7 +494,7 @@ $botman->hears('/category ([0-9]+) ([0-9]+)', function ($bot, $page, $catIndex) 
     foreach ($products as $key => $product) {
         $keybord = [
             [
-               /* ['text' => "\xF0\x9F\x91\x89Детальнее", 'callback_data' => "/product_info " . $product->id],*/
+                 ['text' => "\xF0\x9F\x91\x89Детальнее", 'callback_data' => "/product_info " . $product->id],
                 ['text' => "\xE2\x86\xAAВ корзину(" . $product->price . "₽)", 'callback_data' => "/add_to_basket " . $product->id]
             ],
 
@@ -441,15 +526,15 @@ $botman->hears('/category ([0-9]+) ([0-9]+)', function ($bot, $page, $catIndex) 
             [
                 "chat_id" => "$id",
                 "photo" => $product->image_url,
-                "caption"=>$message,
+                "caption" => $message,
                 'reply_markup' => json_encode([
                     'inline_keyboard' =>
                         $keybord
                 ])
             ]);
     }
-});
-
+})*/;
+/*
 $botman->hears('/product_info ([0-9]+)', function ($bot, $productId) {
 
     $telegramUser = $bot->getUser();
@@ -484,9 +569,6 @@ $botman->hears('/product_info ([0-9]+)', function ($bot, $productId) {
         ]);
 
 });
-
-
-$botman->hears('/lottery', BotManController::class . '@lotteryConversation');
 $botman->hears('/add_to_basket ([0-9]+)', function ($bot, $prodId) {
     $basket = json_decode($bot->userStorage()->get("basket"), true) ?? [];
 
@@ -499,67 +581,6 @@ $botman->hears('/add_to_basket ([0-9]+)', function ($bot, $prodId) {
     ]);
 
     mainMenu($bot, "Товар добавлен в корзину");
-
-});
-$botman->hears('/check_lottery_slot ([0-9]+)', function ($bot, $slotId) {
-
-
-    $telegramUser = $bot->getUser();
-    $id = $telegramUser->getId();
-
-    $prize = Prize::find($slotId);
-
-    $message = "*" . $prize->title . "*\n"
-        . "_" . $prize->description . "_\n";
-
-
-    $bot->sendRequest("sendPhoto",
-        [
-            "chat_id" => "$id",
-            "photo" => $prize->image_url,
-            "caption" => $message,
-            "parse_mode" => "Markdown",
-        ]);
-
-    $user = User::where("telegram_chat_id", $id)->first();
-
-    $message = "*Заявка на получение приза*\n$message"
-        . "*Имя*:" . ($user->fio_from_telegram ?? $user->name) . "\n"
-        . "*Телефон*:" . $user->phone . "\n"
-        . "*Дата заказа*:" . (Carbon::now()) . "\n";
-
-    try {
-        Telegram::sendMessage([
-            'chat_id' => env("CHANNEL_ID"),
-            'parse_mode' => 'Markdown',
-            'text' => $message,
-            'disable_notification' => 'true'
-        ]);
-    } catch (\Exception $e) {
-        Log::info("Ошибка отправки заказа в канал!");
-    }
-
-
-});
-
-$botman->hears('/remove_from_basket ([0-9]+)', function ($bot, $prodId) {
-    $basket = json_decode($bot->userStorage()->get("basket")) ?? [];
-
-    $basket_tmp = [];
-
-    foreach ($basket as $product) {
-        if ($product->id != $prodId)
-            array_push($basket_tmp, $product);
-    }
-
-    $bot->userStorage()->save([
-        'basket' => json_encode($basket_tmp)
-    ]);
-
-    if (count($basket_tmp) == 0)
-        mainMenu($bot,"Товар удален из корзины");
-    else
-        basketMenu($bot, "Товар удален из корзины");
 
 });
 $botman->hears('Заказать свой ролл', function ($bot) {
@@ -633,35 +654,69 @@ $botman->hears('Заказать свой ролл', function ($bot) {
         ]);
 
 });
+$botman->hears("\xF0\x9F\x8D\xB1Меню", function ($bot) {
+    $categories = \App\Product::all()->unique('category');
 
-$botman->hears('.*Новое меню',function ($bot){
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
 
 
-    $keyboard = [
-        [
-            ['text' => "Перейти к оформлению заказа", 'callback_data' => "/do_order"],
-        ],
-    ];
-
-    $bot->sendRequest("sendMessage",
+    $bot->sendRequest("sendPhoto",
         [
             "chat_id" => "$id",
-            "text" => "https://telegra.ph/Menyu-06-19",
+            "photo" => "https://sun9-35.userapi.com/c205328/v205328682/56913/w8tBXIcG91E.jpg",
+            "parse_mode" => "Markdown",
             'reply_markup' => json_encode([
-                'inline_keyboard' =>
-                    $keyboard
+                'inline_keyboard' => [
+                    [
+                        ["text" => "Акци и скидки", "url" => "https://t.me/skidki_dn_bot"]
+                    ]
+                ],
             ])
         ]);
-});
 
-$botman->hears('.*Специальная система CashBack',function ($bot){
-   $bot->reply("Система будет доступна в ближайщее время!");
-});
+    foreach ($categories as $key => $category) {
+        //array_push($inline_keyboard, [["text" => $category->category, "callback_data" => "/category 0 $key"]]);
 
+        $bot->sendRequest("sendPhoto",
+            [
+                "chat_id" => "$id",
+                "caption" => $category->category,
+                "photo" => $category->image_url,
+                "parse_mode" => "Markdown",
+                'reply_markup' => json_encode([
+                    'inline_keyboard' => [
+                        [
+                            ["text" => "\xF0\x9F\x91\x89Детальнее", "callback_data" => "/category 0 $key"]
+                        ]
+                    ],
+                ])
+            ]);
+    }
+
+});
+$botman->hears('/remove_from_basket ([0-9]+)', function ($bot, $prodId) {
+    $basket = json_decode($bot->userStorage()->get("basket")) ?? [];
+
+    $basket_tmp = [];
+
+    foreach ($basket as $product) {
+        if ($product->id != $prodId)
+            array_push($basket_tmp, $product);
+    }
+
+    $bot->userStorage()->save([
+        'basket' => json_encode($basket_tmp)
+    ]);
+
+    if (count($basket_tmp) == 0)
+        mainMenu($bot, "Товар удален из корзины");
+    else
+        basketMenu($bot, "Товар удален из корзины");
+
+});
 $botman->hears('/do_order|Оформить заказ.*', BotManController::class . "@orderConversation");
-
+$botman->hears('/do_new_order|Оформить заказ.*', BotManController::class . "@newOrderConversation");
 $botman->hears('/filter ([a-zA-Z0-9]+) ([0-9]+)', function ($bot, $name, $value) {
 
 
@@ -710,4 +765,4 @@ $botman->hears('/filter ([a-zA-Z0-9]+) ([0-9]+)', function ($bot, $name, $value)
 
 
     filterMenu($bot, "Так держать, твой рол всё лучше и лучше!");
-});
+});*/
