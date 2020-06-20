@@ -304,6 +304,7 @@ $botman->hears('/my_money', function ($bot) {
         [
             "chat_id" => "$id",
             "text" => "*Управление вашими начислениями и расходами CashBack*",
+            "parse_mode" => "Markdown",
             'reply_markup' => json_encode([
                 'inline_keyboard' =>
                     $keyboard
@@ -350,6 +351,7 @@ $botman->hears('/cashback_up', function ($bot) {
         [
             "chat_id" => "$id",
             "text" => $message,
+            "parse_mode" => "Markdown",
             'reply_markup' => json_encode([
                 'inline_keyboard' =>
                     $keyboard
@@ -395,6 +397,7 @@ $botman->hears('/cashback_down', function ($bot) {
         [
             "chat_id" => "$id",
             "text" => $message,
+            "parse_mode" => "Markdown",
             'reply_markup' => json_encode([
                 'inline_keyboard' =>
                     $keyboard
