@@ -284,6 +284,10 @@ class StartDataConversation extends Conversation
         }
 
         $cashback = ((intval( $this->money_in_check)??0)*env("CAHSBAK_PROCENT")/100);
+
+        $recipient_user->cashback_money = $cashback;
+        $recipient_user->save();
+
         CashBackHistory::create([
             'amount' => $cashback,
             'bill_number' => $this->check_info,
