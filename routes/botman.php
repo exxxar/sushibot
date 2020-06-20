@@ -72,27 +72,25 @@ function mainMenu($bot, $message)
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
 
-    /*
-        $basket = json_decode($bot->userStorage()->get("basket")) ?? [];
+    $user = User::where("telegram_chat_id",$id)->first();
 
-       $count = count($basket) ?? null;
+    if (is_null($user))
+        $user=createUser($bot);
 
-        foreach ($basket as $product) {
-            $count += $product->price;
-        }
-
-        $custom_order_price = $bot->userStorage()->get("order") != null ? json_decode($bot->userStorage()->get("order"))->price : 0;
-        $count += $custom_order_price;*/
 
     $keyboard = [
-        ["\xF0\x9F\x8D\xB1Новое меню"/*, "\xF0\x9F\x92\xB0Корзина" . ($count == null ? "(0₽)" : "(" . $count . "₽)")*/],
-        ["\xE2\x9A\xA1Анкета VIP-пользователя"],
-        ["\xE2\x9A\xA1Special CashBack system"],
-        /*      ["\xF0\x9F\x8D\xA3Собрать ролл"],*/
-        ["\xF0\x9F\x8E\xB0Розыгрыш"],
-        ["\xF0\x9F\x92\xADО Нас"],
 
     ];
+
+    array_push($keyboard, ["\xF0\x9F\x8D\xB1Новое меню"]);
+    if (!$user->is_vip)
+        array_push($keyboard, ["\xE2\x9A\xA1Анкета VIP-пользователя"]);
+    else
+        array_push($keyboard, ["\xE2\x9A\xA1Special CashBack system"]);
+
+    array_push($keyboard,["\xF0\x9F\x8E\xB0Розыгрыш"]);
+    array_push($keyboard,["\xF0\x9F\x92\xADО Нас"]);
+
     $bot->sendRequest("sendMessage",
         [
             "chat_id" => "$id",
@@ -233,7 +231,7 @@ $botman->hears('.*Special CashBack system', function ($bot) {
     while (strlen($tmp_id) < 10)
         $tmp_id = "0" . $tmp_id;
 
-    $code = base64_encode("001" . $tmp_id );
+    $code = base64_encode("001" . $tmp_id);
 
     $qr_url = env("QR_URL") . "https://t.me/" . env("APP_BOT_NAME") . "?start=$code";
 
@@ -291,7 +289,7 @@ $botman->hears('/check_lottery_slot ([0-9]+)', function ($bot, $slotId) {
 
 
 });
-$botman->hears('/my_money', function ($bot){
+$botman->hears('/my_money', function ($bot) {
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
 
@@ -312,7 +310,7 @@ $botman->hears('/my_money', function ($bot){
             ])
         ]);
 });
-$botman->hears('/cashback_up', function ($bot){
+$botman->hears('/cashback_up', function ($bot) {
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
 
@@ -323,27 +321,27 @@ $botman->hears('/cashback_up', function ($bot){
     ];
 
 
-    $user = User::where("telegram_chat_id",$id)->first();
+    $user = User::where("telegram_chat_id", $id)->first();
 
     if (is_null($user))
         $user = createUser($bot);
 
-    $cashback = \App\CashBackHistory::where("user_id",$user->id)
-        ->where("type",1)
-        ->orderBy("id","desc")
+    $cashback = \App\CashBackHistory::where("user_id", $user->id)
+        ->where("type", 0)
+        ->orderBy("id", "desc")
         ->take(20)
         ->skip(0)
         ->get();
 
-    if (count($cashback)==0)
+    if (count($cashback) == 0)
         $message = "На текущий момент у вас нет начислений CashBack";
     else {
-        $tmp ="";
+        $tmp = "";
 
-          foreach($cashback as $key=>$value)
-           $tmp .= sprintf("#%s %s начислено %s руб. от %s\n ",$key,$value->created_at,$value->anount,$value->money_in_bill);
+        foreach ($cashback as $key => $value)
+            $tmp .= sprintf("#%s %s начислено %s руб. от %s\n ", $key, $value->created_at, $value->anount, $value->money_in_bill);
 
-        $message = sprintf("*Статистика 20 последних начислений Cashback*\n%s",$tmp);
+        $message = sprintf("*Статистика 20 последних начислений Cashback*\n%s", $tmp);
 
     }
 
@@ -358,41 +356,40 @@ $botman->hears('/cashback_up', function ($bot){
             ])
         ]);
 });
-$botman->hears('/cashback_down', function ($bot){
+$botman->hears('/cashback_down', function ($bot) {
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
+
+
+    $user = User::where("telegram_chat_id", $id)->first();
+
+    if (is_null($user))
+        $user = createUser($bot);
+
+    $cashback = \App\CashBackHistory::where("user_id", $user->id)
+        ->where("type", 1)
+        ->orderBy("id", "desc")
+        ->take(20)
+        ->skip(0)
+        ->get();
+
+    if (count($cashback) == 0)
+        $message = "На текущий момент у вас нет списаний CashBack";
+    else {
+        $tmp = "";
+
+        foreach ($cashback as $key => $value)
+            $tmp .= sprintf("#%s %s списано %s руб. \n ", $key, $value->created_at, $value->anount);
+
+        $message = sprintf("*Статистика 20 последних списаний Cashback*\n%s", $tmp);
+
+    }
 
     $keyboard = [
         [
             ['text' => "Начисления", 'callback_data' => "/cashback_up"],
         ],
     ];
-
-
-    $user = User::where("telegram_chat_id",$id)->first();
-
-    if (is_null($user))
-        $user = createUser($bot);
-
-    $cashback = \App\CashBackHistory::where("user_id",$user->id)
-        ->where("type",0)
-        ->orderBy("id","desc")
-        ->take(20)
-        ->skip(0)
-        ->get();
-
-    if (count($cashback)==0)
-        $message = "На текущий момент у вас нет списаний CashBack";
-    else {
-        $tmp ="";
-
-        foreach($cashback as $key=>$value)
-            $tmp .= sprintf("#%s %s списано %s руб. \n ",$key,$value->created_at,$value->anount);
-
-        $message = sprintf("*Статистика 20 последних списаний Cashback*\n%s",$tmp);
-
-    }
-
 
     $bot->sendRequest("sendMessage",
         [

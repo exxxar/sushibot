@@ -2,6 +2,7 @@
 
 namespace App\Conversations;
 
+use App\CashBackHistory;
 use App\User;
 use BotMan\BotMan\Messages\Conversations\Conversation;
 use BotMan\BotMan\Messages\Incoming\Answer;
@@ -14,70 +15,18 @@ class VipConversation extends Conversation
 {
     protected $bot;
 
-    private function mainMenu($message)
-    {
-        $telegramUser = $this->bot->getUser();
-        $id = $telegramUser->getId();
-
-        $basket = json_decode($this->bot->userStorage()->get("basket")) ?? [];
-
-        $count = count($basket) ?? null;
-
-        foreach ($basket as $product) {
-            $count += $product->price;
-        }
-
-
-        $custom_order_price = $this->bot->userStorage()->get("order") != null ? json_decode($this->bot->userStorage()->get("order"))->price +50 : 0;
-        $count += $custom_order_price;
-
-
-        $keyboard = [
-            ["\xF0\x9F\x8D\xB1Новое меню", "\xF0\x9F\x92\xB0Корзина" . ($count == null ? "(0₽)" : "(" . $count . "₽)")],
-            ["\xF0\x9F\x8D\xA3Собрать ролл"],
-            ["\xF0\x9F\x8E\xB0Розыгрыш"],
-            ["\xF0\x9F\x92\xADО Нас"],
-        ];
-
-
-        $this->bot->sendRequest("sendMessage",
-            [
-                "chat_id" => "$id",
-                "text" => $message,
-                "parse_mode" => "Markdown",
-                'reply_markup' => json_encode([
-                    'keyboard' => $keyboard,
-                    'one_time_keyboard' => false,
-                    'resize_keyboard' => true
-                ])
-            ]);
-    }
 
     public function __construct($bot)
     {
         $telegramUser = $bot->getUser()->getId();
-
-        Log::info("telegram chat id=$telegramUser");
         $this->bot = $bot;
-
-
         $this->user = User::where("telegram_chat_id", $telegramUser)->first();
-
-
-    }
-
-    public function askProductNumber(){
-
-    }
-
-    public function askProductCount(){
-
     }
 
 
     public function askPhone()
     {
-        $question = Question::create('Скажие мне свой телефонный номер')
+        $question = Question::create('Скажие мне свой телефонный номер в формате 071XXXXXXX')
             ->fallback('Спасибо что пообщался со мной:)!');
 
         $this->ask($question, function (Answer $answer) {
@@ -95,22 +44,25 @@ class VipConversation extends Conversation
                 $this->askPhone();
                 return;
             } else {
-                $tmp_user = User::where("phone", $tmp_phone)->first();
-                if ($tmp_user == null) {
-                    $this->user->phone = $tmp_phone;
-                    $this->user->save();
-                }
-                else
-                {
-                    $tmp_user->phone = $tmp_phone;
-                    $tmp_user->save();
-                }
+                $this->user->phone = $tmp_phone;
+                $this->user->is_vip = true;
+                $this->user->cashback_money +=100 ;
+                $this->user->save();
 
-                $this->sendOrder();
+                CashBackHistory::create([
+                    'amount'=>100,
+                    'bill_number'=>'Gift From Isushi',
+                    'money_in_bill'=>0,
+                    'employee_id'=>null,
+                    'user_id'=>$this->user->id,
+                    'type'=>0,
+                ]);
             }
 
         });
     }
+
+
 
     public function sendOrder()
     {
@@ -118,7 +70,7 @@ class VipConversation extends Conversation
         $basket = json_decode($this->bot->userStorage()->get("basket")) ?? [];
 
         $order_tmp = "Новая заявка:\n"
-            . "*Имя*:" . ($this->user->fio_from_telegram ?? $this->user->name ). "\n"
+            . "*Имя*:" . ($this->user->fio_from_telegram ?? $this->user->name) . "\n"
             . "*Телефон*:" . $this->user->phone . "\n"
             . "*Дата заказа*:" . (Carbon::now()) . "\n*Заказ*:\n";
 
@@ -133,11 +85,11 @@ class VipConversation extends Conversation
 
         if ($custom_order) {
             $order_tmp .=
-                 "*Форма*:" . ($custom_order->form??"Не установлено") . "\n"
-                . "*Верхний слой*:" . ($custom_order->upper??"Не установлено") . "\n"
-                . "*Начинка*:" . ($custom_order->inner??"Не установлено") . "\n"
-                . "*Колличество*:" . ($custom_order->count??"Не установлено") . "\n"
-                . "*Цена*:" . ($custom_order->price??"Не установлено") . "\n+50₽ Нори и рис\n";
+                "*Форма*:" . ($custom_order->form ?? "Не установлено") . "\n"
+                . "*Верхний слой*:" . ($custom_order->upper ?? "Не установлено") . "\n"
+                . "*Начинка*:" . ($custom_order->inner ?? "Не установлено") . "\n"
+                . "*Колличество*:" . ($custom_order->count ?? "Не установлено") . "\n"
+                . "*Цена*:" . ($custom_order->price ?? "Не установлено") . "\n+50₽ Нори и рис\n";
 
             $summary += $custom_order->price + 50;
         }
@@ -172,6 +124,8 @@ class VipConversation extends Conversation
     public function run()
     {
         //
-        $this->askPhone();
+        if (!$this->user->is_vip)
+            $this->askPhone();
+
     }
 }
