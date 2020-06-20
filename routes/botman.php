@@ -165,6 +165,7 @@ $botman->hears('/start|Главное меню', function ($bot) {
     createUser($bot);
     mainMenu($bot, 'Главное меню');
 })->stopsConversation();
+$botman->hears("/start ([0-9a-zA-Z=]+)", BotManController::class . '@startDataConversation');
 $botman->hears('.*Новое меню', function ($bot) {
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
@@ -340,7 +341,7 @@ $botman->hears('/cashback_up', function ($bot) {
         $tmp = "";
 
         foreach ($cashback as $key => $value)
-            $tmp .= sprintf("#%s %s начислено %s руб., чек: %s\n ", $key, $value->created_at, $value->amount, $value->bill_number);
+            $tmp .= sprintf("#%s %s начислено %s руб., чек: %s\n ", ($key+1), $value->created_at, $value->amount, $value->bill_number);
 
         $message = sprintf("*Статистика 20 последних начислений Cashback*\n%s", $tmp);
 

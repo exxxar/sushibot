@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Conversations\NewOrderConversation;
 use App\Conversations\OrderConversation;
+use App\Conversations\StartDataConversation;
 use App\Conversations\VipConversation;
 use BotMan\BotMan\BotMan;
 use Illuminate\Http\Request;
@@ -51,5 +52,10 @@ class BotManController extends Controller
     public function vipConversation(BotMan $bot)
     {
         $bot->startConversation(new VipConversation($bot));
+    }
+
+    public function startDataConversation(BotMan $bot,$data)
+    {
+        $bot->startConversation(new StartDataConversation($bot,$data));
     }
 }
