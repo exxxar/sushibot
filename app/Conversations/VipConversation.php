@@ -15,6 +15,42 @@ class VipConversation extends Conversation
 {
     protected $bot;
 
+    function mainMenu($bot, $message)
+    {
+        $telegramUser = $bot->getUser();
+        $id = $telegramUser->getId();
+
+        $user = User::where("telegram_chat_id",$id)->first();
+
+        if (is_null($user))
+            $user=createUser($bot);
+
+
+        $keyboard = [
+
+        ];
+
+        array_push($keyboard, ["\xF0\x9F\x8D\xB1Новое меню"]);
+        if (!$user->is_vip)
+            array_push($keyboard, ["\xE2\x9A\xA1Анкета VIP-пользователя"]);
+        else
+            array_push($keyboard, ["\xE2\x9A\xA1Special CashBack system"]);
+
+        array_push($keyboard,["\xF0\x9F\x8E\xB0Розыгрыш"]);
+        array_push($keyboard,["\xF0\x9F\x92\xADО Нас"]);
+
+        $bot->sendRequest("sendMessage",
+            [
+                "chat_id" => "$id",
+                "text" => $message,
+                "parse_mode" => "Markdown",
+                'reply_markup' => json_encode([
+                    'keyboard' => $keyboard,
+                    'one_time_keyboard' => false,
+                    'resize_keyboard' => true
+                ])
+            ]);
+    }
 
     public function __construct($bot)
     {
@@ -57,6 +93,11 @@ class VipConversation extends Conversation
                     'user_id'=>$this->user->id,
                     'type'=>0,
                 ]);
+
+                $this->bot->reply("Вам начислено 100 руб. CashBack");
+
+                $this->mainMenu("Теперь Вы VIP-пользователь и у вас есть возможность накапливать CashBack!");
+
             }
 
         });
