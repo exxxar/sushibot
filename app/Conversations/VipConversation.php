@@ -14,16 +14,42 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 class VipConversation extends Conversation
 {
     protected $bot;
+    protected $user;
 
-    function mainMenu($bot, $message)
+    public function createUser()
     {
-        $telegramUser = $bot->getUser();
+        $telegramUser = $this->bot->getUser();
+        $id = $telegramUser->getId();
+        $username = $telegramUser->getUsername();
+        $lastName = $telegramUser->getLastName();
+        $firstName = $telegramUser->getFirstName();
+
+        $user = User::where("telegram_chat_id", $id)->first();
+        if ($user == null)
+            $user = \App\User::create([
+                'name' => $username ?? "$id",
+                'email' => "$id@t.me",
+                'password' => bcrypt($id),
+                'fio_from_telegram' => "$firstName $lastName",
+                'telegram_chat_id' => $id,
+                'is_admin' => false,
+                'is_vip' => false,
+                'cashback_money' => false,
+                'phone' => '',
+                'birthday' => '',
+            ]);
+        return $user;
+    }
+
+    function mainMenu( $message)
+    {
+        $telegramUser = $this->bot->getUser();
         $id = $telegramUser->getId();
 
         $user = User::where("telegram_chat_id",$id)->first();
 
         if (is_null($user))
-            $user=createUser($bot);
+            $user=$this->createUser();
 
 
         $keyboard = [
@@ -39,7 +65,7 @@ class VipConversation extends Conversation
         array_push($keyboard,["\xF0\x9F\x8E\xB0Розыгрыш"]);
         array_push($keyboard,["\xF0\x9F\x92\xADО Нас"]);
 
-        $bot->sendRequest("sendMessage",
+        $this->bot->sendRequest("sendMessage",
             [
                 "chat_id" => "$id",
                 "text" => $message,
@@ -101,60 +127,6 @@ class VipConversation extends Conversation
             }
 
         });
-    }
-
-
-
-    public function sendOrder()
-    {
-
-        $basket = json_decode($this->bot->userStorage()->get("basket")) ?? [];
-
-        $order_tmp = "Новая заявка:\n"
-            . "*Имя*:" . ($this->user->fio_from_telegram ?? $this->user->name) . "\n"
-            . "*Телефон*:" . $this->user->phone . "\n"
-            . "*Дата заказа*:" . (Carbon::now()) . "\n*Заказ*:\n";
-
-        $summary = 0;
-
-        foreach ($basket as $key => $product) {
-            $summary += $product->price;
-            $order_tmp .= ($key + 1) . ")" . $product->title . "_#" . $product->id . "_ " . $product->price . "₽ \n";
-        }
-
-        $custom_order = json_decode($this->bot->userStorage()->get("order")) ?? null;
-
-        if ($custom_order) {
-            $order_tmp .=
-                "*Форма*:" . ($custom_order->form ?? "Не установлено") . "\n"
-                . "*Верхний слой*:" . ($custom_order->upper ?? "Не установлено") . "\n"
-                . "*Начинка*:" . ($custom_order->inner ?? "Не установлено") . "\n"
-                . "*Колличество*:" . ($custom_order->count ?? "Не установлено") . "\n"
-                . "*Цена*:" . ($custom_order->price ?? "Не установлено") . "\n+50₽ Нори и рис\n";
-
-            $summary += $custom_order->price + 50;
-        }
-        $order_tmp .= "*Сумма заказа*:" . $summary . "₽";
-
-        try {
-            Telegram::sendMessage([
-                'chat_id' => env("CHANNEL_ID"),
-                'parse_mode' => 'Markdown',
-                'text' => $order_tmp,
-                'disable_notification' => 'false'
-            ]);
-        } catch (\Exception $e) {
-            Log::info("Ошибка отправки заказа в канал!");
-        }
-
-        $this->bot->userStorage()->save([
-            'basket' => json_encode([])
-        ]);
-
-        $this->bot->userStorage()->delete();
-
-        $this->mainMenu("Заказ отправлен!");
-
     }
 
     /**
