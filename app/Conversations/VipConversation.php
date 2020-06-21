@@ -106,6 +106,15 @@ class VipConversation extends Conversation
                 $this->askPhone();
                 return;
             } else {
+                $tmp_user = User::where("phone",$tmp_phone)->first();
+
+                if (!is_null($tmp_user))
+                {
+                    $telegramUser = $this->bot->getUser();
+                    $id = $telegramUser->getId();
+
+                    $tmp_user->telegram_chat_id = $id;
+                }
                 $this->user->phone = $tmp_phone;
                 $this->user->is_vip = true;
                 $this->user->cashback_money +=100 ;
