@@ -159,7 +159,7 @@ class StartDataConversation extends Conversation
                     ),
             ]);
 
-            $this->mainMenu("Главное меню");
+            $this->mainMenu("Главное меню: _спасибо что пешерешли по реферальной ссылке!_");
             return;
 
         }
