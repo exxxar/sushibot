@@ -161,11 +161,14 @@ $botman->hears('.*Розыгрыш', function ($bot) {
 $botman->hears('.*О нас', function ($bot) {
     $bot->reply("https://telegra.ph/O-Nas-06-21");
 });
+
+$botman->hears("/start ([0-9a-zA-Z=]+)", BotManController::class . '@startDataConversation');
+
 $botman->hears('/start', function ($bot) {
     createUser($bot);
     mainMenu($bot, 'Главное меню');
 })->stopsConversation();
-$botman->hears("/start ([0-9a-zA-Z=]+)", BotManController::class . '@startDataConversation');
+
 $botman->hears('.*Новое меню', function ($bot) {
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
