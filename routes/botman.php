@@ -240,7 +240,7 @@ $botman->hears('.*Special CashBack system', function ($bot) {
         [
             "chat_id" => "$id",
             "photo"=>"https://psv4.userapi.com/c856324/u14054379/docs/d11/b44982ee5be8/cashback.png?extra=mpOQonv9nnoVOvkOde1vMX1R7Gn6sGBpT-yTsiOl_GyeIut9zHnt3YIxH77gwLS4cyu85tEEC4UjPd6fcmunhQWmH3kzjwbgWXb7Ithm9ik8yyTuPfrYNqoLOgYLjrIzmGYUhxEQKxoQ-C6EDqUtNQ",
-            "caption" => "_Делись \xF0\x9F\x91\x87 QR-кодом с друзьями и получай больше CashBack с каждой их покупки!_",
+            "caption" => "_Делись QR-кодом с друзьями и получай больше CashBack с каждой их покупки!_\xF0\x9F\x91\x87\xF0\x9F\x91\x87\xF0\x9F\x91\x87",
             "parse_mode" => "Markdown",
         ]);
 
