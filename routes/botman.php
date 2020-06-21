@@ -180,7 +180,7 @@ $botman->hears('.*Новое меню', function ($bot) {
     $bot->sendRequest("sendMessage",
         [
             "chat_id" => "$id",
-            "text" => "https://telegra.ph/Menyu-06-19",
+            "text" => "https://telegra.ph/Menyu-06-21-2",
             'reply_markup' => json_encode([
                 'inline_keyboard' =>
                     $keyboard
