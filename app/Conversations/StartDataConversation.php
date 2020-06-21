@@ -223,7 +223,7 @@ class StartDataConversation extends Conversation
 
         $this->bot->reply("У пользователя " . $recipient_user->cashback_money . " руб. CashBack-а");
 
-        $question = Question::create("Диалог списания средств")
+        $question = Question::create("Введите сумму для списания:")
             ->fallback(__("messages.ask_fallback"));
 
         $this->ask($question, function (Answer $answer) use ($recipient_user) {
