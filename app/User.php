@@ -25,7 +25,8 @@ class User extends Authenticatable
         'phone',
         'is_vip',
         'birthday',
-        'is_admin'
+        'is_admin',
+        'parent_id'
     ];
 
 
@@ -37,4 +38,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function parent()
+    {
+        return $this->hasOne('App\User','id','parent_id');
+    }
 }

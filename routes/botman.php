@@ -235,6 +235,12 @@ $botman->hears('.*Special CashBack system', function ($bot) {
     $code = base64_encode("001" . $tmp_id);
 
     $qr_url = env("QR_URL") . "https://t.me/" . env("APP_BOT_NAME") . "?start=$code";
+    $bot->sendRequest("sendMessage",
+        [
+            "chat_id" => "$id",
+            "text" => "_Делись данным QR-кодом с друзьями и получай больше CashBack с каждой их покупки!_",
+            "parse_mode" => "Markdown",
+        ]);
 
     $bot->sendRequest("sendPhoto",
         [
@@ -272,17 +278,16 @@ $botman->hears('/check_lottery_slot ([0-9]+)', function ($bot, $slotId) {
 
     $user = User::where("telegram_chat_id", $id)->first();
 
-    $message = "*Заявка на получение приза*\n$message"
-        . "*Имя*:" . ($user->fio_from_telegram ?? $user->name) . "\n"
-        . "*Телефон*:" . $user->phone . "\n"
-        . "*Дата заказа*:" . (Carbon::now()) . "\n";
-
     try {
+
         Telegram::sendMessage([
             'chat_id' => env("CHANNEL_ID"),
             'parse_mode' => 'Markdown',
-            'text' => $message,
-            'disable_notification' => 'true'
+            'text' => sprintf(($prize->type === 0?"Заявка на получение приза":"*Пользователь получил виртуальный приз*")."\nНомер телефона:_%s_\nПриз: [#%s] \"%s\"",
+                $user->phone,
+                $prize[0]->id,
+                $prize[0]->title),
+            'disable_notification' => 'false'
         ]);
     } catch (\Exception $e) {
         Log::info("Ошибка отправки заказа в канал!");

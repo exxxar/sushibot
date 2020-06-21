@@ -12,5 +12,7 @@ class Prize extends Model
         'image_url',
         'position',
         'as_default',
+        'type', //0 - real, 1 - virtual
+        'virtual_amount'
     ];
 }

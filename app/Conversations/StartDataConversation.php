@@ -50,6 +50,7 @@ class StartDataConversation extends Conversation
                 'is_vip' => false,
                 'cashback_money' => false,
                 'phone' => '',
+                'parent_id' => $this->request_user_id??null,
                 'birthday' => '',
             ]);
         return $user;
@@ -122,8 +123,12 @@ class StartDataConversation extends Conversation
         $pattern = "/([0-9]{3})([0-9]{10})/";
         $string = base64_decode($this->data);
 
-        preg_match_all($pattern, $string, $matches);
+        $is_valid = preg_match_all($pattern, $string, $matches);
 
+        if (!$is_valid) {
+            $this->mainMenu("Главное меню");
+            return;
+        }
 
         $this->code = $matches[1][0];
         $this->request_user_id = $matches[2][0];
@@ -133,19 +138,39 @@ class StartDataConversation extends Conversation
 
         $this->user = User::where("telegram_chat_id", $id)->first();
 
+
         if (is_null($this->user)) {
-            $this->createUser();
-            $this->mainMenu("У вас недостаточно прав для выполнения данной операции!");
+            $this->user = $this->createUser();
+
+            $referral_user = User::find($this->request_user_id);
+
+            Telegram::sendMessage([
+                'chat_id' => $referral_user->telegram_chat_id,
+                'parse_mode' => 'Markdown',
+                'text' => "По вашей реферальной ссылке перешел пользователь ".(
+                        $this->user->fio_from_telegram ??
+                        $this->user->phone ??
+                        $this->user->name ??
+                        $this->user->email
+                    ),
+            ]);
+
             return;
+
         }
+
 
 
         if ($this->user->is_admin != true) {
-            $this->mainMenu("У вас недостаточно прав для выполнения данной операции!");
+            $this->mainMenu("Недостаточно прав доступа для совершения данной операции");
             return;
         }
+
         if ($this->code == "001")
             $this->askForAction();
+        else
+            $this->mainMenu("Неопознанный код операции");
+
 
     }
 
@@ -276,7 +301,7 @@ class StartDataConversation extends Conversation
     public function saveCashBack()
     {
 
-        $recipient_user = User::where("telegram_chat_id", intval($this->request_user_id))->first();
+        $recipient_user = User::with(["parent"])->where("telegram_chat_id", intval($this->request_user_id))->first();
 
         if (!$recipient_user) {
             $this->mainMenu("Пользователь не найден!");
@@ -284,9 +309,38 @@ class StartDataConversation extends Conversation
         }
 
         $cashback = ((intval( $this->money_in_check)??0)*env("CAHSBAK_PROCENT")/100);
+        $parent_cashback = ((intval( $this->money_in_check)??0)*env("NETWORK_CAHSBAK_PROCENT")/100);
 
         $recipient_user->cashback_money += $cashback;
         $recipient_user->save();
+
+        if (!is_null($recipient_user->parent_id)){
+            $parent = $recipient_user->parent;
+            $parent->cashback_money += $parent_cashback;
+            $parent->save();
+
+            CashBackHistory::create([
+                'amount' => $parent_cashback,
+                'bill_number' => "CashBack от друга",
+                'money_in_bill' => $parent_cashback ,
+                'employee_id' => $this->user->id,
+                'user_id' => $parent->id,
+                'type' => 0,
+            ]);
+
+
+            Telegram::sendMessage([
+                'chat_id' => $recipient_user->telegram_chat_id,
+                'parse_mode' => 'Markdown',
+                'text' => "Ваш друг ".(
+                        $recipient_user->fio_from_telegram ??
+                        $recipient_user->phone ??
+                        $recipient_user->name ??
+                        $recipient_user->email
+                    )." принес Вам $parent_cashback руб. CashBack-а",
+            ]);
+
+        }
 
         CashBackHistory::create([
             'amount' => $cashback,
@@ -298,8 +352,8 @@ class StartDataConversation extends Conversation
         ]);
 
         $this->mainMenu("Отлично! CashBack $cashback руб. начислен пользователю " . (
-                $recipient_user->phone ??
                 $recipient_user->fio_from_telegram ??
+                $recipient_user->phone ??
                 $recipient_user->name ??
                 $recipient_user->email
             )

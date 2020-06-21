@@ -103,15 +103,16 @@ class WelcomeController extends Controller
 
         $prize = $prizes->random(1);
 
-        Telegram::sendMessage([
-            'chat_id' => env("CHANNEL_ID"),
-            'parse_mode' => 'Markdown',
-            'text' => sprintf("*Заявка на получение приза*\nНомер телефона:_%s_\nПриз: [#%s] \"%s\"",
-                $user->phone,
-                $prize[0]->id,
-                $prize[0]->title),
-            'disable_notification' => 'false'
-        ]);
+
+            Telegram::sendMessage([
+                'chat_id' => env("CHANNEL_ID"),
+                'parse_mode' => 'Markdown',
+                'text' => sprintf(($prize->type === 0?"Заявка на получение приза":"*Пользователь получил виртуальный приз*")."\nНомер телефона:_%s_\nПриз: [#%s] \"%s\"",
+                    $user->phone,
+                    $prize[0]->id,
+                    $prize[0]->title),
+                'disable_notification' => 'false'
+            ]);
 
 
         return response()

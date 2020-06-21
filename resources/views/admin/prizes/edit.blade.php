@@ -70,6 +70,23 @@
                             </td>
                         </tr>
 
+                        <tr>
+                            <td>Тип приза</td>
+                            <td>
+                                <select name="type" id="type" class="form-control" required>
+                                    <option value="0">Реальный приз</option>
+                                    <option value="1">Виртуальный приз</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Величина виртуального приза</td>
+                            <td>
+                                <input type="number" min="0" max="1000" class="form-control" name="virtual_amount" value="{{$prize->virtual_amount}}" >
+                            </td>
+                        </tr>
+
 
                         <tr>
                             <td></td>

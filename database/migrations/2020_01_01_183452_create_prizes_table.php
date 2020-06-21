@@ -20,6 +20,8 @@ class CreatePrizesTable extends Migration
             $table->string('image_url',1000);
             $table->integer('position')->default(0);
             $table->boolean('as_default')->default(false);
+            $table->tinyInteger('type')->default(0); //0 - real, 1 - virtual
+            $table->integer('virtual_amount')->default(0);
             $table->timestamps();
         });
     }
