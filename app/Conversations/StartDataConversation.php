@@ -148,10 +148,8 @@ class StartDataConversation extends Conversation
         if (is_null($this->user)) {
             $this->user = $this->createUser();
 
-            $referral_user = User::where("telegram_chat_id",$this->request_user_id)->first();
-
             Telegram::sendMessage([
-                'chat_id' => $referral_user->telegram_chat_id,
+                'chat_id' => $this->request_user_id,
                 'parse_mode' => 'Markdown',
                 'text' => "По вашей реферальной ссылке перешел пользователь ".(
                         $this->user->fio_from_telegram ??
@@ -161,6 +159,7 @@ class StartDataConversation extends Conversation
                     ),
             ]);
 
+            $this->mainMenu("Главное меню");
             return;
 
         }
