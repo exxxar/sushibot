@@ -236,10 +236,11 @@ $botman->hears('.*Special CashBack system', function ($bot) {
 
     $qr_url = env("QR_URL") . "https://t.me/" . env("APP_BOT_NAME") . "?start=$code";
 
-    $bot->sendRequest("sendMessage",
+    $bot->sendRequest("sendPhoto",
         [
             "chat_id" => "$id",
-            "text" => "_Делись данным QR-кодом с друзьями и получай больше CashBack с каждой их покупки!_",
+            "photo"=>"https://psv4.userapi.com/c856324/u14054379/docs/d11/b44982ee5be8/cashback.png",
+            "caption" => "_Делись данным QR-кодом с друзьями и получай больше CashBack с каждой их покупки!_",
             "parse_mode" => "Markdown",
         ]);
 
