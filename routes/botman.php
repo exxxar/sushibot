@@ -173,7 +173,7 @@ $botman->hears('.*Новое меню', function ($bot) {
 
     $keyboard = [
         [
-            ['text' => "Больше меню на сайте", 'url' => "https://isushi-dn.ru"],
+            ['text' => "\xF0\x9F\x93\x8BОформить заказ", 'url' => "https://isushi-dn.ru"],
         ],
     ];
 
