@@ -137,7 +137,8 @@ class StartDataConversation extends Conversation
         $id = $telegramUser->getId();
 
         $this->user = User::where("telegram_chat_id", $id)->first();
-        $this->bot->reply("TEST 1".($this->user->id??"NET"));
+        $this->bot->reply("TEST 1 ".($this->user->id??"NET"));
+
         if (!is_null($this->user))
             if ($this->user->is_admin)
             {
