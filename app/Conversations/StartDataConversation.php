@@ -319,10 +319,13 @@ class StartDataConversation extends Conversation
         $recipient_user->cashback_money += $cashback;
         $recipient_user->save();
 
+        $this->bot->reply("test 1");
         if (!is_null($recipient_user->parent_id)){
+            $this->bot->reply("test 3");
             $parent = $recipient_user->parent;
             $parent->cashback_money += $parent_cashback;
             $parent->save();
+            $this->bot->reply("test 4");
 
             CashBackHistory::create([
                 'amount' => $parent_cashback,
@@ -332,7 +335,7 @@ class StartDataConversation extends Conversation
                 'user_id' => $parent->id,
                 'type' => 0,
             ]);
-
+            $this->bot->reply("test 5");
 
             Telegram::sendMessage([
                 'chat_id' => $recipient_user->telegram_chat_id,
@@ -345,7 +348,11 @@ class StartDataConversation extends Conversation
                     )." принес Вам $parent_cashback руб. CashBack-а",
             ]);
 
+            $this->bot->reply("test 6");
+
         }
+
+        $this->bot->reply("test 2");
 
         CashBackHistory::create([
             'amount' => $cashback,
