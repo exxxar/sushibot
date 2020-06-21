@@ -235,6 +235,7 @@ $botman->hears('.*Special CashBack system', function ($bot) {
     $code = base64_encode("001" . $tmp_id);
 
     $qr_url = env("QR_URL") . "https://t.me/" . env("APP_BOT_NAME") . "?start=$code";
+
     $bot->sendRequest("sendMessage",
         [
             "chat_id" => "$id",
