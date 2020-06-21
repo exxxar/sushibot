@@ -321,7 +321,7 @@ class StartDataConversation extends Conversation
 
         $this->bot->reply("test 1");
         if (!is_null($recipient_user->parent_id)){
-            $this->bot->reply("test 3");
+            $this->bot->reply("test ".$recipient_user->parent_id);
             $parent = User::where("id",$recipient_user->parent_id)->first();
             $parent->cashback_money += $parent_cashback;
             $parent->save();
