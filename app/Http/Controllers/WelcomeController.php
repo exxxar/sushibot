@@ -132,6 +132,9 @@ class WelcomeController extends Controller
 
         $promo = null;
 
+        $vowels = array("(", ")", "-", " ");
+        $phone = str_replace($vowels, "", $phone);
+
         if (is_null($user))
             User::create([
                 'name' => $name,
