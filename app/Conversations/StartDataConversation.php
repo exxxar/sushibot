@@ -39,9 +39,8 @@ class StartDataConversation extends Conversation
         $firstName = $telegramUser->getFirstName();
 
         $user = User::where("telegram_chat_id", $id)->first();
-        $parent = User::where("telegram_chat_id", $this->request_user_id)->first();
+        $parent = User::where("telegram_chat_id", intval($this->request_user_id))->first();
 
-        $this->bot->reply("TEST ".($parent->id??"нету")." ".$this->request_user_id);
         if ($user == null)
             $user = \App\User::create([
                 'name' => $username ?? "$id",
