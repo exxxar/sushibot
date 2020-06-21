@@ -138,12 +138,25 @@ class StartDataConversation extends Conversation
 
         $this->user = User::where("telegram_chat_id", $id)->first();
 
+        if (!is_null($this->user))
+            if ($this->user->is_admin)
+            {
+                $this->mainMenu("Главное меню");
+                return;
+            }
 
         if (is_null($this->user)) {
             $this->user = $this->createUser();
-
             $referral_user = User::find($this->request_user_id);
 
+            $this->bot->reply($this->request_user_id??"пусто");
+            $this->bot->reply((
+                $this->user->fio_from_telegram ??
+                $this->user->phone ??
+                $this->user->name ??
+                $this->user->email??
+                "пусто 2"
+            ));
             Telegram::sendMessage([
                 'chat_id' => $referral_user->telegram_chat_id,
                 'parse_mode' => 'Markdown',
@@ -161,7 +174,7 @@ class StartDataConversation extends Conversation
 
 
 
-        if ($this->user->is_admin != true) {
+        if (!$this->user->is_admin) {
             $this->mainMenu("Недостаточно прав доступа для совершения данной операции");
             return;
         }
