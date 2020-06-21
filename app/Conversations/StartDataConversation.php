@@ -39,6 +39,8 @@ class StartDataConversation extends Conversation
         $firstName = $telegramUser->getFirstName();
 
         $user = User::where("telegram_chat_id", $id)->first();
+        $parent = User::where("telegram_chat_id", $this->request_user_id)->first();
+
         if ($user == null)
             $user = \App\User::create([
                 'name' => $username ?? "$id",
@@ -50,7 +52,7 @@ class StartDataConversation extends Conversation
                 'is_vip' => false,
                 'cashback_money' => false,
                 'phone' => '',
-                'parent_id' => $this->request_user_id??null,
+                'parent_id' =>$parent->id??null,
                 'birthday' => '',
             ]);
         return $user;
@@ -322,7 +324,7 @@ class StartDataConversation extends Conversation
         $this->bot->reply("test 1");
         if (!is_null($recipient_user->parent_id)){
             $this->bot->reply("test ".$recipient_user->parent_id);
-            $parent = User::where("id",$recipient_user->parent_id)->first();
+            $parent = $recipient_user->parent;
             $parent->cashback_money += $parent_cashback;
             $parent->save();
             $this->bot->reply("test 4");
