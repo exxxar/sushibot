@@ -139,7 +139,7 @@ class StartDataConversation extends Conversation
         $this->user = User::where("telegram_chat_id", $id)->first();
 
         if (!is_null($this->user))
-            if ($this->user->is_admin)
+            if (!$this->user->is_admin)
             {
                 $this->mainMenu("Главное меню");
                 return;
