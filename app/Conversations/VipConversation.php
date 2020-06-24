@@ -34,7 +34,7 @@ class VipConversation extends Conversation
                 'telegram_chat_id' => $id,
                 'is_admin' => false,
                 'is_vip' => false,
-                'cashback_money' => false,
+                'cashback_money' => 0,
                 'phone' => '',
                 'birthday' => '',
             ]);
@@ -122,10 +122,10 @@ class VipConversation extends Conversation
                 }
                 $this->user->phone = $tmp_phone;
                 $this->user->is_vip = true;
-                $this->user->cashback_money +=100 ;
+               // $this->user->cashback_money +=100 ;
                 $this->user->save();
 
-                CashBackHistory::create([
+             /*   CashBackHistory::create([
                     'amount'=>100,
                     'bill_number'=>'Gift From Isushi',
                     'money_in_bill'=>0,
@@ -134,7 +134,7 @@ class VipConversation extends Conversation
                     'type'=>0,
                 ]);
 
-                $this->bot->reply("Вам начислено 100 руб. CashBack");
+                $this->bot->reply("Вам начислено 100 руб. CashBack");*/
 
                 $this->mainMenu("Теперь Вы VIP-пользователь и у вас есть возможность накапливать CashBack!");
 
