@@ -506,14 +506,11 @@ $botman->receivesImages(function ($bot, $images) {
 
     foreach ($images as $image) {
 
-        $url = $image->getUrl(); // The direct url
-        $title = $image->getTitle() ?? "Без пометки"; // The title, if available
-        $payload = $image->getPayload(); // The original payload
+        $url = $image->getUrl();
 
-        $message = sprintf("Пользователь #%s (%s) отправил скриншот. Проверьте! (%s)",
+        $message = sprintf("Пользователь #%s (%s) отправил скриншот. Проверьте!",
             ($user->fio_from_telegram ?? $user->name),
-            $user->phone,
-            $title
+            $user->phone
         );
 
         Telegram::sendPhoto([

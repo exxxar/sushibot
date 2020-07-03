@@ -172,10 +172,21 @@ class StartDataConversation extends Conversation
             return;
         }
 
-        if ($this->code == "001")
-            $this->askForAction();
-        else
-            $this->mainMenu("Неопознанный код операции");
+        switch ($this->code ) {
+            case "001":
+                $this->askForAction();
+                break;
+            case "002":
+                $this->acceptImage();
+                break;
+            case "003":
+                $this->declineImage();
+                break;
+            default:
+                $this->mainMenu("Неопознанный код операции");
+                break;
+
+        }
 
 
     }
@@ -211,6 +222,39 @@ class StartDataConversation extends Conversation
             }
         });
     }
+
+    public function acceptImage(){
+        $recipient_user = User::where("telegram_chat_id", intval($this->request_user_id))->first();
+        if (!$recipient_user) {
+            $this->mainMenu("Пользователь не найден!");
+            return;
+        }
+
+        $this->bot->reply(sprintf("Скриншот пользователя %s успешно подтвержден!",($recipient_user->fio_from_telegram ?? $recipient_user->name)));
+
+        Telegram::sendMessage([
+            'chat_id' => $recipient_user->telegram_chat_id,
+            'parse_mode' => 'Markdown',
+            'text' => "Спасибо за Ваш сторис, хорошего дня!, мы с радостью предоставляем Вам скидку в размере 20%.",
+        ]);
+    }
+
+    public function declineImage(){
+        $recipient_user = User::where("telegram_chat_id", intval($this->request_user_id))->first();
+        if (!$recipient_user) {
+            $this->mainMenu("Пользователь не найден!");
+            return;
+        }
+
+        $this->bot->reply(sprintf("Скриншот пользователя %s отклонен!",($recipient_user->fio_from_telegram ?? $recipient_user->name)));
+
+        Telegram::sendMessage([
+            'chat_id' => $recipient_user->telegram_chat_id,
+            'parse_mode' => 'Markdown',
+            'text' => "Данный скриншот отклонен администратором, т.к. не соответствует условиям акции! Попробуйте еще раз!",
+        ]);
+    }
+
 
     public function askForPay()
     {
