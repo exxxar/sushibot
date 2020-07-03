@@ -507,19 +507,20 @@ $botman->receivesImages(function ($bot, $images) {
     foreach ($images as $image) {
 
         $url = $image->getUrl(); // The direct url
-        $title = $image->getTitle(); // The title, if available
+        $title = $image->getTitle() ?? "Без пометки"; // The title, if available
         $payload = $image->getPayload(); // The original payload
 
-        $message = sprintf("Пользователь #%s (%s) отправил скриншот. Проверьте!",
-            ($user->name ?? $user->fio_from_telegram),
-            $user->phone
+        $message = sprintf("Пользователь #%s (%s) отправил скриншот. Проверьте! (%s)",
+            ($user->fio_from_telegram ?? $user->name),
+            $user->phone,
+            $title
         );
 
         Telegram::sendPhoto([
             'chat_id' => env("CHANNEL_ID"),
             'parse_mode' => 'Markdown',
             'caption' => $message,
-            "photo"=>\Telegram\Bot\FileUpload\InputFile::create($url),
+            "photo" => \Telegram\Bot\FileUpload\InputFile::create($url),
             'disable_notification' => 'false',
             'reply_markup' => json_encode([
                 'inline_keyboard' =>
@@ -529,7 +530,7 @@ $botman->receivesImages(function ($bot, $images) {
 
     }
 
-    $bot->reply("Ваши (".count($images)."шт) скриншоты приняты в обработку!");
+    $bot->reply("Ваши скриншоты (" . count($images) . "шт) приняты в обработку!");
 });
 
 /*$botman->hears('Сбросить фильтр', function ($bot) {
