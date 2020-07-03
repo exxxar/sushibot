@@ -235,7 +235,7 @@ class StartDataConversation extends Conversation
         Telegram::sendMessage([
             'chat_id' => $recipient_user->telegram_chat_id,
             'parse_mode' => 'Markdown',
-            'text' => "Спасибо за Ваш сторис, хорошего дня!, мы с радостью предоставляем Вам скидку в размере 20%.",
+            'text' => "Спасибо за Ваш сторис, хорошего дня!, мы с радостью предоставляем Вам скидку в размере 20%. Покажите данное сообщение администратору!",
         ]);
     }
 
