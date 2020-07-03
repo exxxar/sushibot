@@ -62,7 +62,6 @@ class VipConversation extends Conversation
         else
             array_push($keyboard, ["\xE2\x9A\xA1Special CashBack system"]);
 
-        array_push($keyboard,["\xF0\x9F\x8E\xB0Розыгрыш"]);
         array_push($keyboard,["\xF0\x9F\x92\xADО Нас"]);
 
         $this->bot->sendRequest("sendMessage",

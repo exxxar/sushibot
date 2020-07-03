@@ -35,7 +35,6 @@ class NewOrderConversation extends Conversation
         $keyboard = [
             ["\xF0\x9F\x8D\xB1Новое меню", "\xF0\x9F\x92\xB0Корзина" . ($count == null ? "(0₽)" : "(" . $count . "₽)")],
             ["\xF0\x9F\x8D\xA3Собрать ролл"],
-            ["\xF0\x9F\x8E\xB0Розыгрыш"],
             ["\xF0\x9F\x92\xADО Нас"],
         ];
 

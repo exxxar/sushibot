@@ -176,7 +176,7 @@
             <h1 class="text-center">Корзина пуста:(</h1>
         </div>
 
-        <div v-if="promocode.trim().length>0">
+   <!--     <div v-if="promocode.trim().length>0">
             <hr>
             <h4 class="text-center">Ваш промокод </h4>
             <br>
@@ -192,7 +192,7 @@
                 </div>
             </section>
 
-        </div>
+        </div>-->
 
     </div>
 </template>

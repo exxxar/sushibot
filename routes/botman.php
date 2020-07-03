@@ -88,7 +88,7 @@ function mainMenu($bot, $message)
     else
         array_push($keyboard, ["\xE2\x9A\xA1Special CashBack system"]);
 
-    array_push($keyboard,["\xF0\x9F\x8E\xB0Розыгрыш"]);
+/*    array_push($keyboard,["\xF0\x9F\x8E\xB0Розыгрыш"]);*/
     array_push($keyboard,["\xF0\x9F\x92\xADО Нас"]);
 
     if ($user->is_admin)
@@ -201,22 +201,20 @@ $botman->hears('.*Новое меню', function ($bot) {
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
 
-
-    $keyboard = [
-        [
-            ['text' => "\xF0\x9F\x93\x8BОформить заказ", 'url' => "https://isushi-dn.ru"],
-        ],
+    $media = [
+        ["type"=>"photo","media"=>"https://sun9-8.userapi.com/c857228/v857228676/1c7f33/rOa7MmjmPtQ.jpg"],
+        ["type"=>"photo","media"=>"https://sun9-68.userapi.com/c857228/v857228676/1c7f3d/P24O7YPeEdg.jpg"],
     ];
 
-    $bot->sendRequest("sendMessage",
+    $bot->sendRequest("sendMediaGroup",
         [
             "chat_id" => "$id",
-            "text" => "https://telegra.ph/Menyu-06-21-2",
-            'reply_markup' => json_encode([
-                'inline_keyboard' =>
-                    $keyboard
-            ])
+            "parse_mode" => "Markdown",
+            "media" => json_encode($media),
+
         ]);
+
+
 });
 $botman->hears('.*Special CashBack system', function ($bot) {
     $telegramUser = $bot->getUser();
@@ -259,11 +257,7 @@ $botman->hears('.*Special CashBack system', function ($bot) {
         ],
     ];
 
-    $keyboard2 = [
-        [
-            ['text' => "Подробности на сайте", 'url' => "https://isushi-dn.ru"],
-        ],
-    ];
+
 
     $tmp_id = (string)$id;
     while (strlen($tmp_id) < 10)
@@ -273,11 +267,20 @@ $botman->hears('.*Special CashBack system', function ($bot) {
 
     $qr_url = env("QR_URL") . "https://t.me/" . env("APP_BOT_NAME") . "?start=$code";
 
+    $keyboard2 = [
+        [
+            ['text' => "Воспользоваться системой CashBack", 'url' =>"https://t.me/" . env("APP_BOT_NAME") . "?start=$code"],
+        ],
+        [
+            ['text' => "Подробности на сайте", 'url' => "https://isushi-dn.ru"],
+        ],
+    ];
+
     $bot->sendRequest("sendPhoto",
         [
             "chat_id" => "$id",
             "photo"=>"https://psv4.userapi.com/c856324/u14054379/docs/d11/b44982ee5be8/cashback.png?extra=mpOQonv9nnoVOvkOde1vMX1R7Gn6sGBpT-yTsiOl_GyeIut9zHnt3YIxH77gwLS4cyu85tEEC4UjPd6fcmunhQWmH3kzjwbgWXb7Ithm9ik8yyTuPfrYNqoLOgYLjrIzmGYUhxEQKxoQ-C6EDqUtNQ",
-            "caption" => "Теперь ты можешь получать 10% CashBack от всех твоих покупок и 3% от покукпок друзей! Для этого подключи друзей к данной системе!\n_Дай отсканировать QR-код друзьям или делись ссылкой_ *https://t.me/" . env("APP_BOT_NAME") . "?start=$code* _с друзьями и получай больше CashBack с каждой их покупки!_",
+            "caption" => "Теперь ты можешь получать 10% CashBack от всех твоих покупок и 3% от покукпок друзей! Для этого подключи друзей к данной системе!\n_Дай отсканировать QR-код друзьям или делись ссылкой с друзьями и получай больше CashBack с каждой их покупки!_",
             "parse_mode" => "Markdown",
             'reply_markup' => json_encode([
                 'inline_keyboard' =>
