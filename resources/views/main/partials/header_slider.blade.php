@@ -18,7 +18,7 @@
                         <div class="welcome_content wow slideInUp">
                             <a href="https://t.me/isushibot">
                                 <img class="img-fluid"
-                                     src="https://psv4.userapi.com/c856324/u14054379/docs/d11/b44982ee5be8/cashback.png"
+                                     src="https://sun9-68.userapi.com/c855636/v855636676/246d60/Q4ErrGSNrmQ.jpg"
                                      alt="">
                             </a>
                             <div class="row justify-content-center mt-5">

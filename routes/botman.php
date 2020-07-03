@@ -72,10 +72,10 @@ function mainMenu($bot, $message)
     $telegramUser = $bot->getUser();
     $id = $telegramUser->getId();
 
-    $user = User::where("telegram_chat_id",$id)->first();
+    $user = User::where("telegram_chat_id", $id)->first();
 
     if (is_null($user))
-        $user=createUser($bot);
+        $user = createUser($bot);
 
 
     $keyboard = [
@@ -88,11 +88,11 @@ function mainMenu($bot, $message)
     else
         array_push($keyboard, ["\xE2\x9A\xA1Special CashBack system"]);
 
-/*    array_push($keyboard,["\xF0\x9F\x8E\xB0Розыгрыш"]);*/
-    array_push($keyboard,["\xF0\x9F\x92\xADО Нас"]);
+    /*    array_push($keyboard,["\xF0\x9F\x8E\xB0Розыгрыш"]);*/
+    array_push($keyboard, ["\xF0\x9F\x92\xADО Нас"]);
 
     if ($user->is_admin)
-        array_push($keyboard,["\xE2\x9A\xA0Админ. статистика"]);
+        array_push($keyboard, ["\xE2\x9A\xA0Админ. статистика"]);
 
     $bot->sendRequest("sendMessage",
         [
@@ -138,10 +138,10 @@ function mainMenu($bot, $message)
 }*/
 $botman->hears('.*Админ. статистика', function ($bot) {
     $users_in_bd = User::all()->count();
-    $vip_in_bd = User::where("is_vip",true)->get()->count();
+    $vip_in_bd = User::where("is_vip", true)->get()->count();
 
     $vip_in_bd_day = User::whereDate('updated_at', Carbon::today())
-        ->where("is_vip",true)
+        ->where("is_vip", true)
         ->orderBy("id", "DESC")
         ->get()
         ->count();
@@ -202,8 +202,8 @@ $botman->hears('.*Новое меню', function ($bot) {
     $id = $telegramUser->getId();
 
     $media = [
-        ["type"=>"photo","media"=>"https://sun9-8.userapi.com/c857228/v857228676/1c7f33/rOa7MmjmPtQ.jpg"],
-        ["type"=>"photo","media"=>"https://sun9-68.userapi.com/c857228/v857228676/1c7f3d/P24O7YPeEdg.jpg"],
+        ["type" => "photo", "media" => "https://sun9-8.userapi.com/c857228/v857228676/1c7f33/rOa7MmjmPtQ.jpg"],
+        ["type" => "photo", "media" => "https://sun9-68.userapi.com/c857228/v857228676/1c7f3d/P24O7YPeEdg.jpg"],
     ];
 
     $bot->sendRequest("sendMediaGroup",
@@ -258,7 +258,6 @@ $botman->hears('.*Special CashBack system', function ($bot) {
     ];
 
 
-
     $tmp_id = (string)$id;
     while (strlen($tmp_id) < 10)
         $tmp_id = "0" . $tmp_id;
@@ -269,7 +268,7 @@ $botman->hears('.*Special CashBack system', function ($bot) {
 
     $keyboard2 = [
         [
-            ['text' => "Воспользоваться системой CashBack", 'url' =>"https://t.me/" . env("APP_BOT_NAME") . "?start=$code"],
+            ['text' => "Воспользоваться системой CashBack", 'url' => "https://t.me/" . env("APP_BOT_NAME") . "?start=$code"],
         ],
         [
             ['text' => "Подробности на сайте", 'url' => "https://isushi-dn.ru"],
@@ -279,7 +278,7 @@ $botman->hears('.*Special CashBack system', function ($bot) {
     $bot->sendRequest("sendPhoto",
         [
             "chat_id" => "$id",
-            "photo"=>"https://psv4.userapi.com/c856324/u14054379/docs/d11/b44982ee5be8/cashback.png?extra=mpOQonv9nnoVOvkOde1vMX1R7Gn6sGBpT-yTsiOl_GyeIut9zHnt3YIxH77gwLS4cyu85tEEC4UjPd6fcmunhQWmH3kzjwbgWXb7Ithm9ik8yyTuPfrYNqoLOgYLjrIzmGYUhxEQKxoQ-C6EDqUtNQ",
+            "photo" => "https://psv4.userapi.com/c856324/u14054379/docs/d11/b44982ee5be8/cashback.png?extra=mpOQonv9nnoVOvkOde1vMX1R7Gn6sGBpT-yTsiOl_GyeIut9zHnt3YIxH77gwLS4cyu85tEEC4UjPd6fcmunhQWmH3kzjwbgWXb7Ithm9ik8yyTuPfrYNqoLOgYLjrIzmGYUhxEQKxoQ-C6EDqUtNQ",
             "caption" => "Теперь ты можешь получать 10% CashBack от всех твоих покупок и 3% от покукпок друзей! Для этого подключи друзей к данной системе!\n_Дай отсканировать QR-код друзьям или делись ссылкой с друзьями и получай больше CashBack с каждой их покупки!_",
             "parse_mode" => "Markdown",
             'reply_markup' => json_encode([
@@ -329,7 +328,7 @@ $botman->hears('/check_lottery_slot ([0-9]+)', function ($bot, $slotId) {
         Telegram::sendMessage([
             'chat_id' => env("CHANNEL_ID"),
             'parse_mode' => 'Markdown',
-            'text' => sprintf(($prize->type === 0?"Заявка на получение приза":"*Пользователь получил виртуальный приз*")."\nНомер телефона:_%s_\nПриз: [#%s] \"%s\"",
+            'text' => sprintf(($prize->type === 0 ? "Заявка на получение приза" : "*Пользователь получил виртуальный приз*") . "\nНомер телефона:_%s_\nПриз: [#%s] \"%s\"",
                 $user->phone,
                 $prize[0]->id,
                 $prize[0]->title),
@@ -392,7 +391,7 @@ $botman->hears('/cashback_up', function ($bot) {
         $tmp = "";
 
         foreach ($cashback as $key => $value)
-            $tmp .= sprintf("#%s %s начислено %s руб., чек: %s\n ", ($key+1), $value->created_at, $value->amount, $value->bill_number);
+            $tmp .= sprintf("#%s %s начислено %s руб., чек: %s\n ", ($key + 1), $value->created_at, $value->amount, $value->bill_number);
 
         $message = sprintf("*Статистика 20 последних начислений Cashback*\n%s", $tmp);
 
@@ -433,7 +432,7 @@ $botman->hears('/cashback_down', function ($bot) {
         $tmp = "";
 
         foreach ($cashback as $key => $value)
-            $tmp .= sprintf("#%s %s списано %s руб. \n ", ($key+1), $value->created_at, $value->amount);
+            $tmp .= sprintf("#%s %s списано %s руб. \n ", ($key + 1), $value->created_at, $value->amount);
 
         $message = sprintf("*Статистика 20 последних списаний Cashback*\n%s", $tmp);
 
@@ -455,6 +454,82 @@ $botman->hears('/cashback_down', function ($bot) {
                     $keyboard
             ])
         ]);
+});
+
+
+$botman->receivesImages(function ($bot, $images) {
+    $telegramUser = $bot->getUser();
+    $id = $telegramUser->getId();
+
+    $user = User::where("telegram_chat_id", $id)->first();
+
+    if (is_null($user))
+        $user = createUser($bot);
+
+    $is_vip = $user->is_vip ?? false;
+
+
+    if (!$is_vip) {
+        $keyboard = [
+            [
+                ['text' => "\xF0\x9F\x8D\xB8Оформить VIP-статус", 'callback_data' => "/do_vip"],
+            ],
+        ];
+        $bot->sendRequest("sendMessage",
+            [
+                "chat_id" => "$id",
+                "parse_mode" => "markdown",
+                "text" => "У вас нет VIP-статуса, но вы можете его оформить!",
+                'reply_markup' => json_encode([
+                    'inline_keyboard' =>
+                        $keyboard
+                ])
+            ]);
+
+        return;
+    }
+
+    $tmp_id = (string)$id;
+    while (strlen($tmp_id) < 10)
+        $tmp_id = "0" . $tmp_id;
+
+    $code_accept = base64_encode("002" . $tmp_id);
+    $code_decline = base64_encode("003" . $tmp_id);
+
+    $keyboard = [
+        [
+            ['text' => "Подтвердить", 'url' => "https://t.me/isushibot?start=$code_accept"],
+            ['text' => "Отклонить", 'url' => "https://t.me/isushibot?start=$code_decline"],
+        ],
+    ];
+
+
+    foreach ($images as $image) {
+
+        $url = $image->getUrl(); // The direct url
+        $title = $image->getTitle(); // The title, if available
+        $payload = $image->getPayload(); // The original payload
+
+        $message = sprintf("Пользователь #%s (%s) отправил скриншот. Проверьте!",
+            ($user->name ?? $user->fio_from_telegram),
+            $user->phone
+        );
+
+        Telegram::sendPhoto([
+            'chat_id' => env("CHANNEL_ID"),
+            'parse_mode' => 'Markdown',
+            'caption' => $message,
+            "photo"=>\Telegram\Bot\FileUpload\InputFile::create($url),
+            'disable_notification' => 'false',
+            'reply_markup' => json_encode([
+                'inline_keyboard' =>
+                    $keyboard
+            ])
+        ]);
+
+    }
+
+    $bot->reply("Ваши (".count($images)."шт) скриншоты приняты в обработку!");
 });
 
 /*$botman->hears('Сбросить фильтр', function ($bot) {
