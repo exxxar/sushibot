@@ -38,7 +38,7 @@
                              class="img-fluid" alt="">
                         <div class="bg_overlay"></div>
                         <div class="play_button">
-                            <a href="https://youtu.be/b60c7u5LEOI" class="play_btn"><i
+                            <a href="https://www.youtube.com/watch?v=b60c7u5LEOI" class="play_btn"><i
                                         class="fas fa-play"></i></a>
                         </div>
                     </div>
