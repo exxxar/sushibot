@@ -17,7 +17,7 @@
 
   {{--  @include("main.partials.chopcafe_chef")--}}
 {{--    @include("main.partials.chopcafe_lottery")--}}
-    @include("main.partials.chopcafe_food_festival")
+{{--    @include("main.partials.chopcafe_food_festival")--}}
 
     @include("main.partials.chopcafe_testimonial")
     @include("main.partials.chopcafe_reservation")

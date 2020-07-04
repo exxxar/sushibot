@@ -34,11 +34,11 @@
             <div class="col-lg-6">
                 <div class="chofcafe_img_box">
                     <div class="about_video_box chopcafe_img">
-                        <img src="https://gurmans.dp.ua/giuseppe/7980-large_default/sushi-set-kaliforniya.jpg"
+                        <img src="https://sun1.48276.userapi.com/nAXnIGLSIPlgWw9ffItG7Aoz-RhUqs6NA3Y-Tg/2y-x5QZUy_A.jpg"
                              class="img-fluid" alt="">
                         <div class="bg_overlay"></div>
                         <div class="play_button">
-                            <a href="https://www.youtube.com/watch?v=__x3g0W4r2A" class="play_btn"><i
+                            <a href="https://youtu.be/b60c7u5LEOI" class="play_btn"><i
                                         class="fas fa-play"></i></a>
                         </div>
                     </div>
