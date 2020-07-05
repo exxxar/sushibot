@@ -550,6 +550,8 @@ $botman->fallback(function ($bot){
             $users =
                 User::where("is_admin","true")
                     ->orderBy("id", "DESC")
+                    ->take(8)
+                    ->skip(0)
                     ->get();
 
             foreach ($users as $user) {
