@@ -533,7 +533,7 @@ $botman->receivesImages(function ($bot, $images) {
 
 
 $botman->fallback(function ($bot){
-    $this->bot->loadDriver(TelegramInlineQueryDriver::DRIVER_NAME);
+    $bot->loadDriver(TelegramInlineQueryDriver::DRIVER_NAME);
 
     $queryObject = json_decode($bot->getDriver()->getEvent());
 
@@ -620,10 +620,10 @@ $botman->fallback(function ($bot){
 
             array_push($button_list, $tmp_button);
         }
-        return $this->bot->sendRequest("answerInlineQuery",
+        return $bot->sendRequest("answerInlineQuery",
             [
                 'cache_time' => 0,
-                "inline_query_id" => json_decode($this->bot->getEvent())->id,
+                "inline_query_id" => json_decode($bot->getEvent())->id,
                 "results" => json_encode($button_list)
             ]);
     }
