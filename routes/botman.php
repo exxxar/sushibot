@@ -588,6 +588,7 @@ $botman->receivesImages(function ($bot, $images) {
 $botman->fallback(function ($bot) {
     $bot->loadDriver(TelegramInlineQueryDriver::DRIVER_NAME);
 
+
     $queryObject = json_decode($bot->getDriver()->getEvent());
 
     if ($queryObject) {
@@ -613,7 +614,11 @@ $botman->fallback(function ($bot) {
                 while (strlen($tmp_user_id) < 10)
                     $tmp_user_id = "0" . $tmp_user_id;
 
-                $code = base64_encode("005" . $tmp_user_id);
+                $tmp_buyer_id = (string)$id;
+                while (strlen($tmp_buyer_id) < 10)
+                    $tmp_buyer_id = "0" . $tmp_buyer_id;
+
+                $code = base64_encode("005" . $tmp_user_id.$tmp_buyer_id);
                 $url_link = "https://t.me/" . env("APP_BOT_NAME") . "?start=$code";
 
                 $tmp_button = [
@@ -626,7 +631,7 @@ $botman->fallback(function ($bot) {
                     'reply_markup' => [
                         'inline_keyboard' => [
                             [
-                                ['text' => "\xF0\x9F\x91\x89Запроcить", "url" => "$url_link"],
+                                ['text' => "\xF0\x9F\x91\x89Запросить CashBack у администратора", "url" => "$url_link"],
                             ],
 
                         ]

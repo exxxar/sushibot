@@ -77,7 +77,11 @@ class StartDataConversation extends Conversation
         else
             array_push($keyboard, ["\xE2\x9A\xA1Special CashBack system"]);
 
+        /*    array_push($keyboard,["\xF0\x9F\x8E\xB0Розыгрыш"]);*/
         array_push($keyboard, ["\xF0\x9F\x92\xADО Нас"]);
+
+        if ($user->is_admin)
+            array_push($keyboard, ["\xE2\x9A\xA0Админ. статистика"]);
 
         $this->bot->sendRequest("sendMessage",
             [
@@ -122,17 +126,22 @@ class StartDataConversation extends Conversation
     public function startWithData()
     {
         $pattern = "/([0-9]{3})([0-9]{10})/";
+        $pattern_2 = "/([0-9]{3})([0-9]{10})/";
+
         $string = base64_decode($this->data);
 
         $is_valid = preg_match_all($pattern, $string, $matches);
+        $is_valid_2 = preg_match_all($pattern_2, $string, $matches);
 
-        if (!$is_valid) {
+        if (!$is_valid&&$is_valid_2) {
             $this->mainMenu("Главное меню");
             return;
         }
 
         $this->code = $matches[1][0];
         $this->request_user_id = $matches[2][0];
+        if ($is_valid_2)
+            $this->request_buyer_id = $matches[3][0];
 
         $telegramUser = $this->bot->getUser();
         $id = $telegramUser->getId();
@@ -140,6 +149,16 @@ class StartDataConversation extends Conversation
         $this->user = User::where("telegram_chat_id", $id)->first();
 
         if (!is_null($this->user))
+            if ($this->code=="005") {
+                Telegram::sendMessage([
+                    'chat_id' => $this->request_user_id,
+                    'parse_mode' => 'Markdown',
+                    'text' => "Пользователь хочет воспользоваться услугой CashBack",
+                ]);
+                $this->mainMenu("Главное меню");
+                return;
+            }
+
             if (!$this->user->is_admin)
             {
                 $this->mainMenu("Главное меню");
@@ -199,8 +218,6 @@ class StartDataConversation extends Conversation
                 Button::create("Списать CashBack")->value('askforpay'),
                 Button::create("Начислить CashBack")->value('addcashback'),
                 Button::create("Завершить работу")->value('stopcashback'),
-
-
             ]);
 
         $this->ask($question, function (Answer $answer) {
