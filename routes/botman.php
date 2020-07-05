@@ -255,6 +255,7 @@ $botman->hears('.*Special CashBack system', function ($bot) {
     $keyboard = [
         [
             ['text' => "Мой бюджет", 'callback_data' => "/my_money"],
+            ['text' => "Запрос CashBack (списание\начисление)", 'switch_inline_query_current_chat' => ""],
         ],
     ];
 
@@ -532,7 +533,7 @@ $botman->receivesImages(function ($bot, $images) {
 });
 
 
-$botman->fallback(function ($bot){
+$botman->fallback(function ($bot) {
     $bot->loadDriver(TelegramInlineQueryDriver::DRIVER_NAME);
 
     $queryObject = json_decode($bot->getDriver()->getEvent());
@@ -543,85 +544,52 @@ $botman->fallback(function ($bot){
 
         $query = $queryObject->query;
 
-
         $button_list = [];
 
-        if (strlen(trim($query)) > 0) {
-            $users =
-                User::where("is_admin","true")
-                    ->orderBy("id", "DESC")
-                    ->take(8)
-                    ->skip(0)
-                    ->get();
+        $users =
+            User::where("is_admin", "true")
+                ->where("is_working", "true")
+                ->orderBy("id", "DESC")
+                ->take(8)
+                ->skip(0)
+                ->get();
 
+        if (!empty($users))
             foreach ($users as $user) {
 
-                    $tmp_user_id = (string)$user->id;
-                    while (strlen($tmp_user_id) < 10)
-                        $tmp_user_id = "0" . $tmp_user_id;
+                $tmp_user_id = (string)$user->id;
+                while (strlen($tmp_user_id) < 10)
+                    $tmp_user_id = "0" . $tmp_user_id;
 
-                    $code = base64_encode("005" . $tmp_user_id);
-                    $url_link = "https://t.me/" . env("APP_BOT_NAME") . "?start=$code";
+                $code = base64_encode("005" . $tmp_user_id);
+                $url_link = "https://t.me/" . env("APP_BOT_NAME") . "?start=$code";
 
-                    $tmp_button = [
-                        'type' => 'article',
-                        'id' => uniqid(),
-                        'title' => "Запрос на CashBack",
-                        'input_message_content' => [
-                            'message_text' => sprintf("Администратор #%s %s (%s)",$user->id,($user->fio_from_telegram??$user->name),($user->phone??'Без телефона')),
-                        ],
-                        'reply_markup' => [
-                            'inline_keyboard' => [
-                                [
-                                    ['text' => "\xF0\x9F\x91\x89Запролить", "url" => "$url_link"],
-                                ],
+                $tmp_button = [
+                    'type' => 'article',
+                    'id' => uniqid(),
+                    'title' => "Запрос на CashBack",
+                    'input_message_content' => [
+                        'message_text' => sprintf("Администратор #%s %s (%s)", $user->id, ($user->fio_from_telegram ?? $user->name), ($user->phone ?? 'Без телефона')),
+                    ],
+                    'reply_markup' => [
+                        'inline_keyboard' => [
+                            [
+                                ['text' => "\xF0\x9F\x91\x89Запроcить", "url" => "$url_link"],
+                            ],
 
-                            ]
-                        ],
-                        'thumb_url' => "https://sun2.48276.userapi.com/c855720/v855720573/191059/_kdC1Xs6xCA.jpg?ava=1",
-                        'url' => env("APP_URL"),
-                        'description' => "Запрос на операции с CashBack",
-                        'hide_url' => true
-                    ];
+                        ]
+                    ],
+                    'thumb_url' => "https://sun2.48276.userapi.com/c855720/v855720573/191059/_kdC1Xs6xCA.jpg?ava=1",
+                    'url' => env("APP_URL"),
+                    'description' => sprintf("Администратор #%s %s (%s)", $user->id, ($user->fio_from_telegram ?? $user->name), ($user->phone ?? 'Без телефона')),
+                    'hide_url' => true
+                ];
 
-                    array_push($button_list, $tmp_button);
+                array_push($button_list, $tmp_button);
 
 
-                }
+            }
 
-        } else {
-
-            $tmp_id = (string)$id;
-            while (strlen($tmp_id) < 10)
-                $tmp_id = "0" . $tmp_id;
-
-            $code = base64_encode("001" . $tmp_id . "0000000000");
-            $url_link = "https://t.me/" . env("APP_BOT_NAME") . "?start=$code";
-
-            //todo что-то сделать с этим текстом... некрасиво
-            $tmp_button = [
-                'type' => 'article',
-                'id' => uniqid(),
-                'title' => "ТВОЯ РЕФЕРАЛЬНАЯ ССЫЛКА",
-                'input_message_content' => [
-                    'message_text' => "Делись ссылкой с друзьями",
-                ],
-                'reply_markup' => [
-                    'inline_keyboard' => [
-                        [
-                            ['text' => "Воспользоваться системой CashBack", "url" => "$url_link"],
-                        ],
-
-                    ]
-                ],
-                'thumb_url' => "https://sun2.48276.userapi.com/c855720/v855720573/191058/KgIf0rr-yas.jpg?ava=1",
-                'url' => env("APP_URL"),
-                'description' => "Твоя реферальная ссылка",
-                'hide_url' => true
-            ];
-
-            array_push($button_list, $tmp_button);
-        }
         return $bot->sendRequest("answerInlineQuery",
             [
                 'cache_time' => 0,

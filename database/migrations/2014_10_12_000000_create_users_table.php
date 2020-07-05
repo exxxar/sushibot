@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('birthday')->nullable();
 
             $table->boolean('is_admin')->default(false);
+            $table->boolean('is_working')->default(false);
             $table->boolean('is_vip')->default(false);
             $table->double('cashback_money')->default(0.0);
 
