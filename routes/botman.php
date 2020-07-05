@@ -176,7 +176,7 @@ $botman->hears('.*Админ. статистика', function ($bot) {
 
     $keybord = [
         [
-            ['text' => $is_working?"Я работаю!":"Я не работаю!", 'callback_data' => "/working ".($is_working?"on":"off")]
+            ['text' => !$is_working?"Я работаю!":"Я не работаю!", 'callback_data' => "/working ".($is_working?"on":"off")]
         ],
 
     ];
