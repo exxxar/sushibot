@@ -29,6 +29,7 @@ class StartDataConversation extends Conversation
     protected $user;
     protected $check_info;
     protected $money_in_check;
+    protected $request_buyer_id;
 
     public function createUser()
     {
@@ -106,6 +107,7 @@ class StartDataConversation extends Conversation
         $this->user = null;
         $this->check_info = '';
         $this->money_in_check = 0;
+        $this->request_buyer_id = null;
     }
 
     /**
