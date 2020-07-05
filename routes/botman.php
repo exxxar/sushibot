@@ -230,7 +230,7 @@ $botman->hears('/working (on|off)', function ($bot,$working) {
     if (!$user->is_admin)
         return;
 
-    $user->is_working = $working=="on":false:true;
+    $user->is_working = $working=="on"?false:true;
     $user->save();
 
     $bot->reply($user->is_working?"Теперь вас МОГУТ выбирать для работы с CashBack":"Теперь вас НЕ могут выбирать для работы с CashBack");
