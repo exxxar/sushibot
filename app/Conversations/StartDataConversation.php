@@ -135,7 +135,7 @@ class StartDataConversation extends Conversation
         $is_valid = preg_match_all($pattern, $string, $matches);
         $is_valid_2 = preg_match_all($pattern_2, $string, $matches);
 
-        if (!$is_valid&&!$is_valid_2) {
+        if (!$is_valid) {
             $this->mainMenu("Главное меню");
             return;
         }
