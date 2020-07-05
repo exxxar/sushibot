@@ -614,11 +614,7 @@ $botman->fallback(function ($bot) {
                 while (strlen($tmp_user_id) < 10)
                     $tmp_user_id = "0" . $tmp_user_id;
 
-                $tmp_buyer_id = (string)$id;
-                while (strlen($tmp_buyer_id) < 10)
-                    $tmp_buyer_id = "0" . $tmp_buyer_id;
-
-                $code = base64_encode("005" . $tmp_user_id.$tmp_buyer_id);
+                $code = base64_encode("005" . $tmp_user_id);
                 $url_link = "https://t.me/" . env("APP_BOT_NAME") . "?start=$code";
 
                 $tmp_button = [

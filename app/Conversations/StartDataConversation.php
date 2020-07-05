@@ -133,7 +133,7 @@ class StartDataConversation extends Conversation
         $string = base64_decode($this->data);
 
         $is_valid = preg_match_all($pattern, $string, $matches);
-        $is_valid_2 = preg_match_all($pattern_2, $string, $matches);
+
 
         if (!$is_valid) {
             $this->mainMenu("Главное меню");
@@ -142,8 +142,6 @@ class StartDataConversation extends Conversation
 
         $this->code = $matches[1][0];
         $this->request_user_id = $matches[2][0];
-        if ($is_valid_2)
-            $this->request_buyer_id = $matches[3][0];
 
         $telegramUser = $this->bot->getUser();
         $id = $telegramUser->getId();
