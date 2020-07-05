@@ -128,7 +128,6 @@ class StartDataConversation extends Conversation
     public function startWithData()
     {
         $pattern = "/([0-9]{3})([0-9]{10})/";
-        $pattern_2 = "/([0-9]{3})([0-9]{10})([0-9]{10})/";
 
         $string = base64_decode($this->data);
 
@@ -153,7 +152,7 @@ class StartDataConversation extends Conversation
                 Telegram::sendMessage([
                     'chat_id' => $this->request_user_id,
                     'parse_mode' => 'Markdown',
-                    'text' => "Пользователь хочет воспользоваться услугой CashBack",
+                    'text' => "Пользователь $id хочет воспользоваться услугой CashBack",
                 ]);
                 $this->mainMenu("Главное меню");
                 return;
