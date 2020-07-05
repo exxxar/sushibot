@@ -547,8 +547,8 @@ $botman->fallback(function ($bot) {
         $button_list = [];
 
         $users =
-            User::where("is_admin", "true")
-                ->where("is_working", "true")
+            User::where("is_admin", true)
+                ->where("is_working", true)
                 ->orderBy("id", "DESC")
                 ->take(8)
                 ->skip(0)
