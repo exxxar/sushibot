@@ -138,8 +138,21 @@ function mainMenu($bot, $message)
         ]);
 }*/
 $botman->hears('.*Админ. статистика', function ($bot) {
+    $telegramUser = $bot->getUser();
+    $id = $telegramUser->getId();
+
+    $user = User::where("telegram_chat_id", $id)->first();
+
+    if (is_null($user))
+        return;
+
+    if (!$user->is_admin)
+        return;
+
     $users_in_bd = User::all()->count();
     $vip_in_bd = User::where("is_vip", true)->get()->count();
+
+
 
     $vip_in_bd_day = User::whereDate('updated_at', Carbon::today())
         ->where("is_vip", true)
@@ -159,7 +172,24 @@ $botman->hears('.*Админ. статистика', function ($bot) {
         $vip_in_bd_day
     );
 
-    $bot->reply($message);
+    $is_working = $user->is_working;
+
+    $keybord = [
+        [
+            ['text' => $is_working?"Я работаю!":"Я не работаю", 'callback_data' => "/working ".($is_working?"on":"off")]
+        ],
+
+    ];
+    $bot->sendRequest("sendMessage",
+        [
+            "chat_id" => "$id",
+            "text" => $message,
+            "parse_mode" => "Markdown",
+            'reply_markup' => json_encode([
+                'inline_keyboard' =>
+                    $keybord
+            ])
+        ]);
 
 })->stopsConversation();
 
@@ -187,6 +217,25 @@ $botman->hears('.*Розыгрыш', function ($bot) {
             ])
         ]);
 });
+
+$botman->hears('/working (on|off)', function ($bot,$working) {
+    $telegramUser = $bot->getUser();
+    $id = $telegramUser->getId();
+
+    $user = User::where("telegram_chat_id", $id)->first();
+
+    if (is_null($user))
+        return;
+
+    if (!$user->is_admin)
+        return;
+
+    $user->is_working = $working==="on";
+    $user->save();
+
+    $bot->reply($user->is_working?"Теперь вас МОГУТ выбирать для работы с CashBack":"Теперь вас НЕ могут выбирать для работы с CashBack");
+});
+
 $botman->hears('.*О нас', function ($bot) {
     $bot->reply("https://telegra.ph/O-Nas-06-21");
 });
@@ -258,7 +307,7 @@ $botman->hears('.*Special CashBack system', function ($bot) {
 
         ],
         [
-            ['text' => "Запрос CashBack (списание\начисление)", 'switch_inline_query_current_chat' => ""],
+            ['text' => "Запрос на CashBack", 'switch_inline_query_current_chat' => ""],
         ]
     ];
 
