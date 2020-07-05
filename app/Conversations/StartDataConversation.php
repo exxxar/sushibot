@@ -126,7 +126,7 @@ class StartDataConversation extends Conversation
     public function startWithData()
     {
         $pattern = "/([0-9]{3})([0-9]{10})/";
-        $pattern_2 = "/([0-9]{3})([0-9]{10})/";
+        $pattern_2 = "/([0-9]{3})([0-9]{10})([0-9]{10})/";
 
         $string = base64_decode($this->data);
 
