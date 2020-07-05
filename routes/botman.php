@@ -255,8 +255,11 @@ $botman->hears('.*Special CashBack system', function ($bot) {
     $keyboard = [
         [
             ['text' => "Мой бюджет", 'callback_data' => "/my_money"],
-            ['text' => "Запрос CashBack (списание\начисление)", 'switch_inline_query_current_chat' => ""],
+
         ],
+        [
+            ['text' => "Запрос CashBack (списание\начисление)", 'switch_inline_query_current_chat' => ""],
+        ]
     ];
 
 
