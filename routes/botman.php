@@ -176,7 +176,7 @@ $botman->hears('.*Админ. статистика', function ($bot) {
 
     $keybord = [
         [
-            ['text' => $is_working?"Я работаю!":"Я не работаю", 'callback_data' => "/working ".($is_working?"on":"off")]
+            ['text' => $is_working?"Я работаю!":"Я не работаю!", 'callback_data' => "/working ".($is_working?"on":"off")]
         ],
 
     ];
@@ -230,7 +230,7 @@ $botman->hears('/working (on|off)', function ($bot,$working) {
     if (!$user->is_admin)
         return;
 
-    $user->is_working = $working==="on";
+    $user->is_working = $working=="on":false:true;
     $user->save();
 
     $bot->reply($user->is_working?"Теперь вас МОГУТ выбирать для работы с CashBack":"Теперь вас НЕ могут выбирать для работы с CashBack");
