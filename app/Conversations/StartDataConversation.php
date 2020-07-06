@@ -53,7 +53,7 @@ class StartDataConversation extends Conversation
                 'is_vip' => false,
                 'cashback_money' => false,
                 'phone' => '',
-                'parent_id' =>$parent->id??null,
+                'parent_id' => $parent->id ?? null,
                 'birthday' => '',
             ]);
         return $user;
@@ -150,8 +150,7 @@ class StartDataConversation extends Conversation
         if (!is_null($this->user))
 
 
-            if (!$this->user->is_admin)
-            {
+            if (!$this->user->is_admin) {
                 $this->mainMenu("Главное меню");
                 return;
             }
@@ -162,7 +161,7 @@ class StartDataConversation extends Conversation
             Telegram::sendMessage([
                 'chat_id' => $this->request_user_id,
                 'parse_mode' => 'Markdown',
-                'text' => "По вашей реферальной ссылке перешел пользователь ".(
+                'text' => "По вашей реферальной ссылке перешел пользователь " . (
                         $this->user->fio_from_telegram ??
                         $this->user->phone ??
                         $this->user->name ??
@@ -175,11 +174,31 @@ class StartDataConversation extends Conversation
 
         }
 
-        if ($this->code=="005") {
+        if ($this->code == "005") {
+            $tmp_user_id = (string)$this->user->telegram_chat_id;
+            while (strlen($tmp_user_id) < 10)
+                $tmp_user_id = "0" . $tmp_user_id;
+
+            $code = base64_encode("001" . $tmp_user_id);
+            $url_link = "https://t.me/" . env("APP_BOT_NAME") . "?start=$code";
+
+            $keyboard = [
+                [
+                    ['text' => "Запустить систему CashBack", 'url' => "$url_link"],
+
+                ]
+            ];
+
             Telegram::sendMessage([
                 'chat_id' => $this->request_user_id,
                 'parse_mode' => 'Markdown',
-                'text' => "Пользователь $id хочет воспользоваться услугой CashBack",
+                'text' => sprintf("Пользователь %s (%s) хочет воспользоваться услугой CashBack",
+                    ($this->user->name ?? $this->user->fio_from_telegram ?? $this->user->telegram_chat_id),
+                    ($this->user->phone ?? "У пользователя нет телефонного номера")),
+                'reply_markup' => json_encode([
+                    'inline_keyboard' =>
+                        $keyboard
+                ])
             ]);
             $this->mainMenu("Главное меню");
             return;
@@ -191,7 +210,7 @@ class StartDataConversation extends Conversation
             return;
         }
 
-        switch ($this->code ) {
+        switch ($this->code) {
             case "001":
                 $this->askForAction();
                 break;
@@ -240,14 +259,15 @@ class StartDataConversation extends Conversation
         });
     }
 
-    public function acceptImage(){
+    public function acceptImage()
+    {
         $recipient_user = User::where("telegram_chat_id", intval($this->request_user_id))->first();
         if (!$recipient_user) {
             $this->mainMenu("Пользователь не найден!");
             return;
         }
 
-        $this->bot->reply(sprintf("Скриншот пользователя %s успешно подтвержден!",($recipient_user->fio_from_telegram ?? $recipient_user->name)));
+        $this->bot->reply(sprintf("Скриншот пользователя %s успешно подтвержден!", ($recipient_user->fio_from_telegram ?? $recipient_user->name)));
 
         Telegram::sendMessage([
             'chat_id' => $recipient_user->telegram_chat_id,
@@ -256,14 +276,15 @@ class StartDataConversation extends Conversation
         ]);
     }
 
-    public function declineImage(){
+    public function declineImage()
+    {
         $recipient_user = User::where("telegram_chat_id", intval($this->request_user_id))->first();
         if (!$recipient_user) {
             $this->mainMenu("Пользователь не найден!");
             return;
         }
 
-        $this->bot->reply(sprintf("Скриншот пользователя %s отклонен!",($recipient_user->fio_from_telegram ?? $recipient_user->name)));
+        $this->bot->reply(sprintf("Скриншот пользователя %s отклонен!", ($recipient_user->fio_from_telegram ?? $recipient_user->name)));
 
         Telegram::sendMessage([
             'chat_id' => $recipient_user->telegram_chat_id,
@@ -375,13 +396,13 @@ class StartDataConversation extends Conversation
             return;
         }
 
-        $cashback = ((intval( $this->money_in_check)??0)*env("CAHSBAK_PROCENT")/100);
-        $parent_cashback = ((intval( $this->money_in_check)??0)*env("NETWORK_CAHSBAK_PROCENT")/100);
+        $cashback = ((intval($this->money_in_check) ?? 0) * env("CAHSBAK_PROCENT") / 100);
+        $parent_cashback = ((intval($this->money_in_check) ?? 0) * env("NETWORK_CAHSBAK_PROCENT") / 100);
 
         $recipient_user->cashback_money += $cashback;
         $recipient_user->save();
 
-        if (!is_null($recipient_user->parent_id)){
+        if (!is_null($recipient_user->parent_id)) {
 
             $parent = $recipient_user->parent;
             $parent->cashback_money += $parent_cashback;
@@ -391,7 +412,7 @@ class StartDataConversation extends Conversation
             CashBackHistory::create([
                 'amount' => $parent_cashback,
                 'bill_number' => "CashBack от друга",
-                'money_in_bill' => $parent_cashback ,
+                'money_in_bill' => $parent_cashback,
                 'employee_id' => $this->user->id,
                 'user_id' => $parent->id,
                 'type' => 0,
@@ -401,14 +422,13 @@ class StartDataConversation extends Conversation
             Telegram::sendMessage([
                 'chat_id' => $parent->telegram_chat_id,
                 'parse_mode' => 'Markdown',
-                'text' => "Ваш друг ".(
+                'text' => "Ваш друг " . (
                         $recipient_user->fio_from_telegram ??
                         $recipient_user->phone ??
                         $recipient_user->name ??
                         $recipient_user->email
-                    )." принес Вам $parent_cashback руб. CashBack-а",
+                    ) . " принес Вам $parent_cashback руб. CashBack-а",
             ]);
-
 
 
         }
@@ -417,7 +437,7 @@ class StartDataConversation extends Conversation
         CashBackHistory::create([
             'amount' => $cashback,
             'bill_number' => $this->check_info,
-            'money_in_bill' =>  $this->money_in_check,
+            'money_in_bill' => $this->money_in_check,
             'employee_id' => $this->user->id,
             'user_id' => $recipient_user->id,
             'type' => 0,
