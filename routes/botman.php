@@ -620,7 +620,7 @@ $botman->fallback(function ($bot) {
         if (!empty($users))
             foreach ($users as $user) {
 
-                $tmp_user_id = (string)$user->id;
+                $tmp_user_id = (string)$user->telegram_chat_id;
                 while (strlen($tmp_user_id) < 10)
                     $tmp_user_id = "0" . $tmp_user_id;
 
