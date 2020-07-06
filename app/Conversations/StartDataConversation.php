@@ -148,15 +148,7 @@ class StartDataConversation extends Conversation
         $this->user = User::where("telegram_chat_id", $id)->first();
 
         if (!is_null($this->user))
-            if ($this->code=="005") {
-                Telegram::sendMessage([
-                    'chat_id' => $this->request_user_id,
-                    'parse_mode' => 'Markdown',
-                    'text' => "Пользователь $id хочет воспользоваться услугой CashBack",
-                ]);
-                $this->mainMenu("Главное меню");
-                return;
-            }
+
 
             if (!$this->user->is_admin)
             {
@@ -183,6 +175,15 @@ class StartDataConversation extends Conversation
 
         }
 
+        if ($this->code=="005") {
+            Telegram::sendMessage([
+                'chat_id' => $this->request_user_id,
+                'parse_mode' => 'Markdown',
+                'text' => "Пользователь $id хочет воспользоваться услугой CashBack",
+            ]);
+            $this->mainMenu("Главное меню");
+            return;
+        }
 
 
         if (!$this->user->is_admin) {
