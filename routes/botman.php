@@ -306,10 +306,20 @@ $botman->hears('.*Special CashBack system', function ($bot) {
             ['text' => "Мой бюджет", 'callback_data' => "/my_money"],
 
         ],
-        [
-            ['text' => "Запрос на CashBack", 'switch_inline_query_current_chat' => ""],
-        ]
+
     ];
+
+    $work_admin_count = User::where("is_admin",true)
+        ->where("is_working",true)
+        ->get()
+        ->count()??0;
+
+    if ($work_admin_count>0)
+    {
+        array_push($keyboard, [
+            ['text' => "Запрос на CashBack", 'switch_inline_query_current_chat' => ""],
+        ]);
+    }
 
 
     $tmp_id = (string)$id;

@@ -174,6 +174,7 @@ class StartDataConversation extends Conversation
             return;
 
         }
+        $this->bot->reply("Code ".$this->code);
 
         if ($this->code=="005") {
             Telegram::sendMessage([
