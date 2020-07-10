@@ -236,6 +236,8 @@ class StartDataConversation extends Conversation
             ->addButtons([
                 Button::create("Списать CashBack")->value('askforpay'),
                 Button::create("Начислить CashBack")->value('addcashback'),
+                Button::create("Добавить администратора")->value('addadmin'),
+                Button::create("Убрать администратора")->value('removeadmin'),
                 Button::create("Завершить работу")->value('stopcashback'),
             ]);
 
@@ -251,12 +253,42 @@ class StartDataConversation extends Conversation
                     $this->askForCashback();
                 }
 
+                if ($selectedValue == "addadmin") {
+                    $this->askForAddAdmin(true);
+                }
+
+                if ($selectedValue == "removeadmin") {
+                    $this->askForAddAdmin(false);
+                }
+
 
                 if ($selectedValue == "stopcashback")
                     return;
 
             }
         });
+    }
+
+
+    public function askForAddAdmin($flag = true)
+    {
+        $recipient_user = User::where("telegram_chat_id", intval($this->request_user_id))->first();
+        if (!$recipient_user) {
+            $this->mainMenu("Пользователь не найден!");
+            return;
+        }
+
+        $recipient_user->is_admin = $flag;
+        $recipient_user->save();
+
+
+        $this->bot->reply(sprintf(($flag?"Пользователь %s успшено назанчен администратором!":"Пользователь %s снят с должности администратора!"), ($recipient_user->phone ?? $recipient_user->fio_from_telegram ?? $recipient_user->name)));
+
+        Telegram::sendMessage([
+            'chat_id' => $recipient_user->telegram_chat_id,
+            'parse_mode' => 'Markdown',
+            'text' => ($flag?"Вы назначены администратором!":"Вас сняли с должности администратора!"),
+        ]);
     }
 
     public function acceptImage()
