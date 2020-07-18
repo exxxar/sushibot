@@ -15,7 +15,7 @@
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div class="info_text">
-                                    <p>Набережная 153а, Донецк</p>
+                                    <p>Гурова, 16, Донецк</p>
                                 </div>
                             </div>
                             <div class="info_list">
@@ -58,9 +58,7 @@
                 </div>
                 <div class="col-lg-9 col-md-6 col-sm-12">
                     <div class="contact_box wow slideInUp">
-                        <iframe src="https://yandex.ru/map-widget/v1/-/CKU170YW" frameborder="0"
-                                allowfullscreen="allowfullscreen"
-                                style="width: 100%; height: 400px; padding: 10px; box-sizing: border-box;"></iframe>
+                        <iframe src="https://yandex.ua/map-widget/v1/?um=constructor%3A5f3b877a57ee092a2720bb878ebb1b15da7fa4ed9c7c8b7887b2cf115bf86d6b&amp;source=constructor"  height="400" frameborder="0" style="width: 100%"></iframe>
                     </div>
                 </div>
 

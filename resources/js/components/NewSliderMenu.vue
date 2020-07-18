@@ -3,13 +3,11 @@
         <slick
             ref="slick"
             :options="slickOptions">
-            <a target="_blank" href="https://sun1.48276.userapi.com/ejOv5PwArpLYtqFmeo7f4IsYVUH7DBTkR7JqMw/VSWRuqQey1E.jpg"><img src="https://sun1.48276.userapi.com/ejOv5PwArpLYtqFmeo7f4IsYVUH7DBTkR7JqMw/VSWRuqQey1E.jpg" alt=""></a>
-            <a target="_blank" href="https://sun1.48276.userapi.com/ejOv5PwArpLYtqFmeo7f4IsYVUH7DBTkR7JqMw/VSWRuqQey1E.jpg"><img src="https://sun1.48276.userapi.com/ejOv5PwArpLYtqFmeo7f4IsYVUH7DBTkR7JqMw/VSWRuqQey1E.jpg" alt=""></a>
-            <a target="_blank" href="https://sun1.48276.userapi.com/ejOv5PwArpLYtqFmeo7f4IsYVUH7DBTkR7JqMw/VSWRuqQey1E.jpg"><img src="https://sun1.48276.userapi.com/ejOv5PwArpLYtqFmeo7f4IsYVUH7DBTkR7JqMw/VSWRuqQey1E.jpg" alt=""></a>
-            <a target="_blank" href="https://sun1.48276.userapi.com/ejOv5PwArpLYtqFmeo7f4IsYVUH7DBTkR7JqMw/VSWRuqQey1E.jpg"><img src="https://sun1.48276.userapi.com/ejOv5PwArpLYtqFmeo7f4IsYVUH7DBTkR7JqMw/VSWRuqQey1E.jpg" alt=""></a>
-            <a target="_blank" href="https://sun1.48276.userapi.com/ejOv5PwArpLYtqFmeo7f4IsYVUH7DBTkR7JqMw/VSWRuqQey1E.jpg"><img src="https://sun1.48276.userapi.com/ejOv5PwArpLYtqFmeo7f4IsYVUH7DBTkR7JqMw/VSWRuqQey1E.jpg" alt=""></a>
+            <a target="_blank" href="/menu_1.jpg"><img src="/menu_1.jpg" alt=""></a>
+            <a target="_blank" href="/menu_2.jpg"><img src="/menu_2.jpg" alt=""></a>
+
         </slick>
-        <hr>
+       <!-- <hr>
         <h4 class="text-center">Так-с, что мы добавим в корзину?</h4>
         <div class="row d-flex justify-content-center">
             <div class="col-4 controlls">
@@ -31,7 +29,7 @@
 
             </div>
         </div>
-
+-->
     </div>
 </template>
 <script>
@@ -46,7 +44,10 @@
                 product_id:null,
                 count:0,
                 slickOptions: {
-                    slidesToShow: 2,
+                    slidesToShow: 1,
+                    infinite: true,
+                    dots: true,
+                    arrows: true,
                 },
             };
         },
@@ -75,4 +76,26 @@
     .chopcafe_btn {
         cursor: pointer;
     }
+
+    .slick-prev {
+        background: red;
+        width: 20px;
+        height: 20px;
+        color: black;
+        position: absolute;
+        left: 0;
+        border-radius: 5px 0px 0px 5px;
+    }
+
+    .slick-next {
+        background: red;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        color: black;
+        right: 0;
+        border-radius: 0px 5px 5px 0px;
+    }
+
+
 </style>

@@ -27,20 +27,21 @@
 
                         </p>
 
-                        <a href="#menu_grid" class="chopcafe_btn about_btn">Наше меню</a>
+                        <a href="#menu_grid" class="chopcafe_btn about_btn">Наше меню <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="chofcafe_img_box">
                     <div class="about_video_box chopcafe_img">
-                        <img src="https://sun1.48276.userapi.com/nAXnIGLSIPlgWw9ffItG7Aoz-RhUqs6NA3Y-Tg/2y-x5QZUy_A.jpg"
+                        <new-slider-menu></new-slider-menu>
+                       {{-- <img src="https://sun1.48276.userapi.com/nAXnIGLSIPlgWw9ffItG7Aoz-RhUqs6NA3Y-Tg/2y-x5QZUy_A.jpg"
                              class="img-fluid" alt="">
                         <div class="bg_overlay"></div>
                         <div class="play_button">
                             <a href="https://www.youtube.com/watch?v=b60c7u5LEOI" class="play_btn"><i
                                         class="fas fa-play"></i></a>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
             </div>
