@@ -66,6 +66,9 @@ class HomeController extends Controller
                     //echo $item2["description"]." ".$item2["price"]["text"]." ".$item2["thumb_photo"]." ".$item2["title"]."<br>";
 
 
+                    if (mb_strlen(trim($item["title"]))==0)
+                        continue;
+
                     preg_match_all('|\d+|', $item2["description"], $matches);
 
                     $count = $matches[0][0] ?? 0;
