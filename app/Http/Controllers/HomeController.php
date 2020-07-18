@@ -53,6 +53,9 @@ class HomeController extends Controller
             foreach ($response["response"]["items"] as $item) {
                 //echo $item["id"].$item["title"]." ".$item["photo"]["photo_807"]."<br>";
 
+                if (intval($item["id"])<0)
+                    continue;
+
                 $response2 = $api->request('market.get', [
                     'owner_id' => -142695628,
                     'album_id' => abs($item["id"]),
