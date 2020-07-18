@@ -55,7 +55,7 @@ class HomeController extends Controller
 
                 $response2 = $api->request('market.get', [
                     'owner_id' => -142695628,
-                    'album_id' => $item["id"],
+                    'album_id' => abs($item["id"]),
                     'count' => 200
                 ]);
 
