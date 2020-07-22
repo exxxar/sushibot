@@ -1,4 +1,4 @@
-<section class="header_bg header_bg_1 bg_image" style="background-image: url(assets/images/bg.jpg);">
+<section class="header_bg header_bg_1 bg_image" style="background-image: url('top_bg.jpg');">
     <div class="bg_overlay"></div>
 
 {{--    <video autoplay muted loop id="myVideo">
