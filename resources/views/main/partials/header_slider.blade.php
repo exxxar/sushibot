@@ -42,9 +42,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="chopcafe_img welcome_img">
-                            <img
-                                src="https://sun9-66.userapi.com/impf/c855016/v855016753/18b4c1/aQh_j9HI8DA.jpg?size=0x520&quality=98&crop=&sign=1ccd5273584f06cf4cf774220c5e084e"
-                                class="img-fluid" alt="">
+                            <iframe height="500" style="width:100%" src="https://www.youtube.com/embed/b60c7u5LEOI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
