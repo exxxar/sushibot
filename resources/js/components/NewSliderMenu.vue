@@ -3,8 +3,8 @@
         <slick
             ref="slick"
             :options="slickOptions">
-            <a target="_blank" href="/menu_1.jpg"><img src="/menu_1.jpg" alt=""></a>
-            <a target="_blank" href="/menu_2.jpg"><img src="/menu_2.jpg" alt=""></a>
+            <iframe height="500" style="width:100%" src="https://www.youtube.com/embed/b60c7u5LEOI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
         </slick>
        <!-- <hr>

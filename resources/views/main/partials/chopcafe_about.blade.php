@@ -27,7 +27,7 @@
 
                         </p>
 
-                        <a href="#menu_grid" class="chopcafe_btn about_btn">Наше меню <i class="fas fa-arrow-right"></i></a>
+                        <a href="#menu_grid" class="chopcafe_btn about_btn">Уникальное предложение <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
