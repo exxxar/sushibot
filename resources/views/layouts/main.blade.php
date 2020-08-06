@@ -39,10 +39,24 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}?ver={{config("app.version")}}">
     <!-- Responsive css -->
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}?ver={{config("app.version")}}">
+
+    <!— Google Tag Manager —>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.paren..;
+        })(window,document,'script','dataLayer','GTM-NPLGVC6');</script>
+    <!— End Google Tag Manager —>
+
+
+
 </head>
 
 <body>
-
+<!— Google Tag Manager (noscript) —>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NPLGVC6"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!— End Google Tag Manager (noscript) —>
 <div id="app">
     <!-- Start preloader area -->
     <div class="preloader_area">
