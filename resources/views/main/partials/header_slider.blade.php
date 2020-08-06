@@ -1,5 +1,5 @@
 <!-- Start header_slider section -->
-<section class="header_slider header_slider_1" style="padding: 10px 10px 50px 10px; box-sizing: border-box">
+<section class="header_slider header_slider_1" >
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6">
