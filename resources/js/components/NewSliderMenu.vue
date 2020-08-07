@@ -3,8 +3,9 @@
         <slick
             ref="slick"
             :options="slickOptions">
-            <iframe height="500" style="width:100%" src="https://www.youtube.com/embed/b60c7u5LEOI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+            <a target="_blank" href="https://psv4.userapi.com/c856432/u62408223/docs/d16/ad03d46aa9f6/1.jpg"><img src="https://psv4.userapi.com/c856432/u62408223/docs/d16/ad03d46aa9f6/1.jpg" alt=""></a>
+            <a target="_blank" href="https://psv4.userapi.com/c856432/u62408223/docs/d12/bdd6d28de21f/2.jpg"><img src="https://psv4.userapi.com/c856432/u62408223/docs/d12/bdd6d28de21f/2.jpg" alt=""></a>
+            <a target="_blank" href="https://psv4.userapi.com/c856432/u62408223/docs/d12/a3bb8a0a624e/3.jpg"><img src="https://psv4.userapi.com/c856432/u62408223/docs/d12/a3bb8a0a624e/3.jpg" alt=""></a>
 
         </slick>
        <!-- <hr>
