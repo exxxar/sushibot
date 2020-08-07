@@ -252,8 +252,16 @@ $botman->hears('.*Новое меню', function ($bot) {
     $id = $telegramUser->getId();
 
     $media = [
-        ["type" => "photo", "media" => "https://sun9-8.userapi.com/c857228/v857228676/1c7f33/rOa7MmjmPtQ.jpg"],
-        ["type" => "photo", "media" => "https://sun9-68.userapi.com/c857228/v857228676/1c7f3d/P24O7YPeEdg.jpg"],
+        ["type" => "photo", "media" => "https://sun9-21.userapi.com/c857616/v857616755/2355ee/jY6DlCvQnk8.jpg"],
+        ["type" => "photo", "media" => "https://sun9-49.userapi.com/c857616/v857616755/2355f8/tBvlw3739EY.jpg"],
+        ["type" => "photo", "media" => "https://sun9-74.userapi.com/c857616/v857616755/235602/6CpGc4O7hL4.jpg"],
+        ["type" => "photo", "media" => "https://sun9-1.userapi.com/c857616/v857616755/23560c/4qyrvMTZc18.jpg"],
+        ["type" => "photo", "media" => "https://sun9-8.userapi.com/c857616/v857616755/235616/pJIJtVpT9oU.jpg"],
+        ["type" => "photo", "media" => "https://sun9-34.userapi.com/c857616/v857616755/235620/q6UIEjYFX48.jpg"],
+        ["type" => "photo", "media" => "https://sun9-27.userapi.com/c857616/v857616755/23562a/dwTBMS49hNg.jpg"],
+        ["type" => "photo", "media" => "https://sun9-58.userapi.com/c857616/v857616755/235634/imO2Y_0MTm4.jpg"],
+        ["type" => "photo", "media" => "https://sun9-47.userapi.com/c857616/v857616755/23563e/RF81WmcIhCk.jpg"],
+        ["type" => "photo", "media" => "https://sun9-71.userapi.com/c857616/v857616755/235648/Xss62b3AExk.jpg"],
     ];
 
     $bot->sendRequest("sendMediaGroup",
