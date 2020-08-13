@@ -262,6 +262,8 @@ $botman->hears('.*Новое меню', function ($bot) {
         ["type" => "photo", "media" => "https://sun9-58.userapi.com/c857616/v857616755/235634/imO2Y_0MTm4.jpg"],
         ["type" => "photo", "media" => "https://sun9-47.userapi.com/c857616/v857616755/23563e/RF81WmcIhCk.jpg"],
         ["type" => "photo", "media" => "https://sun9-71.userapi.com/c857616/v857616755/235648/Xss62b3AExk.jpg"],
+        ["type" => "photo", "media" => "https://sun9-41.userapi.com/c857236/v857236551/1f1eae/OST0kPEnB9A.jpg"],
+        ["type" => "photo", "media" => "https://sun9-59.userapi.com/c857236/v857236551/1f1eb8/OqXo8ukMcAQ.jpg"],
     ];
 
     $bot->sendRequest("sendMediaGroup",
