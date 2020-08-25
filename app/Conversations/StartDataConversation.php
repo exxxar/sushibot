@@ -199,7 +199,7 @@ class StartDataConversation extends Conversation
 
 
         if (!$this->user->is_admin) {
-            $this->mainMenu("Недостаточно прав доступа для совершения данной операции");
+            $this->mainMenu("Вы не можете переходить по собственной ссылке:) Делитесь ею с друзьями!");
             return;
         }
 
