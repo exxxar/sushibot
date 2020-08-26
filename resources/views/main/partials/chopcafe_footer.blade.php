@@ -68,7 +68,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="copyright_text">
-                        <p>&copy; Copyright 2020 ISUSHI. Все права защищены.</p>
+                        <p>&copy; Copyright 2020 ISUSHI & PIZZA. Все права защищены.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">

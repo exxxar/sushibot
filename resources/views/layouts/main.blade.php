@@ -10,7 +10,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Page Title -->
-    <title>Сервис доставки суши ISUSHI</title>
+    <title>Сервис доставки суши ISUSHI & PIZZA</title>
     <!-- Favicon Icon -->
     <link rel="shortcut icon" href="{{asset('assets/images/logo_dark.png')}}" type="image/png">
     <!-- All css here -->
