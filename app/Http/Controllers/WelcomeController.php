@@ -128,12 +128,14 @@ class WelcomeController extends Controller
         $message = $request->get("message") ?? '';
         $summary_price = $request->get("summary_price") ?? 0;
 
-        $user = User::where("phone", $phone)->first();
+
 
         $promo = null;
 
         $vowels = array("(", ")", "-", " ");
         $phone = str_replace($vowels, "", $phone);
+
+        $user = User::where("email", "$phone@isushi-dn.ru")->first();
 
         if (is_null($user))
             User::create([
