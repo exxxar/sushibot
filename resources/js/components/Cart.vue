@@ -271,7 +271,7 @@
                 this.promocode = ''
                 localStorage.setItem("sushi_promocode",  this.promocode);
 
-                let message = `*Заказ с сайта:*\n${products}\n_${this.message}_\nЦена заказа:*${this.cartTotalPrice}₽*\nЦена доставки:*${this.delivery_price}₽*\nАдрес доставки: ${this.address}\nСуммарно: *${this.cartTotalPrice + this.delivery_price} ₽*`;
+                let message = `*Заказ с сайта (isushi):*\n${products}\n_${this.message}_\nЦена заказа:*${this.cartTotalPrice}₽*\nЦена доставки:*${this.delivery_price}₽*\nАдрес доставки: ${this.address}\nСуммарно: *${this.cartTotalPrice + this.delivery_price} ₽*`;
                 axios
                     .post('api/send-request', {
                         name: this.name,
